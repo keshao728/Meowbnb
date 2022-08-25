@@ -7,7 +7,7 @@ const helmet = require('helmet');
 const cookieParser = require('cookie-parser');
 const routes = require('./routes');
 const { ValidationError } = require('sequelize');
-
+//gucci
 const { environment } = require('./config');
 //isProduction will be true if environment is in production.
 //Do so by checking the environment key in the configuration file (backend/config/index.js):
