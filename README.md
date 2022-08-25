@@ -1,8 +1,8 @@
-# Airbnb
+# `<name of application here>`
 
 ## Database Schema Design
 
-<a href="https://drive.google.com/uc?export=view&id=1ON5EwDgYK4JsBH46OByiBg_M_nMPV46H"><img src="https://drive.google.com/uc?export=view&id=1ON5EwDgYK4JsBH46OByiBg_M_nMPV46H" style="width: 650px; max-width: 100%; height: auto" title="Airbnb Schema" />
+`<a href="https://drive.google.com/uc?export=view&id=<FILEID>"><img src="https://drive.google.com/uc?export=view&id=1ON5EwDgYK4JsBH46OByiBg_M_nMPV46H" style="width: 650px; max-width: 100%; height: auto" title="Airbnb Schema" />`
 
 ## API Documentation
 
