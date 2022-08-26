@@ -1,4 +1,4 @@
-# Airbnb
+# Meowbnb
 
 ## Database Schema Design
 

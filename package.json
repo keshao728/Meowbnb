@@ -1,0 +1,42 @@
+{
+  "name": "authenticate-me",
+  "version": "1.0.0",
+  "description": "## Database Schema Design",
+  "main": "index.js",
+  "scripts": {
+    "install": "npm --prefix backend install backend",
+    "dev:backend": "npm install --prefix backend start",
+    "sequelize": "npm run --prefix backend sequelize",
+    "sequelize-cli": "npm run --prefix backend sequelize-cli",
+    "start": "npm start --prefix backend"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/keshao728/Airbnb.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/keshao728/Airbnb/issues"
+  },
+  "homepage": "https://github.com/keshao728/Airbnb#readme",
+  "dependencies": {
+    "buffer-writer": "^2.0.0",
+    "packet-reader": "^1.0.0",
+    "pg": "^8.8.0",
+    "pg-connection-string": "^2.5.0",
+    "pg-int8": "^1.0.1",
+    "pg-pool": "^3.5.2",
+    "pg-protocol": "^1.5.0",
+    "pg-types": "^2.2.0",
+    "pgpass": "^1.0.5",
+    "postgres-array": "^2.0.0",
+    "postgres-bytea": "^1.0.0",
+    "postgres-date": "^1.0.7",
+    "postgres-interval": "^1.2.0",
+    "split2": "^4.1.0",
+    "xtend": "^4.0.2"
+  },
+  "devDependencies": {}
+}
