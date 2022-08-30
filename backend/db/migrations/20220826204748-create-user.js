@@ -1,4 +1,7 @@
 "use strict";
+
+const { INTEGER } = require("sequelize");
+
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     return queryInterface.createTable("Users", {
@@ -8,19 +11,27 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      username: {
+      firstName: {
         type: Sequelize.STRING(30),
-        allowNull: false,
-        unique: true
+        allowNull: false
       },
-      email: {
-        type: Sequelize.STRING(256),
+      lastName: {
+        type: Sequelize.STRING(30),
+        allowNull: false
+      },
+      userName: {
+        type: Sequelize.STRING(30),
         allowNull: false,
         unique: true
       },
       hashedPassword: {
         type: Sequelize.STRING.BINARY,
         allowNull: false
+      },
+      email: {
+        type: Sequelize.STRING(256),
+        allowNull: false,
+        unique: true
       },
       createdAt: {
         allowNull: false,
@@ -38,3 +49,5 @@ module.exports = {
     return queryInterface.dropTable("Users");
   }
 };
+
+
