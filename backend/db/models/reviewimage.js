@@ -1,4 +1,6 @@
 'use strict';
+const { DECIMAL } = require('sequelize');
+const { INTEGER } = require('sequelize');
 const {
   Model
 } = require('sequelize');
@@ -25,3 +27,4 @@ module.exports = (sequelize, DataTypes) => {
   });
   return ReviewImage;
 };
+
