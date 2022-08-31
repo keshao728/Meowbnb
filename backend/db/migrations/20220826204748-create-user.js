@@ -1,10 +1,7 @@
-"use strict";
-
-const { INTEGER } = require("sequelize");
-
+'use strict';
 module.exports = {
-  up: async (queryInterface, Sequelize) => {
-    return queryInterface.createTable("Users", {
+  async up(queryInterface, Sequelize) {
+    await queryInterface.createTable('Users', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -12,14 +9,19 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       firstName: {
-        type: Sequelize.STRING(30),
+        type: Sequelize.STRING(20),
         allowNull: false
       },
       lastName: {
-        type: Sequelize.STRING(30),
+        type: Sequelize.STRING(20),
         allowNull: false
       },
-      userName: {
+      email: {
+        type: Sequelize.STRING(256),
+        allowNull: false,
+        unique: true
+      },
+      username: {
         type: Sequelize.STRING(30),
         allowNull: false,
         unique: true
@@ -28,27 +30,20 @@ module.exports = {
         type: Sequelize.STRING.BINARY,
         allowNull: false
       },
-      email: {
-        type: Sequelize.STRING(256),
-        allowNull: false,
-        unique: true
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
+        defaultValue: Sequelize.literal("CURRENT_TIMESTAMP")
       },
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
+        defaultValue: Sequelize.literal("CURRENT_TIMESTAMP")
       }
     });
+    await queryInterface.addIndex('Users', ['username', 'email'], {unique: true})
   },
-  down: async (queryInterface, Sequelize) => {
-    return queryInterface.dropTable("Users");
+  async down(queryInterface, Sequelize) {
+    await queryInterface.dropTable('Users');
   }
 };
-
-
-
