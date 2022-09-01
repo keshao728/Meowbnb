@@ -13,7 +13,6 @@ const handleValidationErrors = (req, res, next) => {
       .array()
       .map((error) => `${error.msg}`);
 
-
     // const errorMessage = Object.assign(req.params, errors)
 
     // delete errorMessage[key];

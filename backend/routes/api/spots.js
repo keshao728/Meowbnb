@@ -5,10 +5,12 @@ const router = express.Router();
 
 const { Op } = require('sequelize');
 const { User, Spot, Booking, SpotImage, Review, sequelize } = require('../../db/models');
+//sequelize.Sequelize.DataTypes.postgres.DECIMAL.parse = parseFloat;
 
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 const { create } = require('domain');
+
 
 const validateSpot = [
   check('address')
@@ -152,6 +154,13 @@ router.get('/current', requireAuth, async (req, res, next) => {
 router.get('/:spotId', async (req, res) => {
   const {spotId} = req.params
   const spot = await Spot.findByPk(spotId)
+  if(!spot){
+    res.statusCode = 404,
+    res.json({
+        "message": "Spot couldn't be found",
+        "statusCode": 404
+      })
+  }
   const owner = await User.findByPk(spot.ownerId,
     { attributes: ['id', 'firstName', 'lastName']
 })
@@ -176,13 +185,6 @@ router.get('/:spotId', async (req, res) => {
   }
 
 
-  if(!spot){
-    res.statusCode = 404,
-    res.json({
-        "message": "Spot couldn't be found",
-        "statusCode": 404
-      })
-  }
 
   newSpot.numReviews = reviews;
   newSpot.avgRating = avgStarRating
@@ -238,6 +240,36 @@ router.post('/:spotId/images', requireAuth, async (req, res, next) => {
   }))
 })
 
+//Edit a Spot
+router.put('/:spotId', validateSpot, requireAuth, async (req, res) => {
+  const { address, city, state, country, lat, lng, name, description, price } = req.body
+  const spot = await Spot.findByPk(req.params.spotId)
+  
+  if (!spot) {
+      res.statusCode = 404
+      res.json({
+          message: "Spot couldn't be found",
+          statusCode: res.statusCode
+      })
+  }
+
+    spot.update({
+      address,
+      city,
+      state,
+      country,
+      lat,
+      lng,
+      name,
+      description,
+      price
+    })
+    return res.json(spot)
+
+
+
+
+})
 
 
   module.exports = router;
