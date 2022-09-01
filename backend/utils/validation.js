@@ -1,9 +1,11 @@
 // backend/utils/validation.js
 const { validationResult } = require('express-validator');
 
+
 // middleware for formatting errors from express-validator middleware
 // (to customize, see express-validator's documentation)
 const handleValidationErrors = (req, res, next) => {
+  // const { firstName, lastName, email, password, username } = req.params;
   const validationErrors = validationResult(req);
 
   if (!validationErrors.isEmpty()) {
@@ -11,7 +13,8 @@ const handleValidationErrors = (req, res, next) => {
       .array()
       .map((error) => `${error.msg}`);
 
-    // const errorMessage = Object.assign({},errors)
+
+    // const errorMessage = Object.assign(req.params, errors)
 
     // delete errorMessage[key];
     res.status(400)

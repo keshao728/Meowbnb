@@ -12,7 +12,7 @@ const router = express.Router();
 const validateLogin = [
   check('credential')
     .exists({ checkFalsy: true })
-    .notEmpty()
+    // .notEmpty()
     .withMessage('Email or username is required'),
   check('password')
     .exists({ checkFalsy: true })
@@ -37,10 +37,10 @@ router.post(
       });
     }
 
-    await setTokenCookie(res, user);
+    const token = await setTokenCookie(res, user);
 
     const userData = user.toJSON()
-    userData.token = ""
+    userData.token = token
 
     return res.json(
         userData
