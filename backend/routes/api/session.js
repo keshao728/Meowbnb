@@ -13,10 +13,10 @@ const validateLogin = [
   check('credential')
     .exists({ checkFalsy: true })
     .notEmpty()
-    .withMessage('Please provide a valid email or username.'),
+    .withMessage('Email or username is required'),
   check('password')
     .exists({ checkFalsy: true })
-    .withMessage('Please provide a password.'),
+    .withMessage('Password is required'),
   handleValidationErrors
 ];
 
@@ -30,18 +30,21 @@ router.post(
     const user = await User.login({ credential, password });
 
     if (!user) {
-      const err = new Error('Login failed');
-      err.status = 401;
-      err.title = 'Login failed';
-      err.errors = ['The provided credentials were invalid.'];
-      return next(err);
+      res.status(401)
+      res.json({
+        "message": "Invalid credentials",
+        "statusCode": 401,
+      });
     }
 
     await setTokenCookie(res, user);
 
-    return res.json({
-      user
-    });
+    const userData = user.toJSON()
+    userData.token = ""
+
+    return res.json(
+        userData
+    );
   }
 );
 
@@ -58,15 +61,14 @@ router.delete(
 router.get(
   '/',
   restoreUser,
-  (req, res) => {
-    const { user } = req;
-    if (user) {
-      return res.json({
-        user: user.toSafeObject()
-      });
-    } else return res.json({});
-  }
-);
+  async (req, res) => {
+  const { user } = req;
+  const currentUser = await User.findByPk(user.id)
+
+  if (user) {
+      return res.json(currentUser);
+  } else return res.json({});
+});
 
 
 

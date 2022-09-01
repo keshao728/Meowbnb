@@ -64,6 +64,14 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false
     },
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: [3, 256],
+        isEmail: true
+      }
+    },
     username: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -74,14 +82,6 @@ module.exports = (sequelize, DataTypes) => {
             throw new Error("Cannot be an email.");
           }
         }
-      }
-    },
-    email: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        len: [3, 256],
-        isEmail: true
       }
     },
     hashedPassword: {
@@ -99,7 +99,7 @@ module.exports = (sequelize, DataTypes) => {
     ],
     defaultScope: {
       attributes: {
-        exclude: ['hashedPassword', 'email', 'createdAt', 'updatedAt']
+        exclude: ['hashedPassword', 'createdAt', 'updatedAt']
       }
     },
     scopes: {

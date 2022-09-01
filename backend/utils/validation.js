@@ -11,7 +11,9 @@ const handleValidationErrors = (req, res, next) => {
       .array()
       .map((error) => `${error.msg}`);
 
+    // const errorMessage = Object.assign({},errors)
 
+    // delete errorMessage[key];
     res.status(400)
     res.json({
       "message": "Validation error",
