@@ -65,7 +65,7 @@ const validateReview = [
 ];
 
 //Get all Spots
-router.get('/', validateSpot, async (req, res, next) => {
+router.get('/', async (req, res, next) => {
 
   let { size, page } = req.query
   let pagination = {}
@@ -106,7 +106,7 @@ router.get('/', validateSpot, async (req, res, next) => {
 
     let spotData = content.toJSON()
     spotData.avgRating = ratings[0].avgRating
-    spotData.previewImage = imageUrl.url
+    spotData.previewImage = imageUrl
 
 
     spot.push(spotData)
@@ -244,7 +244,7 @@ router.post('/:spotId/images', requireAuth, async (req, res, next) => {
 router.put('/:spotId', validateSpot, requireAuth, async (req, res) => {
   const { address, city, state, country, lat, lng, name, description, price } = req.body
   const spot = await Spot.findByPk(req.params.spotId)
-  
+
   if (!spot) {
       res.statusCode = 404
       res.json({
