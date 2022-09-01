@@ -3,8 +3,8 @@ const sessionRouter = require('./session.js');
 const usersRouter = require('./users.js');
 const { restoreUser } = require('../../utils/auth.js');
 const spotsRouter = require('./spots')
-// const reviewsRouter = require('./reviews')
-// const bookingsRouter = require('./bookings')
+const reviewsRouter = require('./reviews')
+const bookingsRouter = require('./bookings')
 // const spotImagesRouter = require('./spot-images')
 // const reviewImagesRouter = require('./review-images')
 
@@ -16,9 +16,9 @@ router.use(restoreUser);
 
 // router.use('/spot-images', spotImagesRouter)
 
-// router.use('/reviews', reviewsRouter)
+router.use('/reviews', reviewsRouter)
 
-// router.use('/bookings', bookingsRouter)
+router.use('/bookings', bookingsRouter)
 
 router.use('/session', sessionRouter);
 
