@@ -11,28 +11,36 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Booking.init({
+    id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true
+    },
     spotId: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
+      onDelete: 'CASCADE'
     },
     userId: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
+      onDelete: 'CASCADE'
     },
     startDate: {
-      type: DataTypes.DATE,
-      allowNull:false,
-      validate: {
-        isAfter: Date.now() //do i need to define new Date()?
-      }
+      type: DataTypes.DATEONLY,
+      // allowNull: false
     },
     endDate: {
-      type: DataTypes.DATE,
-      allowNull: false,
+      type: DataTypes.DATEONLY,
+      // allowNull: false
       validate: {
-        isAfter: this.startDate
+        isValid(value) {
+          if (value <= this.startDate) {
+            throw new Error()
+          }
+        }
       }
-    }
+    },
   }, {
     sequelize,
     modelName: 'Booking',

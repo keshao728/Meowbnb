@@ -6,19 +6,22 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class Spot extends Model {
     static associate(models) {
-      Spot.belongsTo(models.User, { foreignKey: 'id' });
-      Spot.hasMany(models.Booking, { foreignKey: 'spotId' });
-      Spot.hasMany(models.Review, { foreignKey: 'spotId' });
-      Spot.hasMany(models.SpotImage, { foreignKey: 'spotId'});
+      Spot.belongsTo(models.User, { foreignKey: 'id', as: 'Owner', onDelete: 'CASCADE' });
+      Spot.hasMany(models.Booking, { foreignKey: 'spotId', onDelete: 'CASCADE' });
+      Spot.hasMany(models.Review, { foreignKey: 'spotId', onDelete: 'CASCADE' });
+      Spot.hasMany(models.SpotImage, { foreignKey: 'spotId', as: "SpotImages", onDelete: 'CASCADE'});
       Spot.belongsToMany(models.User, {
         through: models.Review,
         foreignKey: 'spotId',
-        otherKey: 'userId'
+        otherKey: 'userId',
+        onDelete: 'CASCADE'
       });
       Spot.belongsToMany(models.User, {
         through: models.Booking,
         foreignKey: 'spotId',
-        otherKey: 'userId'
+        otherKey: 'userId',
+        onDelete: 'CASCADE'
+
       });
       //?Shall I connect to ReviewImages?
     }
@@ -28,6 +31,7 @@ module.exports = (sequelize, DataTypes) => {
     ownerId: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      onDelete: 'CASCADE'
     },
     address: {
       type: DataTypes.STRING,

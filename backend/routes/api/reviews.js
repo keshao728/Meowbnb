@@ -28,10 +28,19 @@ router.get('/current', requireAuth, async (req, res) => {
     },
     attributes: ['id', 'userId', 'spotId', 'review', 'stars', 'createdAt', 'updatedAt'],
     include: [
-      { model: User },
-      { model: Spot },
-      { model: ReviewImage }
-    ]
+      { model: User, attributes: ['id', 'firstName', 'lastName'] },
+      { model: Spot,
+        attributes: [
+          'id', 'ownerId', 'address',
+          'city', 'state', 'country',
+          'lat', 'lng', 'name', 'price'
+        ],
+        include: [
+          {model: SpotImage, where: {preview: true}, attributes: ["url"]}]
+     },
+      { model: ReviewImage, attributes: ['id', 'url'] }
+    ],
+
   });
   res.json({ Reviews: currentUserReview });
 });
@@ -81,6 +90,12 @@ router.post('/:reviewId/images', requireAuth, async (req, res, next) => {
 
 router.put('/:reviewId', requireAuth, validateReview, async (req, res, next) => {
   const userReview = await Review.findByPk(req.params.reviewId);
+  if (!userReview) {
+    res.status(404).json({
+      message: "Review couldn't be found",
+      statusCode: 404
+    });
+  };
   if (userReview) {
     if (userReview.userId === req.user.id) {
       const { review, stars } = req.body;
@@ -92,34 +107,31 @@ router.put('/:reviewId', requireAuth, validateReview, async (req, res, next) => 
       res.json(userReview);
     }
 
-    if (!userReview) {
-      res.status(404).json({
-        message: "Review couldn't be found",
-        statusCode: 404
-      });
-    };
   }
 })
 
-// router.delete('/:reviewId', requireAuth, async (req, res, next) => {
-//   const review = await Review.findByPk(req.params.reviewId);
-//   if (review) {
-//     if (review.userId === req.user.id) {
-//       await review.destroy();
+router.delete('/:reviewId', requireAuth, async (req, res, next) => {
+  const review = await Review.findByPk(req.params.reviewId);
 
-//       res.json({
-//         message: "Successfully deleted",
-//         statusCode: 200
-//       });
-//     }
+  if (!review) {
+  res.status(404).json({
+    message: "Review couldn't be found",
+    statusCode: 404
+  });
+}
+  if (review) {
+    if (review.userId === req.user.id) {
+      await review.destroy();
+
+      res.json({
+        message: "Successfully deleted",
+        statusCode: 200
+      });
+    }
 
 
-//     res.status(404).json({
-//       message: "Review couldn't be found",
-//       statusCode: 404
-//     });
-//   }
-// });
+  }
+});
 
 
 module.exports = router;

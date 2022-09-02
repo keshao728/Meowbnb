@@ -5,16 +5,16 @@ const { restoreUser } = require('../../utils/auth.js');
 const spotsRouter = require('./spots')
 const reviewsRouter = require('./reviews')
 const bookingsRouter = require('./bookings')
-// const spotImagesRouter = require('./spot-images')
-// const reviewImagesRouter = require('./review-images')
+const spotImagesRouter = require('./spot-images')
+const reviewImagesRouter = require('./review-images')
 
 
 
 router.use(restoreUser);
 
-// router.use('/review-images', reviewImagesRouter)
+router.use('/review-images', reviewImagesRouter)
 
-// router.use('/spot-images', spotImagesRouter)
+router.use('/spot-images', spotImagesRouter)
 
 router.use('/reviews', reviewsRouter)
 

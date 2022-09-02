@@ -17,14 +17,15 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {model:'Users', key:'id'}
+        // onDelete: 'CASCASE'
       },
       startDate: {
-        type: Sequelize.DATE,
-        allowNull: false
+        type: Sequelize.DATEONLY,
+        // allowNull: false
       },
       endDate: {
-        type: Sequelize.DATE,
-        allowNull: false
+        type: Sequelize.DATEONLY,
+        // allowNull: false
       },
       createdAt: {
         allowNull: false,

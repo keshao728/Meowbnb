@@ -6,13 +6,14 @@ module.exports = (sequelize, DataTypes) => {
   class SpotImage extends Model {
 
     static associate(models) {
-      SpotImage.belongsTo(models.Spot, { foreignKey: 'id' });
+      SpotImage.belongsTo(models.Spot, { foreignKey: 'id', onDelete: 'CASCADE'});
     }
   }
   SpotImage.init({
     spotId: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      onDelete: 'CASCADE'
     },
     url: {
       type: DataTypes.STRING,
