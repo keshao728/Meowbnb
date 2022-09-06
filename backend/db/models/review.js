@@ -7,8 +7,8 @@ module.exports = (sequelize, DataTypes) => {
   class Review extends Model {
 
     static associate(models) {
-      Review.belongsTo(models.User, { foreignKey: 'id', onDelete: 'CASCADE' });
-      Review.belongsTo(models.Spot, { foreignKey: 'id', onDelete: 'CASCADE' });
+      Review.belongsTo(models.User, { foreignKey: 'userId' });
+      Review.belongsTo(models.Spot, { foreignKey: 'spotId' });
       Review.hasMany(models.ReviewImage, { foreignKey: 'reviewId', onDelete: 'CASCADE' });
     }
   }
@@ -21,12 +21,12 @@ module.exports = (sequelize, DataTypes) => {
     spotId: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      onDelete: 'CASCADE'
+      // onDelete: 'CASCADE'
     },
     userId: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      onDelete: 'CASCADE'
+      // onDelete: 'CASCADE'
     },
     review: {
       type: DataTypes.STRING,

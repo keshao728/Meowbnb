@@ -12,12 +12,12 @@ module.exports = {
       },
       {
         spotId: 2,
-        userId: 3,
+        userId: 4,
         review: "MEOWU",
         stars: 4
       },
       {
-        spotId: 1,
+        spotId: 3,
         userId: 6,
         review: "woof..?",
         stars: 1
@@ -37,7 +37,8 @@ module.exports = {
         [Op.in]: [
           1,
           2,
-          4
+          4,
+          3
         ]
       }
     });

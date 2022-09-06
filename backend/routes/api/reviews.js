@@ -36,12 +36,13 @@ router.get('/current', requireAuth, async (req, res) => {
           'lat', 'lng', 'name', 'price'
         ],
         include: [
-          {model: SpotImage, where: {preview: true}, attributes: ["url"]}]
+          {model: SpotImage, where: {preview: true}, attributes: ["url"], raw: true},]
      },
-      { model: ReviewImage, attributes: ['id', 'url'] }
+      { model: ReviewImage, attributes: ['id', 'url'], raw: true },
     ],
 
   });
+  console.log(currentUserReview)
   res.json({ Reviews: currentUserReview });
 });
 

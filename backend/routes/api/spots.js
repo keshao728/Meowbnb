@@ -103,12 +103,12 @@ router.get('/', async (req, res, next) => {
       where: {
         preview: true
       },
-      attributes: ['url']
+      attributes: ['url'], raw: true,
     })
 
     let spotData = content.toJSON()
     spotData.avgRating = ratings[0].avgRating
-    spotData.previewImage = imageUrl
+    spotData.previewImage = imageUrl.url
 
 
     spot.push(spotData)
@@ -216,9 +216,10 @@ router.get('/:spotId', async (req, res) => {
 })
 
 //create a spot
-router.post('/', validateSpot, async (req, res, next) => {
+router.post('/', validateSpot, requireAuth, async (req, res, next) => {
   const { address, city, state, country, lat, lng, name, description, price } = req.body;
   const user = req.user
+  console.log(req.user)
   const spots = await Spot.create({
     ownerId: user.id,
     address,
@@ -231,7 +232,8 @@ router.post('/', validateSpot, async (req, res, next) => {
     description,
     price
   })
-  res.json(spots)
+  res.status = 201
+  return res.json(spots)
 })
 
 //Add an Image to a Spot based on th Spot based on the Spot's id
