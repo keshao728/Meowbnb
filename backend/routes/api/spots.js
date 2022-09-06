@@ -430,16 +430,16 @@ router.post('/:spotId/bookings', restoreUser, requireAuth, async (req, res, next
   const bookSpot = await Spot.findByPk(spotId)
 
   if (!bookSpot) {
-    res.status(404),
-      res.json({
+    res.status(404);
+    return res.json({
         "message": "Spot couldn't be found",
         "statusCode": 404
       })
   }
 
   if (endDate <= startDate) {
-    res.status(400),
-      res.json({
+    res.status(400);
+    return res.json({
         "message": "Validation error",
         "statusCode": 400,
         "errors": {

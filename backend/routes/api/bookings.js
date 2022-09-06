@@ -49,7 +49,7 @@ router.put('/:bookingId', requireAuth, async (req, res) => {
 
   if (!booking) {
     res.status(404)
-    res.json({
+    return res.json({
       message: "Booking couldn't be found",
       statusCode: 404
     })
@@ -79,7 +79,7 @@ router.put('/:bookingId', requireAuth, async (req, res) => {
 
   if (bookings.length > 1) {
     res.status(403)
-    res.json({
+    return res.json({
       message: "Sorry, this spot is already booked for the specified dates",
       statusCode: 403,
       errors: {
@@ -104,15 +104,15 @@ router.delete('/:bookingId', requireAuth, async (req, res, next) => {
 
   const bookings = await Booking.findByPk(bookingId)
   if (!bookings) {
-    res.statusCode = 404,
-      res.json({
+    res.statusCode = 404;
+     return res.json({
         "message": "Booking couldn't be found",
         "statusCode": 404
       })
   }
   if (bookings.startDate < today || bookings.endDate < today) {
-    res.statusCode = 403,
-      res.json({
+    res.statusCode = 403
+     return res.json({
         "message": "Bookings that have been started can't be deleted",
         "statusCode": 403
       })
@@ -129,7 +129,7 @@ router.delete('/:bookingId', requireAuth, async (req, res, next) => {
   } else {
 
     res.status(403)
-    res.json({
+    return res.json({
       "message": "Booking must belong to the current user or the Spot must belong to the current user",
       "statusCode": 403
     })
