@@ -7,35 +7,39 @@ const { requireAuth } = require('../../utils/auth');
 const e = require('express');
 const { Op } = require('sequelize');
 
+
 const router = express.Router();
 
 //GET all current user's bookings
-router.get('/current', requireAuth, async (req, res) => {
+router.get('/current', requireAuth, async (req, res, next) => {
+  let holder
+  const { user } = req
+  let result = []
   const bookings = await Booking.findAll({
     where: {
-      userId: req.user.id
+      userId: user.id
     },
-    include: [
-      {
-        model: Spot,
-        attributes: ['id', 'ownerId', 'address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'price'],
-      }]
-    })
-const bookingss = []
-for (let theBooking of bookings) {
-  let review = theBooking.toJSON()
-  const imagePreview = await SpotImage.findAll({
-    where: {
-      preview: true,
-    spotId: review.spotId },
+    include: {
+      model: Spot,
+      attributes: {
+        exclude: ['createdAt', 'updatedAt', 'description']
+      }
+    }
   })
-  review.Spot.imagePreview = imagePreview.url
-  bookingss.push(review)
 
-}
-
-  res.json({ Bookings: bookings })
+  for (let j = 0; j < bookings.length; j++) {
+    holder = bookings[j].toJSON()
+    let imageUrl = await SpotImage.findByPk(
+      bookings[j].spotId, {
+      where: { preview: true },
+      attributes: ['url']
+    })
+    holder.Spot.previewImage = imageUrl.url
+    result.push(holder)
+  }
+  res.json({ Bookings: result });
 })
+
 
 // Edit Booking
 router.put('/:bookingId', requireAuth, async (req, res) => {
@@ -44,14 +48,15 @@ router.put('/:bookingId', requireAuth, async (req, res) => {
   const booking = await Booking.findByPk(bookingId)
 
   if (!booking) {
-    res.status = 404
+    res.status(404)
     res.json({
       message: "Booking couldn't be found",
       statusCode: 404
     })
   }
+
   if (booking.endDate < new Date()) {
-    res.status = 403
+    res.status(403)
     return res.json({
       message: "Past bookings can't be modified",
       statusCode: res.statusCode
@@ -73,7 +78,7 @@ router.put('/:bookingId', requireAuth, async (req, res) => {
   })
 
   if (bookings.length > 1) {
-    res.status = 403
+    res.status(403)
     res.json({
       message: "Sorry, this spot is already booked for the specified dates",
       statusCode: 403,
@@ -116,7 +121,7 @@ router.delete('/:bookingId', requireAuth, async (req, res, next) => {
 
     await bookings.destroy()
 
-    res.statusCode = 200
+    res.status(200)
     return res.json({
       "message": "Successfully deleted",
       "statusCode": 200

@@ -10,21 +10,18 @@ module.exports = {
       },
       spotId: {
         type: Sequelize.INTEGER,
-        allowNull: false,
-        references: {model: 'Spots', key: 'id'}
+        allowNull: false
       },
       userId: {
         type: Sequelize.INTEGER,
-        allowNull: false,
-        references: {model: 'Users', key: 'id'}
+        allowNull: false
       },
       review: {
-        type: Sequelize.STRING,
-        allowNull: false
+        type: Sequelize.STRING
       },
       stars: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        defaultValue : 0
       },
       createdAt: {
         allowNull: false,

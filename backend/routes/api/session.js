@@ -31,7 +31,7 @@ router.post(
 
     if (!user) {
       res.status(401)
-      res.json({
+      return res.json({
         "message": "Invalid credentials",
         "statusCode": 401,
       });
@@ -67,7 +67,13 @@ router.get(
 
   if (user) {
       return res.json(currentUser);
-  } else return res.json({});
+  } else {
+    res.status(401)
+    return res.json({
+      message: "Authentication required",
+      statusCode: 401
+    })
+  };
 });
 
 

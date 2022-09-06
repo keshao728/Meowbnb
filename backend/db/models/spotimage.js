@@ -13,15 +13,15 @@ module.exports = (sequelize, DataTypes) => {
     spotId: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      onDelete: 'CASCADE'
+      // onDelete: 'CASCADE'
     },
     url: {
       type: DataTypes.STRING,
-      allowNull: false,
+      // allowNull: false,
     },
     preview: {
       type: DataTypes.BOOLEAN,
-      allowNull: false,
+      // allowNull: false,
     }
   }, {
     sequelize,

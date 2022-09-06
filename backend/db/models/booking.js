@@ -4,35 +4,25 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Booking extends Model {
-
+    /**
+     * Helper method for defining associations.
+     * This method is not a part of Sequelize lifecycle.
+     * The `models/index` file will call this method automatically.
+     */
     static associate(models) {
-      Booking.belongsTo(models.User, { foreignKey: 'userId' });
-      Booking.belongsTo(models.Spot, { foreignKey: 'spotId'} );
+      // define association here
+      Booking.belongsTo(models.Spot, { foreignKey: 'spotId' })
+      Booking.belongsTo(models.User, { foreignKey: 'userId' })
     }
   }
   Booking.init({
-    id: {
-      type: DataTypes.INTEGER,
-      autoIncrement: true,
-      primaryKey: true
-    },
-    spotId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      onDelete: 'CASCADE'
-    },
-    userId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      onDelete: 'CASCADE'
-    },
+    spotId: DataTypes.INTEGER,
+    userId: DataTypes.INTEGER,
     startDate: {
       type: DataTypes.DATEONLY,
-      // allowNull: false
     },
     endDate: {
       type: DataTypes.DATEONLY,
-      // allowNull: false
       validate: {
         isValid(value) {
           if (value <= this.startDate) {
@@ -40,7 +30,7 @@ module.exports = (sequelize, DataTypes) => {
           }
         }
       }
-    },
+    }
   }, {
     sequelize,
     modelName: 'Booking',

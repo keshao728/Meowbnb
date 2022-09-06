@@ -20,8 +20,36 @@ const validateReview = [
 ];
 
 //get all review
-router.get('/current', requireAuth, async (req, res) => {
+// router.get('/current', requireAuth, async (req, res) => {
+//   const currentUserId = req.user.id
+//   const currentUserReview = await Review.findAll({
+//     where: {
+//       userId: currentUserId
+//     },
+//     attributes: ['id', 'userId', 'spotId', 'review', 'stars', 'createdAt', 'updatedAt'],
+//     include: [
+//       { model: User, attributes: ['id', 'firstName', 'lastName'] },
+//       { model: Spot,
+//         attributes: [
+//           'id', 'ownerId', 'address',
+//           'city', 'state', 'country',
+//           'lat', 'lng', 'name', 'price'
+//         ],
+//         include: [
+//           {model: SpotImage, where: {preview: true}, attributes: ["url"], raw: true, nest: true},]
+//      },
+//       { model: ReviewImage, attributes: ['id', 'url'], raw: true },
+//     ],
+
+//   });
+//   console.log(currentUserReview)
+//   res.json({ Reviews: currentUserReview });
+// });
+
+router.get('/current', requireAuth, async(req, res, next) => {
+  let result = []
   const currentUserId = req.user.id
+
   const currentUserReview = await Review.findAll({
     where: {
       userId: currentUserId
@@ -35,16 +63,24 @@ router.get('/current', requireAuth, async (req, res) => {
           'city', 'state', 'country',
           'lat', 'lng', 'name', 'price'
         ],
-        include: [
-          {model: SpotImage, where: {preview: true}, attributes: ["url"], raw: true},]
-     },
-      { model: ReviewImage, attributes: ['id', 'url'], raw: true },
-    ],
+      },
+          {
+              model: ReviewImage,
+              attributes: ['id','url'],
+              raw: true
+          }
+        ]
 
-  });
-  console.log(currentUserReview)
-  res.json({ Reviews: currentUserReview });
-});
+      })
+
+   for(let review of currentUserReview) {
+      let spotimage = await SpotImage.findByPk( review.id, {where: { preview: true }, attributes: ['url'] })
+      let data = review.toJSON()
+      data.Spot.previewImage = spotimage.url
+     result.push(data)
+   }
+      res.json({Reviews: result})
+  })
 
 // Add an Image to a Review based on the Review's id
 router.post('/:reviewId/images', requireAuth, async (req, res, next) => {
