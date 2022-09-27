@@ -99,8 +99,9 @@ router.get('/', async (req, res, next) => {
       ],
     })
 
-    let imageUrl = await SpotImage.findByPk(content.id, {
+    let imageUrl = await SpotImage.findOne({
       where: {
+        spotId: content.id,
         preview: true
       },
       attributes: ['url'], raw: true,
@@ -108,7 +109,7 @@ router.get('/', async (req, res, next) => {
 
     let spotData = content.toJSON()
     spotData.avgRating = Number(ratings[0].avgRating).toFixed(1),
-      spotData.previewImage = imageUrl.url
+    spotData.previewImage = imageUrl
 
 
     spot.push(spotData)
@@ -428,7 +429,7 @@ router.post('/:spotId/bookings', requireAuth, async (req, res) => {
   const { startDate, endDate } = req.body;
 
   const spot = await Spot.findByPk(req.params.spotId);
-  if(!spot) {
+  if (!spot) {
     return res
       .status(404)
       .json({
@@ -443,7 +444,7 @@ router.post('/:spotId/bookings', requireAuth, async (req, res) => {
     }
   })
 
-  if(!startDate || !endDate || endDate <= startDate) {
+  if (!startDate || !endDate || endDate <= startDate) {
     return res
       .status(400)
       .json({
@@ -456,7 +457,7 @@ router.post('/:spotId/bookings', requireAuth, async (req, res) => {
   }
 
   for (let aBooking of currentBookings) {
-    if(aBooking.startDate >= startDate && aBooking.endDate <= endDate || aBooking.startDate <= startDate && aBooking.endDate >= endDate) {
+    if (aBooking.startDate >= startDate && aBooking.endDate <= endDate || aBooking.startDate <= startDate && aBooking.endDate >= endDate) {
       return res
         .status(403)
         .json({
@@ -470,13 +471,13 @@ router.post('/:spotId/bookings', requireAuth, async (req, res) => {
     }
   }
 
-    const bookingSpot = await Booking.create({
-      spotId: spot.id,
-      userId: req.user.id,
-      startDate,
-      endDate
-    });
-    return res.json(bookingSpot);
+  const bookingSpot = await Booking.create({
+    spotId: spot.id,
+    userId: req.user.id,
+    startDate,
+    endDate
+  });
+  return res.json(bookingSpot);
 
 })
 router.delete('/:spotId', requireAuth, async (req, res, next) => {
