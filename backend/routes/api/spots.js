@@ -200,7 +200,7 @@ router.get('/:spotId', async (req, res, next) => {
   data = {
     ...spotById.dataValues,
     numReviews,
-    avgStarRating: Number(allRating[0].dataValues.avgRating).toFixed(1),
+    avgStarRating: parseInt(Number(allRating[0].dataValues.avgRating).toFixed(1)),
     SpotImages: imageUrl,
     Owner: owner
   }
