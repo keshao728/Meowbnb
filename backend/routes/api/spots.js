@@ -108,7 +108,7 @@ router.get('/', async (req, res, next) => {
     })
 
     let spotData = content.toJSON()
-    spotData.avgRating = Number(ratings[0].avgRating).toFixed(1),
+    spotData.avgRating = parseInt(Number(ratings[0].avgRating).toFixed(1)),
     spotData.previewImage = imageUrl
 
 
@@ -142,14 +142,18 @@ router.get('/current', requireAuth, async (req, res, next) => {
       ],
       raw: true,
     })
-    let imageUrl = await SpotImage.findByPk(el.id, { where: { preview: true }, attributes: ['url'] })
+    let imageUrl = await SpotImage.findOne({
+      where:{
+        spotId: el.id,
+        preview: true
+      },
+      attributes: ['url'] })
     data = {
       ...el.dataValues,
-      avgRating: Number(allRating[0].avgRating).toFixed(1),
+      avgRating: parseInt(Number(allRating[0].avgRating).toFixed(1)),
       previewImage: imageUrl.url
     }
     spot.push(data)
-    //    }
   }
 
   res.json({ Spots: spot })
