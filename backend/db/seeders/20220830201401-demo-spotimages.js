@@ -22,7 +22,7 @@ module.exports = {
       {
         spotId: 4,
         url: 'https://www.pawtracks.com/wp-content/uploads/sites/2/2020/06/thorsten-nilson-eyeem-yo-1.jpg?fit=1024%2C1024&p=1',
-        preview: false
+        preview: true
       },
     ]);
   },
