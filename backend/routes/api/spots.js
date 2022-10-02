@@ -416,9 +416,13 @@ router.get('/:spotId/bookings', requireAuth, async (req, res) => {
       where: {
         spotId: req.params.spotId,
         userId: req.user.id
-      }
+      },
+      attributes: [
+
+        'spotId', 'startDate', 'endDate'
+      ]
     })
-    res.json({ Bookings: bookings })
+    return res.json({ Bookings: bookings })
   }
 
   if (spot.ownerId === req.user.id) {
@@ -428,11 +432,8 @@ router.get('/:spotId/bookings', requireAuth, async (req, res) => {
       },
       include: [{ model: User, attributes: ['id', 'firstName', 'lastName'] }]
     })
-    res.json({ Bookings: bookings })
+    return res.json({ Bookings: bookings })
   }
-
-
-
 })
 
 //create a booking from a spot based on the spot's id
