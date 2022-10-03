@@ -109,8 +109,12 @@ router.get('/', async (req, res, next) => {
     // console.log(imageUrl.url)
 
     let spotData = content.toJSON()
-    spotData.avgRating = parseInt(Number(ratings[0].avgRating).toFixed(1)),
+    if (!imageUrl) {
+      spotData.previewImage = null
+    } else {
       spotData.previewImage = imageUrl.url
+    }
+    spotData.avgRating = parseInt(Number(ratings[0].avgRating).toFixed(1)),
 
 
     spot.push(spotData)
