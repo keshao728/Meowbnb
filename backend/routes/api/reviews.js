@@ -99,7 +99,7 @@ router.post('/:reviewId/images', requireAuth, async (req, res, next) => {
     res.status(403)
     res.json({
 
-      "message": "You must be the current user.",
+      "message": "Forbidden",
       "statusCode": 403
     })
   } else {
