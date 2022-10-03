@@ -56,14 +56,14 @@ router.put('/:bookingId', requireAuth, async (req, res) => {
   }
   if (booking.userId !== req.user.id) {
     res.status(403)
-    res.json({
+    return res.json({
       "message": "Booking must belong to the current user",
       "statusCode": 403
     })
   }
   if (endDate < startDate || !endDate || !startDate) {
     res.statusCode = 400
-    res.json({
+    return res.json({
       "message": "Validation error",
       "statusCode": 400,
       "errors": {
@@ -76,17 +76,15 @@ router.put('/:bookingId', requireAuth, async (req, res) => {
 
   if (startDate < today || endDate < today || startDate > endDate) {
     res.statusCode = 403
-    res.json({
+    return res.json({
       "message": "Past bookings can't be modified",
       "statusCode": 403
     })
   }
 
-  if (
-    (booking.startDate >= startDate && booking.endDate <= endDate) ||
-    (booking.startDate <= startDate && booking.endDate >= endDate)
-  ) {
-    return res.status(403).json({
+  if ((booking.startDate >= startDate && booking.endDate <= endDate) ||(booking.startDate <= startDate && booking.endDate >= endDate)) {
+    res.statusCode = 403
+    return res.json({
       message: "Sorry, this spot is already booked for the specified dates",
       statusCode: 403,
       errors: {
@@ -143,7 +141,7 @@ router.delete('/:bookingId', requireAuth, async (req, res, next) => {
 
     res.status(403)
     return res.json({
-      "message": "Booking must belong to the current user or the Spot must belong to the current user",
+      "message": "Forbidden",
       "statusCode": 403
     })
   }

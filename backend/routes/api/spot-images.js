@@ -9,7 +9,7 @@ const { handleValidationErrors } = require('../../utils/validation');
 
 const { Op } = require('sequelize');
 
-const { SpotImage, sequelize } = require('../../db/models');
+const { Spot, SpotImage, sequelize } = require('../../db/models');
 
 router.delete('/:spotImageId', requireAuth, async (req, res) => {
   const { spotImageId } = req.params;
@@ -23,13 +23,21 @@ router.delete('/:spotImageId', requireAuth, async (req, res) => {
         statusCode: 404
       })
   }
+  const owner = await Spot.findByPk(spotImage.spotId)
 
-  spotImage.destroy()
-
-  return res.json({
-    message: "Successfully deleted",
-    statusCode: 200
-  })
+  if (owner.ownerId !== req.user.id) {
+    res.status(403).json({
+      "message": "Forbidden",
+      "statusCode": 403
+    })
+  }
+  if (owner.ownerId === req.user.id) {
+    await spotImage.destroy()
+    res.json({
+      "message": "Successfully deleted",
+      "statusCode": 200
+    })
+  }
 })
 
 module.exports = router;

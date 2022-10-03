@@ -249,6 +249,13 @@ router.post('/:spotId/images', requireAuth, async (req, res, next) => {
         "statusCode": 404
       })
   }
+  if (spot.ownerId !== req.user.id) {
+    res.statusCode = 403
+    return res.json({
+        "message": "Forbidden",
+        "statusCode": 403
+    })
+}
   const spotImage = await SpotImage.create({
     "spotId": spotId,
     "url": url,
@@ -264,7 +271,7 @@ router.post('/:spotId/images', requireAuth, async (req, res, next) => {
   }))
 })
 
-//Edit a Spot
+//Add an Image to a Spot based on the Spot's id
 router.post('/:spotId/images', requireAuth, async (req, res) => {
   const user = req.user
   const { url, preview } = req.body
@@ -277,12 +284,12 @@ router.post('/:spotId/images', requireAuth, async (req, res) => {
     })
   }
   if (spot.ownerId !== user.id) {
-    res.status(403)
+    res.statusCode = 403
     return res.json({
-      "message": "Forbidden",
-      "statusCode": res.statusCode
+        "message": "Forbidden",
+        "statusCode": res.statusCode
     })
-  }
+}
   const images = await SpotImage.create({
     spotId: Number(req.params.spotId),
     url: url,
@@ -305,6 +312,13 @@ router.put('/:spotId', validateSpot, requireAuth, async (req, res) => {
     res.json({
       message: "Spot couldn't be found",
       statusCode: res.statusCode
+    })
+  }
+
+  if (spot.ownerId !== req.user.id) {
+    res.status(403).json({
+      "message": "Forbidden",
+      "statusCode": 403
     })
   }
 
@@ -451,6 +465,12 @@ router.post('/:spotId/bookings', requireAuth, async (req, res) => {
         "statusCode": 404
       })
   }
+  if (spot.ownerId === req.user.id) {
+    res.status(403).json({
+      "message": "Forbidden",
+      "statusCode": 403
+    })
+  }
   // console.log(req.params.spotId)
   const currentBookings = await Booking.findAll({
     where: {
@@ -508,7 +528,7 @@ router.delete('/:spotId', requireAuth, async (req, res, next) => {
     if (spot.ownerId !== user.id) {
       res.status(403)
       return res.json({
-        "message": "Spot must belong to the current user",
+        "message": "Forbidden",
         "statusCode": 403
       })
     }

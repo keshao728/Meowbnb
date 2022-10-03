@@ -144,7 +144,10 @@ router.put('/:reviewId', requireAuth, validateReview, async (req, res, next) => 
 
       res.json(userReview);
     } else {
-      res.status(403).json({ "message": "Forbidden", "statusCode": 403 })
+      res.status(403).json({
+        "message": "Forbidden",
+        "statusCode": 403
+      })
     }
   }
 })
