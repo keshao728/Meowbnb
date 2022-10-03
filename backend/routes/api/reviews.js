@@ -2,19 +2,18 @@ const express = require('express')
 
 const { Spot, User, Booking, Review, SpotImage, ReviewImage, sequelize } = require('../../db/models');
 const { requireAuth } = require('../../utils/auth');
-const { check } = require('express-validator');
+const { body } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 
 const router = express.Router();
 
 const validateReview = [
-  check('review')
+  body('review')
     .exists({ checkFalsy: true })
     .withMessage('Review text is required'),
-  check('stars')
+  body('stars')
     .exists({ checkFalsy: true })
-    .withMessage('Stars must be an integer from 1 to 5') //Stars is required
-    .isLength({ min: 1, max: 5 })
+    .isInt({ min: 1, max: 5 })
     .withMessage('Stars must be an integer from 1 to 5'),
   handleValidationErrors
 ];
@@ -46,7 +45,7 @@ const validateReview = [
 //   res.json({ Reviews: currentUserReview });
 // });
 
-router.get('/current', requireAuth, async(req, res, next) => {
+router.get('/current', requireAuth, async (req, res, next) => {
   let result = []
   const currentUserId = req.user.id
 
@@ -57,30 +56,31 @@ router.get('/current', requireAuth, async(req, res, next) => {
     attributes: ['id', 'userId', 'spotId', 'review', 'stars', 'createdAt', 'updatedAt'],
     include: [
       { model: User, attributes: ['id', 'firstName', 'lastName'] },
-      { model: Spot,
+      {
+        model: Spot,
         attributes: [
           'id', 'ownerId', 'address',
           'city', 'state', 'country',
           'lat', 'lng', 'name', 'price'
         ],
       },
-          {
-              model: ReviewImage,
-              attributes: ['id','url'],
-              raw: true
-          }
-        ]
+      {
+        model: ReviewImage,
+        attributes: ['id', 'url'],
+        raw: true
+      }
+    ]
 
-      })
-
-   for(let review of currentUserReview) {
-      let spotimage = await SpotImage.findByPk( review.id, {where: { preview: true }, attributes: ['url'] })
-      let data = review.toJSON()
-      data.Spot.previewImage = spotimage.url
-     result.push(data)
-   }
-      res.json({Reviews: result})
   })
+
+  for (let review of currentUserReview) {
+    let spotimage = await SpotImage.findByPk(review.id, { where: { preview: true }, attributes: ['url'] })
+    let data = review.toJSON()
+    data.Spot.previewImage = spotimage.url
+    result.push(data)
+  }
+  res.json({ Reviews: result })
+})
 
 // Add an Image to a Review based on the Review's id
 router.post('/:reviewId/images', requireAuth, async (req, res, next) => {
@@ -144,7 +144,8 @@ router.put('/:reviewId', requireAuth, validateReview, async (req, res, next) => 
 
       res.json(userReview);
     } else {
-      res.status(403).json({"message":"Forbidden","statusCode":403})}
+      res.status(403).json({ "message": "Forbidden", "statusCode": 403 })
+    }
   }
 })
 
@@ -152,24 +153,26 @@ router.delete('/:reviewId', requireAuth, async (req, res, next) => {
   const review = await Review.findByPk(req.params.reviewId);
 
   if (!review) {
-  res.status(404).json({
-    message: "Review couldn't be found",
-    statusCode: 404
-  });
-}
-  if (review) {
-    if (review.userId === req.user.id) {
-      await review.destroy();
-
-      res.json({
-        message: "Successfully deleted",
-        statusCode: 200
-      });
-    }
-
-
+    res.status(404).json({
+      message: "Review couldn't be found",
+      statusCode: 404
+    });
   }
-});
+  if (review.userId !== req.user.id) {
+    res.statusCode = 403
+    return res.json({
+      "message": "Forbidden",
+      "statusCode": 403
+    })
+  }
+  review.destroy()
+
+  res.status(200)
+  return res.json({
+    message: "Successfully deleted",
+    statusCode: res.statusCode
+  })
+})
 
 
 module.exports = router;
