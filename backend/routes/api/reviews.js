@@ -133,6 +133,7 @@ router.put('/:reviewId', requireAuth, validateReview, async (req, res, next) => 
       statusCode: 404
     });
   };
+
   if (userReview) {
     if (userReview.userId === req.user.id) {
       const { review, stars } = req.body;
@@ -142,8 +143,8 @@ router.put('/:reviewId', requireAuth, validateReview, async (req, res, next) => 
       await userReview.save();
 
       res.json(userReview);
-    }
-
+    } else {
+      res.status(403).json({"message":"Forbidden","statusCode":403})}
   }
 })
 
