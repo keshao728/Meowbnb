@@ -72,13 +72,15 @@ router.put('/:bookingId', requireAuth, async (req, res) => {
     })
   }
 
-  if (startDate < booking.endDate || endDate < booking.endDate)
-    return res
-      .status(403)
-      .json({
-        message: "Past bookings can't be modified",
-        statusCode: 403
-      });
+  let today = new Date().toISOString().slice(0, 10)
+
+  if (startDate < today || endDate < today || startDate > endDate) {
+    res.statusCode = 403
+    res.json({
+      "message": "Past bookings can't be modified",
+      "statusCode": 403
+    })
+  }
 
   if (
     (booking.startDate >= startDate && booking.endDate <= endDate) ||
