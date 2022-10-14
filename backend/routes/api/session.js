@@ -72,19 +72,17 @@ router.get(
   '/',
   restoreUser,
   async (req, res) => {
-  const { user } = req;
-  const currentUser = await User.findByPk(user.id)
+    const { user } = req;
+    // console.log('IN THE API SESSION ROUTE', user)
+    // const currentUser = await User.findByPk(user.id)
 
-  if (user) {
+    if (user) {
+      const currentUser = await User.findByPk(user.id)
       return res.json(currentUser);
-  } else {
-    res.status(401)
-    return res.json({
-      message: "Authentication required",
-      statusCode: 401
-    })
-  };
-});
+    } else {
+      return res.json(null)
+    };
+  });
 
 
 

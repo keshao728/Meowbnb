@@ -9,8 +9,9 @@ router.use('/api', apiRouter);
 //   res.cookie('XSRF-TOKEN', req.csrfToken());
 //   res.send('Hello World!');
 // });
-//REVIEW 
+//REVIEW
 router.get("/api/csrf/restore", (req, res) => {
+  // console.log('IN CSRF RESTORE 1st------------------')
   const csrfToken = req.csrfToken();
   res.cookie("XSRF-TOKEN", csrfToken);
   res.status(200).json({
@@ -20,6 +21,7 @@ router.get("/api/csrf/restore", (req, res) => {
 
 if (process.env.NODE_ENV !== 'production') {
   router.get('/api/csrf/restore', (req, res) => {
+    // console.log('IN CSRF RESTORE 2ng------------------')
     res.cookie('XSRF-TOKEN', req.csrfToken());
     return res.json({});
   });
