@@ -38,5 +38,6 @@
     "split2": "^4.1.0",
     "xtend": "^4.0.2"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "proxy": "http://localhost:8000"
 }
