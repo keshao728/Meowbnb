@@ -37,7 +37,7 @@ function SignupFormPage() {
       </ul>
       <div class="full-form">
         <h3 class="welcome-message">Welcome to Meowbnb</h3>
-        <div class="input-parent">
+        <div class="input-parent" id="input-parent-id">
           <label>
             <input
               placeholder="First Name"
