@@ -19,9 +19,13 @@ const SpotBrowser = () => {
           <div>
             <img src={spot.previewImage} alt={spot.previewImage} />
           </div>
-          <div>{spot.name}</div>
-          <div>{spot.aveRating}</div>
-          <div>{spot.city}</div>
+          {/* <div>{spot.name}</div> */}
+          {/* <div>{spot.aveRating}</div> */}
+          <div>{spot.city}, {spot.country}
+            <span>
+              {spot.avgRating}
+            </span>
+          </div>
           <div>{spot.country}</div>
           <div>{spot.price}</div>
         </div>
