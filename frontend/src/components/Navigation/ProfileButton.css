@@ -1,0 +1,35 @@
+* {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.user-buttons {
+  border-radius: 20px;
+  /* font-size: 12px; */
+  border: 1px solid #AFAFAF;
+  background-color: white;
+  width: 80px;
+  /* padding: 4px 4px; */
+  /* margin-top: 2%; */
+  /* font-weight: bold; */
+}
+
+.user-buttons:hover {
+  box-shadow: 1px 1px 2px #AFAFAF;;
+}
+
+.fa-bars {
+  margin-right: 5px;
+  color: #595959;
+  font-size:12px;
+  margin-bottom: 5px;
+  justify-content: center;
+  text-align: center;
+}
+
+.fa-user-circle {
+  margin-top:4px;
+  color: #717171;
+  font-size: 18px;
+  margin-left: 5px;
+}
+

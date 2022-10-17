@@ -1,34 +1,28 @@
-* {
-  font-family: 'Montserrat', sans-serif;
+.show-drop-menu{
+  visibility: visible;
 }
 
-.user-buttons {
+.hide-drop-menu {
+  visibility: hidden;
+}
+
+.dropdown-menu{
+  height: 100px;
+  width: 200px;
+  background-color: white;
+  box-shadow: 0px 1px 8px #dddddd;;
+  border-radius: 10px;
+  border: 1px solid #dddddd;
+}
+
+.user-button{
   border-radius: 20px;
   /* font-size: 12px; */
   border: 1px solid #AFAFAF;
   background-color: white;
-  width: 10%;
-  /* padding: 4px 4px; */
-  /* margin-top: 2%; */
-  /* font-weight: bold; */
+  width: 80px;
 }
 
-.user-buttons:hover {
+.user-button:hover {
   box-shadow: 1px 1px 2px #AFAFAF;;
-}
-
-.fa-bars {
-  margin-right: 5px;
-  color: #595959;
-  font-size:12px;
-  margin-bottom: 5px;
-  justify-content: center;
-  text-align: center;
-}
-
-.fa-user-circle {
-  margin-top:4px;
-  color: #717171;
-  font-size: 18px;
-  margin-left: 5px;
 }
