@@ -15,9 +15,9 @@ const addSpot = (newSpot) => ({
 })
 
 //read
-const loadAllSpot = (allSpots) => ({
+const loadAllSpot = (allSpot) => ({
   type: LOAD_ALL_SPOT,
-  allSpots
+  allSpot
 })
 const loadOneSpot = (oneSpot) => ({
   type: LOAD_ONE_SPOT,
@@ -58,8 +58,9 @@ export const getAllSpots = () => async dispatch => {
   const response = await fetch('/api/spots')
 
   if (response.ok) {
-    const allSpots = await response.json()
-    dispatch(loadAllSpot(allSpots))
+    const allSpot = await response.json()
+    console.log('sssssssssssssssssssssssssssss', allSpot)
+    dispatch(loadAllSpot(allSpot))
   }
 }
 
@@ -104,5 +105,39 @@ export const deleteSpot = (spotId) => async dispatch => {
   }
 }
 
-//REDUCER
 
+//REDUCER
+const initialState = {
+  allSpots: {
+    // spotId: {}
+  },
+  oneSpot: {
+    SpotImages: []
+  }
+}
+
+const spotReducer = (state = initialState, action) => {
+  let newState;
+  switch (action.type) {
+    // case ADD_SPOT:
+    //   newState = {
+    //     ...state,
+    //     allSpots: { ...state.allSpots, [action.newSpot.id]: action.spot },
+    //     oneSpot: { ...action.newSpot }
+    //   }
+    //   return newState
+    case LOAD_ALL_SPOT:
+      let allSpotsState = {}
+      newState = { ...state, allSpots: { ...action.allSpot.Spots } }
+      let allSpotsArr = Object.values(newState.allSpots)
+      // console.log('yfhbgsjdnkm,.', allSpotsArr)
+      allSpotsArr.forEach(obj => {
+        allSpotsState[obj.id] = obj
+      })
+      return allSpotsState
+    default:
+      return state
+  }
+}
+
+export default spotReducer
