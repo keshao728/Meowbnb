@@ -19,8 +19,9 @@ const loadAllSpot = (allSpots) => ({
   type: LOAD_ALL_SPOT,
   allSpots
 })
-const loadOneSpot = () => ({
-  type: LOAD_ONE_SPOT
+const loadOneSpot = (oneSpot) => ({
+  type: LOAD_ONE_SPOT,
+  oneSpot
 })
 
 //update
@@ -58,6 +59,15 @@ export const getAllSpots = () => async dispatch => {
   if (response.ok) {
     const allSpots = await response.json()
     dispatch(loadAllSpot(allSpots))
+  }
+}
+
+export const getOneSpots = (spotId) => async dispatch => {
+  const response = await fetch(`/api/spots/${spotId}`)
+
+  if (response.ok) {
+    const oneSpot = await response.json()
+    dispatch(loadOneSpot(oneSpot))
   }
 }
 
