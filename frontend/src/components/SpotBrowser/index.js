@@ -2,6 +2,7 @@ import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { NavLink } from "react-router-dom"
 import { getAllSpots } from "../../store/spots"
+import './SpotBrowser.css'
 
 const SpotBrowser = () => {
   const dispatch = useDispatch()
@@ -14,29 +15,31 @@ const SpotBrowser = () => {
 
   const allSpotDetails = allSpots.map(spot => {
     return (
-      <NavLink to={`spots/${spot.id}`}>
-        <div>
-          <div>
-            <img src={spot.previewImage} alt={spot.previewImage} />
+      <div className="all-spot">
+        <NavLink className="spots" to={`spots/${spot.id}`}>
+          <div className="individual-spots">
+            <div>
+              <img className="spot-image" src={spot.previewImage} alt={spot.previewImage} />
+            </div>
+            <div className="spot-info">
+              <div className="address-star">{spot.city}, {spot.state}
+                <span className="spot-star">
+                  <i class="fa-solid fa-star"></i>
+                  {spot.avgRating > 0 ? spot.avgRating : 'New'}
+                </span>
+              </div>
+              <div>${spot.price} night</div>
+            </div>
           </div>
-          {/* <div>{spot.name}</div> */}
-          {/* <div>{spot.aveRating}</div> */}
-          <div>{spot.city}, {spot.country}
-            <span>
-              {spot.avgRating}
-            </span>
-          </div>
-          <div>{spot.country}</div>
-          <div>{spot.price}</div>
-        </div>
-      </NavLink>
+        </NavLink>
+      </div>
     )
   })
 
 
 
   return (
-    <div>
+    <div className="all-spot-display">
       {allSpotDetails}
     </div>
   )

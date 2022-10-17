@@ -1,0 +1,28 @@
+.all-spot-display{
+  display: flex;
+  justify-content: flex-start;
+  padding: 50px 110px;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+.spot-image{
+  object-fit: cover;
+  width: 300px;
+  height: 300px;
+  overflow: hidden;
+  position: relative;
+  border-radius: 15px;
+}
+
+.spots{
+  text-decoration: none;
+  color: inherit;
+}
+
+.address-star{
+display: flex;
+/* flex-direction: column; */
+margin-top: 10px;
+justify-content: space-between;
+}
