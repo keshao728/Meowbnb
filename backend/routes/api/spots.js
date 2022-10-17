@@ -428,7 +428,7 @@ router.get('/:spotId/bookings', requireAuth, async (req, res) => {
   }
 
   // spot = spot.toJSON()
-  console.log(spot)
+  // console.log(spot)
   if (spot.ownerId !== req.user.id) {
     const bookings = await Booking.findAll({
       where: {
