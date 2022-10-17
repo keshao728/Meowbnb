@@ -26,7 +26,7 @@ Cat2: ⭐⭐⭐⭐⭐
 - [Redux Store Shape](https://github.com/keshao728/Meowbnb/wiki/Redux-Store-Shape)
 <br>
 <br>
-<br>
+
 <h2>Technologies:</h2>
 
 <p>Frontend:</a>
