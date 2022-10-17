@@ -22,39 +22,51 @@ function LoginForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <ul>
-        {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-      </ul>
-      <div className='full-form'>
+    <div className="full-login-form">
+      <form onSubmit={handleSubmit}>
+        <ul>
+          {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+        </ul>
+        <div className='form-input'>
 
-        <h3 class="welcome-message">Welcome to Meowbnb</h3>
-        <div class="input-parent">
+          <h3 class="welcome-message">Welcome to Meowbnb</h3>
+          <div class="input-parent">
 
-          <label>
-            <input
-              class="input"
-              placeholder='Username or Email'
-              type="text"
-              value={credential}
-              onChange={(e) => setCredential(e.target.value)}
-              required
-            />
-          </label>
-          <label>
-            <input
-              class="input"
-              placeholder='Password'
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-          </label>
+            <label>
+              <input
+                class="input"
+                placeholder='Username or Email'
+                type="text"
+                value={credential}
+                onChange={(e) => setCredential(e.target.value)}
+                required
+              />
+            </label>
+            <label>
+              <input
+                class="input"
+                placeholder='Password'
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </label>
+          </div>
+          <button class="button-login" type="submit">Log In</button>
         </div>
-        <button class="button-login" type="submit">Log In</button>
-      </div>
-    </form>
+        <div className="demo-user">
+          <button className="demo-user-button"
+            type="submit"
+            onClick={() => {
+              setCredential("Cat-boss")
+              setPassword("password2")
+            }}>
+            Demo User
+          </button>
+        </div>
+      </form>
+    </div>
   );
 }
 

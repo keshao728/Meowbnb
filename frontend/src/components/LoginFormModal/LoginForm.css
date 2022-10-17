@@ -29,7 +29,22 @@
 }
 
 .button-login {
-  /* position: ; */
+  border-radius: 6px;
+  font-size: 12px;
+  border: 0;
+  background-color: #E21C5F;
+  color: white;
+  width: 100%;
+  padding: 10px 15px;
+  margin-top: 10%;
+  font-weight: bold;
+}
+
+.demo-user{
+  border-top: 1px solid #AFAFAF;
+  margin-top: 20px;
+}
+.demo-user-button{
   border-radius: 6px;
   font-size: 12px;
   border: 0;
@@ -43,10 +58,7 @@
   font-weight: bold;
 }
 
-/* .full-form{
-} */
-
-#modal-content{
+.full-login-form{
   padding: 24px 24px;
   border-radius: 10px;
   height: 300px;
