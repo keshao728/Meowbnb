@@ -3,7 +3,7 @@ import { csrfFetch } from "./csrf"
 const ADD_SPOT = "spots/ADD_SPOT"
 const LOAD_ALL_SPOT = "spots/LOAD_ALL_SPOT"
 const LOAD_ONE_SPOT = "spots/LOAD_ALL_SPOT"
-const UPDATE_SPOT = "spots/UPDATE_SPOT"
+const UPDATE_ONE_SPOT = "spots/UPDATE_SPOT"
 const DELETE_SPOT = "spots/DELETE_SPOT"
 
 
@@ -25,8 +25,9 @@ const loadOneSpot = (oneSpot) => ({
 })
 
 //update
-const updateSpot = () => ({
-  type: UPDATE_SPOT
+const updateOneSpot = (updatedSpot) => ({
+  type: UPDATE_ONE_SPOT,
+  updatedSpot
 })
 
 //delete
@@ -70,6 +71,24 @@ export const getOneSpots = (spotId) => async dispatch => {
     dispatch(loadOneSpot(oneSpot))
   }
 }
+
+//update
+export const updateSpot = (updated) => async dispatch => {
+  const response = await csrfFetch('/api/spots', {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(updated)
+  })
+  if (response.ok){
+    const updatedSpot = await response.json()
+    dispatch(updateOneSpot(updatedSpot))
+    return updatedSpot
+  }
+}
+
+//delete
 
 //REDUCER
 
