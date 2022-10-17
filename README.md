@@ -1,4 +1,4 @@
-<a href="https://drive.google.com/uc?export=view&id=1x_nUF8MLnnDtVWj_ujmR7w1ufn6R7CWF"><img src="https://drive.google.com/uc?export=view&id=1x_nUF8MLnnDtVWj_ujmR7w1ufn6R7CWF" style="width: 650px; max-width: 100%; height: auto" title="Airbnb Schema" />
+<a href="https://drive.google.com/uc?export=view&id=1x_nUF8MLnnDtVWj_ujmR7w1ufn6R7CWF"><img src="https://drive.google.com/uc?export=view&id=1x_nUF8MLnnDtVWj_ujmR7w1ufn6R7CWF" style="width: 650px; max-width: 100%; height: auto" title="Meowbnb logo" />
 
 Meowbnb is inspired by [Airbnb](https://airbnb.com). See what the cats think:
 <br>
@@ -16,8 +16,15 @@ Cat2: ⭐⭐⭐⭐⭐
 <br>
 <br>
 
-<!-- <h2>Wiki Links:</h2>
--[API Documentation]() -->
+<h2>Wiki Links:</h2>
+
+- [API Documentation](https://github.com/keshao728/Meowbnb/tree/main/backend)
+- [Database Schema](https://github.com/keshao728/Meowbnb/wiki/Database-Schema)
+- [Feature List](https://github.com/keshao728/Meowbnb/wiki/Feature-List)
+- [Redux Store Shape](https://github.com/keshao728/Meowbnb/wiki/Redux-Store-Shape)
+<br>
+<br>
+<br>
 <h2>Technologies:</h2>
 
 <p>Frontend:</a>
