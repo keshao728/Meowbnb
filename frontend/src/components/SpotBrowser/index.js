@@ -1,5 +1,5 @@
 import { useEffect } from "react"
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch, useSelector} from "react-redux"
 import { NavLink } from "react-router-dom"
 import { getAllSpots } from "../../store/spots"
 
@@ -28,8 +28,6 @@ const SpotBrowser = () => {
       </NavLink>
     )
   })
-
-
 
   return (
     <div>
