@@ -1,17 +1,19 @@
 <a href="https://drive.google.com/uc?export=view&id=1x_nUF8MLnnDtVWj_ujmR7w1ufn6R7CWF"><img src="https://drive.google.com/uc?export=view&id=1x_nUF8MLnnDtVWj_ujmR7w1ufn6R7CWF" style="width: 650px; max-width: 100%; height: auto" title="Meowbnb logo" />
 
-Meowbnb is inspired by [Airbnb](https://airbnb.com). See what the cats think:
+Meowbnb is inspired by [Airbnb](https://airbnb.com). **See what the cats think:**
+<br>
 <br>
 Cat1: ⭐⭐⭐⭐⭐
 <br>
-"MEOWMEOW"
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"MEOWMEOW"
 <br>
 <br>
 Cat2: ⭐⭐⭐⭐⭐
 <br>
-"PURR*"
-
-**Live Site: [Meowbnb](https://meow-bnb.herokuapp.com/)**
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"PURR*"
+<br>
+<br>
+**Live Site: [Meowbnb](https://meow-bnb.herokuapp.com/) 🐾**
 <br>
 <br>
 <br>
