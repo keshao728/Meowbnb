@@ -19,10 +19,10 @@ const SpotBrowser = () => {
         <NavLink className="spots" to={`spots/${spot.id}`}>
           <div className="individual-spots">
             <div>
-              <img className="spot-image" src={spot.previewImage} alt={spot.previewImage} />
+              <img className="spot-image" key={spot.previewImage} src={spot.previewImage} alt={spot.previewImage} />
             </div>
             <div className="spot-info">
-              <div className="address-star">{spot.city}, {spot.state}
+              <div className="address-star" key={spot.name}>{spot.city}, {spot.state}
                 <span className="spot-star">
                   <i class="fa-solid fa-star"></i>
                   &nbsp;

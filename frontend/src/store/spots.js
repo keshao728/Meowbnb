@@ -118,6 +118,7 @@ const initialState = {
 
 const spotReducer = (state = initialState, action) => {
   let newState;
+  let allSpots = {}
   switch (action.type) {
     // case ADD_SPOT:
     //   newState = {
@@ -127,14 +128,13 @@ const spotReducer = (state = initialState, action) => {
     //   }
     //   return newState
     case LOAD_ALL_SPOT:
-      let allSpotsState = {}
       newState = { ...state, allSpots: { ...action.allSpot.Spots } }
-      let allSpotsArr = Object.values(newState.allSpots)
-      // console.log('yfhbgsjdnkm,.', allSpotsArr)
-      allSpotsArr.forEach(obj => {
-        allSpotsState[obj.id] = obj
+      let spotsArr = Object.values(newState.allSpots)
+      // console.log('allSpotsArr=================', allSpotsArr)
+      spotsArr.forEach(spot => {
+        allSpots[spot.id] = spot
       })
-      return allSpotsState
+      return allSpots
     default:
       return state
   }
