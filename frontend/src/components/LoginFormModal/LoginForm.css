@@ -52,3 +52,19 @@
   height: 300px;
   width: 264px;
 }
+
+.modal-button{
+  font-size: 12px;
+  border: 0;
+  background-color: white;
+  color: black;
+  width: 100%;
+  padding: 10px 15px;
+  font-weight: bold;
+  text-align: left;
+  /* margin-left: 10px */
+}
+.modal-button:hover{
+  background-color:#F7F7F7;
+  cursor: pointer;
+}

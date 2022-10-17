@@ -7,7 +7,11 @@
 }
 
 .dropdown-menu{
-  height: 100px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  padding: 10px 0px;
+  height: 70px;
   width: 200px;
   background-color: white;
   box-shadow: 0px 1px 8px #dddddd;;
@@ -18,7 +22,7 @@
 .user-button{
   border-radius: 20px;
   /* font-size: 12px; */
-  border: 1px solid #AFAFAF;
+  border: 1px solid #dddddd;
   background-color: white;
   width: 80px;
 }
@@ -26,3 +30,15 @@
 .user-button:hover {
   box-shadow: 1px 1px 2px #AFAFAF;;
 }
+
+.menu-parent{
+  position: relative;
+  justify-content: space-around;
+  align-items: center;
+
+}
+
+/* #menu-item{
+  border: 0;
+  color: white;
+} */

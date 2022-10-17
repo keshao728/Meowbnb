@@ -55,10 +55,10 @@ function Navigation({ isLoaded }) {
           </button>
           <div className={dropdown()}>
             <div className='dropdown-menu'>
-              <div>
+              <div className='menu-parent'>
                 <div id="menu-item"><LoginFormModal /></div>
               </div>
-              <div>
+              <div className='menu-parent'>
                 <div id="menu-item"><SignupFormModal /></div>
               </div>
             </div>
