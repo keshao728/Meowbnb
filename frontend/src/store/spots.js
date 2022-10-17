@@ -104,5 +104,37 @@ export const deleteSpot = (spotId) => async dispatch => {
   }
 }
 
-//REDUCER
 
+//REDUCER
+const initialState = {
+  allSpots: {},
+  oneSpot: {
+    SpotImages: []
+  }
+}
+
+const spotReducer = (state = initialState, action) => {
+  let newState;
+  switch (action.type) {
+    case ADD_SPOT:
+      newState = {
+        ...state,
+        allSpots: { ...state.allSpots, [action.newSpot.id]: action.spot },
+        oneSpot: { ...action.newSpot }
+      }
+      return newState
+    case LOAD_ALL_SPOT:
+      let spots = {};
+      action.allSpots.forEach(
+        spot => spots[spot.id] = spot
+      );
+      return {
+        allSpots: { ...spots },
+        singleSpot: { ...state.singleSpot }
+      };
+    default:
+      return state
+  }
+}
+
+export default spotReducer
