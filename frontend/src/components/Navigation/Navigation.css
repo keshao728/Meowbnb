@@ -24,23 +24,24 @@
 
 .user-buttons {
   border-radius: 20px;
-  /* font-size: 12px; */
   border: 1px solid #dddddd;
   background-color: white;
-  width: 80px;
+  width: 70px;
   margin-right: 20px;
-  /* justify-content: right; */
+  padding: 7px;
+  display: flex;
+  justify-content: space-around ;
 }
 
-.user-button:hover {
-  box-shadow: 1px 1px 2px #AFAFAF;
+.user-buttons:hover {
+  box-shadow: 1px 1px 2px #AFAFAF;;
 }
 
-.menu-parent {
+/* .menu-parent {
   position: relative;
   justify-content: space-around;
   align-items: center;
-}
+} */
 
 /* #menu-item{
   border: 0;

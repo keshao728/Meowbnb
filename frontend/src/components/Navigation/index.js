@@ -51,7 +51,7 @@ function Navigation({ isLoaded }) {
         <div className='dropdown-button'>
           <button className="user-buttons" onClick={(() => showMenu ? setShowMenu(false) : setShowMenu(true))}>
             <i className="fas fa-bars" />
-            <i className="fas fa-user-circle" />
+            <img className='profile-pic' src="https://drive.google.com/uc?export=view&id=1e6AIQpUAr0_HcNJNaptcQAHEdO5aib5k" alt="Meowbnb Default Profile"></img>
           </button>
           <div className={dropdown()}>
             <div className='dropdown-menu'>
@@ -70,16 +70,16 @@ function Navigation({ isLoaded }) {
 
   return (
     <div className='full-navigation'>
-        <div className='left-nav' id="navs">
-          <NavLink className="home-button" exact to="/">
-            <img id="icon" src="https://drive.google.com/uc?export=view&id=1gemygEIn5eArP1LTHdzR6bXpt87jT3uO" alt="Meowbnb Icon"></img>
-            <img id="logo" src="https://drive.google.com/uc?export=view&id=1EGZCbwX9pZ8eHc4JQDb8SlV88NHk9QYh" alt="Meowbnb Logo"></img>
-          </NavLink>
-        </div>
-        <div>
-          {isLoaded && sessionLinks}
-        </div>
+      <div className='left-nav' id="navs">
+        <NavLink className="home-button" exact to="/">
+          <img id="icon" src="https://drive.google.com/uc?export=view&id=1gemygEIn5eArP1LTHdzR6bXpt87jT3uO" alt="Meowbnb Icon"></img>
+          <img id="logo" src="https://drive.google.com/uc?export=view&id=1EGZCbwX9pZ8eHc4JQDb8SlV88NHk9QYh" alt="Meowbnb Logo"></img>
+        </NavLink>
       </div>
+      <div>
+        {isLoaded && sessionLinks}
+      </div>
+    </div>
   );
 }
 

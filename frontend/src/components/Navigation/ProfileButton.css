@@ -6,28 +6,28 @@
   border-radius: 20px;
   border: 1px solid #dddddd;
   background-color: white;
-  width: 80px;
+  width: 70px;
   margin-right: 20px;
+  padding: 7px;
+  display: flex;
+  justify-content: space-around ;
 }
 
-.user-buttons:hover {
+.user-button:hover {
   box-shadow: 1px 1px 2px #AFAFAF;;
 }
 
 .fa-bars {
-  margin-right: 5px;
   color: #595959;
-  font-size:12px;
-  margin-bottom: 5px;
-  justify-content: center;
-  text-align: center;
+  font-size:16px;
+  margin-top: 4px;
 }
 
-.fa-user-circle {
-  margin-top:4px;
+.profile-pic {
+  border-radius: 20px;
   color: #717171;
-  font-size: 18px;
-  margin-left: 5px;
+  font-size: 20px;
+  width: 25px;
 }
 
 .user-dropdown-menu {
@@ -36,7 +36,7 @@
   position: absolute;
   margin-top: 10px;
   /* padding: 10px 10px; */
-  height: 110px;
+  height: 105px;
   width: 200px;
   background-color: white;
   box-shadow: 0px 1px 8px #dddddd;
@@ -47,12 +47,12 @@
 
 .logout-button{
   /* border-top: #595959; */
-  font-size: 16px;
+  font-size: 14px;
   border: 0;
   background-color: white;
   color: black;
   width: 100%;
-  padding: 10px 15px;
+  padding: 8px 15px;
   text-align: left;
   margin-top: 3px;
 }
@@ -71,6 +71,7 @@
   margin-top: 8px;
   margin-bottom: 8px;
   padding: 0px 15px;
+  font-size: 14px;
 }
 
 .user-info{
