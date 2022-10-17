@@ -47,7 +47,7 @@ function Navigation({ isLoaded }) {
     );
   } else {
     sessionLinks = (
-      <>
+      <div className='right-nav' id="navs">
         <div className='dropdown-button'>
           <button className="user-buttons" onClick={(() => showMenu ? setShowMenu(false) : setShowMenu(true))}>
             <i className="fas fa-bars" />
@@ -64,19 +64,22 @@ function Navigation({ isLoaded }) {
             </div>
           </div>
         </div>
-      </>
+      </div>
     );
   }
 
   return (
-    <div className='navigations'>
-      <div className='left-nav'>
-        <NavLink exact to="/">Home</NavLink>
+    <div className='full-navigation'>
+        <div className='left-nav' id="navs">
+          <NavLink className="home-button" exact to="/">
+            <img id="icon" src="https://drive.google.com/uc?export=view&id=1gemygEIn5eArP1LTHdzR6bXpt87jT3uO" alt="Meowbnb Icon"></img>
+            <img id="logo" src="https://drive.google.com/uc?export=view&id=1EGZCbwX9pZ8eHc4JQDb8SlV88NHk9QYh" alt="Meowbnb Logo"></img>
+          </NavLink>
+        </div>
+        <div>
+          {isLoaded && sessionLinks}
+        </div>
       </div>
-      <div>
-        {isLoaded && sessionLinks}
-      </div>
-    </div>
   );
 }
 
