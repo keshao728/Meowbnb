@@ -25,10 +25,17 @@ const SpotBrowser = () => {
               <div className="address-star">{spot.city}, {spot.state}
                 <span className="spot-star">
                   <i class="fa-solid fa-star"></i>
+                  &nbsp;
                   {spot.avgRating > 0 ? spot.avgRating : 'New'}
                 </span>
               </div>
-              <div>${spot.price} night</div>
+              <div>
+                <strong>
+                  ${spot.price}
+                </strong>
+                &nbsp;
+                night
+              </div>
             </div>
           </div>
         </NavLink>
