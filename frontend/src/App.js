@@ -21,6 +21,10 @@ function App() {
           <Route exact path='/'>
             <SpotBrowser />
           </Route>
+
+          <Route path='/spots/create'>
+
+          </Route>
         </Switch>
       )}
     </>
