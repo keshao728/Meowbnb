@@ -10,6 +10,8 @@
   margin-top: 10px;
   opacity: 1;
   visibility: visible;
+  /* margin-bottom: 10px; */
+  /* padding: 8px 15px; */
 }
 
 .input {
@@ -35,8 +37,18 @@
   color: white;
   /* top: 50%; */
   /* left: 50%; */
-  width: 65%;
+  width: 100%;
   padding: 10px 15px;
-  margin-top: 2%;
+  margin-top: 10%;
   font-weight: bold;
+}
+
+/* .full-form{
+} */
+
+#modal-content{
+  padding: 24px 24px;
+  border-radius: 10px;
+  height: 318px;
+  width: 264px;
 }
