@@ -6,7 +6,7 @@ import { NavLink, Redirect } from "react-router-dom"
 const UserSpots = () => {
   const dispatch = useDispatch()
   const allSpots = useSelector(state => Object.values(state.spots))
-  // console.log("ALL SPOTTTTTT", allSpots)
+  console.log("ALL SPOTTTTTT", allSpots)
 
 
   const sessionUser = useSelector(state => state.session.user)
@@ -15,7 +15,10 @@ const UserSpots = () => {
     dispatch(getCurrentSpots())
   }, [dispatch])
 
-  if (!allSpots) return null
+  if (!allSpots || !allSpots.length) {
+    return <h2> MEOWMEOW No Spots </h2>
+}
+
   if (!sessionUser) return <Redirect to="/" />
 
 

@@ -21,7 +21,7 @@ const HostSpot = () => {
   const [price, setPrice] = useState("")
   // const [url, setUrl] = useState("")
 
-  const [errors, setErrors] = useState([]);
+  // const [errors, setErrors] = useState([]);
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -51,17 +51,20 @@ const HostSpot = () => {
     // }
 
 
-    let createdSpot;
+    const createdSpot = await dispatch(addOneSpot(newSpot))
 
-    try {
-      createdSpot = await dispatch(addOneSpot(newSpot))
-    } catch (error) {
-      // const userError = await errors.json
-      // if (userError && userError.error) setErrors(userError.error);
-      if (error) setErrors(Object.values(errors.errors));
-    }
+    //FIXME - error validation not working
+    // try {
+    //   createdSpot = await dispatch(addOneSpot(newSpot))
+    // } catch (error) {
+    //   // const userError = await errors.json
+    //   // if (userError && userError.error) setErrors(userError.error);
+    //   if (error) setErrors(Object.values(errors.errors));
+    // }
+
+    //FIXME - DOESNT REDIRECT
     if (createdSpot) {
-      setErrors([])
+      // setErrors([])
       history.push(`/spots/${createdSpot.id}`)
     }
   }
@@ -70,12 +73,13 @@ const HostSpot = () => {
     e.preventDefault()
     history.push("/")
   }
-  
+
   return (
     <div>
       <form onSubmit={handleSubmit}>
         <ul>
-          {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+          {/* //FIXME - ERROR VALIDATION */}
+          {/* {errors.map((error, idx) => <li key={idx}>{error}</li>)} */}
         </ul>
         <label>
           <input
@@ -147,7 +151,7 @@ const HostSpot = () => {
             required
           />
         </label>
-        <button class="button-create-spot" type="submit">Create Spot</button>
+        <button class="button-create-spot" type="submit"> Create Spot</button>
         <button type="button" class="button-create-spot" onClick={handleCancel}>Cancel</button>
       </form>
     </div>
