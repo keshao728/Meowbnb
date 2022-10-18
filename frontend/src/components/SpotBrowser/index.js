@@ -8,6 +8,7 @@ const SpotBrowser = () => {
   const dispatch = useDispatch()
   const allSpots = useSelector(state => Object.values(state.spots))
   // console.log("------------------------", state.spots)
+  // console.log("ADDDDDD SPOTTTTTT", allSpots)
 
   useEffect(() => {
     dispatch(getAllSpots())
