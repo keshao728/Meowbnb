@@ -6,6 +6,7 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import SpotBrowser from "./components/SpotBrowser"
 import HostSpot from "./components/HostSpot"
+import UserSpots from "./components/UserSpots"
 
 function App() {
   const dispatch = useDispatch();
@@ -24,6 +25,9 @@ function App() {
           </Route>
           <Route path='/spots/create'>
             <HostSpot />
+          </Route>
+          <Route path='/spots/my-spots'>
+            <UserSpots />
           </Route>
         </Switch>
       )}

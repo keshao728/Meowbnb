@@ -31,8 +31,9 @@ const updateOneSpot = (updatedSpot) => ({
 })
 
 //delete
-const deleteOneSpot = () => ({
-  type: DELETE_ONE_SPOT
+const deleteOneSpot = (spot) => ({
+  type: DELETE_ONE_SPOT,
+  spot
 })
 
 
@@ -59,7 +60,7 @@ export const getAllSpots = () => async dispatch => {
 
   if (response.ok) {
     const allSpot = await response.json()
-    console.log('sssssssssssssssssssssssssssss', allSpot)
+    // console.log('sssssssssssssssssssssssssssss', allSpot)
     dispatch(loadAllSpot(allSpot))
   }
 }
@@ -72,6 +73,18 @@ export const getOneSpots = (spotId) => async dispatch => {
     dispatch(loadOneSpot(oneSpot))
   }
 }
+
+//current spot
+export const getCurrentSpots = () => async dispatch => {
+  const response = await csrfFetch('/api/spots/current')
+
+  if (response.ok) {
+      const current = await response.json()
+      dispatch(loadAllSpot(current))
+      return current
+  }
+}
+
 
 //update
 export const updateSpot = (updated, spotId) => async dispatch => {
@@ -140,6 +153,10 @@ const spotReducer = (state = initialState, action) => {
         allSpots[spot.id] = spot
       })
       return allSpots
+    case DELETE_ONE_SPOT:
+      newState = {...state}
+      delete newState[action.spot]
+      return newState
     default:
       return state
   }

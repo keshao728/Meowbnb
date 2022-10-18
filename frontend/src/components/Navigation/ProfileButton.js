@@ -3,10 +3,12 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from 'react-redux';
 import { NavLink } from "react-router-dom";
 import * as sessionActions from '../../store/session';
+// import
 import './ProfileButton.css';
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
+  // const history = useHistory()
   const [showMenu, setShowMenu] = useState(false);
 
   const openMenu = () => {
@@ -54,6 +56,14 @@ function ProfileButton({ user }) {
               <div className='menu-parent'>
                 <div id='user-menu-item'>{user.email}</div>
               </div>
+            </div>
+            <div>
+              <NavLink to="/spots/my-spots">
+                <button className="logout-button">
+                  My Spots
+                </button>
+              </NavLink>
+              {/* <button className="logout-button" onClick={() => history.push('/my-spots')}>My Spot</button> */}
             </div>
             <div>
               <button className="logout-button" onClick={logout}>Log Out</button>

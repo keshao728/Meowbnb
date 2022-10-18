@@ -39,16 +39,16 @@ const HostSpot = () => {
 
     // let createdSpot = await dispatch(addOneSpot(newSpot))
 
-  //   if (newSpot) {
-  //     setErrors([])
-  //     return dispatch(addOneSpot(newSpot))
-  //       .catch(async (res) => {
-  //         const data = await res.json();
-  //         if (data && data.errors) setErrors(data.errors)
-  //       })
-  //   }
-  //   return setErrors
-  // }
+    //   if (newSpot) {
+    //     setErrors([])
+    //     return dispatch(addOneSpot(newSpot))
+    //       .catch(async (res) => {
+    //         const data = await res.json();
+    //         if (data && data.errors) setErrors(data.errors)
+    //       })
+    //   }
+    //   return setErrors
+    // }
 
 
     let createdSpot;
@@ -66,10 +66,11 @@ const HostSpot = () => {
     }
   }
 
-  const handleCancel = async(e)=>{
+  const handleCancel = async (e) => {
     e.preventDefault()
     history.push("/")
   }
+  
   return (
     <div>
       <form onSubmit={handleSubmit}>
