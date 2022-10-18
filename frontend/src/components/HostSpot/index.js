@@ -1,8 +1,9 @@
 import { useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
 import { useHistory } from "react-router-dom"
 // import { useHistory } from "react-router-dom"
 import { addOneSpot } from "../../store/spots"
+import "./HostSpot.css"
 
 const HostSpot = () => {
   let dispatch = useDispatch()
@@ -35,20 +36,40 @@ const HostSpot = () => {
       price
       // url
     }
+
+    // let createdSpot = await dispatch(addOneSpot(newSpot))
+
+  //   if (newSpot) {
+  //     setErrors([])
+  //     return dispatch(addOneSpot(newSpot))
+  //       .catch(async (res) => {
+  //         const data = await res.json();
+  //         if (data && data.errors) setErrors(data.errors)
+  //       })
+  //   }
+  //   return setErrors
+  // }
+
+
     let createdSpot;
 
     try {
       createdSpot = await dispatch(addOneSpot(newSpot))
     } catch (error) {
+      // const userError = await errors.json
+      // if (userError && userError.error) setErrors(userError.error);
       if (error) setErrors(Object.values(errors.errors));
     }
     if (createdSpot) {
       setErrors([])
       history.push(`/spots/${createdSpot.id}`)
-
     }
   }
 
+  const handleCancel = async(e)=>{
+    e.preventDefault()
+    history.push("/")
+  }
   return (
     <div>
       <form onSubmit={handleSubmit}>
@@ -87,6 +108,16 @@ const HostSpot = () => {
         </label>
         <label>
           <input
+            placeholder="Country"
+            type="text"
+            class="input"
+            value={country}
+            onChange={(e) => setCountry(e.target.value)}
+            required
+          />
+        </label>
+        <label>
+          <input
             placeholder="Name"
             type="text"
             class="input"
@@ -115,6 +146,8 @@ const HostSpot = () => {
             required
           />
         </label>
+        <button class="button-create-spot" type="submit">Create Spot</button>
+        <button type="button" class="button-create-spot" onClick={handleCancel}>Cancel</button>
       </form>
     </div>
   )
