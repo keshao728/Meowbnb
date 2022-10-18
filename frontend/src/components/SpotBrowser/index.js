@@ -26,7 +26,7 @@ const SpotBrowser = () => {
                 <span className="spot-star">
                   <i class="fa-solid fa-star"></i>
                   &nbsp;
-                  {spot.avgRating > 0 ? spot.avgRating : 'New'}
+                  {spot.avgRating > 0 ? Number(spot.avgRating).toFixed(2) : 'New'}
                 </span>
               </div>
               <div>
