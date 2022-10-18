@@ -1,14 +1,46 @@
 .button-create-spot {
-  /* position: ; */
   border-radius: 6px;
   font-size: 12px;
   border: 0;
   background-color: #E21C5F;
   color: white;
-  /* top: 50%; */
-  /* left: 50%; */
   width: 100%;
   padding: 10px 15px;
   margin-top: 10%;
   font-weight: bold;
+}
+
+.host-message {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.full-host-form {
+  border: 0;
+  padding: 24px 24px;
+  border-radius: 31px;
+  width: 500px;
+  margin: 50px 700px ;
+}
+
+/* .host-form{
+  border: 1px solid #AFAFAF;
+  margin: 20px;
+  border-radius: 31px;
+} */
+
+/* .host-form-parent {
+  padding: 24px 24px;
+} */
+
+.host-input {
+  border: 0;
+  outline: none;
+  box-shadow: none;
+  display: block;
+  line-height: 30px;
+  padding: 8px 8px;
+  border-bottom: 1px solid #AFAFAF;
+  width: 100%;
+  font-size: 12px;
 }

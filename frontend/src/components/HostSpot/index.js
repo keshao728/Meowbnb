@@ -75,82 +75,85 @@ const HostSpot = () => {
   }
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
+    <div className="full-host-form">
+      <form className="host-form-parent" onSubmit={handleSubmit}>
         <ul>
           {/* //FIXME - ERROR VALIDATION */}
           {/* {errors.map((error, idx) => <li key={idx}>{error}</li>)} */}
         </ul>
-        <label>
-          <input
-            placeholder="Address"
-            type="text"
-            class="input"
-            value={address}
-            onChange={(e) => setAddress(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          <input
-            placeholder="City"
-            type="text"
-            class="input"
-            value={city}
-            onChange={(e) => setCity(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          <input
-            placeholder="State"
-            type="text"
-            class="input"
-            value={state}
-            onChange={(e) => setState(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          <input
-            placeholder="Country"
-            type="text"
-            class="input"
-            value={country}
-            onChange={(e) => setCountry(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          <input
-            placeholder="Name"
-            type="text"
-            class="input"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          <input
-            placeholder="Description"
-            type="text"
-            class="input"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          <input
-            placeholder="Price"
-            type="text"
-            class="input"
-            value={price}
-            onChange={(e) => setPrice(e.target.value)}
-            required
-          />
-        </label>
+        <h3 class="host-message">Create Your Spot Meow!!!</h3>
+        <div className="host-form">
+          <label>
+            <input
+              placeholder="Address"
+              type="text"
+              class="host-input"
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+              required
+            />
+          </label>
+          <label>
+            <input
+              placeholder="City"
+              type="text"
+              class="host-input"
+              value={city}
+              onChange={(e) => setCity(e.target.value)}
+              required
+            />
+          </label>
+          <label>
+            <input
+              placeholder="State"
+              type="text"
+              class="host-input"
+              value={state}
+              onChange={(e) => setState(e.target.value)}
+              required
+            />
+          </label>
+          <label>
+            <input
+              placeholder="Country"
+              type="text"
+              class="host-input"
+              value={country}
+              onChange={(e) => setCountry(e.target.value)}
+              required
+            />
+          </label>
+          <label>
+            <input
+              placeholder="Name"
+              type="text"
+              class="host-input"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
+            />
+          </label>
+          <label>
+            <input
+              placeholder="Description"
+              type="text"
+              class="host-input"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              required
+            />
+          </label>
+          <label>
+            <input
+              placeholder="Price"
+              type="text"
+              class="host-input"
+              value={price}
+              onChange={(e) => setPrice(e.target.value)}
+              required
+            />
+          </label>
+        </div>
         <button class="button-create-spot" type="submit"> Create Spot</button>
         <button type="button" class="button-create-spot" onClick={handleCancel}>Cancel</button>
       </form>
