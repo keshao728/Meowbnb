@@ -8,7 +8,6 @@ import "./HostSpot.css"
 const HostSpot = () => {
   let dispatch = useDispatch()
   // let sessionUser = useSelector(state => state.session.user)
-  // if (!sessionUser) return <Redirect to="/"/>
   let history = useHistory()
   const [address, setAddress] = useState("")
   const [city, setCity] = useState("")
@@ -19,7 +18,8 @@ const HostSpot = () => {
   const [name, setName] = useState("")
   const [description, setDescription] = useState("")
   const [price, setPrice] = useState("")
-  // const [url, setUrl] = useState("")
+  const [url, setUrl] = useState("")
+  const [preiview, setPreview] = useState("")
 
   // const [errors, setErrors] = useState([]);
 
@@ -31,19 +31,23 @@ const HostSpot = () => {
       city,
       state,
       country,
+      lat: 20,
+      lng:20,
       name,
       description,
-      price
-      // url
+      price,
+      url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSX4odoZ0-EVbmp4xXTMXxsVWSyoDHtdo4hjHs3Yw4bg&s",
+      preview: true
     }
 
+    // if (!sessionUser) return <Redirect to="/"/>
     // let createdSpot = await dispatch(addOneSpot(newSpot))
 
     //   if (newSpot) {
-    //     setErrors([])
-    //     return dispatch(addOneSpot(newSpot))
-    //       .catch(async (res) => {
-    //         const data = await res.json();
+      //     setErrors([])
+      //     return dispatch(addOneSpot(newSpot))
+      //       .catch(async (res) => {
+        //         const data = await res.json();
     //         if (data && data.errors) setErrors(data.errors)
     //       })
     //   }

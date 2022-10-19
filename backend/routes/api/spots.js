@@ -220,7 +220,7 @@ router.post('/', validateSpot, requireAuth, async (req, res, next) => {
   const { address, city, state, country, lat, lng, name, description, price } = req.body;
   const user = req.user
   // console.log(req.user)
-  const spots = await Spot.create({
+  const spot = await Spot.create({
     ownerId: user.id,
     address,
     city,
@@ -231,76 +231,90 @@ router.post('/', validateSpot, requireAuth, async (req, res, next) => {
     name,
     description,
     price
+
   })
-  res.status(201)
-  return res.json(spots)
-})
 
-//Add an Image to a Spot based on th Spot based on the Spot's id
-router.post('/:spotId/images', requireAuth, async (req, res, next) => {
   const { url, preview } = req.body
-  const { spotId } = req.params
 
-  const spot = await Spot.findByPk(spotId)
-  if (!spot) {
-    res.statusCode = 404,
-      res.json({
-        "message": "Spot couldn't be found",
-        "statusCode": 404
-      })
-  }
-  if (spot.ownerId !== req.user.id) {
-    res.statusCode = 403
-    return res.json({
-        "message": "Forbidden",
-        "statusCode": 403
-    })
-}
-  const spotImage = await SpotImage.create({
-    "spotId": spotId,
+  await SpotImage.create({
+    "spotId": spot.id,
     "url": url,
     "preview": preview
   })
 
-  res.json(await SpotImage.findByPk(spotImage.id, {
-    attributes: [
-      'id',
-      'url',
-      'preview'
-    ]
-  }))
+  const spotWithImage = await Spot.findByPk(spot.id, {
+    include: SpotImage //include the model
+  })
+
+  // res.status(201)
+  return res.json(spotWithImage)
 })
 
+//Add an Image to a Spot based on th Spot based on the Spot's id
+// router.post('/:spotId/images', requireAuth, async (req, res, next) => {
+//   const { url, preview } = req.body
+//   const { spotId } = req.params
+
+//   const spot = await Spot.findByPk(spotId)
+//   if (!spot) {
+//     res.statusCode = 404,
+//       res.json({
+//         "message": "Spot couldn't be found",
+//         "statusCode": 404
+//       })
+//   }
+//   if (spot.ownerId !== req.user.id) {
+//     res.statusCode = 403
+//     return res.json({
+//         "message": "Forbidden",
+//         "statusCode": 403
+//     })
+// }
+//   const spotImage = await SpotImage.create({
+//     "spotId": spotId,
+//     "url": url,
+//     "preview": preview
+//   })
+
+//   res.json(await SpotImage.findByPk(spotImage.id, {
+//     attributes: [
+//       'id',
+//       'url',
+//       'preview'
+//     ]
+//   }))
+// })
+
 //Add an Image to a Spot based on the Spot's id
-router.post('/:spotId/images', requireAuth, async (req, res) => {
-  const user = req.user
-  const { url, preview } = req.body
-  const spot = await Spot.findByPk(req.params.spotId)
-  if (!spot) {
-    res.status(404)
-    return res.json({
-      message: "Spot couldn't be found",
-      statusCode: res.statusCode
-    })
-  }
-  if (spot.ownerId !== user.id) {
-    res.statusCode = 403
-    return res.json({
-        "message": "Forbidden",
-        "statusCode": res.statusCode
-    })
-}
-  const images = await SpotImage.create({
-    spotId: Number(req.params.spotId),
-    url: url,
-    preview: preview
-  })
-  res.json({
-    id: images.id,
-    url,
-    preview: preview
-  })
-})
+// router.post('/:spotId/images', requireAuth, async (req, res) => {
+//   const user = req.user
+//   const { url, preview } = req.body
+//   const spot = await Spot.findByPk(req.params.spotId)
+//   if (!spot) {
+//     res.status(404)
+//     return res.json({
+//       message: "Spot couldn't be found",
+//       statusCode: res.statusCode
+//     })
+//   }
+//   if (spot.ownerId !== user.id) {
+//     res.statusCode = 403
+//     return res.json({
+//         "message": "Forbidden",
+//         "statusCode": res.statusCode
+//     })
+// }
+//   const images = await SpotImage.create({
+//     spotId: Number(req.params.spotId),
+//     url: url,
+//     preview: preview
+//   })
+//   res.json({
+//     id: images.id,
+//     url,
+//     preview: preview
+//   })
+// })
 
 //Edit a Spot
 router.put('/:spotId', validateSpot, requireAuth, async (req, res) => {
@@ -332,6 +346,8 @@ router.put('/:spotId', validateSpot, requireAuth, async (req, res) => {
     name,
     description,
     price
+
+    //FIXME add a url and preview
   })
   return res.json(spot)
 })

@@ -15,6 +15,7 @@ const addSpot = (newSpot) => ({
 })
 
 //read
+//FIXME CHANGE THE VARIABLE NAME
 const loadAllSpot = (allSpot) => ({
   type: LOAD_ALL_SPOT,
   allSpot
@@ -31,9 +32,9 @@ const updateOneSpot = (updatedSpot) => ({
 })
 
 //delete
-const deleteOneSpot = (spot) => ({
+const deleteOneSpot = (spotId) => ({
   type: DELETE_ONE_SPOT,
-  spot
+  spotId
 })
 
 
@@ -96,7 +97,7 @@ export const updateSpot = (updated, spotId) => async dispatch => {
     body: JSON.stringify(updated)
   })
   if (response.ok) {
-    const updatedSpot = await response.json()
+    const updatedSpot = await response.json() //this is my res.json in the backend
     dispatch(updateOneSpot(updatedSpot))
     return updatedSpot
   }
@@ -112,8 +113,8 @@ export const deleteSpot = (spotId) => async dispatch => {
     // body: JSON.stringify(deleted)
   })
   if (response.ok) {
-    const deletedSpot = await response.json()
-    dispatch(deleteOneSpot(deletedSpot))
+    const deleteResponseMessage = await response.json() //if message is successful
+    dispatch(deleteOneSpot(spotId)) //delete it
     // return deletedSpot
   }
 }
@@ -125,37 +126,48 @@ const initialState = {
     // spotId: {}
   },
   singleSpot: {
-    SpotImages: []
+    // SpotImages: [] //NOTE - WE MIGHT NOT NEED THIS BC IT COMES FROM BACKEND
   }
 }
 
 const spotReducer = (state = initialState, action) => {
   let newState;
-  let allSpots = {}
-  let singleSpot = {}
   switch (action.type) {
     case ADD_SPOT:
-      singleSpot = { ...action.newSpot }
       newState = {
-        ...state,
-        singleSpot
-      }
-      newState.allSpots[action.newSpot.id] = { ...action.newSpot }
+        ...state, //create a new reference in memory for each nested object/array
+        singleSpot: {...state.singleSpot},
+        allSpots: { ...state.allSpots}
+      } //then do things in a normalized manner
+      newState.allSpots[action.newSpot.id] = action.newSpot //add my stuff
       return newState
     case LOAD_ALL_SPOT:
+      let newAllSpotObject = {}
       newState = {
         ...state,
-        allSpots: { ...action.allSpot.Spots }
+        singleSpot: {...state.singleSpot}, //I need to add this bc reference in memory
+        allSpots: { ...state.allSpots}
       }
-      let spotsArr = Object.values(newState.allSpots)
+      // let spotsArr = Object.values(action.allSpot)
+      console.log('IN LOAD_ALL_SPOT CASE, THIS IS ACTION.ALLSPOT', action.allSpot)
       // console.log('allSpotsArr=================', allSpotsArr)
-      spotsArr.forEach(spot => {
-        allSpots[spot.id] = spot
+      action.allSpot.Spots.forEach(spot => {
+        newAllSpotObject[spot.id] = spot
       })
-      return allSpots
+      newState.allSpots = newAllSpotObject
+      return newState
+      //spread the original - has the same memory address
+      //create a reference in memeory
+      //action has a key of updated spot
+      //newState.allSpots[action.updatedSpot.id] = action.updatedSpot //this is new memory address from backend
     case DELETE_ONE_SPOT:
-      newState = {...state}
-      delete newState[action.spot]
+      newState = {
+        ...state,
+        singleSpot: {...state.singleSpot},
+        allSpots: { ...state.allSpots}
+      }
+      delete newState[action.spotId]
+
       return newState
     default:
       return state

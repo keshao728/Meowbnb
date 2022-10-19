@@ -6,7 +6,8 @@ import './SpotBrowser.css'
 
 const SpotBrowser = () => {
   const dispatch = useDispatch()
-  const allSpots = useSelector(state => Object.values(state.spots))
+  const allSpots = useSelector(state => state.spots.allSpots)
+  // dont put object.values in useSelector bc it always changes
   // console.log("------------------------", state.spots)
   // console.log("ADDDDDD SPOTTTTTT", allSpots)
 
@@ -14,7 +15,7 @@ const SpotBrowser = () => {
     dispatch(getAllSpots())
   }, [dispatch])
 
-  const allSpotDetails = allSpots.map(spot => {
+  const allSpotDetails = Object.values(allSpots).map(spot => {
     return (
       <div className="all-spot">
         <NavLink className="spots" to={`spots/${spot.id}`}>
