@@ -80,9 +80,9 @@ export const getCurrentSpots = () => async dispatch => {
   const response = await csrfFetch('/api/spots/current')
 
   if (response.ok) {
-      const current = await response.json()
-      dispatch(loadAllSpot(current))
-      return current
+    const current = await response.json()
+    dispatch(loadAllSpot(current))
+    return current
   }
 }
 
@@ -113,8 +113,12 @@ export const deleteSpot = (spotId) => async dispatch => {
     // body: JSON.stringify(deleted)
   })
   if (response.ok) {
-    const deleteResponseMessage = await response.json() //if message is successful
+    // const deleteResponseMessage = 
+    await response.json() //if message is successful
+    // dispatch(deleteOneSpot(deleteResponseMessage))
+
     dispatch(deleteOneSpot(spotId)) //delete it
+
     // return deletedSpot
   }
 }
@@ -133,20 +137,12 @@ const initialState = {
 const spotReducer = (state = initialState, action) => {
   let newState;
   switch (action.type) {
-    case ADD_SPOT:
-      newState = {
-        ...state, //create a new reference in memory for each nested object/array
-        singleSpot: {...state.singleSpot},
-        allSpots: { ...state.allSpots}
-      } //then do things in a normalized manner
-      newState.allSpots[action.newSpot.id] = action.newSpot //add my stuff
-      return newState
     case LOAD_ALL_SPOT:
       let newAllSpotObject = {}
       newState = {
         ...state,
-        singleSpot: {...state.singleSpot}, //I need to add this bc reference in memory
-        allSpots: { ...state.allSpots}
+        singleSpot: { ...state.singleSpot }, //I need to add this bc reference in memory
+        allSpots: { ...state.allSpots }
       }
       // let spotsArr = Object.values(action.allSpot)
       console.log('IN LOAD_ALL_SPOT CASE, THIS IS ACTION.ALLSPOT', action.allSpot)
@@ -156,17 +152,39 @@ const spotReducer = (state = initialState, action) => {
       })
       newState.allSpots = newAllSpotObject
       return newState
-      //spread the original - has the same memory address
-      //create a reference in memeory
-      //action has a key of updated spot
-      //newState.allSpots[action.updatedSpot.id] = action.updatedSpot //this is new memory address from backend
+    case ADD_SPOT:
+      newState = {
+        ...state, //create a new reference in memory for each nested object/array
+        singleSpot: { ...state.singleSpot },
+        allSpots: { ...state.allSpots }
+      } //then do things in a normalized manner
+      newState.allSpots[action.newSpot.id] = action.newSpot //add my stuff
+      newState.singleSpot = action.newSpot
+      return newState
+
+    case UPDATE_ONE_SPOT:
+      newState = {
+        //spread the original - has the same memory address
+        ...state,
+        //create a reference in memeory
+        singleSpot: { ...state.singleSpot },
+        allSpots: { ...state.allSpots }
+      }
+      newState.allSpots[action.updatedSpot.id] = action.updatedSpot //normalized object
+      newState.singleSpot = action.updatedSpot // single object - theres only 1!!!
+
+      return newState
+    //action has a key of updated spot
+    //newState.allSpots[action.updatedSpot.id] = action.updatedSpot //this is new memory address from backend
     case DELETE_ONE_SPOT:
       newState = {
         ...state,
-        singleSpot: {...state.singleSpot},
-        allSpots: { ...state.allSpots}
+        singleSpot: { ...state.singleSpot },
+        allSpots: { ...state.allSpots }
       }
-      delete newState[action.spotId]
+
+      delete newState.allSpots[action.spotId] // this also contain everything
+      newState.singleSpot = {}
 
       return newState
     default:
