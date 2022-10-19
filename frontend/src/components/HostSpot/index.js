@@ -38,7 +38,7 @@ const HostSpot = () => {
       name,
       description,
       price,
-      url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSX4odoZ0-EVbmp4xXTMXxsVWSyoDHtdo4hjHs3Yw4bg&s",
+      url: "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/cute-photos-of-cats-curled-up-sleeping-1593184773.jpg",
       preview: true
     }
 
