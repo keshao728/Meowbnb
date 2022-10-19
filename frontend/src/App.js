@@ -8,6 +8,7 @@ import SpotBrowser from "./components/SpotBrowser"
 import HostSpot from "./components/HostSpot"
 import UserSpots from "./components/UserSpots"
 import UpdateSpot from "./components/UpdateSpot"
+import SingleSpotBrowser from "./components/SingleSpotBrowser"
 
 function App() {
   const dispatch = useDispatch();
@@ -24,15 +25,24 @@ function App() {
           <Route exact path='/'>
             <SpotBrowser />
           </Route>
+
+
           <Route path='/spots/create'>
             <HostSpot />
           </Route>
-          <Route path='/spots/my-spots'>
-            <UserSpots />
-          </Route>
+
           <Route path='/spots/:spotId/edit'>
             <UpdateSpot />
           </Route>
+
+          <Route exact path='/spots/my-spots'>
+            <UserSpots />
+          </Route>
+
+          <Route path='/spots/:spotId'>
+            <SingleSpotBrowser />
+          </Route>
+          
         </Switch>
       )}
     </>

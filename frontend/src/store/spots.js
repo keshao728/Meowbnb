@@ -66,12 +66,13 @@ export const getAllSpots = () => async dispatch => {
   }
 }
 
-export const getOneSpots = (spotId) => async dispatch => {
+export const getOneSpot = (spotId) => async dispatch => {
   const response = await fetch(`/api/spots/${spotId}`)
 
   if (response.ok) {
     const oneSpot = await response.json()
     dispatch(loadOneSpot(oneSpot))
+    return oneSpot
   }
 }
 
@@ -101,11 +102,11 @@ export const updateSpot = (updated, spotId) => async dispatch => {
     dispatch(updateOneSpot(updatedSpot))
     return updatedSpot
   }
-//   if (response.ok) {
-//     await response.json() //this is my res.json in the backend
-//    dispatch(updateOneSpot(spotId))
-//    // return response
-//  }
+  //   if (response.ok) {
+  //     await response.json() //this is my res.json in the backend
+  //    dispatch(updateOneSpot(spotId))
+  //    // return response
+  //  }
 }
 
 //delete
@@ -150,12 +151,20 @@ const spotReducer = (state = initialState, action) => {
         allSpots: { ...state.allSpots }
       }
       // let spotsArr = Object.values(action.allSpot)
-      console.log('IN LOAD_ALL_SPOT CASE, THIS IS ACTION.ALLSPOT', action.allSpot)
+      // console.log('IN LOAD_ALL_SPOT CASE, THIS IS ACTION.ALLSPOT', action.allSpot)
       // console.log('allSpotsArr=================', allSpotsArr)
       action.allSpot.Spots.forEach(spot => {
         newAllSpotObject[spot.id] = spot
       })
       newState.allSpots = newAllSpotObject
+      return newState
+    case LOAD_ONE_SPOT:
+      newState = {
+        ...state,
+        singleSpot: { ...state.singleSpot },
+        allSpots: { ...state.allSpots }
+      }
+      newState.singleSpot = action.oneSpot
       return newState
     case ADD_SPOT:
       newState = {
@@ -189,7 +198,7 @@ const spotReducer = (state = initialState, action) => {
       }
 
       delete newState.allSpots[action.spotId] // this also contain everything
-      // newState.singleSpot = {}
+      newState.singleSpot = {}
 
       return newState
     default:

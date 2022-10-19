@@ -11,7 +11,7 @@ const UpdateSpot = () => {
   const sessionUser = useSelector(state => state.session.user)
 
   const currSpots = useSelector(state => state.spots.singleSpot)
-  console.log('currSpot in UpdatedSpot', currSpots)
+  // console.log('currSpot in UpdatedSpot', currSpots)
 
   const [address, setAddress] = useState(currSpots.address)
   const [city, setCity] = useState(currSpots.city)
