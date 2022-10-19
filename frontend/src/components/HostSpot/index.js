@@ -1,13 +1,13 @@
 import { useState } from "react"
-import { useDispatch } from "react-redux"
-import { useHistory } from "react-router-dom"
+import { useDispatch, useSelector } from "react-redux"
+import { useHistory, Redirect } from "react-router-dom"
 // import { useHistory } from "react-router-dom"
 import { addOneSpot } from "../../store/spots"
 import "./HostSpot.css"
 
 const HostSpot = () => {
   let dispatch = useDispatch()
-  // let sessionUser = useSelector(state => state.session.user)
+  let sessionUser = useSelector(state => state.session.user)
   let history = useHistory()
   const [address, setAddress] = useState("")
   const [city, setCity] = useState("")
@@ -32,7 +32,7 @@ const HostSpot = () => {
       state,
       country,
       lat: 20,
-      lng:20,
+      lng: 20,
       name,
       description,
       price,
@@ -44,10 +44,10 @@ const HostSpot = () => {
     // let createdSpot = await dispatch(addOneSpot(newSpot))
 
     //   if (newSpot) {
-      //     setErrors([])
-      //     return dispatch(addOneSpot(newSpot))
-      //       .catch(async (res) => {
-        //         const data = await res.json();
+    //     setErrors([])
+    //     return dispatch(addOneSpot(newSpot))
+    //       .catch(async (res) => {
+    //         const data = await res.json();
     //         if (data && data.errors) setErrors(data.errors)
     //       })
     //   }
@@ -66,17 +66,21 @@ const HostSpot = () => {
     //   if (error) setErrors(Object.values(errors.errors));
     // }
 
-    //FIXME - DOESNT REDIRECT
     if (createdSpot) {
       // setErrors([])
       history.push(`/spots/${createdSpot.id}`)
     }
   }
 
+  if (!sessionUser) {
+    return <Redirect to="/" />
+  }
+
   const handleCancel = async (e) => {
     e.preventDefault()
     history.push("/")
   }
+
 
   return (
     <div className="full-host-form">
