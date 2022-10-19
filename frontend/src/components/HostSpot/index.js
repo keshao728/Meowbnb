@@ -85,13 +85,13 @@ const HostSpot = () => {
           {/* //FIXME - ERROR VALIDATION */}
           {/* {errors.map((error, idx) => <li key={idx}>{error}</li>)} */}
         </ul>
-        <h3 class="host-message">Create Your Spot Meow!!!</h3>
+        <h3 className="host-message">Create Your Spot Meow!!!</h3>
         <div className="host-form">
           <label>
             <input
               placeholder="Address"
               type="text"
-              class="host-input"
+              className="host-input"
               value={address}
               onChange={(e) => setAddress(e.target.value)}
               required
@@ -101,7 +101,7 @@ const HostSpot = () => {
             <input
               placeholder="City"
               type="text"
-              class="host-input"
+              className="host-input"
               value={city}
               onChange={(e) => setCity(e.target.value)}
               required
@@ -111,7 +111,7 @@ const HostSpot = () => {
             <input
               placeholder="State"
               type="text"
-              class="host-input"
+              className="host-input"
               value={state}
               onChange={(e) => setState(e.target.value)}
               required
@@ -121,7 +121,7 @@ const HostSpot = () => {
             <input
               placeholder="Country"
               type="text"
-              class="host-input"
+              className="host-input"
               value={country}
               onChange={(e) => setCountry(e.target.value)}
               required
@@ -131,7 +131,7 @@ const HostSpot = () => {
             <input
               placeholder="Name"
               type="text"
-              class="host-input"
+              className="host-input"
               value={name}
               onChange={(e) => setName(e.target.value)}
               required
@@ -141,7 +141,7 @@ const HostSpot = () => {
             <input
               placeholder="Description"
               type="text"
-              class="host-input"
+              className="host-input"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               required
@@ -151,15 +151,15 @@ const HostSpot = () => {
             <input
               placeholder="Price"
               type="text"
-              class="host-input"
+              className="host-input"
               value={price}
               onChange={(e) => setPrice(e.target.value)}
               required
             />
           </label>
         </div>
-        <button class="button-create-spot" type="submit"> Create Spot</button>
-        <button type="button" class="button-create-spot" onClick={handleCancel}>Cancel</button>
+        <button className="button-create-spot" type="submit"> Create Spot</button>
+        <button type="button" className="button-create-spot" onClick={handleCancel}>Cancel</button>
       </form>
     </div>
   )

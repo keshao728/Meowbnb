@@ -26,7 +26,7 @@ const SpotBrowser = () => {
             <div className="spot-info">
               <div className="address-star" key={spot.name}>{spot.city}, {spot.state}
                 <span className="spot-star">
-                  <i class="fa-solid fa-star"></i>
+                  <i className="fa-solid fa-star"></i>
                   &nbsp;
                   {spot.avgRating > 0 ? Number(spot.avgRating).toFixed(2) : 'New'}
                 </span>

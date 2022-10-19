@@ -29,12 +29,12 @@ function LoginForm() {
         </ul>
         <div className='form-input'>
 
-          <h3 class="welcome-message">Welcome to Meowbnb</h3>
-          <div class="input-parent">
+          <h3 className="welcome-message">Welcome to Meowbnb</h3>
+          <div className="input-parent">
 
             <label>
               <input
-                class="input"
+                className="input"
                 placeholder='Username or Email'
                 type="text"
                 value={credential}
@@ -44,7 +44,7 @@ function LoginForm() {
             </label>
             <label>
               <input
-                class="input"
+                className="input"
                 placeholder='Password'
                 type="password"
                 value={password}
@@ -53,7 +53,7 @@ function LoginForm() {
               />
             </label>
           </div>
-          <button class="button-login" type="submit">Log In</button>
+          <button className="button-login" type="submit">Log In</button>
         </div>
         <div className="demo-user">
           <button className="demo-user-button"

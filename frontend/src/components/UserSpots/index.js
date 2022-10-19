@@ -5,28 +5,34 @@ import { NavLink, Redirect } from "react-router-dom"
 
 const UserSpots = () => {
   const dispatch = useDispatch()
-  const allSpots = useSelector(state => Object.values(state.spots))
-  console.log("ALL SPOTTTTTT", allSpots)
-
-
+  const allSpots = useSelector(state => state.spots.allSpots)
+  // console.log()
+  const allSpotsArr = Object.values(allSpots)
   const sessionUser = useSelector(state => state.session.user)
+
 
   useEffect(() => {
     dispatch(getCurrentSpots())
   }, [dispatch])
 
-  if (!allSpots || !allSpots.length) {
+  const ownedSpots = allSpotsArr?.filter((spot) => spot.ownerId === sessionUser.id);
+  // console.log('Owned Spot - UserSpots Component', ownedSpots)
+
+  if (!ownedSpots || !ownedSpots.length) {
     return <h2> MEOWMEOW No Spots </h2>
-}
-
-  if (!sessionUser) return <Redirect to="/" />
-
-
-  const deleteUserSpot = async (spot) => {
-    await dispatch(deleteSpot(spot))
   }
 
-  const spotDetails = allSpots.map(spot => {
+  //FIXME - redirect issue
+  if (!sessionUser) {
+    return <Redirect to="/" />
+  }
+
+
+  // const deleteUserSpot = async (spotId) => {
+  //   await dispatch(deleteSpot(spotId))
+  // }
+
+  const spotDetails = ownedSpots?.map(spot => {
     return (
       <div className="all-spot">
         <NavLink className="spots" to={`spots/${spot.id}`}>
@@ -37,7 +43,7 @@ const UserSpots = () => {
             <div className="spot-info">
               <div className="address-star" key={spot.name}>{spot.city}, {spot.state}
                 <span className="spot-star">
-                  <i class="fa-solid fa-star"></i>
+                  <i className="fa-solid fa-star"></i>
                   &nbsp;
                   {spot.avgRating > 0 ? Number(spot.avgRating).toFixed(2) : 'New'}
                 </span>
@@ -55,7 +61,7 @@ const UserSpots = () => {
         {/* should i put edit here too? */}
         <div>
           <button className="delete"
-            onClick={() => deleteUserSpot(spot.id)}>
+            onClick={() => dispatch(deleteSpot(spot.id))}>
             Delete
           </button>
         </div>
@@ -71,4 +77,48 @@ const UserSpots = () => {
   )
 }
 
+
+
+//   return (
+//     <div>
+//       {ownedSpots?.map((spot) => (
+//         <div className="all-spot">
+//           <NavLink className="spots" to={`/spots/${spot.id}`}>
+//             <div className="individual-spots">
+//               <div>
+//                 <img className="spot-image" key={spot.previewImage} src={spot.previewImage} alt={spot.previewImage} />
+//               </div>
+
+//               <div className="spot-info">
+//                 <div className="address-star" key={spot.name}>{spot.city}, {spot.state}
+//                   <span className="spot-star">
+//                     <i className="fa-solid fa-star"></i>
+//                     &nbsp;
+//                     {spot.avgRating > 0 ? Number(spot.avgRating).toFixed(2) : 'New'}
+//                   </span>
+//                 </div>
+//                 <div>
+//                   <strong>
+//                     ${spot.price}
+//                   </strong>
+//                   &nbsp;
+//                   night
+//                 </div>
+//               </div>
+
+//             </div>
+//           </NavLink>
+
+//           <div>
+//             <button className="delete"
+//               onClick={() => deleteUserSpot}>
+//               Delete
+//             </button>
+//           </div>
+
+//         </div>
+//       )}
+//     </div>
+//   )
+// }
 export default UserSpots

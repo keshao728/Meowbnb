@@ -113,7 +113,7 @@ export const deleteSpot = (spotId) => async dispatch => {
     // body: JSON.stringify(deleted)
   })
   if (response.ok) {
-    // const deleteResponseMessage = 
+    // const deleteResponseMessage =
     await response.json() //if message is successful
     // dispatch(deleteOneSpot(deleteResponseMessage))
 
@@ -184,7 +184,7 @@ const spotReducer = (state = initialState, action) => {
       }
 
       delete newState.allSpots[action.spotId] // this also contain everything
-      newState.singleSpot = {}
+      // newState.singleSpot = {}
 
       return newState
     default:
