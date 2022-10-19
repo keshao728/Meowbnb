@@ -44,6 +44,7 @@
   border-radius: 10px;
   border: 1px solid #dddddd;
   right: 110px;
+  z-index: 1;
 }
 
 .logout-button {

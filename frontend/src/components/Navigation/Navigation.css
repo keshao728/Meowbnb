@@ -19,6 +19,7 @@
   border-radius: 10px;
   border: 1px solid #dddddd;
   right: 110px;
+  z-index: 1;
   /* justify-content: left; */
 }
 
@@ -76,5 +77,6 @@
   border-bottom:1px solid #EBEBEB;
   background-color: white;
   padding: 10px 90px;
+  z-index: 1;
 }
 
