@@ -6,7 +6,8 @@ import { NavLink, Redirect } from "react-router-dom"
 const UserSpots = () => {
   const dispatch = useDispatch()
   const allSpots = useSelector(state => state.spots.allSpots)
-  // console.log()
+  // const testSpots = useSelector(state => state.spots)
+  // console.log('this is a test', testSpots)
   const allSpotsArr = Object.values(allSpots)
   const sessionUser = useSelector(state => state.session.user)
 
@@ -64,6 +65,14 @@ const UserSpots = () => {
             onClick={() => dispatch(deleteSpot(spot.id))}>
             Delete
           </button>
+          <div>
+            <NavLink to="/spots/edit">
+              <button className="delete">
+                Edit
+              </button>
+            </NavLink>
+            {/* <button className="logout-button" onClick={() => history.push('/my-spots')}>My Spot</button> */}
+          </div>
         </div>
       </div>
     )

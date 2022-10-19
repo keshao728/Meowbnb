@@ -7,6 +7,7 @@ import Navigation from "./components/Navigation";
 import SpotBrowser from "./components/SpotBrowser"
 import HostSpot from "./components/HostSpot"
 import UserSpots from "./components/UserSpots"
+import UpdateSpot from "./components/UpdateSpot"
 
 function App() {
   const dispatch = useDispatch();
@@ -28,6 +29,9 @@ function App() {
           </Route>
           <Route path='/spots/my-spots'>
             <UserSpots />
+          </Route>
+          <Route path='/spots/edit'>
+            <UpdateSpot />
           </Route>
         </Switch>
       )}
