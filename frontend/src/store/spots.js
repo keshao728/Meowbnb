@@ -101,6 +101,11 @@ export const updateSpot = (updated, spotId) => async dispatch => {
     dispatch(updateOneSpot(updatedSpot))
     return updatedSpot
   }
+//   if (response.ok) {
+//     await response.json() //this is my res.json in the backend
+//    dispatch(updateOneSpot(spotId))
+//    // return response
+//  }
 }
 
 //delete

@@ -30,7 +30,7 @@ function App() {
           <Route path='/spots/my-spots'>
             <UserSpots />
           </Route>
-          <Route path='/spots/edit'>
+          <Route path='/spots/:spotId/edit'>
             <UpdateSpot />
           </Route>
         </Switch>

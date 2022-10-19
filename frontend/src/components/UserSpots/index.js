@@ -66,7 +66,7 @@ const UserSpots = () => {
             Delete
           </button>
           <div>
-            <NavLink to="/spots/edit">
+            <NavLink to={`/spots/${spot.id}/edit`}>
               <button className="delete">
                 Edit
               </button>

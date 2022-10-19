@@ -1,16 +1,17 @@
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { useHistory, Redirect } from "react-router-dom"
-import {updateSpot} from "../../store/spots"
+import { useHistory, Redirect, useParams } from "react-router-dom"
+import { updateSpot } from "../../store/spots"
 
 
 const UpdateSpot = () => {
   const dispatch = useDispatch()
   const history = useHistory()
-  // const { spotId } = useParams
+  const { spotId } = useParams()
   const sessionUser = useSelector(state => state.session.user)
 
   const currSpots = useSelector(state => state.spots.singleSpot)
+  console.log('currSpot in UpdatedSpot', currSpots)
 
   const [address, setAddress] = useState(currSpots.address)
   const [city, setCity] = useState(currSpots.city)
@@ -19,6 +20,10 @@ const UpdateSpot = () => {
   const [name, setName] = useState(currSpots.name)
   const [description, setDescription] = useState(currSpots.description)
   const [price, setPrice] = useState(currSpots.price)
+
+  // useEffect(() => {
+  //   dispatch(getOneSpots(spotId))
+  // }, [dispatch])
 
   //TODO -
   // const [url, setUrl] = useState("")
@@ -41,12 +46,14 @@ const UpdateSpot = () => {
       preview: true
     }
     //FIXME - error validation
-    const newUpdatedSpot = await dispatch(updateSpot(editSpot))
+    const newUpdatedSpot = await dispatch(updateSpot(editSpot, spotId)) // bc i passed in 2 params in Thunk
 
     if (newUpdatedSpot) {
       // setErrors([])
+      // return <Redirect to='/spots/my-spots' />
       history.push('/spots/my-spots')
     }
+
     if (!sessionUser) {
       return <Redirect to="/" />
     }
