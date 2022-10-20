@@ -1,7 +1,7 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { useHistory, Redirect, useParams} from "react-router-dom"
-import { updateSpot } from "../../store/spots"
+import { useHistory, Redirect, useParams } from "react-router-dom"
+import { updateSpot, getOneSpot } from "../../store/spots"
 
 
 const UpdateSpot = () => {
@@ -9,34 +9,36 @@ const UpdateSpot = () => {
   const history = useHistory()
   const { spotId } = useParams()
   const sessionUser = useSelector(state => state.session.user)
+  const singleSpot = useSelector(state => state.spots.singleSpot)
 
-  const allSpots = useSelector(state => state.spots.allSpots)
+  const [address, setAddress] = useState("")
+  const [city, setCity] = useState("")
+  const [state, setState] = useState("")
+  const [country, setCountry] = useState("")
+  const [name, setName] = useState("")
+  const [description, setDescription] = useState("")
+  const [price, setPrice] = useState("")
+  // const [errors, setErrors] = useState([]);
+  // const [isLoaded, setIsLoaded] = useState(false)
+  // const [url, setUrl] = useState(currSpots.SpotImages[0].url)
 
-  const singleSpot = allSpots[spotId]
+  useEffect(() => {
+    dispatch(getOneSpot(spotId))
+  }, [dispatch, spotId])
+
   // const currSpotImg = currSpots.SpotImages[0].url
 
   // if (currSpotImg.length > 0) prevImg = currSpotImg.find(obj => obj.preview === true).url
 
-  // console.log('currSpot in UpdatedSpot', currSpots)
-
-  const [address, setAddress] = useState(singleSpot.address)
-  const [city, setCity] = useState(singleSpot.city)
-  const [state, setState] = useState(singleSpot.state)
-  const [country, setCountry] = useState(singleSpot.country)
-  const [name, setName] = useState(singleSpot.name)
-  const [description, setDescription] = useState(singleSpot.description)
-  const [price, setPrice] = useState(singleSpot.price)
-  // const [url, setUrl] = useState(currSpots.SpotImages[0].url)
-
-  // useEffect(() => {
-  //   dispatch(getOneSpots(spotId))
-  // }, [dispatch])
-
-  //TODO -
-  // const [url, setUrl] = useState("")
-  // const [preiview, setPreview] = useState("")
-
-  // const [errors, setErrors] = useState([]);
+  useEffect(() => {
+    setAddress(singleSpot.address)
+    setCity(singleSpot.city)
+    setState(singleSpot.state)
+    setCountry(singleSpot.country)
+    setName(singleSpot.name)
+    setDescription(singleSpot.description)
+    setPrice(singleSpot.price)
+  }, [singleSpot])
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -50,10 +52,10 @@ const UpdateSpot = () => {
       description,
       price,
       // url,
-      preview: true
+      // preview: true
     }
     //FIXME - error validation
-    const newUpdatedSpot = await dispatch(updateSpot(editSpot, spotId)) // bc i passed in 2 params in Thunk
+    let newUpdatedSpot = await dispatch(updateSpot(editSpot, spotId)) // bc i passed in 2 params in Thunk
 
     if (newUpdatedSpot) {
       // setErrors([])

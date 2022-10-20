@@ -10,7 +10,7 @@ const SingleSpotBrowser = () => {
   const { spotId } = useParams()
 
   const currSpot = useSelector(state => state.spots.singleSpot)
-  const sessionUser = useSelector((state) => state.session.user)
+  // const sessionUser = useSelector((state) => state.session.user)
 
   // console.log("this is the user's current spot", currSpot)
 

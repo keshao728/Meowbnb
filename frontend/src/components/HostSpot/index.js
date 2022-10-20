@@ -41,7 +41,6 @@ const HostSpot = () => {
       preview: true
     }
 
-    // if (!sessionUser) return <Redirect to="/"/>
     // let createdSpot = await dispatch(addOneSpot(newSpot))
 
     //   if (newSpot) {
