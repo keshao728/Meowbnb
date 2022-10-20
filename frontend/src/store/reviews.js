@@ -23,8 +23,6 @@ export function loadUserReviews(userReview) {
   }
 }
 
-
-//delete
 const deleteOneReview = (deleteTheReview) => ({
   type: DELETE_REVIEW,
   deleteTheReview
@@ -48,11 +46,11 @@ export const addReview = (spotId, added) => async dispatch => {
 
 export const locationReviewsThunk = (spotId) => async dispatch => {
   const response = await fetch(`/api/spots/${spotId}/reviews`)
-
+  console.log("LOCATION REVIEW THUNK", response)
   if (response.ok) {
     const existingReviews = await response.json()
     console.log("THISIS EXISTING REVIEW IN THUNK", existingReviews)
-    dispatch(loadLocationReviews(existingReviews, spotId))
+    dispatch(loadLocationReviews(existingReviews))
     return existingReviews
   }
 }
@@ -82,17 +80,16 @@ const initialState = { user: {}, spot: {} }
 const reviewReducer = (state = initialState, action) => {
   let newState;
   switch (action.type) {
-    //TODO LOAD USER REVIEW
     case LOAD_LOCATION_REVIEW:
       //   // let newAllReviewObject = {}
       //   newState = { ...state }
-      newState = {
-        ...state,
-        spot: { ...state.spot }
-      }
+      newState = { ...state }
+      let spot = {}
+
       action.locationReview.Reviews.forEach((review) => {
-        newState.spot[review.id] = review
+        spot[review.id] = review
       })
+      newState.spot = spot
       //   // console.log("this is REVIEW REDUCER FOR LOAD REVIEW", newState)
       //   // newState = newAllReviewObject
       return newState;

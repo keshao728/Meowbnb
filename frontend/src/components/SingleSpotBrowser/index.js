@@ -1,31 +1,44 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { useParams } from "react-router-dom"
+import { NavLink, useParams } from "react-router-dom"
 import { getOneSpot } from "../../store/spots"
+import { locationReviewsThunk } from "../../store/reviews"
+
 import './SingleSpotBrowser.css'
 
 const SingleSpotBrowser = () => {
   const dispatch = useDispatch()
   const [isLoaded, setIsLoaded] = useState(false)
   const { spotId } = useParams()
-  // const reviews = useSelector((state) => state.reviews);
-  // const reviewList = Object.values(reviews)
+  const sessionUser = useSelector(state => state.session.user)
+  // console.log("this is the SESSION USER", sessionUser)
 
+  //SPOT
   const currSpot = useSelector(state => state.spots.singleSpot)
+  console.log("this is the user's current spot", currSpot)
   // const sessionUser = useSelector((state) => state.session.user)
 
-  // console.log("this is the user's current spot", currSpot)
-
-  // let currReviews = Object.values(reviews)
-  // console.log(currReviews)
-
-  const allReviews = useSelector(state => state.reviews);
-  console.log("THIS IS MY COMPONENT OF ALL REVIEWS:", allReviews)
+  //REVIEWS
+  const allReviews = useSelector(state => state.reviews.spot);
+  // console.log("THIS IS MY COMPONENT OF ALL REVIEWS:", allReviews)
+  const allReviewsArr = Object.values(allReviews)
+  // console.log("THIS IS MY COMPONENT OF ALL REVIEWS ARR:", allReviewsArr)
 
   useEffect(() => {
     dispatch(getOneSpot(spotId))
+    dispatch(locationReviewsThunk(spotId))
       .then(() => setIsLoaded(true))
   }, [dispatch, spotId])
+
+  let alreadyReviewed;
+  if (sessionUser.id && allReviewsArr.length > 0) {
+    alreadyReviewed = allReviewsArr.find(review => review.userId === sessionUser.id)
+  }
+
+  let allowReviewAction = false;
+  if ((sessionUser) && (sessionUser.id !== currSpot.Owner.id) && (!alreadyReviewed)) {
+    allowReviewAction = true
+  }
 
 
   return isLoaded && (
@@ -70,14 +83,40 @@ const SingleSpotBrowser = () => {
               {currSpot.description}
             </div>
           </div>
-
-          {/* <div>
-            <div className="spot-review">
-              {currSpot.review}
-            </div>
-          </div> */}
         </div>
       }
+
+
+      <div>
+        <h3>★ {currSpot.avgRating > 0 ? Number(currSpot.avgRating).toFixed(2) : 'New'} · {currSpot.numReviews} reviews</h3>
+
+        {allowReviewAction &&
+          <div className='review-this-spot'>
+            <NavLink to={`/spots/${currSpot.id}/review`}>Review This Spot</NavLink>
+          </div>
+        }
+
+
+        {allReviewsArr?.map((review) => (
+          <div className='review-item' key={review.id}>
+            <div>
+
+              <div className="review-username">
+                {review.User.firstName} {review.User.lastName}
+              </div>
+
+              <div className="review-message">
+                {review?.review}
+              </div>
+
+              <div className='user-review-date'>
+                {new Date(review.createdAt).toDateString().split(' ').slice(1).join(' ')}
+              </div>
+
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   )
 }

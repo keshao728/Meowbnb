@@ -92,10 +92,6 @@ const UserSpots = () => {
           </div>
         ))}
       </div>
-
-      <div className="review-mother">
-        {/* {allReviewsArr < 1 && <h3>No reviews MEOWMEOW!</h3>} */}
-      </div>
     </div>
   )
 }
