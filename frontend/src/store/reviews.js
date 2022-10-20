@@ -42,7 +42,8 @@ export const getReviews = (spotId) => async dispatch => {
 
   if (response.ok) {
     const existingReviews = await response.json()
-    dispatch(loadAllReviews(existingReviews))
+    console.log("THISIS EXISTING REVIEW IN THUNK", existingReviews)
+    dispatch(loadAllReviews(existingReviews, spotId))
     return existingReviews
   }
 }
@@ -57,32 +58,37 @@ export const deleteReview = (spotId) => async (dispatch) => {
 }
 
 //REDUCER
-const initialState = {}
+const initialState = {user: {}, spot: {}}
 
 const reviewReducer = (state = initialState, action) => {
   let newState;
   switch (action.type) {
-    case LOAD_REVIEW: {
-      let newAllReviewObject = {}
-      newState = { ...state }
-      action.loadTheReview.Reviews.forEach(review => {
-        newAllReviewObject[review.id] = review
+    case LOAD_REVIEW:
+      //   // let newAllReviewObject = {}
+      //   newState = { ...state }
+      newState = {
+        ...state,
+        user: {...state.user},
+        spot: {...state.spot}
+      }
+      action.loadTheReview.Reviews.forEach((review) => {
+        newState.spot[review.id] = review
       })
-      newState = newAllReviewObject
+      //   // console.log("this is REVIEW REDUCER FOR LOAD REVIEW", newState)
+      //   // newState = newAllReviewObject
       return newState;
-    }
 
-    case ADD_REVIEW: {
+    case ADD_REVIEW:
       newState = { ...state }
       newState[action.addTheReview.id] = action.review
       return newState
-    }
 
-    case DELETE_REVIEW: {
+
+    case DELETE_REVIEW:
       newState = { ...state }
       delete newState[action.deleteTheReview]
       return newState
-    }
+
     default:
       return state
   }

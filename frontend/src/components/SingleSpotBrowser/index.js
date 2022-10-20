@@ -8,15 +8,23 @@ const SingleSpotBrowser = () => {
   const dispatch = useDispatch()
   const [isLoaded, setIsLoaded] = useState(false)
   const { spotId } = useParams()
+  // const reviews = useSelector((state) => state.reviews);
+  // const reviewList = Object.values(reviews)
 
   const currSpot = useSelector(state => state.spots.singleSpot)
   // const sessionUser = useSelector((state) => state.session.user)
 
   // console.log("this is the user's current spot", currSpot)
 
+  // let currReviews = Object.values(reviews)
+  // console.log(currReviews)
+
+  const allReviews = useSelector(state => state.reviews);
+  console.log("THIS IS MY COMPONENT OF ALL REVIEWS:", allReviews)
+
   useEffect(() => {
     dispatch(getOneSpot(spotId))
-    .then(()=>setIsLoaded(true))
+      .then(() => setIsLoaded(true))
   }, [dispatch, spotId])
 
 
@@ -62,6 +70,12 @@ const SingleSpotBrowser = () => {
               {currSpot.description}
             </div>
           </div>
+
+          {/* <div>
+            <div className="spot-review">
+              {currSpot.review}
+            </div>
+          </div> */}
         </div>
       }
     </div>
