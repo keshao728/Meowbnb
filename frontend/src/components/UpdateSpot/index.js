@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { useHistory, Redirect, useParams } from "react-router-dom"
+import { useHistory, Redirect, useParams} from "react-router-dom"
 import { updateSpot } from "../../store/spots"
 
 
@@ -10,16 +10,23 @@ const UpdateSpot = () => {
   const { spotId } = useParams()
   const sessionUser = useSelector(state => state.session.user)
 
-  const currSpots = useSelector(state => state.spots.singleSpot)
+  const allSpots = useSelector(state => state.spots.allSpots)
+
+  const singleSpot = allSpots[spotId]
+  // const currSpotImg = currSpots.SpotImages[0].url
+
+  // if (currSpotImg.length > 0) prevImg = currSpotImg.find(obj => obj.preview === true).url
+
   // console.log('currSpot in UpdatedSpot', currSpots)
 
-  const [address, setAddress] = useState(currSpots.address)
-  const [city, setCity] = useState(currSpots.city)
-  const [state, setState] = useState(currSpots.state)
-  const [country, setCountry] = useState(currSpots.country)
-  const [name, setName] = useState(currSpots.name)
-  const [description, setDescription] = useState(currSpots.description)
-  const [price, setPrice] = useState(currSpots.price)
+  const [address, setAddress] = useState(singleSpot.address)
+  const [city, setCity] = useState(singleSpot.city)
+  const [state, setState] = useState(singleSpot.state)
+  const [country, setCountry] = useState(singleSpot.country)
+  const [name, setName] = useState(singleSpot.name)
+  const [description, setDescription] = useState(singleSpot.description)
+  const [price, setPrice] = useState(singleSpot.price)
+  // const [url, setUrl] = useState(currSpots.SpotImages[0].url)
 
   // useEffect(() => {
   //   dispatch(getOneSpots(spotId))
@@ -42,7 +49,7 @@ const UpdateSpot = () => {
       name,
       description,
       price,
-      url: "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/cute-photos-of-cats-curled-up-sleeping-1593184773.jpg",
+      // url,
       preview: true
     }
     //FIXME - error validation
@@ -58,6 +65,13 @@ const UpdateSpot = () => {
       return <Redirect to="/" />
     }
   }
+
+  const handleCancel = async (e) => {
+    e.preventDefault()
+    history.push("/spots/my-spots")
+  }
+
+
   return (
     <div className="full-host-form">
       <form className="host-form-parent" onSubmit={handleSubmit}>
@@ -137,8 +151,19 @@ const UpdateSpot = () => {
               required
             />
           </label>
+          {/* <label>
+            <input
+              placeholder="Image (url only)"
+              type="text"
+              className="host-input"
+              value={url}
+              onChange={(e) => setUrl(e.target.value)}
+              required
+            />
+          </label> */}
         </div>
         <button className="button-create-spot" type="submit"> Edit Spot </button>
+        <button type="button" className="button-create-spot" onClick={handleCancel}>Cancel</button>
       </form>
     </div>
   )

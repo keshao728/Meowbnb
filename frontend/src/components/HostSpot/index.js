@@ -19,7 +19,6 @@ const HostSpot = () => {
   const [description, setDescription] = useState("")
   const [price, setPrice] = useState("")
 
-  //TODO -
   const [url, setUrl] = useState("")
   // const [preiview, setPreview] = useState("")
 

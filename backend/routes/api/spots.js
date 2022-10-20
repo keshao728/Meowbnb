@@ -347,9 +347,21 @@ router.put('/:spotId', validateSpot, requireAuth, async (req, res) => {
     description,
     price
 
-    //FIXME add a url and preview
   })
-  return res.json(spot)
+  const { url, preview } = req.body
+
+  await SpotImage.create({
+    "spotId": spot.id,
+    "url": url,
+    "preview": preview
+  })
+
+  const spotWithImage = await Spot.findByPk(spot.id, {
+    include: SpotImage //include the model
+  })
+
+  // res.status(201)
+  return res.json(spotWithImage)
 })
 
 // Create a Review for a Spot based on the Spot's id
