@@ -1,0 +1,57 @@
+/* .mother {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+} */
+
+.spot-mother{
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  grid-gap: 50px 0px;
+  list-style: none;
+  padding: 50px 300px;
+  justify-items: center;
+}
+
+.user-spot-image{
+  object-fit: cover;
+  width: 600px;
+  height: 300px;
+  overflow: hidden;
+  position: relative;
+  border-radius: 15px;
+}
+
+.all-owned-spot{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* padding: 30px 100px; */
+  flex-wrap: wrap;
+  gap: 10px;
+  width: 600px;
+}
+
+.delete-edit{
+  border-radius: 6px;
+  font-size: 12px;
+  border: 0;
+  background-color: #E21C5F;
+  color: white;
+  width: 100%;
+  padding: 10px 10px;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.user-spot-message{
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 0px;
+}
+
+.no-spot {
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 0px;
+}

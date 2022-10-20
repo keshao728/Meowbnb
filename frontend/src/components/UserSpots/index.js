@@ -2,6 +2,7 @@ import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getCurrentSpots, deleteSpot } from "../../store/spots"
 import { NavLink, Redirect } from "react-router-dom"
+import "./UserSpots.css"
 
 const UserSpots = () => {
   const dispatch = useDispatch()
@@ -24,7 +25,7 @@ const UserSpots = () => {
   // console.log('Owned Spot - UserSpots Component', ownedSpots)
 
   if (!ownedSpots || !ownedSpots.length) {
-    return <h2> MEOWMEOW No Spots </h2>
+    return <h2 className="no-spot"> MEOWMEOW No Spots! </h2>
   }
 
 
@@ -33,101 +34,57 @@ const UserSpots = () => {
   //   await dispatch(deleteSpot(spotId))
   // }
 
-  const spotDetails = ownedSpots?.map(spot => {
-    return (
-      <div className="all-spot">
-        <NavLink className="spots" to={`/spots/${spot.id}`}>
-          <div className="individual-spots">
-            <div>
-              <img className="spot-image" key={spot.previewImage} src={spot.previewImage} alt={spot.previewImage} />
-            </div>
-            <div className="spot-info">
-              <div className="address-star" key={spot.name}>{spot.city}, {spot.state}
-                <span className="spot-star">
-                  <i className="fa-solid fa-star"></i>
-                  &nbsp;
-                  {spot.avgRating > 0 ? Number(spot.avgRating).toFixed(2) : 'New'}
-                </span>
-              </div>
-              <div>
-                <strong>
-                  ${spot.price}
-                </strong>
-                &nbsp;
-                night
-              </div>
-            </div>
-          </div>
-        </NavLink>
-        {/* should i put edit here too? */}
-        <div>
-          <button className="delete"
-            onClick={() => dispatch(deleteSpot(spot.id))}>
-            Delete
-          </button>
-          <div>
-            <NavLink to={`/spots/${spot.id}/edit`}>
-              <button className="delete">
-                Edit
-              </button>
-            </NavLink>
-            {/* <button className="logout-button" onClick={() => history.push('/my-spots')}>My Spot</button> */}
-          </div>
-        </div>
-      </div>
-    )
-  })
-
-
   return (
-    <div>
-      {spotDetails}
+    <div className="mother">
+
+      <h2 className="user-spot-message">Manage Your Listings Meow!!!</h2>
+      <div className="spot-mother">
+        {ownedSpots?.map((spot) => (
+          <div className="all-owned-spot">
+            <NavLink className="spots" to={`/spots/${spot.id}`}>
+              <div className="individual-spots">
+                <div>
+                  <img className="user-spot-image" key={spot.previewImage} src={spot.previewImage} alt={spot.previewImage} />
+                </div>
+                <div className="user-spot-info">
+                  <div>{spot.name}</div>
+                  <div className="address-star" key={spot.name}>{spot.city}, {spot.state}</div>
+                  <div>
+                    <strong>
+                      ${spot.price}
+                    </strong>
+                    &nbsp;
+                    night
+                  </div>
+                </div>
+              </div>
+            </NavLink>
+
+            <div className="delete-edit-buttons">
+              <div>
+                <NavLink to={`/spots/${spot.id}/edit`}>
+                  <button className="delete-edit">
+                    Edit
+                  </button>
+                </NavLink>
+                {/* <button className="logout-button" onClick={() => history.push('/my-spots')}>My Spot</button> */}
+              </div>
+              <button className="delete-edit"
+                onClick={() => dispatch(deleteSpot(spot.id))}>
+                Delete
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   )
 }
 
+//     return(
+//   <div>
+//   { spotDetails }
+//   </div >
+// )
 
-
-//   return (
-//     <div>
-//       {ownedSpots?.map((spot) => (
-//         <div className="all-spot">
-//           <NavLink className="spots" to={`/spots/${spot.id}`}>
-//             <div className="individual-spots">
-//               <div>
-//                 <img className="spot-image" key={spot.previewImage} src={spot.previewImage} alt={spot.previewImage} />
-//               </div>
-
-//               <div className="spot-info">
-//                 <div className="address-star" key={spot.name}>{spot.city}, {spot.state}
-//                   <span className="spot-star">
-//                     <i className="fa-solid fa-star"></i>
-//                     &nbsp;
-//                     {spot.avgRating > 0 ? Number(spot.avgRating).toFixed(2) : 'New'}
-//                   </span>
-//                 </div>
-//                 <div>
-//                   <strong>
-//                     ${spot.price}
-//                   </strong>
-//                   &nbsp;
-//                   night
-//                 </div>
-//               </div>
-
-//             </div>
-//           </NavLink>
-
-//           <div>
-//             <button className="delete"
-//               onClick={() => deleteUserSpot}>
-//               Delete
-//             </button>
-//           </div>
-
-//         </div>
-//       )}
-//     </div>
-//   )
-// }
 export default UserSpots
