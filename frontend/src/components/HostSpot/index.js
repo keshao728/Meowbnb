@@ -29,7 +29,7 @@ const HostSpot = () => {
     const errors = []
     if (!address || address.length < 10) { errors.push("Please enter a valid address") }
     if (!city || city.length < 2) { errors.push("Please enter a valid city") }
-    if (!state || state.length < 2 || state.length > 8) { errors.push("Please enter a valid state") }
+    if (!state || state.length < 2 || state.length > 12) { errors.push("Please enter a valid state") }
     if (!country || country.length < 2 || country.length > 10) { errors.push("Please enter a valid country") }
     if (!name || name.length < 2) { errors.push("Please enter a valid spot name") }
     if (!description || description.length < 5) { errors.push("Description is required") }
@@ -115,9 +115,9 @@ const HostSpot = () => {
   return (
     <div className="full-host-form">
       <form className="host-form-parent" onSubmit={handleSubmit}>
-        <ul>
+        {/* <ul> */}
           {/* {errors.map((error, idx) => <li key={idx}>{error}</li>)} */}
-        </ul>
+        {/* </ul> */}
         <h3 className="host-message">Create Your Spot Meow!!!</h3>
         {showErrors &&
           <ul className="form-errors">

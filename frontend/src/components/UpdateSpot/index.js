@@ -18,6 +18,8 @@ const UpdateSpot = () => {
   const [name, setName] = useState("")
   const [description, setDescription] = useState("")
   const [price, setPrice] = useState("")
+  const [validationErrors, setValidationErrors] = useState([])
+  const [showErrors, setShowErrors] = useState(false)
   // const [errors, setErrors] = useState([]);
   // const [isLoaded, setIsLoaded] = useState(false)
   // const [url, setUrl] = useState(currSpots.SpotImages[0].url)
@@ -25,6 +27,7 @@ const UpdateSpot = () => {
   useEffect(() => {
     dispatch(getOneSpot(spotId))
   }, [dispatch, spotId])
+
 
   // const currSpotImg = currSpots.SpotImages[0].url
 
@@ -40,27 +43,41 @@ const UpdateSpot = () => {
     setPrice(singleSpot.price)
   }, [singleSpot])
 
+
+  useEffect(() => {
+    const errors = []
+    if (!address || address.length < 10) { errors.push("Please enter a valid address") }
+    if (!city || city.length < 2) { errors.push("Please enter a valid city") }
+    if (!state || state.length < 2 || state.length > 12) { errors.push("Please enter a valid state") }
+    if (!country || country.length < 2 || country.length > 10) { errors.push("Please enter a valid country") }
+    if (!name || name.length < 2) { errors.push("Please enter a valid spot name") }
+    if (!description || description.length < 5) { errors.push("Description is required") }
+    if (!price || price < 1) { errors.push("Please enter a valid price") }
+
+    setValidationErrors(errors)
+  }, [name, address, city, state, country, description, price])
+
   const handleSubmit = async (e) => {
     e.preventDefault()
+    setShowErrors(true)
 
-    const editSpot = {
-      address,
-      city,
-      state,
-      country,
-      name,
-      description,
-      price,
-      // url,
-      // preview: true
-    }
-    //FIXME - error validation
-    let newUpdatedSpot = await dispatch(updateSpot(editSpot, spotId)) // bc i passed in 2 params in Thunk
-
-    if (newUpdatedSpot) {
-      // setErrors([])
-      // return <Redirect to='/spots/my-spots' />
-      history.push('/spots/my-spots')
+    if (!validationErrors.length) {
+      const editSpot = {
+        address,
+        city,
+        state,
+        country,
+        name,
+        description,
+        price,
+        // url,
+        // preview: true
+      }
+      let newUpdatedSpot = await dispatch(updateSpot(editSpot, spotId)) // bc i passed in 2 params in Thunk
+      if (newUpdatedSpot) {
+        setShowErrors(false)
+        history.push('/spots/my-spots')
+      }
     }
 
     if (!sessionUser) {
@@ -77,11 +94,19 @@ const UpdateSpot = () => {
   return (
     <div className="full-host-form">
       <form className="host-form-parent" onSubmit={handleSubmit}>
-        <ul>
+        {/* <ul> */}
           {/* //FIXME - ERROR VALIDATION */}
           {/* {errors.map((error, idx) => <li key={idx}>{error}</li>)} */}
-        </ul>
+        {/* </ul> */}
         <h3 className="host-message">Update Your Spot Meow!!!</h3>
+        {showErrors &&
+          <ul className="form-errors">
+            {validationErrors.length > 0 &&
+              validationErrors.map(error => (
+                <li key={error}>{error}</li>
+              ))}
+          </ul>
+        }
         <div className="host-form">
           <label>
             <input
