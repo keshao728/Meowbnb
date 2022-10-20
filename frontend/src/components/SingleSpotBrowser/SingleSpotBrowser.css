@@ -1,0 +1,54 @@
+.big-image {
+  object-fit: cover;
+  width: 540px;
+  height: 560px;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+  /* padding: 24px; */
+}
+
+.spot-details {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 10px;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.spot-star {
+  margin-right: 10px;
+}
+.spot-name {
+  font-size: 20px;
+  margin-top: 10px;
+
+}
+
+.single-spot-parent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 30px 110px;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: 600px;
+}
+
+.spot-hosted {
+  border-bottom: 1px solid #AFAFAF;
+  padding: 10px 0px;
+}
+
+.spot-description{
+  border-bottom: 1px solid #AFAFAF;
+  padding: 10px 0px;
+
+}
+
+/*
+.browser-wrapper{
+  display: flex;
+  justify-content: center;
+} */
+
+

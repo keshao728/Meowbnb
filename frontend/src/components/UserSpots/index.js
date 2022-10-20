@@ -36,7 +36,7 @@ const UserSpots = () => {
   const spotDetails = ownedSpots?.map(spot => {
     return (
       <div className="all-spot">
-        <NavLink className="spots" to={`spots/${spot.id}`}>
+        <NavLink className="spots" to={`/spots/${spot.id}`}>
           <div className="individual-spots">
             <div>
               <img className="spot-image" key={spot.previewImage} src={spot.previewImage} alt={spot.previewImage} />

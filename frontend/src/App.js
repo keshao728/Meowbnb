@@ -42,7 +42,7 @@ function App() {
           <Route path='/spots/:spotId'>
             <SingleSpotBrowser />
           </Route>
-          
+
         </Switch>
       )}
     </>
