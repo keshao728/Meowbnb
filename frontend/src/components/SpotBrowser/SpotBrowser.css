@@ -1,9 +1,16 @@
 .all-spot-display{
-  display: flex;
+  /* display: flex;
   justify-content: flex-start;
-  padding: 50px 110px;
+  padding: 50px 100px;
   flex-wrap: wrap;
-  gap: 40px;
+  gap: 40px; */
+
+  display: grid;
+  grid-template-columns: repeat(5,1fr);
+  grid-gap: 40px 24px;
+  list-style: none;
+  padding: 50px 100px;
+  justify-items: center;
 }
 
 .spot-image{
@@ -22,7 +29,26 @@
 
 .address-star{
 display: flex;
-/* flex-direction: column; */
+flex-direction: row;
 margin-top: 10px;
 justify-content: space-between;
+/* overflow-wrap: break-word; */
 }
+
+
+.individual-spots{
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  /* padding: 30px 110px; */
+  /* flex-wrap: wrap; */
+  /* gap: 10px; */
+  width: 300px;
+}
+
+.spot-star{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+

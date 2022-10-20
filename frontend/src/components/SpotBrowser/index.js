@@ -24,7 +24,8 @@ const SpotBrowser = () => {
               <img className="spot-image" key={spot.previewImage} src={spot.previewImage} alt={spot.previewImage} />
             </div>
             <div className="spot-info">
-              <div className="address-star" key={spot.name}>{spot.city}, {spot.state}
+              <div className="address-star">
+                <div className="address" key={spot.name}>{spot.city}, {spot.state}</div>
                 <span className="spot-star">
                   <i className="fa-solid fa-star"></i>
                   &nbsp;
