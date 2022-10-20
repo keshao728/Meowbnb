@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory, Redirect, useParams } from "react-router-dom"
-import { addReview } from "../../store/reviews"
+import { addReview,userReviewsThunk } from "../../store/reviews"
 
 const ReviewSpot = () => {
   const dispatch = useDispatch()
   const history = useHistory()
   const sessionUser = useSelector(state => state.session.user)
   // const spot = useSelector(state => state.spots.singleSpot)
-  const { spotId } = useParams()
+  // const { spotId } = useParams()
 
 
   const [review, setReview] = useState('')
@@ -19,6 +19,7 @@ const ReviewSpot = () => {
   const [showErrors, setShowErrors] = useState(false)
 
   useEffect(() => {
+    dispatch(userReviewsThunk())
     const errors = []
     if (!review || review.length < 5) errors.push('Please enter more than 5 characters')
     setValidationErrors(errors)
@@ -36,11 +37,11 @@ const ReviewSpot = () => {
       }
 
 
-      const createdReview = dispatch(addReview(newReview, spotId))
+      const createdReview = dispatch(addReview(newReview))
 
-      if (createdReview) {
-        history.push(`/spots/${spotId}`)
-      }
+      // if (createdReview) {
+      //   history.push(`/spots/${spotId}`)
+      // }
     }
   }
 

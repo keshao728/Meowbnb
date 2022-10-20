@@ -1,8 +1,9 @@
 import { csrfFetch } from "./csrf"
 
 const ADD_REVIEW = "spots/ADD_REVIEW"
-const LOAD_REVIEW = "spots/LOAD_REVIEW"
+const LOAD_LOCATION_REVIEW = "LOAD_LOCATION_REVIEW"
 const DELETE_REVIEW = "spots/DELETE_REVIEW"
+const LOAD_USER_REVIEW = "spots/LOAD_USER_REVIEWS"
 
 //ACTIONS-------------
 const addOneReview = (addTheReview) => ({
@@ -10,10 +11,18 @@ const addOneReview = (addTheReview) => ({
   addTheReview
 })
 
-const loadAllReviews = (loadTheReview) => ({
-  type: LOAD_REVIEW,
-  loadTheReview
+const loadLocationReviews = (locationReview) => ({
+  type: LOAD_LOCATION_REVIEW,
+  locationReview
 })
+
+export function loadUserReviews(userReview) {
+  return {
+    type: LOAD_USER_REVIEW,
+    userReview
+  }
+}
+
 
 //delete
 const deleteOneReview = (deleteTheReview) => ({
@@ -37,16 +46,26 @@ export const addReview = (spotId, added) => async dispatch => {
   }
 }
 
-export const getReviews = (spotId) => async dispatch => {
+export const locationReviewsThunk = (spotId) => async dispatch => {
   const response = await fetch(`/api/spots/${spotId}/reviews`)
 
   if (response.ok) {
     const existingReviews = await response.json()
     console.log("THISIS EXISTING REVIEW IN THUNK", existingReviews)
-    dispatch(loadAllReviews(existingReviews, spotId))
+    dispatch(loadLocationReviews(existingReviews, spotId))
     return existingReviews
   }
 }
+
+export const userReviewsThunk = () => async dispatch => {
+  let res = await csrfFetch(`/api/reviews/current`)
+  if (res.ok) {
+    let userReview = await res.json()
+    dispatch(loadUserReviews(userReview.Reviews))
+    return userReview
+  }
+}
+
 
 export const deleteReview = (spotId) => async (dispatch) => {
   const response = await csrfFetch(`/api/reviews/${spotId}`, {
@@ -58,24 +77,35 @@ export const deleteReview = (spotId) => async (dispatch) => {
 }
 
 //REDUCER
-const initialState = {user: {}, spot: {}}
+const initialState = { user: {}, spot: {} }
 
 const reviewReducer = (state = initialState, action) => {
   let newState;
   switch (action.type) {
-    case LOAD_REVIEW:
+    //TODO LOAD USER REVIEW
+    case LOAD_LOCATION_REVIEW:
       //   // let newAllReviewObject = {}
       //   newState = { ...state }
       newState = {
         ...state,
-        user: {...state.user},
-        spot: {...state.spot}
+        spot: { ...state.spot }
       }
-      action.loadTheReview.Reviews.forEach((review) => {
+      action.locationReview.Reviews.forEach((review) => {
         newState.spot[review.id] = review
       })
       //   // console.log("this is REVIEW REDUCER FOR LOAD REVIEW", newState)
       //   // newState = newAllReviewObject
+      return newState;
+    case LOAD_USER_REVIEW:
+
+      newState = {
+        ...state,
+        user: { ...state.user }
+      }
+      // action.userReview.Reviews.forEach((review) => {
+      //   newState.spot[review.id] = review
+      // })
+      newState.user = action.userReview
       return newState;
 
     case ADD_REVIEW:

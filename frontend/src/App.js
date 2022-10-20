@@ -10,6 +10,7 @@ import UserSpots from "./components/UserSpots"
 import UpdateSpot from "./components/UpdateSpot"
 import SingleSpotBrowser from "./components/SingleSpotBrowser"
 import ReviewSpot from "./components/ReviewSpot"
+import UserReview from "./components/UserReview"
 
 
 function App() {
@@ -41,14 +42,17 @@ function App() {
             <UserSpots />
           </Route>
 
-          <Route path='/spots/:spotId/review'>
-            <ReviewSpot />
+          <Route path='/spots/my-reviews'>
+            <UserReview />
           </Route>
 
           <Route exact path='/spots/:spotId'>
             <SingleSpotBrowser />
           </Route>
 
+          <Route path='/spots/:spotId/review'>
+            <ReviewSpot />
+          </Route>
         </Switch>
       )}
     </>
