@@ -31,7 +31,7 @@ const HostSpot = () => {
     if (!city || city.length < 2) { errors.push("Please enter a valid city") }
     if (!state || state.length < 2 || state.length > 8) { errors.push("Please enter a valid state") }
     if (!country || country.length < 2 || country.length > 10) { errors.push("Please enter a valid country") }
-    if (!name || name.length < 2) { errors.push("Please enter a valid city name") }
+    if (!name || name.length < 2) { errors.push("Please enter a valid spot name") }
     if (!description || description.length < 5) { errors.push("Description is required") }
     if (!price || price < 1) { errors.push("Please enter a valid price") }
     if (!url.match(/\.(jpg|jpeg|png|gif)$/)) {errors.push("Please enter a valid URL")}
