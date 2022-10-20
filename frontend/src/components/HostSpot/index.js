@@ -165,7 +165,7 @@ const HostSpot = () => {
           </label>
           <label>
             <input
-              placeholder="Spot Image"
+              placeholder="Image (url only)"
               type="text"
               className="host-input"
               value={url}
