@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory, Redirect } from "react-router-dom"
 // import { useHistory } from "react-router-dom"
@@ -18,59 +18,89 @@ const HostSpot = () => {
   const [name, setName] = useState("")
   const [description, setDescription] = useState("")
   const [price, setPrice] = useState("")
-
   const [url, setUrl] = useState("")
   // const [preiview, setPreview] = useState("")
 
-  // const [errors, setErrors] = useState([]);
+  const [validationErrors, setValidationErrors] = useState([])
+  const [showErrors, setShowErrors] = useState(false)
+
+
+  useEffect(() => {
+    const errors = []
+    if (!address || address.length < 10) { errors.push("Please enter a valid address") }
+    if (!city || city.length < 2) { errors.push("Please enter a valid city") }
+    if (!state || state.length < 2) { errors.push("Please enter a valid state") }
+    if (!country || country.length < 2) { errors.push("Please enter a valid country") }
+    if (!name || name.length < 2) { errors.push("Please enter a valid city name") }
+    if (!description || description.length < 5) { errors.push("Description is required") }
+    if (!price || price < 1) { errors.push("Please enter a valid price") }
+    if (!url.match(/\.(jpg|jpeg|png|gif)$/)) {errors.push("Please enter a valid URL")}
+    // if (!url.includes('https')) {errors.push("Please enter a valid URL")}
+    // if (!url.includes('jpg')) {errors.push("Please enter a valid URL")}
+    // if (!url.includes('png')) {errors.push("Please enter a valid URL")}
+    // if (!url.includes('jpeg')) {errors.push("Please enter a valid URL")}
+
+    setValidationErrors(errors)
+  }, [name, address, city, state, country, description, price, url])
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    setShowErrors(true)
 
-    const newSpot = {
-      address,
-      city,
-      state,
-      country,
-      // lat: 20,
-      // lng: 20,
-      name,
-      description,
-      price,
-      url,
-      preview: true
-    }
+    if (!validationErrors.length) {
 
-    // let createdSpot = await dispatch(addOneSpot(newSpot))
-
-    //   if (newSpot) {
-    //     setErrors([])
-    //     return dispatch(addOneSpot(newSpot))
-    //       .catch(async (res) => {
-    //         const data = await res.json();
-    //         if (data && data.errors) setErrors(data.errors)
-    //       })
-    //   }
-    //   return setErrors
-    // }
-
-
-    const createdSpot = await dispatch(addOneSpot(newSpot))
-
-    //FIXME - error validation not working
-    // try {
-    //   createdSpot = await dispatch(addOneSpot(newSpot))
-    // } catch (error) {
-    //   // const userError = await errors.json
-    //   // if (userError && userError.error) setErrors(userError.error);
-    //   if (error) setErrors(Object.values(errors.errors));
-    // }
-
-    if (createdSpot) {
-      // setErrors([])
-      history.push(`/spots/${createdSpot.id}`)
+      const newSpot = {
+        address,
+        city,
+        state,
+        country,
+        // lat: 20,
+        // lng: 20,
+        name,
+        description,
+        price,
+        url,
+        preview: true
+      }
+      let createdSpot = await dispatch(addOneSpot(newSpot))
+      if (createdSpot) {
+        // setErrors([])
+        setShowErrors(false)
+        history.push(`/spots/${createdSpot.id}`)
+      }
     }
   }
+
+
+
+  // .catch(async (res) => {
+  //   const data = await res.json();
+  //   if (data && data.errors) {
+  //     setErrors(data.errors);
+  //   }
+  // })
+
+
+  // let createdSpot;
+  // try {
+  //   createdSpot = await dispatch(addOneSpot(newSpot))
+  // } catch (error) {
+  //   if (error) {
+  //     let allErrors = error.errors
+  //     let arrayAllErrors = Object.values(allErrors)
+  //     setErrors(arrayAllErrors)
+  //   }
+  // }
+
+  //FIXME - error validation not working
+  // try {
+  //   createdSpot = await dispatch(addOneSpot(newSpot))
+  // } catch (error) {
+  //   // const userError = await errors.json
+  //   // if (userError && userError.error) setErrors(userError.error);
+  //   if (error) setErrors(Object.values(errors.errors));
+  // }
+
 
   if (!sessionUser) {
     return <Redirect to="/" />
@@ -86,10 +116,17 @@ const HostSpot = () => {
     <div className="full-host-form">
       <form className="host-form-parent" onSubmit={handleSubmit}>
         <ul>
-          {/* //FIXME - ERROR VALIDATION */}
           {/* {errors.map((error, idx) => <li key={idx}>{error}</li>)} */}
         </ul>
         <h3 className="host-message">Create Your Spot Meow!!!</h3>
+        {showErrors &&
+          <ul className="errors">
+            {validationErrors.length > 0 &&
+              validationErrors.map(error => (
+                <li key={error}>{error}</li>
+              ))}
+          </ul>
+        }
         <div className="host-form">
           <label>
             <input
