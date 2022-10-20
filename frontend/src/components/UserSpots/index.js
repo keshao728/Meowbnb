@@ -16,6 +16,10 @@ const UserSpots = () => {
     dispatch(getCurrentSpots())
   }, [dispatch])
 
+  if (!sessionUser) {
+    return <Redirect to="/" />
+  }
+
   const ownedSpots = allSpotsArr?.filter((spot) => spot.ownerId === sessionUser.id);
   // console.log('Owned Spot - UserSpots Component', ownedSpots)
 
@@ -23,10 +27,6 @@ const UserSpots = () => {
     return <h2> MEOWMEOW No Spots </h2>
   }
 
-  //FIXME - redirect issue
-  if (!sessionUser) {
-    return <Redirect to="/" />
-  }
 
 
   // const deleteUserSpot = async (spotId) => {
