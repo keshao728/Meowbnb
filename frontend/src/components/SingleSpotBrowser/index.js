@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { NavLink, useParams } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import { getOneSpot } from "../../store/spots"
 import './SingleSpotBrowser.css'
 
@@ -42,7 +42,7 @@ const SingleSpotBrowser = () => {
           </div>
 
           <div className="all-images">
-            <img className="big-image" src={currSpot.SpotImages[0]?.url}></img>
+            <img className="big-image" alt="spot" src={currSpot.SpotImages[0]?.url}></img>
           </div>
 
           <div className="spot-hosted">
