@@ -16,11 +16,13 @@
 }
 
 .full-host-form {
+  /* display: flex;
+  justify-content: center; */
   border: 0;
   padding: 24px 24px;
   border-radius: 31px;
-  width: 500px;
-  margin: 50px 700px ;
+  width: 600px;
+  margin: 50px 650px ;
 }
 
 /* .host-form{
@@ -43,4 +45,9 @@
   border-bottom: 1px solid #AFAFAF;
   width: 100%;
   font-size: 12px;
+}
+
+.form-errors {
+  color: red;
+  font-size: 14px;
 }

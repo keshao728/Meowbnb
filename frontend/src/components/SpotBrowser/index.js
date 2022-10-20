@@ -32,7 +32,7 @@ const SpotBrowser = () => {
                   {spot.avgRating > 0 ? Number(spot.avgRating).toFixed(2) : 'New'}
                 </span>
               </div>
-              <div>
+              <div className="price">
                 <strong>
                   ${spot.price}
                 </strong>

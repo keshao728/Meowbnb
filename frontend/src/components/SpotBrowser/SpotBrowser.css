@@ -1,3 +1,7 @@
+/* * {
+  font-family: 'Montserrat', sans-serif;
+} */
+
 .all-spot-display{
   /* display: flex;
   justify-content: flex-start;
@@ -35,7 +39,6 @@ justify-content: space-between;
 /* overflow-wrap: break-word; */
 }
 
-
 .individual-spots{
   display: flex;
   flex-direction: column;
@@ -52,3 +55,10 @@ justify-content: space-between;
   justify-content: flex-end;
 }
 
+.address {
+  width: 220px;
+}
+
+.price {
+  margin-top: 5px;
+}

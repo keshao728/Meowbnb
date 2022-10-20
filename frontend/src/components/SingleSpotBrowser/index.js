@@ -36,7 +36,7 @@ const SingleSpotBrowser = () => {
               &nbsp;&nbsp;·
             </div>
 
-            <div className="address" key={currSpot.name}>
+            <div className="spot-address" key={currSpot.name}>
               {currSpot.city}, {currSpot.state}, {currSpot.country}
             </div>
           </div>
