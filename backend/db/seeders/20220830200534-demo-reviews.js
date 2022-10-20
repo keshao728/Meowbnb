@@ -12,7 +12,7 @@ module.exports = {
       },
       {
         spotId: 2,
-        userId: 4,
+        userId: 2,
         review: "MEOWU",
         stars: 4
       },

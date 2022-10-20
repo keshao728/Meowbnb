@@ -2,29 +2,34 @@ import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getCurrentSpots, deleteSpot } from "../../store/spots"
 import { getReviews } from "../../store/reviews"
-import { NavLink, Redirect } from "react-router-dom"
+import { NavLink, Redirect, useParams } from "react-router-dom"
 import "./UserSpots.css"
 
 const UserSpots = () => {
   const dispatch = useDispatch()
   const allSpots = useSelector(state => state.spots.allSpots)
   const allSpotsArr = Object.values(allSpots)
+  // const {spotId} = useParams()
+  // console.log("USERSPOT SPOTID", spotId)
+
+
   // const testSpots = useSelector(state => state.spots)
   // console.log('this is a test', testSpots)
 
-  // const allReviews = useSelector(state => state.loadTheReview);
+  // const allReviewsArr = useSelector(state => Object.values(state.reviews.spot));
+  // const allReviews = useSelector(state => state);
   // console.log("this is all my reviews in UserSpot Component", allReviews)
+
   // const allReviewsArr = Object.values(allReviews)
   // console.log("this is ARR of all review in Userspot Component", allReviewsArr)
   const sessionUser = useSelector(state => state.session.user)
 
-  // const allReviewsArr = useSelector(state => Object.values(state.reviews.spot));
 
   // console.log(allReviewsArr)
 
   useEffect(() => {
     dispatch(getCurrentSpots())
-    // dispatch(getReviews(allReviewsArr))
+    // dispatch(getReviews(spotId))
   }, [dispatch])
 
   if (!sessionUser) {
@@ -46,8 +51,8 @@ const UserSpots = () => {
 
   return (
     <div className="mother">
-
-      {allSpotsArr < 1 && <h2 className="user-spot-message">Manage Your Listings Meow!!!</h2>}
+      <h2 className="user-spot-message">Manage Your Listings Meow!!!</h2>
+      {allSpotsArr <1 && <h2 className="no-spot"> MEOWMEOW No Spots! </h2>}
       <div className="spot-mother">
         {ownedSpots?.map((spot) => (
           <div className="all-owned-spot">

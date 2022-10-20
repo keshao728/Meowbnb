@@ -63,6 +63,11 @@ function ProfileButton({ user }) {
                   My Spots
                 </button>
               </NavLink>
+              <NavLink to="/spots/my-reviews">
+                <button className="logout-button">
+                  My Reviews
+                </button>
+              </NavLink>
               {/* <button className="logout-button" onClick={() => history.push('/my-spots')}>My Spot</button> */}
             </div>
             <div>
