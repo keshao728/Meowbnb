@@ -20,7 +20,7 @@ const HostSpot = () => {
   const [price, setPrice] = useState("")
 
   //TODO -
-  // const [url, setUrl] = useState("")
+  const [url, setUrl] = useState("")
   // const [preiview, setPreview] = useState("")
 
   // const [errors, setErrors] = useState([]);
@@ -38,7 +38,7 @@ const HostSpot = () => {
       name,
       description,
       price,
-      url: "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/cute-photos-of-cats-curled-up-sleeping-1593184773.jpg",
+      url,
       preview: true
     }
 
@@ -160,6 +160,16 @@ const HostSpot = () => {
               className="host-input"
               value={price}
               onChange={(e) => setPrice(e.target.value)}
+              required
+            />
+          </label>
+          <label>
+            <input
+              placeholder="Spot Image"
+              type="text"
+              className="host-input"
+              value={url}
+              onChange={(e) => setUrl(e.target.value)}
               required
             />
           </label>
