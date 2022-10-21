@@ -107,7 +107,7 @@ module.exports = {
         //9
         ownerId: 7,
         address: '888 Kelly St',
-        city: "In a Cute Girls's Arms",
+        city: "In a Cute Girl's Arms",
         state: 'California',
         country: 'United States',
         lat: 88.88,
