@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { NavLink, Redirect } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux"
+import { resetData } from "../../store/reviews"
 import { userReviewsThunk, deleteReview } from "../../store/reviews"
 import './UserReview.css'
 
@@ -27,10 +28,11 @@ const UserReviews = () => {
       .then(() => setIsLoaded(true))
   }, [dispatch])
 
-  // const deleteMyReview = async (reviewId) => {
-  //   await dispatch(deleteReview(reviewId))
-  //   window.location.reload()
-  // }
+  const deleteMyReview = () => {
+    dispatch(deleteReview())
+    return (() => dispatch(resetData()))
+    // window.location.reload()
+  }
 
   // if (existingReviewArr.review.length < 0) {
   //   return <h2>no reviws</h2>
@@ -45,7 +47,7 @@ const UserReviews = () => {
     <div className="review-content">
       <h2 className="user-review-message">Manage Your Reviews Meow!!!</h2>
       <div className="review-mother">
-        {existingReviewArr < 1 && (<img src="https://drive.google.com/uc?export=view&id=1j_TgRhozzklKVuQfq1OVo3eBRXGPai3K" title="Meowbnb logo" />)}
+        {existingReviewArr < 1 && (<img alt="Ops-No-Review" src="https://drive.google.com/uc?export=view&id=1j_TgRhozzklKVuQfq1OVo3eBRXGPai3K" title="Meowbnb logo" />)}
         {existingReviewArr < 1 && <h4>No reviews yet...</h4>}
         {existingReviewArr?.map((review) => (
           <div className="review-child">
@@ -97,7 +99,7 @@ const UserReviews = () => {
 
                   <div>
                     <button className='review-delete'
-                      onClick={() => dispatch(deleteReview(review.id))}>
+                      onClick={() => dispatch(deleteMyReview(review.id))}>
                       Delete
                     </button>
                   </div>

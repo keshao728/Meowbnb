@@ -53,7 +53,7 @@ const SingleSpotBrowser = () => {
             <div className="spot-star">
               <i className="fa-solid fa-paw"></i>
               &nbsp;
-              {currSpot.avgRating > 0 ? Number(currSpot.avgRating).toFixed(2) : 'New'}
+              {currSpot.avgStarRating > 0 ? Number(currSpot.avgStarRating).toFixed(2) : 'New'}
               &nbsp;&nbsp;·
             </div>
 
@@ -88,8 +88,8 @@ const SingleSpotBrowser = () => {
 
 
       <div>
-        <h3>★ {currSpot.avgRating > 0 ? Number(currSpot.avgRating).toFixed(2) : 'New'} · {currSpot.numReviews} reviews</h3>
-
+        <h3>★ {currSpot.avgStarRating > 0 ? Number(currSpot.avgStarRating).toFixed(2) : 'New'} · {currSpot.numReviews} reviews</h3>
+{/* {console.log("AVG RATING FOR CURR SPOT", currSpot.avgStarRating)} */}
         {allowReviewAction &&
           <div className='review-this-spot'>
             <NavLink to={`/spots/${currSpot.id}/review`}>Review This Spot</NavLink>

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { useHistory, Redirect } from "react-router-dom"
 // import { useHistory } from "react-router-dom"
 import { addOneSpot } from "../../store/spots"
+// import { resetData } from "../../store/reviews"
 import "./HostSpot.css"
 
 const HostSpot = () => {
@@ -32,9 +33,10 @@ const HostSpot = () => {
     if (!state || state.length < 2 || state.length > 12) { errors.push("Please enter a valid state") }
     if (!country || country.length < 2 || country.length > 16) { errors.push("Please enter a valid country") }
     if (!name || name.length < 2) { errors.push("Please enter a valid spot name") }
-    if (!description || description.length < 5) { errors.push("Description is required") }
+    if (!description || description.length < 5) { errors.push("Description is required and must be more than 5 characters") }
     if (!price || price < 1) { errors.push("Please enter a valid price") }
-    if (!url.match(/\.(jpg|jpeg|png|gif)$/)) {errors.push("Please enter a valid URL")}
+    if (!url.match(/\.(jpg|jpeg|png|gif)$/)) {errors.push("Please enter a valid URL ending with jpg, jpeg, png or gif")}
+    // if (!url.match(/^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/)) { errors.push("Please enter a valid URL") }
     // if (!url.includes('https')) {errors.push("Please enter a valid URL")}
     // if (!url.includes('jpg')) {errors.push("Please enter a valid URL")}
     // if (!url.includes('png')) {errors.push("Please enter a valid URL")}
@@ -63,7 +65,15 @@ const HostSpot = () => {
         preview: true
       }
       let createdSpot = await dispatch(addOneSpot(newSpot))
+
+      // const createdSpot = () => {
+      //   dispatch(addOneSpot(newSpot))
+      //   return (() => dispatch(resetData()))
+      //   // window.location.reload()
+      // }
+
       if (createdSpot) {
+        // dispatch(resetData())
         // setErrors([])
         setShowErrors(false)
         history.push(`/spots/${createdSpot.id}`)
@@ -116,7 +126,7 @@ const HostSpot = () => {
     <div className="full-host-form">
       <form className="host-form-parent" onSubmit={handleSubmit}>
         {/* <ul> */}
-          {/* {errors.map((error, idx) => <li key={idx}>{error}</li>)} */}
+        {/* {errors.map((error, idx) => <li key={idx}>{error}</li>)} */}
         {/* </ul> */}
         <h3 className="host-message">Create Your Spot Meow!!!</h3>
         {showErrors &&

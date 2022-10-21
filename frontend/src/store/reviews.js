@@ -1,10 +1,11 @@
 import { csrfFetch } from "./csrf"
-import { getAllSpots } from "./spots"
+// import { getAllSpots } from "./spots"
 
 const ADD_REVIEW = "spots/ADD_REVIEW"
 const LOAD_LOCATION_REVIEW = "LOAD_LOCATION_REVIEW"
 const DELETE_REVIEW = "spots/DELETE_REVIEW"
 const LOAD_USER_REVIEW = "spots/LOAD_USER_REVIEWS"
+const RESET_DATA = "spots/RESET_DATA"
 
 //ACTIONS-------------
 const addOneReview = (addTheReview) => ({
@@ -18,13 +19,17 @@ const loadLocationReviews = (locationReview) => ({
 })
 
 const loadUserReviews = (userReview) => ({
-    type: LOAD_USER_REVIEW,
-    userReview
+  type: LOAD_USER_REVIEW,
+  userReview
 })
 
 const deleteOneReview = (deleteTheReview) => ({
   type: DELETE_REVIEW,
   deleteTheReview
+})
+
+export const resetData = () => ({
+  type: RESET_DATA,
 })
 
 //THUNK-----------------
@@ -136,6 +141,8 @@ const reviewReducer = (state = initialState, action) => {
       newState.spot = {}
       return newState
 
+    case RESET_DATA:
+      return initialState
     default:
       return state
   }
