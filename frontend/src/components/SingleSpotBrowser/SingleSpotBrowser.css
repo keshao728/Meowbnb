@@ -18,12 +18,22 @@
 .spot-star {
   margin-right: 2px;
 }
+
 .spot-name {
   font-size: 20px;
   margin-top: 10px;
 
 }
 
+.review-star-foot{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0px 110px;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: 600px;
+}
 .single-spot-parent {
   display: flex;
   flex-direction: column;
@@ -39,16 +49,89 @@
   padding: 10px 0px;
 }
 
-.spot-description{
+.spot-description {
   border-bottom: 1px solid #AFAFAF;
   padding: 10px 0px;
 
 }
 
-/*
-.browser-wrapper{
+
+.browser-wrapper {
   display: flex;
-  justify-content: center;
-} */
+  flex-direction: column;
+
+  /* grid-gap: 50px 0px; */
+  /* list-style: none; */
+  padding: 20px 300px;
+  justify-items: center;
+  border-top: 1px solid #EBEBEB;
+  border-bottom: 1px solid #EBEBEB;
+}
+
+.reviews {
+  display: grid;
+  /* border: 1px solid #AFAFAF; */
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 50px 0px;
+  list-style: none;
+  padding: 10px 0px;
+  width: 270px;
+}
 
 
+.user-review-date {
+  font-size: 12px;
+  margin-bottom: 8px;
+}
+
+.spot-price {
+  position: sticky;
+  top: 785px;
+  border: 1px solid #EBEBEB;
+  border-radius: 15px;
+  padding-left: 0px;
+  padding-right: 60px;
+  padding-bottom: 100px;
+}
+
+
+.spot-price-child {
+  padding: 20px;
+}
+
+.big-mother {
+  display: flex;
+  flex-direction: row;
+  /* justify-content: flex-start; */
+}
+
+.profile-name {
+  display: flex;
+  flex-direction: row;
+  width: 200px;
+}
+
+.review-name-date {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  align-content: flex-start;
+  /* justify-items: end; */
+}
+
+.user-profile-pic {
+  border-radius: 20px;
+  color: #717171;
+  width: 40px;
+  height: 40px;
+}
+
+.review-username,
+.user-review-date {
+  margin-top: 1px;
+  margin-left: 10px;
+}
+
+.review-message{
+  margin-top: 5px;
+}

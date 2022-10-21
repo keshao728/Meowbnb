@@ -28,7 +28,7 @@ const SingleSpotBrowser = () => {
   useEffect(() => {
     dispatch(getOneSpot(spotId))
     dispatch(locationReviewsThunk(spotId))
-    // return (() => dispatch(resetData()))
+      // return (() => dispatch(resetData()))
       .then(() => setIsLoaded(true))
   }, [dispatch, spotId])
 
@@ -44,81 +44,96 @@ const SingleSpotBrowser = () => {
 
 
   return isLoaded && (
-    <div className="browser-wrapper">
-      {currSpot.id &&
+    <div className="big-mother">
+      <div className="browser-wrapper">
+        {currSpot.id &&
+          <div className="single-spot-parent">
+            <strong className="spot-name">
+              {currSpot.name}
+            </strong>
+
+            <div className="spot-details">
+              <div className="spot-star">
+                <i className="fa-solid fa-paw"></i>
+                &nbsp;
+                {currSpot.avgStarRating > 0 ? Number(currSpot.avgStarRating).toFixed(2) : 'New'}
+                &nbsp;&nbsp;·
+              </div>
+
+              <div>&nbsp;&nbsp;{currSpot.numReviews} reviews&nbsp;&nbsp;·&nbsp;&nbsp;</div>
+              <div className="spot-address" key={currSpot.name}>
+                {currSpot.city}, {currSpot.state}, {currSpot.country}
+              </div>
+            </div>
+
+            <div className="all-images">
+              <img className="big-image" alt="spot" src={currSpot.SpotImages[0]?.url}></img>
+            </div>
+
+            <div className="spot-hosted">
+              <strong> Spot hosted by {currSpot.Owner.firstName} {currSpot.Owner.lastName}</strong>
+              {/* {console.log(currSpot)} */}
+              <img className='hosted-pic' src="https://drive.google.com/uc?export=view&id=1p7ALHdhdZsKxbR6qaFb4Wd_rbqSy1DwI" alt="Meowbnb Default Profile"></img>
+            </div>
+
+
+            <div>
+              <div className="spot-description">
+                {currSpot.description}
+              </div>
+            </div>
+          </div>
+        }
+        <div className="review-star-foot">
+
+          <h3>★ {currSpot.avgStarRating > 0 ? Number(currSpot.avgStarRating).toFixed(2) : 'New'} · {currSpot.numReviews} reviews</h3>
+        </div>
         <div className="single-spot-parent">
-          <strong className="spot-name">
-            {currSpot.name}
-          </strong>
-
-          <div className="spot-details">
-            <div className="spot-star">
-              <i className="fa-solid fa-paw"></i>
-              &nbsp;
-              {currSpot.avgStarRating > 0 ? Number(currSpot.avgStarRating).toFixed(2) : 'New'}
-              &nbsp;&nbsp;·
+          {/* {console.log("AVG RATING FOR CURR SPOT", currSpot.avgStarRating)} */}
+          {allowReviewAction &&
+            <div className='review-this-spot'>
+              <NavLink to={`/spots/${currSpot.id}/review`}>Review This Spot</NavLink>
             </div>
+          }
 
-            <div className="spot-address" key={currSpot.name}>
-              {currSpot.city}, {currSpot.state}, {currSpot.country}
+          {allReviewsArr?.map((review) => (
+            <div className='reviews' key={review.id}>
+              <div>
+                <div className="profile-name">
+                  <img className='user-profile-pic' src="https://drive.google.com/uc?export=view&id=1e6AIQpUAr0_HcNJNaptcQAHEdO5aib5k" alt="Meowbnb Default Profile"></img>
+                  <div className="review-name-date">
+                    <strong className="review-username">
+                      {review.User.firstName} {review.User.lastName}
+                    </strong>
+                    <div className='user-review-date'>
+                      {new Date(review.createdAt).toDateString().split(' ').slice(1).join(' ')}
+                    </div>
+                  </div>
+                </div>
+
+
+                <div className="review-message">
+                  "{review?.review}"
+                </div>
+
+
+              </div>
             </div>
-          </div>
+          ))}
+        </div>
 
-          <div className="all-images">
-            <img className="big-image" alt="spot" src={currSpot.SpotImages[0]?.url}></img>
-          </div>
+      </div>
 
-          <div className="spot-hosted">
-            <div> Spot hosted by {currSpot.Owner.firstName} {currSpot.Owner.lastName}</div>
-          {console.log(currSpot)}
-          </div>
-
-          <div>
-            <strong>
+      <div className="spot-price-mother">
+        <div className="spot-price">
+          <div className="spot-price-child">
+            <strong className="price-per-night">
               ${currSpot.price}
             </strong>
             &nbsp;
             night
           </div>
-
-          <div>
-            <div className="spot-description">
-              {currSpot.description}
-            </div>
-          </div>
         </div>
-      }
-
-
-      <div>
-        <h3>★ {currSpot.avgStarRating > 0 ? Number(currSpot.avgStarRating).toFixed(2) : 'New'} · {currSpot.numReviews} reviews</h3>
-{/* {console.log("AVG RATING FOR CURR SPOT", currSpot.avgStarRating)} */}
-        {allowReviewAction &&
-          <div className='review-this-spot'>
-            <NavLink to={`/spots/${currSpot.id}/review`}>Review This Spot</NavLink>
-          </div>
-        }
-
-
-        {allReviewsArr?.map((review) => (
-          <div className='review-item' key={review.id}>
-            <div>
-
-              <div className="review-username">
-                {review.User.firstName} {review.User.lastName}
-              </div>
-
-              <div className="review-message">
-                {review?.review}
-              </div>
-
-              <div className='user-review-date'>
-                {new Date(review.createdAt).toDateString().split(' ').slice(1).join(' ')}
-              </div>
-
-            </div>
-          </div>
-        ))}
       </div>
     </div>
   )
