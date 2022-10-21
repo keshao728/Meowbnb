@@ -91,14 +91,15 @@
   top: 785px;
   border: 1px solid #EBEBEB;
   border-radius: 15px;
-  padding-left: 0px;
-  padding-right: 60px;
-  padding-bottom: 100px;
+  /* padding-left: 0px; */
+  padding-right: 70px;
+  padding-bottom: 35px;
 }
 
 
 .spot-price-child {
   padding: 20px;
+  margin-bottom: 5px;
 }
 
 .big-mother {
@@ -189,4 +190,24 @@
 
 .fa-paw{
   margin-top: 2px;
+}
+
+
+
+
+.review-click {
+  text-decoration: none;
+  color: inherit;
+  border-radius: 6px;
+  font-size: 12px;
+  border: 0;
+  background-color: #E21C5F;
+  color: white;
+  /* top: 50%; */
+  /* left: 50%; */
+  width: 100%;
+  padding: 10px 15px;
+  margin-top: 10%;
+  font-weight: bold;
+  margin-left: 20px;
 }

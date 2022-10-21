@@ -77,23 +77,23 @@ const SingleSpotBrowser = () => {
             </div>
 
             {/* <div className="check-in-super"> */}
-              <div className="self-check-in">
-                <i className="fa-solid fa-door-open"></i>
-                <div className="check-in">
-                  <strong> Self check-in </strong>
-                  <div>
-                    Check yourself in with the lockbox.
-                  </div>
+            <div className="self-check-in">
+              <i className="fa-solid fa-door-open"></i>
+              <div className="check-in">
+                <strong> Self check-in </strong>
+                <div>
+                  Check yourself in with the lockbox.
                 </div>
               </div>
+            </div>
 
-              <div className="self-check-in" id="super">
-                <i class="fa-regular fa-id-badge"></i>
-                <div className="superhost">
-                  <strong> {currSpot.Owner.firstName} is a Superhost </strong>
-                  <div> Superhosts are experienced, highly rated hosts who are committed to providing great stays for guests.</div>
-                </div>
+            <div className="self-check-in" id="super">
+              <i class="fa-regular fa-id-badge"></i>
+              <div className="superhost">
+                <strong> {currSpot.Owner.firstName} is a Superhost </strong>
+                <div> Superhosts are experienced, highly rated hosts who are committed to providing great stays for guests.</div>
               </div>
+            </div>
             {/* </div> */}
 
 
@@ -110,11 +110,6 @@ const SingleSpotBrowser = () => {
         </div>
         <div className="single-spot-parent">
           {/* {console.log("AVG RATING FOR CURR SPOT", currSpot.avgStarRating)} */}
-          {allowReviewAction &&
-            <div className='review-this-spot'>
-              <NavLink to={`/spots/${currSpot.id}/review`}>Review This Spot</NavLink>
-            </div>
-          }
 
           <div className="reviews-wrapper">
             {allReviewsArr?.map((review) => (
@@ -155,6 +150,11 @@ const SingleSpotBrowser = () => {
             &nbsp;
             night
           </div>
+          {allowReviewAction &&
+            <div className='review-this-spot'>
+              <NavLink className="review-click" to={`/spots/${currSpot.id}/review`}>Review This Spot</NavLink>
+            </div>
+          }
         </div>
       </div>
     </div>
