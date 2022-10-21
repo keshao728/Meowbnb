@@ -36,7 +36,7 @@ module.exports = {
       },
       {
         spotId: 7,
-        url: 'https://drive.google.com/uc?export=view&id=1MMyBDdK8yQWkStYUMmA4icxNt_aJsZpr',
+        url: 'https://i.pinimg.com/564x/bf/b6/59/bfb659516d11bc00f669917a57272ee1.jpg',
         preview: true
       },
       {
