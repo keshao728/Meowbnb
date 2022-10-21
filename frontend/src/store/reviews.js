@@ -1,4 +1,5 @@
 import { csrfFetch } from "./csrf"
+import { getAllSpots } from "./spots"
 
 const ADD_REVIEW = "spots/ADD_REVIEW"
 const LOAD_LOCATION_REVIEW = "LOAD_LOCATION_REVIEW"
@@ -81,22 +82,27 @@ const reviewReducer = (state = initialState, action) => {
   let newState;
   switch (action.type) {
     case LOAD_LOCATION_REVIEW:
-      //   // let newAllReviewObject = {}
-      //   newState = { ...state }
-      newState = { ...state }
-      let spot = {}
+      let newAllReviewObject = {}
+      newState = {
+        ...state,
+        user: { ...state.user },
+        spot: { ...state.spot }
+      }
 
       action.locationReview.Reviews.forEach((review) => {
-        spot[review.id] = review
+        newAllReviewObject[review.id] = review
       })
-      newState.spot = spot
+
+      newState.spot = newAllReviewObject
       //   // console.log("this is REVIEW REDUCER FOR LOAD REVIEW", newState)
       //   // newState = newAllReviewObject
       return newState;
+
     case LOAD_USER_REVIEW:
       newState = {
         ...state,
-        user: { ...state.user }
+        user: { ...state.user },
+        spot: { ...state.spot }
       }
       // action.userReview.Reviews.forEach((review) => {
       //   newState.spot[review.id] = review
@@ -105,14 +111,24 @@ const reviewReducer = (state = initialState, action) => {
       return newState;
 
     case ADD_REVIEW:
-      newState = { ...state}
-      newState[action.addTheReview.id] = action.review
+      newState = {
+        ...state,
+        user: { ...state.user },
+        spot: { ...state.spot }
+      }
+      newState.spot[action.addTheReview.id] = action.addTheReview
+      newState.user = action.addTheReview
       return newState
 
 
     case DELETE_REVIEW:
-      newState = { ...state }
-      delete newState[action.deleteTheReview]
+      newState = {
+        ...state,
+        user: { ...state.user },
+        spot: { ...state.spot }
+      }
+      delete newState.spot[action.deleteTheReview]
+      newState.user = {}
       return newState
 
     default:

@@ -83,7 +83,10 @@ const UserReviews = () => {
             </div>
 
             <div>
-              <button className='review-delete' onClick={() => dispatch(deleteReview(review.id))}>Delete</button>
+              <button className='review-delete'
+                onClick={() => dispatch(deleteReview(review.id))}>
+                Delete
+              </button>
             </div>
           </div>
         ))}
