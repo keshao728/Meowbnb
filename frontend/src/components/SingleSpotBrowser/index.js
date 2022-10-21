@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { NavLink, useParams } from "react-router-dom"
 import { getOneSpot } from "../../store/spots"
 // import { resetData } from "../../store/spots"
-import { locationReviewsThunk} from "../../store/reviews"
+import { locationReviewsThunk } from "../../store/reviews"
 
 import './SingleSpotBrowser.css'
 
@@ -25,9 +25,10 @@ const SingleSpotBrowser = () => {
   const allReviewsArr = Object.values(allReviews)
   console.log("THIS IS MY COMPONENT OF ALL REVIEWS ARR:", allReviewsArr)
 
+  //TODO IIFE - async await
   useEffect(() => {
     dispatch(getOneSpot(spotId))
-    dispatch(locationReviewsThunk(spotId))
+      .then(() => dispatch(locationReviewsThunk(spotId)))
       // return (() => dispatch(resetData()))
       .then(() => setIsLoaded(true))
   }, [dispatch, spotId])

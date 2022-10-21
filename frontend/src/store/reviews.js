@@ -60,9 +60,9 @@ export const locationReviewsThunk = (spotId) => async dispatch => {
 }
 
 export const userReviewsThunk = () => async dispatch => {
-  let res = await csrfFetch(`/api/reviews/current`)
-  if (res.ok) {
-    let userReview = await res.json()
+  let response = await csrfFetch(`/api/reviews/current`)
+  if (response.ok) {
+    let userReview = await response.json()
     dispatch(loadUserReviews(userReview.Reviews))
     return userReview
   }
@@ -73,9 +73,10 @@ export const deleteReview = (spotId) => async (dispatch) => {
   const response = await csrfFetch(`/api/reviews/${spotId}`, {
     method: 'DELETE'
   });
-
-  await response.json();
-  dispatch(deleteOneReview(spotId));
+  if (response.ok) {
+    await response.json();
+    dispatch(deleteOneReview(spotId));
+  }
 }
 
 //REDUCER
@@ -103,22 +104,23 @@ const reviewReducer = (state = initialState, action) => {
 
     case LOAD_USER_REVIEW:
       // let newUserReviewObject = {}
-      // newState= {
-      //   ...state,
-      //   user: { ...state.user },
-      //   spot: { ...state.spot}
-      // }
-      // action.userReview.Reviews.forEach(review => {
-      //   newState.user[review.id] = review
-      // });
-      // return newState;
       newState = {
         ...state,
-        user: { ...state.user },
-        spot: { ...state.spot }
+        user: {}
+        // user: { ...state.user },
+        // spot: { ...state.spot }
       }
-      newState.user = action.userReview
+      action.userReview.forEach(review => {
+        newState.user[review.id] = review
+      });
       return newState;
+    // newState = {
+    //   ...state,
+    //   user: { ...state.user },
+    //   spot: { ...state.spot }
+    // }
+    // newState.user[review.id] = action.userReview
+    // return newState;
 
     case ADD_REVIEW:
       newState = {
