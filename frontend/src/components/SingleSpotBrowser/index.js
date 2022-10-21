@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { NavLink, useParams } from "react-router-dom"
 import { getOneSpot } from "../../store/spots"
 // import { resetData } from "../../store/spots"
-import { locationReviewsThunk } from "../../store/reviews"
+import { locationReviewsThunk} from "../../store/reviews"
 
 import './SingleSpotBrowser.css'
 
@@ -23,7 +23,7 @@ const SingleSpotBrowser = () => {
   const allReviews = useSelector(state => state.reviews.spot);
   // console.log("THIS IS MY COMPONENT OF ALL REVIEWS:", allReviews)
   const allReviewsArr = Object.values(allReviews)
-  // console.log("THIS IS MY COMPONENT OF ALL REVIEWS ARR:", allReviewsArr)
+  console.log("THIS IS MY COMPONENT OF ALL REVIEWS ARR:", allReviewsArr)
 
   useEffect(() => {
     dispatch(getOneSpot(spotId))
@@ -33,7 +33,7 @@ const SingleSpotBrowser = () => {
   }, [dispatch, spotId])
 
   let alreadyReviewed;
-  if (sessionUser.id && allReviewsArr.length > 0) {
+  if (sessionUser && allReviewsArr.length > 0) {
     alreadyReviewed = allReviewsArr.find(review => review.userId === sessionUser.id)
   }
 

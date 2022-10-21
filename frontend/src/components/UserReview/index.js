@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { NavLink, Redirect } from "react-router-dom"
+import { NavLink, Redirect, useParams } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux"
 import { resetData } from "../../store/reviews"
 import { userReviewsThunk, deleteReview } from "../../store/reviews"
@@ -8,6 +8,7 @@ import './UserReview.css'
 const UserReviews = () => {
   const dispatch = useDispatch()
   const [isLoaded, setIsLoaded] = useState(false)
+  // const {spotId} = useParams()
   const sessionUser = useSelector(state => state.session.user)
 
   const existingReviews = useSelector(state => state.reviews.user)
@@ -28,11 +29,11 @@ const UserReviews = () => {
       .then(() => setIsLoaded(true))
   }, [dispatch])
 
-  const deleteMyReview = () => {
-    dispatch(deleteReview())
-    return (() => dispatch(resetData()))
-    // window.location.reload()
-  }
+  // const deleteMyReview = () => {
+  //   dispatch(deleteReview())
+  //   return (() => dispatch(resetData()))
+  // }
+  // window.location.reload()
 
   // if (existingReviewArr.review.length < 0) {
   //   return <h2>no reviws</h2>
@@ -57,7 +58,6 @@ const UserReviews = () => {
                   key={review?.Spot?.id}
                   to={`/spots/${review?.Spot?.id}`}>
                   <div className="location-name">
-
                     {review?.Spot?.name}
                   </div>
 
@@ -99,7 +99,7 @@ const UserReviews = () => {
 
                   <div>
                     <button className='review-delete'
-                      onClick={() => dispatch(deleteMyReview(review.id))}>
+                      onClick={() => dispatch(deleteReview(review.id))}>
                       Delete
                     </button>
                   </div>
