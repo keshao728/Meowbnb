@@ -5,7 +5,7 @@ const LOAD_ALL_SPOT = "spots/LOAD_ALL_SPOT"
 const LOAD_ONE_SPOT = "spots/LOAD_ONE_SPOT"
 const UPDATE_ONE_SPOT = "spots/UPDATE_ONE_SPOT"
 const DELETE_ONE_SPOT = "spots/DELETE_ONE_SPOT"
-
+const RESET_DATA = "spots/RESET_DATA"
 
 //ACTIONS-------------
 //create
@@ -35,6 +35,10 @@ const updateOneSpot = (updatedSpot) => ({
 const deleteOneSpot = (spotId) => ({
   type: DELETE_ONE_SPOT,
   spotId
+})
+
+export const resetData = () => ({
+  type: RESET_DATA,
 })
 
 
@@ -201,6 +205,9 @@ const spotReducer = (state = initialState, action) => {
       newState.singleSpot = {}
 
       return newState
+
+    case RESET_DATA:
+      return initialState
     default:
       return state
   }

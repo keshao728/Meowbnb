@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { useHistory, Redirect } from "react-router-dom"
 // import { useHistory } from "react-router-dom"
 import { addOneSpot } from "../../store/spots"
-// import { resetData } from "../../store/reviews"
+import { resetData } from "../../store/spots"
 import "./HostSpot.css"
 
 const HostSpot = () => {
@@ -20,6 +20,7 @@ const HostSpot = () => {
   const [description, setDescription] = useState("")
   const [price, setPrice] = useState("")
   const [url, setUrl] = useState("")
+  // const [isLoaded, setIsLoaded] = useState(false)
   // const [preiview, setPreview] = useState("")
 
   const [validationErrors, setValidationErrors] = useState([])
@@ -76,7 +77,9 @@ const HostSpot = () => {
         // dispatch(resetData())
         // setErrors([])
         setShowErrors(false)
+        // .then(() => setIsLoaded(true))
         history.push(`/spots/${createdSpot.id}`)
+        return (() => dispatch(resetData()))
       }
     }
   }

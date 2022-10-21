@@ -1,11 +1,11 @@
 import { csrfFetch } from "./csrf"
 // import { getAllSpots } from "./spots"
 
-const ADD_REVIEW = "spots/ADD_REVIEW"
-const LOAD_LOCATION_REVIEW = "LOAD_LOCATION_REVIEW"
-const DELETE_REVIEW = "spots/DELETE_REVIEW"
-const LOAD_USER_REVIEW = "spots/LOAD_USER_REVIEWS"
-const RESET_DATA = "spots/RESET_DATA"
+const ADD_REVIEW = "reviews/ADD_REVIEW"
+const LOAD_LOCATION_REVIEW = "reviews/LOAD_LOCATION_REVIEW"
+const DELETE_REVIEW = "reviews/DELETE_REVIEW"
+const LOAD_USER_REVIEW = "reviews/LOAD_USER_REVIEWS"
+const RESET_DATA = "reviews/RESET_DATA"
 
 //ACTIONS-------------
 const addOneReview = (addTheReview) => ({

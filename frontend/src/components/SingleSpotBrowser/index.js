@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { NavLink, useParams } from "react-router-dom"
 import { getOneSpot } from "../../store/spots"
+// import { resetData } from "../../store/spots"
 import { locationReviewsThunk } from "../../store/reviews"
 
 import './SingleSpotBrowser.css'
@@ -27,6 +28,7 @@ const SingleSpotBrowser = () => {
   useEffect(() => {
     dispatch(getOneSpot(spotId))
     dispatch(locationReviewsThunk(spotId))
+    // return (() => dispatch(resetData()))
       .then(() => setIsLoaded(true))
   }, [dispatch, spotId])
 
@@ -68,6 +70,7 @@ const SingleSpotBrowser = () => {
 
           <div className="spot-hosted">
             <div> Spot hosted by {currSpot.Owner.firstName} {currSpot.Owner.lastName}</div>
+          {console.log(currSpot)}
           </div>
 
           <div>
