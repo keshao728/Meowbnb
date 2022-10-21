@@ -30,7 +30,7 @@ const HostSpot = () => {
     if (!address || address.length < 10) { errors.push("Please enter a valid address") }
     if (!city || city.length < 2) { errors.push("Please enter a valid city") }
     if (!state || state.length < 2 || state.length > 12) { errors.push("Please enter a valid state") }
-    if (!country || country.length < 2 || country.length > 10) { errors.push("Please enter a valid country") }
+    if (!country || country.length < 2 || country.length > 16) { errors.push("Please enter a valid country") }
     if (!name || name.length < 2) { errors.push("Please enter a valid spot name") }
     if (!description || description.length < 5) { errors.push("Description is required") }
     if (!price || price < 1) { errors.push("Please enter a valid price") }

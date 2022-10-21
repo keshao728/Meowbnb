@@ -45,7 +45,8 @@ const UserReviews = () => {
     <div className="review-content">
       <h2 className="user-review-message">Manage Your Reviews Meow!!!</h2>
       <div className="review-mother">
-        {existingReviewArr < 1 && <h2 className="no-spot"> MEOWMEOW No Reviews! </h2>}
+        {existingReviewArr < 1 && (<img src="https://drive.google.com/uc?export=view&id=1j_TgRhozzklKVuQfq1OVo3eBRXGPai3K" title="Meowbnb logo" />)}
+        {existingReviewArr < 1 && <h4>No reviews yet...</h4>}
         {existingReviewArr?.map((review) => (
           <div className="review-child">
             <div className='review-item' key={review.id}>

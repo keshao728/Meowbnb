@@ -4,16 +4,16 @@
   justify-content: center;
 } */
 
-.spot-mother{
+.spot-mother {
   display: grid;
-  grid-template-columns: repeat(2,1fr);
+  grid-template-columns: repeat(2, 1fr);
   grid-gap: 50px 0px;
   list-style: none;
   padding: 50px 300px;
   justify-items: center;
 }
 
-.user-spot-image{
+.user-spot-image {
   object-fit: cover;
   width: 600px;
   height: 300px;
@@ -22,7 +22,7 @@
   border-radius: 15px;
 }
 
-.all-owned-spot{
+.all-owned-spot {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -32,7 +32,7 @@
   width: 600px;
 }
 
-.delete-edit{
+.delete-edit {
   border-radius: 6px;
   font-size: 12px;
   border: 0;
@@ -44,7 +44,7 @@
   font-weight: bold;
 }
 
-.user-spot-message{
+.user-spot-message {
   text-align: center;
   margin-top: 50px;
   margin-bottom: 0px;
@@ -52,6 +52,11 @@
 
 .no-spot {
   text-align: center;
-  margin-top: 50px;
+  margin-top: 70px;
   margin-bottom: 0px;
+}
+
+.no-spot-meow {
+  margin-top: 100px;
+  margin-left: 655px;
 }
