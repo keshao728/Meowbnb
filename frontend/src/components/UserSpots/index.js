@@ -96,10 +96,4 @@ const UserSpots = () => {
   )
 }
 
-//     return(
-//   <div>
-//   { spotDetails }
-//   </div >
-// )
-
 export default UserSpots

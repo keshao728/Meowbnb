@@ -17,12 +17,10 @@ const loadLocationReviews = (locationReview) => ({
   locationReview
 })
 
-export function loadUserReviews(userReview) {
-  return {
+const loadUserReviews = (userReview) => ({
     type: LOAD_USER_REVIEW,
     userReview
-  }
-}
+})
 
 const deleteOneReview = (deleteTheReview) => ({
   type: DELETE_REVIEW,
@@ -99,14 +97,21 @@ const reviewReducer = (state = initialState, action) => {
       return newState;
 
     case LOAD_USER_REVIEW:
+      // let newUserReviewObject = {}
+      // newState= {
+      //   ...state,
+      //   user: { ...state.user },
+      //   spot: { ...state.spot}
+      // }
+      // action.userReview.Reviews.forEach(review => {
+      //   newState.user[review.id] = review
+      // });
+      // return newState;
       newState = {
         ...state,
         user: { ...state.user },
         spot: { ...state.spot }
       }
-      // action.userReview.Reviews.forEach((review) => {
-      //   newState.spot[review.id] = review
-      // })
       newState.user = action.userReview
       return newState;
 
@@ -127,8 +132,8 @@ const reviewReducer = (state = initialState, action) => {
         user: { ...state.user },
         spot: { ...state.spot }
       }
-      delete newState.spot[action.deleteTheReview]
-      newState.user = {}
+      delete newState.user[action.deleteTheReview]
+      newState.spot = {}
       return newState
 
     default:
