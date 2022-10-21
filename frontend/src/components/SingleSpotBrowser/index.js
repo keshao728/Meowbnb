@@ -36,7 +36,7 @@ const SingleSpotBrowser = () => {
   }
 
   let allowReviewAction = false;
-  if ((sessionUser) && (sessionUser.id !== currSpot.Owner.id) && (!alreadyReviewed)) {
+  if ((sessionUser) && (sessionUser.id !== currSpot.ownerId) && (!alreadyReviewed)) {
     allowReviewAction = true
   }
 

@@ -94,7 +94,6 @@ const reviewReducer = (state = initialState, action) => {
       //   // newState = newAllReviewObject
       return newState;
     case LOAD_USER_REVIEW:
-
       newState = {
         ...state,
         user: { ...state.user }
@@ -106,7 +105,7 @@ const reviewReducer = (state = initialState, action) => {
       return newState;
 
     case ADD_REVIEW:
-      newState = { ...state }
+      newState = { ...state}
       newState[action.addTheReview.id] = action.review
       return newState
 
