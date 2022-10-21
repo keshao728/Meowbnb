@@ -1,6 +1,6 @@
 .big-image {
   object-fit: cover;
-  width: 540px;
+  width: 600px;
   height: 560px;
   border-top-left-radius: 15px;
   border-bottom-left-radius: 15px;
@@ -8,6 +8,7 @@
 }
 
 .spot-details {
+  font-size: 15px;
   display: flex;
   flex-direction: row;
   margin-bottom: 10px;
@@ -20,8 +21,8 @@
 }
 
 .spot-name {
-  font-size: 20px;
-  margin-top: 10px;
+  font-size: 24px;
+  margin-top: 20px;
 
 }
 
@@ -38,11 +39,12 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 30px 110px;
+  padding: 10px 110px;
   flex-wrap: wrap;
   gap: 10px;
   width: 600px;
 }
+
 
 .spot-hosted {
   border-bottom: 1px solid #AFAFAF;
@@ -50,9 +52,9 @@
 }
 
 .spot-description {
+  border-top: 1px solid #AFAFAF;
   border-bottom: 1px solid #AFAFAF;
-  padding: 10px 0px;
-
+  padding: 40px 0px;
 }
 
 
@@ -68,16 +70,16 @@
   border-bottom: 1px solid #EBEBEB;
 }
 
-.reviews {
+.reviews-wrapper{
   display: grid;
-  /* border: 1px solid #AFAFAF; */
   grid-template-columns: repeat(2, 1fr);
-  grid-gap: 50px 0px;
-  list-style: none;
-  padding: 10px 0px;
-  width: 270px;
+  /* margin-top: 0; */
 }
 
+.reviews {
+  padding: 20px 0px;
+  width: 270px;
+}
 
 .user-review-date {
   font-size: 12px;
@@ -126,6 +128,13 @@
   height: 40px;
 }
 
+.hosted-pic{
+  border-radius: 20px;
+  color: #717171;
+  width: 40px;
+  height: 40px;
+}
+
 .review-username,
 .user-review-date {
   margin-top: 1px;
@@ -134,4 +143,50 @@
 
 .review-message{
   margin-top: 5px;
+}
+
+.spot-hosted{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 20px 0px;
+}
+
+.hosted-by{
+  font-size: 18px;
+  margin-top: 12px;
+  font-weight: bold;
+}
+
+.self-check-in{
+  margin-top: 40px;
+  display: flex;
+  flex-direction: row;
+}
+
+#super{
+  margin-bottom: 40px;
+}
+
+.fa-door-open {
+  font-size: 35px;
+}
+
+.fa-id-badge{
+  font-size: 38px;
+  margin-left: 5px;
+}
+
+.check-in{
+  margin-left: 20px;
+  font-size: 15px;
+}
+
+.superhost{
+  margin-left: 27px;
+  font-size: 15px;
+}
+
+.fa-paw{
+  margin-top: 2px;
 }

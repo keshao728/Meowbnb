@@ -71,10 +71,30 @@ const SingleSpotBrowser = () => {
             </div>
 
             <div className="spot-hosted">
-              <strong> Spot hosted by {currSpot.Owner.firstName} {currSpot.Owner.lastName}</strong>
+              <div className="hosted-by"> Spot hosted by {currSpot.Owner.firstName} {currSpot.Owner.lastName}</div>
               {/* {console.log(currSpot)} */}
               <img className='hosted-pic' src="https://drive.google.com/uc?export=view&id=1p7ALHdhdZsKxbR6qaFb4Wd_rbqSy1DwI" alt="Meowbnb Default Profile"></img>
             </div>
+
+            {/* <div className="check-in-super"> */}
+              <div className="self-check-in">
+                <i className="fa-solid fa-door-open"></i>
+                <div className="check-in">
+                  <strong> Self check-in </strong>
+                  <div>
+                    Check yourself in with the lockbox.
+                  </div>
+                </div>
+              </div>
+
+              <div className="self-check-in" id="super">
+                <i class="fa-regular fa-id-badge"></i>
+                <div className="superhost">
+                  <strong> {currSpot.Owner.firstName} is a Superhost </strong>
+                  <div> Superhosts are experienced, highly rated hosts who are committed to providing great stays for guests.</div>
+                </div>
+              </div>
+            {/* </div> */}
 
 
             <div>
@@ -96,30 +116,32 @@ const SingleSpotBrowser = () => {
             </div>
           }
 
-          {allReviewsArr?.map((review) => (
-            <div className='reviews' key={review.id}>
-              <div>
-                <div className="profile-name">
-                  <img className='user-profile-pic' src="https://drive.google.com/uc?export=view&id=1e6AIQpUAr0_HcNJNaptcQAHEdO5aib5k" alt="Meowbnb Default Profile"></img>
-                  <div className="review-name-date">
-                    <strong className="review-username">
-                      {review.User.firstName} {review.User.lastName}
-                    </strong>
-                    <div className='user-review-date'>
-                      {new Date(review.createdAt).toDateString().split(' ').slice(1).join(' ')}
+          <div className="reviews-wrapper">
+            {allReviewsArr?.map((review) => (
+              <div className='reviews' key={review.id}>
+                <div>
+                  <div className="profile-name">
+                    <img className='user-profile-pic' src="https://drive.google.com/uc?export=view&id=1e6AIQpUAr0_HcNJNaptcQAHEdO5aib5k" alt="Meowbnb Default Profile"></img>
+                    <div className="review-name-date">
+                      <strong className="review-username">
+                        {review.User.firstName} {review.User.lastName}
+                      </strong>
+                      <div className='user-review-date'>
+                        {new Date(review.createdAt).toDateString().split(' ').slice(1).join(' ')}
+                      </div>
                     </div>
+
+
+
+
                   </div>
                 </div>
-
-
                 <div className="review-message">
                   "{review?.review}"
                 </div>
-
-
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
 
       </div>
