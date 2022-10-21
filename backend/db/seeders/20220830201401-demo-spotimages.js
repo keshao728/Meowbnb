@@ -24,6 +24,26 @@ module.exports = {
         url: 'https://www.pawtracks.com/wp-content/uploads/sites/2/2020/06/thorsten-nilson-eyeem-yo-1.jpg?fit=1024%2C1024&p=1',
         preview: true
       },
+      {
+        spotId: 5,
+        url: 'https://i.ytimg.com/vi/YSHDBB6id4A/maxresdefault.jpg',
+        preview: true
+      },
+      {
+        spotId: 6,
+        url: 'https://www.barcs.org/media/CACHE/images/post-images/litterbox/d46f15d900cfa4f05d1bd91e1f5ad092.jpg',
+        preview: true
+      },
+      {
+        spotId: 7,
+        url: 'https://drive.google.com/uc?export=view&id=1MKdkTngstCf6VDIhH5EQJvifVPQ_78Rp',
+        preview: true
+      },
+      {
+        spotId: 8,
+        url: 'https://drive.google.com/uc?export=view&id=1MMyBDdK8yQWkStYUMmA4icxNt_aJsZpr',
+        preview: true
+      },
     ]);
   },
 
@@ -34,7 +54,11 @@ module.exports = {
           1,
           2,
           3,
-          4
+          4,
+          5,
+          6,
+          7,
+          8
         ]
       }
     });

@@ -52,8 +52,57 @@ module.exports = {
         description: 'Inspired by the French countryside, this Beverly Hills residence exudes the ideal mix of modernity and charm.',
         price: 50000
       },
-
-
+      {
+        //5
+        ownerId: 1,
+        address: '321 Op Ave',
+        city: 'Fairfield',
+        state: 'California',
+        country: 'United States',
+        lat: 88.88,
+        lng: -88.88,
+        name: 'Scratch Pad Private Garage',
+        description: 'Come and spend a relaxing moment in our Love Cave located in the centre of Valencia for couples or groups of friends!',
+        price: 159
+      },
+      {
+        //6
+        ownerId: 3,
+        address: '1 Best St',
+        city: 'Martinsdale',
+        state: 'California',
+        country: 'United States',
+        lat: 88.88,
+        lng: -88.88,
+        name: 'Litter Cave House',
+        description: 'This accommodation only accepts lovers of all kinds, life, nature, the cat being.',
+        price: 28
+      },
+      {
+        ownerId: 4,
+        address: '106 Onico St',
+        city: 'Joshua Tree',
+        state: 'California',
+        country: 'United States',
+        lat: 88.88,
+        lng: -88.88,
+        name: 'Public Villa',
+        description: 'Our villa is the collective expression of lifelong friends with a passion for the desert, for art and for living well. We hope our home provides you with the same sense of awe we experience each time we visit Joshua Tree.',
+        price: 728
+      },
+      {
+        //8
+        ownerId: 6,
+        address: '112 Dammit Dr',
+        city: 'Los Angeles',
+        state: 'California',
+        country: 'United States',
+        lat: 88.88,
+        lng: -88.88,
+        name: 'Outside of the House',
+        description: 'Enjoy some fresh air.',
+        price: 0
+      },
     ]);
   },
 
@@ -64,7 +113,12 @@ module.exports = {
           2,
           5,
           8,
-          10
+          10,
+          1,
+          3,
+          4,
+          6
+
         ]
       }
     });
