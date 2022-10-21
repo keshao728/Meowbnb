@@ -103,6 +103,19 @@ module.exports = {
         description: 'Enjoy some fresh air.',
         price: 0
       },
+      {
+        //9
+        ownerId: 7,
+        address: '888 Kelly St',
+        city: "In a Cute Girls's Arms",
+        state: 'California',
+        country: 'United States',
+        lat: 88.88,
+        lng: -88.88,
+        name: 'You know it',
+        description: 'wink wink~',
+        price: 9999999999
+      },
     ]);
   },
 
@@ -117,7 +130,9 @@ module.exports = {
           1,
           3,
           4,
-          6
+          6,
+          7
+
 
         ]
       }

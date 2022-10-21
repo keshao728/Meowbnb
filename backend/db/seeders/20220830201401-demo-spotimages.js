@@ -44,6 +44,11 @@ module.exports = {
         url: 'https://drive.google.com/uc?export=view&id=1MMyBDdK8yQWkStYUMmA4icxNt_aJsZpr',
         preview: true
       },
+      {
+        spotId: 9,
+        url: 'https://drive.google.com/uc?export=view&id=1M8bXCZSVpjcZewan1hR1coomjLEXXD8C',
+        preview: true
+      },
     ]);
   },
 
