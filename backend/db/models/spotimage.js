@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
       // onDelete: 'CASCADE'
     },
     url: {
-      type: DataTypes.VARCHAR(1000),
+      type: DataTypes.TEXT,
       // allowNull: false,
     },
     preview: {
