@@ -107,15 +107,29 @@ module.exports = {
         //9
         ownerId: 7,
         address: '888 Kelly St',
-        city: "In a Cute Girl's Arms",
+        city: "Shao Ke",
         state: 'California',
         country: 'United States',
         lat: 88.88,
         lng: -88.88,
-        name: 'You know it',
-        description: 'wink wink~',
-        price: 9999999999
+        name: 'Furball Townhouse',
+        description: 'Best place in the world',
+        price: 99
       },
+      {
+        //10
+        ownerId: 2,
+        address: '564 Lakeview Blvd',
+        city: "Labaroche",
+        state: 'Grand Est',
+        country: 'France',
+        lat: 88.88,
+        lng: -88.88,
+        name: 'Furball Townhouse',
+        description: 'Ideal to experience nature and discover Alsace and Vosges, this house is set in a green setting, in the heart of the upper Kaysersberg valley, in the Welche Country.',
+        price: 99
+      },
+
     ]);
   },
 
@@ -131,7 +145,8 @@ module.exports = {
           3,
           4,
           6,
-          7
+          7,
+          9
 
 
         ]
