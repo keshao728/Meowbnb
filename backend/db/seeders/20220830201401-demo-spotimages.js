@@ -46,12 +46,12 @@ module.exports = {
       },
       {
         spotId: 9,
-        url: 'https://s.yimg.com/ny/api/res/1.2/km4rydQ0_f_JQ1kwKB0Gbw--/YXBwaWQ9aGlnaGxhbmRlcjt3PTk2MDtoPTg3NztjZj13ZWJw/https://s.yimg.com/uu/api/res/1.2/5L8B9uCZqPOaut7iMbcEIw--~B/aD0xMzE2O3c9MTQ0MDthcHBpZD15dGFjaHlvbg--/https://media.zenfs.com/en/country_living_105/eed60985cea46e6d0f7ba6f14ee94b1d',
+        url: 'https://images.fineartamerica.com/images/artworkimages/mediumlarge/2/sleeping-kittens-in-bowl-sanna-pudas.jpg',
         preview: true
       },
       {
         spotId: 10,
-        url: 'https://s.yimg.com/ny/api/res/1.2/cEpjYE_wmHpAQ4V4YF0EQQ--/YXBwaWQ9aGlnaGxhbmRlcjt3PTk2MDtoPTYzODtjZj13ZWJw/https://s.yimg.com/uu/api/res/1.2/C5389Scz8.iiN7_0UtN7NA--~B/aD05NTc7dz0xNDQwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/country_living_105/e6e403dde672398b7cb82f911de8f65c',
+        url: 'https://miro.medium.com/max/720/1*0VU_jlhukyJN7IdefYnHZg.jpeg',
         preview: true
       },
     ]);
