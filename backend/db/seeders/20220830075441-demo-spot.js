@@ -78,20 +78,20 @@ module.exports = {
         description: 'This accommodation only accepts lovers of all kinds, life, nature, the cat being.',
         price: 28
       },
+      // {
+      //   ownerId: 4,
+      //   address: '106 Onico St',
+      //   city: 'Joshua Tree',
+      //   state: 'California',
+      //   country: 'United States',
+      //   lat: 88.88,
+      //   lng: -88.88,
+      //   name: 'Public Villa',
+      //   description: 'Our villa is the collective expression of lifelong friends with a passion for the desert, for art and for living well. We hope our home provides you with the same sense of awe we experience each time we visit Joshua Tree.',
+      //   price: 728
+      // },
       {
-        ownerId: 4,
-        address: '106 Onico St',
-        city: 'Joshua Tree',
-        state: 'California',
-        country: 'United States',
-        lat: 88.88,
-        lng: -88.88,
-        name: 'Public Villa',
-        description: 'Our villa is the collective expression of lifelong friends with a passion for the desert, for art and for living well. We hope our home provides you with the same sense of awe we experience each time we visit Joshua Tree.',
-        price: 728
-      },
-      {
-        //8
+        //7
         ownerId: 6,
         address: '112 Dammit Dr',
         city: 'Los Angeles',
@@ -104,7 +104,7 @@ module.exports = {
         price: 0
       },
       {
-        //9
+        //8
         ownerId: 7,
         address: '888 Kelly St',
         city: "Shao Ke",
@@ -116,19 +116,19 @@ module.exports = {
         description: 'Best place in the world',
         price: 99
       },
-      {
-        //10
-        ownerId: 2,
-        address: '564 Lakeview Blvd',
-        city: "Labaroche",
-        state: 'Grand Est',
-        country: 'France',
-        lat: 88.88,
-        lng: -88.88,
-        name: 'Furball Townhouse',
-        description: 'Ideal to experience nature and discover Alsace and Vosges, this house is set in a green setting, in the heart of the upper Kaysersberg valley, in the Welche Country.',
-        price: 99
-      },
+      // {
+      //   //9
+      //   ownerId: 2,
+      //   address: '564 Lakeview Blvd',
+      //   city: "Labaroche",
+      //   state: 'Grand Est',
+      //   country: 'France',
+      //   lat: 88.88,
+      //   lng: -88.88,
+      //   name: 'Furball Townhouse',
+      //   description: 'Ideal to experience nature and discover Alsace and Vosges, this house is set in a green setting, in the heart of the upper Kaysersberg valley, in the Welche Country.',
+      //   price: 99
+      // },
 
     ]);
   },
@@ -143,12 +143,9 @@ module.exports = {
           10,
           1,
           3,
-          4,
           6,
           7,
           9
-
-
         ]
       }
     });
