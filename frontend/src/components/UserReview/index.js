@@ -44,9 +44,8 @@ const UserReviews = () => {
   return isLoaded && (
     <div className="review-content">
       <h2 className="user-review-message">Manage Your Reviews Meow!!!</h2>
-      {existingReviewArr < 1 && <h2 className="no-spot"> MEOWMEOW No Reviews! </h2>}
       <div className="review-mother">
-
+        {existingReviewArr < 1 && <h2 className="no-spot"> MEOWMEOW No Reviews! </h2>}
         {existingReviewArr?.map((review) => (
           <div className="review-child">
             <div className='review-item' key={review.id}>
@@ -88,10 +87,10 @@ const UserReviews = () => {
                       {new Date(review.createdAt).toDateString().split(' ').slice(1).join(' ')}
                     </div>
 
-                    <span className="spot-star">
-                      <i class="fa-solid fa-paw"></i>
+                    <span className="review-spot-star">
+                      <i className="fa-solid fa-paw"> </i>
                       &nbsp;
-                      <div className='review-item-stars'>{review?.stars}</div>
+                      <div className='review-item-stars'>{Number(review?.stars).toFixed(2)}</div>
                     </span>
                   </div>
 

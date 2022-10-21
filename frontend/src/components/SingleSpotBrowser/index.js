@@ -51,7 +51,7 @@ const SingleSpotBrowser = () => {
 
           <div className="spot-details">
             <div className="spot-star">
-              <i className="fa-solid fa-star"></i>
+              <i className="fa-solid fa-paw"></i>
               &nbsp;
               {currSpot.avgRating > 0 ? Number(currSpot.avgRating).toFixed(2) : 'New'}
               &nbsp;&nbsp;·
