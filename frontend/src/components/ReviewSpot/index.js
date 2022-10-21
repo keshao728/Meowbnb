@@ -2,6 +2,7 @@ import { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory, Redirect, useParams } from "react-router-dom"
 import { addReview} from "../../store/reviews"
+import "./ReviewSpot.css"
 
 const ReviewSpot = () => {
   const dispatch = useDispatch()
@@ -12,7 +13,7 @@ const ReviewSpot = () => {
 
 
   const [review, setReview] = useState('')
-  const [stars, setStars] = useState(0)
+  const [stars, setStars] = useState(1)
   // const [selectStar, setSelectStar] = useState(4)
 
   const [validationErrors, setValidationErrors] = useState([])
@@ -81,7 +82,7 @@ const ReviewSpot = () => {
             <label>
               ★<input
                 type='number'
-                min='0' max='5'
+                min='1' max='5'
                 placeholder='stars'
                 value={stars}
                 onChange={e => setStars(e.target.value)}>
