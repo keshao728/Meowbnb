@@ -33,9 +33,14 @@
   color: white;
   width: 100%;
   padding: 10px 15px;
-  margin-top: 50px;
-  font-weight: bold;
+  margin-top: 25px;
   margin-bottom: 25px;
+  font-weight: bold;
+}
+
+.button-login:hover{
+  background-color: #DD1362;
+  cursor: pointer;
 }
 
 .demo-user {
@@ -43,26 +48,31 @@
   margin-top: 0px;
 }
 
+
 .demo-user-button {
   border-radius: 6px;
   font-size: 12px;
   border: 0;
   background-color: #E21C5F;
   color: white;
-  /* top: 50%; */
-  /* left: 50%; */
   width: 100%;
   padding: 10px 15px;
-  margin-top: 10%;
+  margin-top: 25px;
+  margin-bottom: 25px;
   font-weight: bold;
 }
 
+.demo-user-button:hover{
+  background-color: #DD1362;
+  cursor: pointer;
+}
+
 .full-login-form {
-  padding: 24px 24px;
-  border-radius: 10px;
-  height: 350px;
-  width: 320px;
-  /* border-bottom: 'none'; */
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+  margin: 0px 25px;
+  width: 330px;
 }
 
 .modal-button {
@@ -83,10 +93,13 @@
 }
 
 .login-error-validation {
-  position: absolute;
-  color: red;
+  font-size: 14px;
+  flex-direction: column;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
   font-size: 12px;
-  margin-top: 155px;
-  gap: 10px;
+  color: #DD1362;
+  margin-bottom: 22px;
 }
 

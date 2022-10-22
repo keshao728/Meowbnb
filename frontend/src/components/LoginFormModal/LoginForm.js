@@ -25,6 +25,7 @@ function LoginForm() {
   return (
     <div className="full-login-form">
       <form onSubmit={handleSubmit}>
+      <h3 className="welcome-message">Welcome to Meowbnb!</h3>
         <ul className="login-error-validation">
           {errors.map((error, idx) => (
             <li key={idx} className="error-handling">
@@ -35,7 +36,6 @@ function LoginForm() {
 
         <div className='form-input'>
 
-          <h3 className="welcome-message">Welcome to Meowbnb</h3>
           <div className="input-parent">
 
             <label>

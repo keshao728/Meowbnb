@@ -9,32 +9,34 @@ const { handleValidationErrors } = require('../../utils/validation');
 const router = express.Router();
 
 const validateSignup = [
-  check('email')
-    .exists({ checkFalsy: true })
-    .withMessage('Invalid email'),
-  // .isEmail()
-  // .withMessage('Please provide a valid email.'),
-  check('username')
-    .exists({ checkFalsy: true })
-    .withMessage('Username is required'),
-  // .isLength({ min: 4 })
-  // .withMessage('Please provide a username with at least 4 characters.'),
   check('firstName')
-    .exists({ checkFalsy: true })
-    .withMessage('First Name is required'),
-  // .isLength({ min: 2 })
-  // .withMessage('Please provide a first name with at least 2 characters.'),
+    // .exists({ checkFalsy: true })
+    // .withMessage('First Name is required')
+    .isLength({ min: 2 })
+    .withMessage('First name must be more than 2 characters.'),
   check('lastName')
-    .exists({ checkFalsy: true })
-    .withMessage('Last Name is required'),
-  // .isLength({ min: 2 })
-  // .withMessage('Please provide a last name with at least 2 characters.'),
-  check('username')
-    .not()
+    // .exists({ checkFalsy: true })
+    // .withMessage('Last Name is required')
+    .isLength({ min: 2 })
+    .withMessage('Last name must be more than 2 characters.'),
+  check('email')
+    // .exists({ checkFalsy: true })
+    // .withMessage('Invalid email')
     .isEmail()
-    .withMessage('Username cannot be an email.'),
+    .withMessage('Please provide a valid email.'),
+  check('username')
+    // .exists({ checkFalsy: true })
+    // .withMessage('Username is required')
+    .isLength({ min: 4 })
+    .withMessage('Please provide a username with at least 4 characters.'),
+  // check('username')
+  //   .isLength({ min: 2 })
+  //   .withMessage('Please provide a username with at least 2 characters.'),
+  // .not()
+  // .isEmail()
+  // .withMessage('Username cannot be an email.'),
   check('password')
-    .exists({ checkFalsy: true })
+    // .exists({ checkFalsy: true })
     .isLength({ min: 6 })
     .withMessage('Password must be 6 characters or more.'),
   handleValidationErrors
