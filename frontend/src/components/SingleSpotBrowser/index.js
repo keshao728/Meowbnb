@@ -44,6 +44,7 @@ const SingleSpotBrowser = () => {
   }
 
 
+
   return isLoaded && (
     <div className="big-mother">
       <div className="browser-wrapper">
@@ -158,7 +159,7 @@ const SingleSpotBrowser = () => {
               </NavLink>
             </div>
           }
-          {!allowReviewAction && !alreadyReviewed &&
+          {!allowReviewAction && sessionUser &&
             <div className='review-this-spot'>
               <NavLink className="review-click"
                 to="/spots/my-spots">
