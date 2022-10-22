@@ -15,6 +15,7 @@
   list-style: none;
   padding: 50px 100px;
   justify-items: center;
+  /* z-index: 0; */
 }
 
 .spot-image {
@@ -24,11 +25,13 @@
   overflow: hidden;
   position: relative;
   border-radius: 15px;
+
 }
 
 .spots {
   text-decoration: none;
   color: inherit;
+  /* z-index: 0; */
 }
 
 .address-star {

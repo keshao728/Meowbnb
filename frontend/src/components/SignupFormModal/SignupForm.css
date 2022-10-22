@@ -55,6 +55,7 @@
   border-radius: 12px;
   margin: 0px 25px;
   width: 330px;
+  z-index: 0px;
 }
 
 .modal-button {

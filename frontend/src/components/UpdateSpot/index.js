@@ -52,7 +52,7 @@ const UpdateSpot = () => {
     if (!country || country.length > 15) { errors.push("Country is required and must be less than 15 characters") }
     if (!name || name.length > 20) { errors.push("Name is required and must be less than 20 characters") }
     if (!description || description.length > 250) { errors.push("Description is required and must be be less than 250 characters")}
-    if (!price || price < 0) { errors.push("Price per day is required and must be more than $0") }
+    if (!price || price < 0) { errors.push("Price per day is required and must be more than $0 (no decimal)") }
 
 
     setValidationErrors(errors)
@@ -175,7 +175,7 @@ const UpdateSpot = () => {
               type="number"
               className="host-input"
               value={price}
-              onChange={(e) => setPrice(e.target.value)}
+              onChange={(e) => setPrice(parseInt(e.target.value).toFixed(0))}
               required
             />
           </label>

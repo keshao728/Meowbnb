@@ -12,6 +12,7 @@
   border: 1px solid #dddddd;
   right: 110px;
   /* justify-content: left; */
+  z-index: 2;
 }
 
 .show-drop-menu {

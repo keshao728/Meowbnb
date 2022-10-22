@@ -49,29 +49,29 @@ function ProfileButton({ user }) {
         </button>
         {showMenu && (
           <div className="user-dropdown-menu">
-            <div className="user-info">
-              <div className='menu-parent'>
-                <div id='user-menu-item' className="user-name">{user.username}</div>
+              <div className="user-info">
+                <div className='menu-parent'>
+                  <div id='user-menu-item' className="user-name">{user.username}</div>
+                </div>
+                <div className='menu-parent'>
+                  <div id='user-menu-item'>{user.email}</div>
+                </div>
               </div>
-              <div className='menu-parent'>
-                <div id='user-menu-item'>{user.email}</div>
-              </div>
+              <div>
+                <NavLink to="/spots/my-spots">
+                  <button className="logout-button" id="user-hover-effect">
+                    My Spots
+                  </button>
+                </NavLink>
+                <NavLink to="/spots/my-reviews">
+                  <button className="logout-button" id="user-hover-effect">
+                    My Reviews
+                  </button>
+                </NavLink>
+                {/* <button className="logout-button" onClick={() => history.push('/my-spots')}>My Spot</button> */}
             </div>
             <div>
-              <NavLink to="/spots/my-spots">
-                <button className="logout-button" id="user-hover-effect">
-                  My Spots
-                </button>
-              </NavLink>
-              <NavLink to="/spots/my-reviews">
-                <button className="logout-button" id="user-hover-effect">
-                  My Reviews
-                </button>
-              </NavLink>
-              {/* <button className="logout-button" onClick={() => history.push('/my-spots')}>My Spot</button> */}
-            </div>
-            <div>
-              <button className="user-logout-button" id="user-hover-effect"onClick={logout}>Log Out</button>
+              <button className="user-logout-button" id="user-hover-effect" onClick={logout}>Log Out</button>
             </div>
           </div>
         )}
