@@ -16,14 +16,14 @@ const SingleSpotBrowser = () => {
 
   //SPOT
   const currSpot = useSelector(state => state.spots.singleSpot)
-  console.log("this is the user's current spot", currSpot)
+  // console.log("this is the user's current spot", currSpot)
   // const sessionUser = useSelector((state) => state.session.user)
 
   //REVIEWS
   const allReviews = useSelector(state => state.reviews.spot);
   // console.log("THIS IS MY COMPONENT OF ALL REVIEWS:", allReviews)
   const allReviewsArr = Object.values(allReviews)
-  console.log("THIS IS MY COMPONENT OF ALL REVIEWS ARR:", allReviewsArr)
+  // console.log("THIS IS MY COMPONENT OF ALL REVIEWS ARR:", allReviewsArr)
 
   //TODO IIFE - async await
   useEffect(() => {
@@ -166,6 +166,14 @@ const SingleSpotBrowser = () => {
                 Manage My Spot
               </NavLink>
             </div>
+          }
+          {alreadyReviewed &&
+            <div className='review-this-spot'>
+            <NavLink className="review-click"
+              to="/spots/my-reviews">
+              Manage My Reviews
+            </NavLink>
+          </div>
           }
         </div>
       </div>

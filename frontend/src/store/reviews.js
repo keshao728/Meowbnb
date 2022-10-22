@@ -50,10 +50,10 @@ export const addReview = (spotId, added) => async dispatch => {
 
 export const locationReviewsThunk = (spotId) => async dispatch => {
   const response = await fetch(`/api/spots/${spotId}/reviews`)
-  console.log("LOCATION REVIEW THUNK", response)
+  // console.log("LOCATION REVIEW THUNK", response)
   if (response.ok) {
     const existingReviews = await response.json()
-    console.log("THISIS EXISTING REVIEW IN THUNK", existingReviews)
+    // console.log("THISIS EXISTING REVIEW IN THUNK", existingReviews)
     dispatch(loadLocationReviews(existingReviews))
     return existingReviews
   }

@@ -13,9 +13,9 @@ const UserReviews = () => {
   const sessionUser = useSelector(state => state.session.user)
 
   const existingReviews = useSelector(state => state.reviews.user)
-  console.log("THIS IS A TEST IN USERREVIEW", existingReviews)
+  // console.log("THIS IS A TEST IN USERREVIEW", existingReviews)
   const existingReviewArr = Object.values(existingReviews)
-  console.log("THIS IS A REVIEWARR IN USERREVIEW", existingReviewArr)
+  // console.log("THIS IS A REVIEWARR IN USERREVIEW", existingReviewArr)
 
   // const spotId = existingReviews[0].spotId
   // console.log("USER SPOT ID JUNDKAJADJKAWNDK", spotId)
