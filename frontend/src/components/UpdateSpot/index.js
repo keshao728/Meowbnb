@@ -52,7 +52,7 @@ const UpdateSpot = () => {
     if (!country || country.length > 15) { errors.push("Country is required and must be less than 15 characters") }
     if (!name || name.length > 20) { errors.push("Name is required and must be less than 20 characters") }
     if (!description || description.length > 250) { errors.push("Description is required and must be be less than 250 characters")}
-    if (!price || price < 0) { errors.push("Price per day is required and must be more than $0 (no decimal)") }
+    if (!price || price < 1) { errors.push("Price per day is required and must be more than $1 (no decimal)") }
 
 
     setValidationErrors(errors)
