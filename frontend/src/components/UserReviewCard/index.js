@@ -33,7 +33,7 @@ const UserReviewCard = ({ review }) => {
 
           </NavLink>
           <div className="review-text">
-            {review?.review}
+            "{review?.review}"
           </div>
         </div>
 

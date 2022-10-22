@@ -10,7 +10,7 @@
   font-weight: bold;
 }
 
-.review-delete{
+.review-delete:hover{
   background-color: #DD1362;
   cursor: pointer;
 }
@@ -43,15 +43,18 @@
 }
 
 .review-item-name{
-  display: flex;
+  /* display: flex; */
+  display: inline-block;
   flex-direction: column;
   justify-content: center;
   /* align-content: flex-start; */
   flex-wrap: wrap;
   gap: 10px;
   width: 300px;
-  /* margin-top: 5px; */
-  /* border: 1px solid #AFAFAF; */
+  overflow-wrap: break-word;
+  /* white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis */
 }
 
 .right-review {
@@ -61,7 +64,11 @@
   flex-wrap: wrap;
   gap: 10px;
   width: 160px;
+}
 
+.review-text {
+  margin-top: 10px;
+  font-size: 14px;
 }
 
 .review-item{
@@ -73,13 +80,16 @@
   padding: 40px 20px;
   margin-right: 170px;
   /* justify-items: center; */
-  width: 300px
+  width: 300px;
+
+
 }
 
 .user-review-message{
   text-align: center;
   margin-top: 50px;
   margin-bottom: 50px;
+
 }
 
 .location-name{
@@ -98,6 +108,7 @@
 
 .user-review-date{
   font-size: 14px;
+
 }
 
 .review-spot-star{
@@ -106,6 +117,7 @@
   display: flex;
   flex-direction: row;
   margin-top: 10px;
+
   /* justify-content: space-between; */
 }
 
