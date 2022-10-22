@@ -10,6 +10,11 @@
   font-weight: bold;
 }
 
+.button-create-spot:hover{
+  background-color: #DD1362;
+  cursor: pointer;
+}
+
 .host-message {
   text-align: center;
   margin-bottom: 50px;
