@@ -148,12 +148,22 @@ const SingleSpotBrowser = () => {
             <strong className="price-per-night">
               ${currSpot.price}
             </strong>
-            &nbsp;
-            night
+            &nbsp;/&nbsp;night
           </div>
           {allowReviewAction &&
             <div className='review-this-spot'>
-              <NavLink className="review-click" to={`/spots/${currSpot.id}/review`}>Review This Spot</NavLink>
+              <NavLink className="review-click"
+                to={`/spots/${currSpot.id}/review`}>
+                Review This Spot
+              </NavLink>
+            </div>
+          }
+          {!allowReviewAction &&
+            <div className='review-this-spot'>
+              <NavLink className="review-click"
+                to="/spots/my-spots">
+                Manage My Spot
+              </NavLink>
             </div>
           }
         </div>

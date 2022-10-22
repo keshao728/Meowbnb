@@ -14,19 +14,23 @@
   margin-bottom: 10px;
   justify-content: flex-start;
   align-items: flex-start;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis
 }
 
 .spot-star {
   margin-right: 2px;
+  align-items: center;
+  margin-bottom: 0;
 }
 
 .spot-name {
   font-size: 24px;
   margin-top: 20px;
-
 }
 
-.review-star-foot{
+.review-star-foot {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -35,6 +39,7 @@
   gap: 10px;
   width: 600px;
 }
+
 .single-spot-parent {
   display: flex;
   flex-direction: column;
@@ -61,16 +66,13 @@
 .browser-wrapper {
   display: flex;
   flex-direction: column;
-
-  /* grid-gap: 50px 0px; */
-  /* list-style: none; */
-  padding: 20px 300px;
-  justify-items: center;
+  padding: 20px 100px;
+  margin-left: 200px;
   border-top: 1px solid #EBEBEB;
   border-bottom: 1px solid #EBEBEB;
 }
 
-.reviews-wrapper{
+.reviews-wrapper {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   /* margin-top: 0; */
@@ -87,19 +89,30 @@
 }
 
 .spot-price {
+  display: flex;
+  align-items: center;
+  border: rgba(235, 233, 233, 0.5) solid 1px;
+  box-shadow: 2px 2px 5px rgb(148, 148, 148);
+  width: fit-content;
+  height: fit-content;
+  border-radius: 12px;
+  padding: 20px;
+  margin-left: auto;
   position: sticky;
   top: 785px;
   border: 1px solid #EBEBEB;
   border-radius: 15px;
-  /* padding-left: 0px; */
-  padding-right: 70px;
   padding-bottom: 35px;
 }
 
+.own-this-spot{
+  font-size: 12px;
+}
 
 .spot-price-child {
-  padding: 20px;
-  margin-bottom: 5px;
+  padding: 10px;
+  /* margin-bottom: 5px; */
+  font-size: 16px;
 }
 
 .big-mother {
@@ -129,7 +142,7 @@
   height: 40px;
 }
 
-.hosted-pic{
+.hosted-pic {
   border-radius: 20px;
   color: #717171;
   width: 40px;
@@ -142,30 +155,30 @@
   margin-left: 10px;
 }
 
-.review-message{
+.review-message {
   margin-top: 8px;
 }
 
-.spot-hosted{
+.spot-hosted {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   padding: 20px 0px;
 }
 
-.hosted-by{
+.hosted-by {
   font-size: 18px;
   margin-top: 12px;
   font-weight: bold;
 }
 
-.self-check-in{
+.self-check-in {
   margin-top: 40px;
   display: flex;
   flex-direction: row;
 }
 
-#super{
+#super {
   margin-bottom: 40px;
 }
 
@@ -173,22 +186,22 @@
   font-size: 35px;
 }
 
-.fa-id-badge{
+.fa-id-badge {
   font-size: 38px;
   margin-left: 5px;
 }
 
-.check-in{
+.check-in {
   margin-left: 20px;
   font-size: 15px;
 }
 
-.superhost{
+.superhost {
   margin-left: 27px;
   font-size: 15px;
 }
 
-.fa-paw{
+.fa-paw {
   margin-top: 2px;
 }
 
