@@ -35,8 +35,11 @@
   display: flex;
   flex-direction: row;
   margin-top: 10px;
+  margin-bottom: 10px;
   justify-content: space-between;
-  /* overflow-wrap: break-word; */
+  /* white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis */
 }
 
 .individual-spots {

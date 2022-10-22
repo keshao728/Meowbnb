@@ -65,13 +65,12 @@ const UserSpots = () => {
                 </div>
                 <div className="user-spot-info">
                   <div>{spot.name}</div>
-                  <div className="address-star" key={spot.name}>{spot.city}, {spot.state}</div>
-                  <div>
+                  <div className="user-address-star" key={spot.name}>{spot.city}, {spot.state}</div>
+                  <div className="user-price-per">
                     <strong>
                       ${spot.price}
                     </strong>
-                    &nbsp;
-                    night
+                    &nbsp;/&nbsp;night
                   </div>
                 </div>
               </div>

@@ -60,3 +60,13 @@
   margin-top: 100px;
   margin-left: 655px;
 }
+
+.spots{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis
+}
+
+.user-price-per{
+  margin-top: 10px;
+}
