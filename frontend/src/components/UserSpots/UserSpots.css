@@ -44,6 +44,11 @@
   font-weight: bold;
 }
 
+.delete-edit:hover{
+  background-color: #DD1362;
+  cursor: pointer;
+}
+
 .user-spot-message {
   text-align: center;
   margin-top: 50px;

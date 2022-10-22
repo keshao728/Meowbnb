@@ -37,6 +37,8 @@
 
 .user-buttons:hover {
   box-shadow: 1px 1px 2px #AFAFAF;;
+  cursor: pointer;
+
 }
 
 /* .menu-parent {

@@ -10,6 +10,11 @@
   font-weight: bold;
 }
 
+.review-delete{
+  background-color: #DD1362;
+  cursor: pointer;
+}
+
 .review-link{
   text-decoration: none;
   color: inherit;
