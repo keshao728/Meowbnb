@@ -157,6 +157,9 @@
 
 .review-message {
   margin-top: 8px;
+  word-wrap: break-word;
+  /* overflow: hidden; */
+  /* text-overflow: ellipsis */
 }
 
 .spot-hosted {

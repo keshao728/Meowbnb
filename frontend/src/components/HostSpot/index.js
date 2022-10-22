@@ -204,7 +204,7 @@ const HostSpot = () => {
           <label>
             <input
               placeholder="Price"
-              type="text"
+              type="number"
               className="host-input"
               value={price}
               onChange={(e) => setPrice(e.target.value)}
