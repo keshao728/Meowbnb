@@ -1,3 +1,18 @@
+.user-dropdown-menu {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  margin-top: 10px;
+  /* padding: 10px 10px; */
+  height: 185px;
+  width: 200px;
+  background-color: white;
+  box-shadow: 0px 1px 8px #dddddd;
+  border-radius: 10px;
+  border: 1px solid #dddddd;
+  right: 110px;
+  /* z-index: 1; */
+}
 * {
   font-family: 'Montserrat', sans-serif;
 }
@@ -31,21 +46,6 @@
   width: 25px;
 }
 
-.user-dropdown-menu {
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  margin-top: 10px;
-  /* padding: 10px 10px; */
-  height: 185px;
-  width: 200px;
-  background-color: white;
-  box-shadow: 0px 1px 8px #dddddd;
-  border-radius: 10px;
-  border: 1px solid #dddddd;
-  right: 110px;
-  z-index: 1;
-}
 
 .logout-button {
   /* border-top: #595959; */

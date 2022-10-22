@@ -14,19 +14,25 @@ function LoginForm() {
     e.preventDefault();
     setErrors([]);
     return dispatch(sessionActions.login({ credential, password }))
-    .catch(async (res) => {
+      .catch(async (res) => {
         const data = await res.json();
+        console.log("THIS IS DATA", data)
         if (data && data.errors) setErrors(data.errors);
       }
-    );
+      );
   };
 
   return (
     <div className="full-login-form">
       <form onSubmit={handleSubmit}>
-        <ul>
-        {errors.map((error, idx) => <li className="error-handling" key={idx}>{error}</li>)}
+        <ul className="login-error-validation">
+          {errors.map((error, idx) => (
+            <li key={idx} className="error-handling">
+              {error}
+            </li>
+          ))}
         </ul>
+
         <div className='form-input'>
 
           <h3 className="welcome-message">Welcome to Meowbnb</h3>
@@ -39,7 +45,7 @@ function LoginForm() {
                 type="text"
                 value={credential}
                 onChange={(e) => setCredential(e.target.value)}
-                required
+              // required
               />
             </label>
             <label>
@@ -49,7 +55,7 @@ function LoginForm() {
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                required
+              // required
               />
             </label>
           </div>

@@ -52,7 +52,8 @@
 
 .welcome-message {
   text-align: left;
-  margin-left: 1%
+  margin-left: 1%;
+  margin-bottom: 30px;
 }
 
 .full-signup-form{
@@ -85,9 +86,15 @@
   border-bottom: none;
 }
 
-.error-handling{
+.error-validation{
   position: absolute;
   color: red;
   font-size: 12px;
-  margin-top:330px
+  margin-top:330px;
+  gap:10px
 }
+
+/* .error-mother{
+  position: absolute;
+  font-size:12px
+} */

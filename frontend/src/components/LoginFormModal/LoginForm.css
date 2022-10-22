@@ -33,16 +33,17 @@
   color: white;
   width: 100%;
   padding: 10px 15px;
-  margin-top: 10%;
+  margin-top: 50px;
   font-weight: bold;
+  margin-bottom: 25px;
 }
 
-.demo-user{
+.demo-user {
   border-top: 1px solid #AFAFAF;
-  margin-top: 20px;
+  margin-top: 0px;
 }
 
-.demo-user-button{
+.demo-user-button {
   border-radius: 6px;
   font-size: 12px;
   border: 0;
@@ -56,15 +57,15 @@
   font-weight: bold;
 }
 
-.full-login-form{
+.full-login-form {
   padding: 24px 24px;
   border-radius: 10px;
-  height: 300px;
-  width: 264px;
+  height: 350px;
+  width: 320px;
   /* border-bottom: 'none'; */
 }
 
-.modal-button{
+.modal-button {
   font-size: 12px;
   border: 0;
   background-color: white;
@@ -75,11 +76,17 @@
   text-align: left;
   /* margin-left: 10px */
 }
-.modal-button:hover{
-  background-color:#F7F7F7;
+
+.modal-button:hover {
+  background-color: #F7F7F7;
   cursor: pointer;
 }
 
-/* .password{
-  border-bottom: none;
-} */
+.login-error-validation {
+  position: absolute;
+  color: red;
+  font-size: 12px;
+  margin-top: 155px;
+  gap: 10px;
+}
+

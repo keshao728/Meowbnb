@@ -34,8 +34,9 @@ function SignupForm() {
     <div className="full-signup-form">
 
       <form onSubmit={handleSubmit}>
-        <ul>
-          {errors.map((error, idx) => <li className="error-handling" key={idx}>{error}</li>)}
+        <ul className="error-mother">
+          {errors.map((error, idx) =>
+          <li className="error-handling" key={idx}>{error}</li>)}
         </ul>
         <div className="signup-full-form">
           <h3 className="welcome-message">Welcome to Meowbnb</h3>
@@ -47,7 +48,7 @@ function SignupForm() {
                 className="input"
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
-                required
+                // required
               />
             </label>
             <label>
@@ -57,7 +58,7 @@ function SignupForm() {
                 className="input"
                 value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
-                required
+                // required
               />
             </label>
             <label>
@@ -67,7 +68,7 @@ function SignupForm() {
                 className="input"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                required
+                // required
               />
             </label>
             <label>
@@ -77,7 +78,7 @@ function SignupForm() {
                 className="input"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                required
+                // required
               />
             </label>
             <label>
@@ -87,7 +88,7 @@ function SignupForm() {
                 className="input"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                required
+                // required
               />
             </label>
             <label>
@@ -97,7 +98,7 @@ function SignupForm() {
                 className="input password"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
-                required
+                // required
               />
             </label>
           </div>
