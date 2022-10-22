@@ -30,7 +30,7 @@
 
 .user-button:hover {
   box-shadow: 1px 1px 2px #AFAFAF;
-  ;
+  cursor: pointer;
 }
 
 .fa-bars {
