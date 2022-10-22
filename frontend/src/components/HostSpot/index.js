@@ -29,13 +29,13 @@ const HostSpot = () => {
 
   useEffect(() => {
     const errors = []
-    if (!address || address.length < 10) { errors.push("Please enter a valid address") }
-    if (!city || city.length < 2) { errors.push("Please enter a valid city") }
-    if (!state || state.length < 2 || state.length > 12) { errors.push("Please enter a valid state") }
-    if (!country || country.length < 2 || country.length > 16) { errors.push("Please enter a valid country") }
-    if (!name || name.length < 2) { errors.push("Please enter a valid spot name") }
-    if (!description || description.length < 5) { errors.push("Description is required and must be more than 5 characters") }
-    if (!price || price < 1) { errors.push("Please enter a valid price") }
+    if (!address || address.length > 20) { errors.push("Address is required and must be less than 20 characters") }
+    if (!city || city.length > 15) { errors.push("City is required and must be less than 15 characters") }
+    if (!state || state.length > 10) { errors.push("State is required and must be less than 10 characters") }
+    if (!country || country.length > 15) { errors.push("Country is required and must be less than 15 characters") }
+    if (!name || name.length > 20) { errors.push("Name is required and must be less than 20 characters") }
+    if (!description || description.length > 250) { errors.push("Description is required and must be be less than 250 characters")}
+    if (!price || price < 0) { errors.push("Price per day is required and must be more than $0") }
     if (!url.match(/\.(jpg|jpeg|png|gif)$/)) {errors.push("Please enter a valid URL ending with jpg, jpeg, png or gif")}
     // if (!url.match(/^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/)) { errors.push("Please enter a valid URL") }
     // if (!url.includes('https')) {errors.push("Please enter a valid URL")}
@@ -148,7 +148,7 @@ const HostSpot = () => {
               className="host-input"
               value={address}
               onChange={(e) => setAddress(e.target.value)}
-              required
+              // required
             />
           </label>
           <label>
@@ -158,7 +158,7 @@ const HostSpot = () => {
               className="host-input"
               value={city}
               onChange={(e) => setCity(e.target.value)}
-              required
+              // required
             />
           </label>
           <label>
@@ -168,7 +168,7 @@ const HostSpot = () => {
               className="host-input"
               value={state}
               onChange={(e) => setState(e.target.value)}
-              required
+              // required
             />
           </label>
           <label>
@@ -178,7 +178,7 @@ const HostSpot = () => {
               className="host-input"
               value={country}
               onChange={(e) => setCountry(e.target.value)}
-              required
+              // required
             />
           </label>
           <label>
@@ -188,7 +188,7 @@ const HostSpot = () => {
               className="host-input"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              required
+              // required
             />
           </label>
           <label>
@@ -198,7 +198,7 @@ const HostSpot = () => {
               className="host-input"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              required
+              // required
             />
           </label>
           <label>
@@ -208,7 +208,7 @@ const HostSpot = () => {
               className="host-input"
               value={price}
               onChange={(e) => setPrice(e.target.value)}
-              required
+              // required
             />
           </label>
           <label>
@@ -218,7 +218,7 @@ const HostSpot = () => {
               className="host-input"
               value={url}
               onChange={(e) => setUrl(e.target.value)}
-              required
+              // required
             />
           </label>
         </div>

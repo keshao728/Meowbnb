@@ -46,13 +46,14 @@ const UpdateSpot = () => {
 
   useEffect(() => {
     const errors = []
-    if (!address || address.length < 10) { errors.push("Please enter a valid address") }
-    if (!city || city.length < 2) { errors.push("Please enter a valid city") }
-    if (!state || state.length < 2 || state.length > 12) { errors.push("Please enter a valid state") }
-    if (!country || country.length < 2 || country.length > 10) { errors.push("Please enter a valid country") }
-    if (!name || name.length < 2) { errors.push("Please enter a valid spot name") }
-    if (!description || description.length < 5) { errors.push("Description is required") }
-    if (!price || price < 1) { errors.push("Please enter a valid price") }
+    if (!address || address.length > 20) { errors.push("Address is required and must be less than 20 characters") }
+    if (!city || city.length > 15) { errors.push("City is required and must be less than 15 characters") }
+    if (!state || state.length > 10) { errors.push("State is required and must be less than 10 characters") }
+    if (!country || country.length > 15) { errors.push("Country is required and must be less than 15 characters") }
+    if (!name || name.length > 20) { errors.push("Name is required and must be less than 20 characters") }
+    if (!description || description.length > 250) { errors.push("Description is required and must be be less than 250 characters")}
+    if (!price || price < 0) { errors.push("Price per day is required and must be more than $0") }
+
 
     setValidationErrors(errors)
   }, [name, address, city, state, country, description, price])
