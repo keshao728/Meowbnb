@@ -13,8 +13,8 @@ function LoginForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
-    return dispatch(sessionActions.login({ credential, password })).catch(
-      async (res) => {
+    return dispatch(sessionActions.login({ credential, password }))
+    .catch(async (res) => {
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);
       }
@@ -25,7 +25,7 @@ function LoginForm() {
     <div className="full-login-form">
       <form onSubmit={handleSubmit}>
         <ul>
-          {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+        {errors.map((error, idx) => <li className="error-handling" key={idx}>{error}</li>)}
         </ul>
         <div className='form-input'>
 
@@ -44,7 +44,7 @@ function LoginForm() {
             </label>
             <label>
               <input
-                className="input"
+                className="input password"
                 placeholder='Password'
                 type="password"
                 value={password}

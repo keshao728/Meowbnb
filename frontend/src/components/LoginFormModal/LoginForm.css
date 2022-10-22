@@ -10,8 +10,6 @@
   margin-top: 10px;
   opacity: 1;
   visibility: visible;
-  /* margin-bottom: 10px; */
-  /* padding: 8px 15px; */
 }
 
 .input {
@@ -25,7 +23,6 @@
   border-bottom: 1px solid #AFAFAF;
   width: 100%;
   font-size: 12px;
-
 }
 
 .button-login {
@@ -44,6 +41,7 @@
   border-top: 1px solid #AFAFAF;
   margin-top: 20px;
 }
+
 .demo-user-button{
   border-radius: 6px;
   font-size: 12px;
@@ -63,6 +61,7 @@
   border-radius: 10px;
   height: 300px;
   width: 264px;
+  /* border-bottom: 'none'; */
 }
 
 .modal-button{
@@ -80,3 +79,7 @@
   background-color:#F7F7F7;
   cursor: pointer;
 }
+
+/* .password{
+  border-bottom: none;
+} */

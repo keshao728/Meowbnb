@@ -46,7 +46,7 @@
   /* left: 50%; */
   width: 100%;
   padding: 10px 15px;
-  margin-top: 10%;
+  margin-top: 50px;
   font-weight: bold;
 }
 
@@ -58,8 +58,8 @@
 .full-signup-form{
   padding: 24px 24px;
   border-radius: 10px;
-  height: 420px;
-  width: 300px;
+  height: 430px;
+  width: 330px;
 }
 
 .modal-button{
@@ -80,3 +80,14 @@
 /* label :last-of-type{
   border-bottom: 0;
 } */
+
+.password{
+  border-bottom: none;
+}
+
+.error-handling{
+  position: absolute;
+  color: red;
+  font-size: 12px;
+  margin-top:330px
+}

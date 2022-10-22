@@ -35,7 +35,7 @@ function SignupForm() {
 
       <form onSubmit={handleSubmit}>
         <ul>
-          {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+          {errors.map((error, idx) => <li className="error-handling" key={idx}>{error}</li>)}
         </ul>
         <div className="signup-full-form">
           <h3 className="welcome-message">Welcome to Meowbnb</h3>
@@ -94,7 +94,7 @@ function SignupForm() {
               <input
                 placeholder="Confirm Password"
                 type="password"
-                className="input"
+                className="input password"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 required
