@@ -158,7 +158,7 @@ const SingleSpotBrowser = () => {
               </NavLink>
             </div>
           }
-          {!allowReviewAction &&
+          {!allowReviewAction && !alreadyReviewed &&
             <div className='review-this-spot'>
               <NavLink className="review-click"
                 to="/spots/my-spots">
