@@ -17,28 +17,26 @@
 
 .host-message {
   text-align: center;
-  margin-bottom: 50px;
+  /* margin-bottom: 50px; */
+  margin-bottom: 10%;
+}
+
+.host-form-parent {
+  width: 500px;
 }
 
 .full-host-form {
-  /* display: flex;
-  justify-content: center; */
+  display: flex;
+  justify-content: center;
   border: 0;
-  padding: 24px 24px;
+  /* padding: 24px 24px; */
   border-radius: 31px;
-  width: 600px;
-  margin: 50px 650px ;
+  /* width: 600px; */
+  /* margin: 50px 650px ; */
+  margin: 5% 0%
+
 }
 
-/* .host-form{
-  border: 1px solid #AFAFAF;
-  margin: 20px;
-  border-radius: 31px;
-} */
-
-/* .host-form-parent {
-  padding: 24px 24px;
-} */
 
 .host-input {
   border: 0;
