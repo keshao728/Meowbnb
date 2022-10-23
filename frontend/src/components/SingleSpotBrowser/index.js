@@ -50,7 +50,7 @@ const SingleSpotBrowser = () => {
       <div className="browser-wrapper">
         {currSpot.id &&
           <div className="single-spot-parent">
-            <div>
+            <div className="top-spot">
               <div className="spot-name">
                 {currSpot.name}
               </div>

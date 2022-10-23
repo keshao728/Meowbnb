@@ -4,24 +4,25 @@
 
 .big-image {
   object-fit: cover;
-  width: 600px;
-  height: 560px;
+  width: 50%;
+  height: 500px;
   border-top-left-radius: 15px;
   border-bottom-left-radius: 15px;
-  /* padding: 24px; */
 }
 
 .spot-details {
   font-size: 15px;
   display: flex;
   flex-direction: row;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   justify-content: flex-start;
   align-items: flex-start;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis
 }
+
+
 
 .spot-star {
   margin-right: 2px;
@@ -31,8 +32,9 @@
 
 .spot-name {
   font-size: 26px;
-  margin-top: 40px;
   font-weight: bold;
+  margin-top: 30px;
+  margin-bottom: 10px;
 }
 
 .review-star-foot {
@@ -72,12 +74,13 @@
 .middle-spot-items {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
 }
 
 .browser-wrapper {
   /* display: flex; */
   /* flex-direction: column; */
-  padding: 20px 100px;
+  padding: 20px 180px;
   margin-left: 5%;
   border-top: 1px solid #EBEBEB;
   border-bottom: 1px solid #EBEBEB;
