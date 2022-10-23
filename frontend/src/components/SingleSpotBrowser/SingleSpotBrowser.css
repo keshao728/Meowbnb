@@ -31,14 +31,14 @@
 
 .spot-name {
   font-size: 26px;
-  margin-top: 20px;
+  margin-top: 12px;
 }
 
 .review-star-foot {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 0px 110px;
+
   flex-wrap: wrap;
   gap: 10px;
   width: 600px;
@@ -48,10 +48,10 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 10px 110px;
+  /* padding: 10px 110px; */
   flex-wrap: wrap;
   gap: 10px;
-  width: 600px;
+  /* width: 600px; */
 }
 
 
@@ -68,32 +68,40 @@
 }
 
 
-.browser-wrapper {
+.middle-spot-items {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+}
+
+.browser-wrapper {
+  /* display: flex; */
+  /* flex-direction: column; */
   padding: 20px 100px;
-  margin-left: 200px;
+  margin-left: 5%;
   border-top: 1px solid #EBEBEB;
   border-bottom: 1px solid #EBEBEB;
 }
 
 .reviews-wrapper {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
   gap: 10px 60px;
   margin-top: 20px;
+  width: 83%;
 }
 
 .reviews {
-  padding: 10px 0px;
-  width: 270px;
+  width: 100%;
+  padding: 20px 0px;
 }
+
 .aircover-pic {
   width: 130px;
   margin-top: 35px;
 }
 
-.aircover-des{
+.aircover-des {
   margin-top: 30px;
   margin-bottom: 35px;
   font-size: 15px;
@@ -107,34 +115,27 @@
 .spot-price {
   display: flex;
   align-items: center;
-  border: rgba(235, 233, 233, 0.5) solid 1px;
-  box-shadow: 2px 2px 5px rgb(148, 148, 148);
+  flex-wrap: wrap;
+  border: solid 1px #AFAFAF;
+  box-shadow: 2px 2px 5px #AFAFAF;
   width: fit-content;
   height: fit-content;
   border-radius: 12px;
   padding: 20px;
-  margin-left: auto;
+  margin-left: 30px;
   position: sticky;
-  top: 785px;
+  top: 700px;
   border: 1px solid #EBEBEB;
   border-radius: 15px;
-  padding-bottom: 35px;
 }
 
-.own-this-spot{
+.own-this-spot {
   font-size: 12px;
 }
 
 .spot-price-child {
   padding: 10px;
-  /* margin-bottom: 5px; */
   font-size: 16px;
-}
-
-.big-mother {
-  display: flex;
-  flex-direction: row;
-  /* justify-content: flex-start; */
 }
 
 .profile-name {
@@ -181,8 +182,6 @@
   margin-top: 8px;
   word-wrap: break-word;
   font-size: 15px;
-  /* overflow: hidden; */
-  /* text-overflow: ellipsis */
 }
 
 .spot-hosted {
@@ -198,7 +197,7 @@
   font-weight: bold;
 }
 
-.stars-n-review{
+.stars-n-review {
   font-size: 19px;
   margin-top: 30px;
   font-weight: bold;
@@ -215,7 +214,7 @@
   /* border-bottom: 1px solid #EBEBEB; */
 }
 
-.aircover-parent{
+.aircover-parent {
   border-top: 1px solid #AFAFAF;
 }
 
@@ -253,11 +252,16 @@
   border: 0;
   background-color: #E21C5F;
   color: white;
-  /* top: 50%; */
-  /* left: 50%; */
   width: 100%;
   padding: 10px 15px;
   margin-top: 10%;
   font-weight: bold;
-  margin-left: 20px;
+  /* margin-left: 20px; */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis
+}
+
+.review-this-spot{
+  padding: 10px;
 }
