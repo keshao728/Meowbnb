@@ -27,7 +27,7 @@ function LoginForm() {
       <form onSubmit={handleSubmit}>
       <h3 className="welcome-message">Welcome to Meowbnb!</h3>
         <ul className="login-error-validation">
-          {errors.map((error, idx) => (
+          {errors?.map((error, idx) => (
             <li key={idx} className="error-handling">
               {error}
             </li>

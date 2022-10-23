@@ -36,7 +36,7 @@ function SignupForm() {
       <form onSubmit={handleSubmit}>
         <h3 className="welcome-message">Welcome to Meowbnb!</h3>
         <ul className="error-mother">
-          {errors.map((error, idx) =>
+          {errors?.map((error, idx) =>
             <li className="error-handling" key={idx}>{error}</li>)}
         </ul>
         <div className="signup-full-form">
