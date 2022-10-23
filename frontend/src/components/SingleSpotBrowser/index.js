@@ -74,7 +74,7 @@ const SingleSpotBrowser = () => {
               </div>
             </div>
             <div className="middle-spot-items">
-              <div>
+              <div className="left-middle">
                 <div className="spot-hosted">
                   <div className="hosted-by"> Spot hosted by {currSpot.Owner.firstName} {currSpot.Owner.lastName}</div>
                   {/* {console.log(currSpot)} */}

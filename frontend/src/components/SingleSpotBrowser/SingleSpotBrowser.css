@@ -68,8 +68,13 @@
   border-bottom: 1px solid #AFAFAF;
   padding: 45px 0px;
   font-size: 15px;
+  display: inline-block;
+  word-break: break-word;
 }
 
+.left-middle{
+  width: 70%;
+}
 
 .middle-spot-items {
   display: flex;
