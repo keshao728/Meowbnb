@@ -98,7 +98,10 @@ const SingleSpotBrowser = () => {
             </div>
             {/* </div> */}
 
-
+          <div className="aircover-parent">
+            <img className="aircover-pic" src="https://a0.muscache.com/im/pictures/54e427bb-9cb7-4a81-94cf-78f19156faad.jpg" />
+          <div className="aircover-des">Every booking includes free protection from Host cancellations, listing inaccuracies, and other issues like trouble checking in.</div>
+          </div>
             <div>
               <div className="spot-description">
                 {currSpot.description}
@@ -108,7 +111,7 @@ const SingleSpotBrowser = () => {
         }
         <div className="review-star-foot">
 
-          <h3>★ {currSpot.avgStarRating > 0 ? Number(currSpot.avgStarRating).toFixed(2) : 'New'} · {currSpot.numReviews} reviews</h3>
+          <div className="hosted-by">★ {currSpot.avgStarRating > 0 ? Number(currSpot.avgStarRating).toFixed(2) : 'New'} · {currSpot.numReviews} reviews</div>
         </div>
         <div className="single-spot-parent">
           {/* {console.log("AVG RATING FOR CURR SPOT", currSpot.avgStarRating)} */}

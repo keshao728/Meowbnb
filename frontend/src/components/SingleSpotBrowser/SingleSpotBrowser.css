@@ -1,3 +1,7 @@
+* {
+  font-family: 'Montserrat', sans-serif;
+}
+
 .big-image {
   object-fit: cover;
   width: 600px;
@@ -60,6 +64,7 @@
   border-top: 1px solid #AFAFAF;
   border-bottom: 1px solid #AFAFAF;
   padding: 40px 0px;
+  font-size: 15px;
 }
 
 
@@ -75,13 +80,23 @@
 .reviews-wrapper {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 10px 60px
-  /* margin-top: 0; */
+  gap: 10px 60px;
+  margin-top: 10px;
 }
 
 .reviews {
   padding: 10px 0px;
   width: 270px;
+}
+.aircover-pic {
+  width: 140px;
+  margin-top: 30px;
+}
+
+.aircover-des{
+  margin-top: 30px;
+  margin-bottom: 30px;
+  font-size: 15px;
 }
 
 .user-review-date {
@@ -153,6 +168,7 @@
 .review-username {
   margin-top: 1px;
   margin-left: 10px;
+
 }
 
 .user-review-date {
@@ -164,7 +180,7 @@
 .review-message {
   margin-top: 8px;
   word-wrap: break-word;
-  /* font-size: 16px; */
+  font-size: 15px;
   /* overflow: hidden; */
   /* text-overflow: ellipsis */
 }
@@ -190,6 +206,11 @@
 
 #super {
   margin-bottom: 40px;
+  /* border-bottom: 1px solid #EBEBEB; */
+}
+
+.aircover-parent{
+  border-top: 1px solid #AFAFAF;
 }
 
 .fa-door-open {
