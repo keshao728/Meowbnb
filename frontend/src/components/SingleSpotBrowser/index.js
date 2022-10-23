@@ -111,7 +111,7 @@ const SingleSpotBrowser = () => {
         }
         <div className="review-star-foot">
 
-          <div className="hosted-by">★ {currSpot.avgStarRating > 0 ? Number(currSpot.avgStarRating).toFixed(2) : 'New'} · {currSpot.numReviews} reviews</div>
+          <div className="stars-n-review">★ {currSpot.avgStarRating > 0 ? Number(currSpot.avgStarRating).toFixed(2) : 'New'} · {currSpot.numReviews} reviews</div>
         </div>
         <div className="single-spot-parent">
           {/* {console.log("AVG RATING FOR CURR SPOT", currSpot.avgStarRating)} */}
