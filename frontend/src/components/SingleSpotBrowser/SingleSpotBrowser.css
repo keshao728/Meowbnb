@@ -80,8 +80,8 @@
 .browser-wrapper {
   /* display: flex; */
   /* flex-direction: column; */
-  padding: 20px 180px;
-  margin-left: 5%;
+  padding: 20px 230px;
+  /* margin-left: 5%; */
   border-top: 1px solid #EBEBEB;
   border-bottom: 1px solid #EBEBEB;
 }
