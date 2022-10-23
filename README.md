@@ -29,14 +29,21 @@ Cat2: ⭐⭐⭐⭐⭐
 
 <h2>Technologies:</h2>
 
-<p>Frontend:</a>
+<h4> Languages: </h4>
+
+![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
+![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+
+
+<h4>Frontend:</a>
 
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
 ![Redux](https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white)
-![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
 
 
-<p>Backend:</p>
+
+<h4>Backend:</h4>
 
 ![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
 ![sequelize](https://img.shields.io/badge/Sequelize-52B0E7?style=for-the-badge&logo=Sequelize&logoColor=white)
@@ -46,27 +53,52 @@ Cat2: ⭐⭐⭐⭐⭐
 <br>
 <br>
 
-<h2> Sign Up - Log In - Log Out: </h2>
+<h2> Features </h2>
+
+<h4> Sign Up - Log In - Log Out: </h3>
 
 <a href="https://imgur.com/rWvpHbI"><img src="https://i.imgur.com/rWvpHbI.gif" title="source: imgur.com" /></a>
 
 <br>
 <br>
 
-<h2> Single Spot Browser</h2>
+<h4> Single Spot Browser:</h4>
 <a href="https://imgur.com/qibVmu4"><img src="https://i.imgur.com/qibVmu4.gif" title="source: imgur.com" /></a>
 
 <br>
 <br>
 
-<h2> My Spots </h2>
+<h4> My Spots:</h4>
 <a href="https://imgur.com/Ob9fKQs"><img src="https://i.imgur.com/Ob9fKQs.gif" title="source: imgur.com" /></a>
 
 <br>
 <br>
 
-<h2> My Reviews </h2>
+<h4> My Reviews:</h4>
 <a href="https://imgur.com/8sViPlb"><img src="https://i.imgur.com/8sViPlb.gif" title="source: imgur.com" /></a>
+<br>
+<br>
+
+
+
+<h2> Run Locally </h2>
+
+1. Clone my repository or download zip:
+```
+git@github.com:keshao728/Meowbnb.git
+```
+2. Within your terminal, install dependencies in both front end and backend:
+```
+npm install
+```
+3. Migrate and seed existing database:
+```
+npm run dbms
+```
+4. Start the server in both backend and frontend directory:
+```
+npm start
+```
 <br>
 <br>
 
