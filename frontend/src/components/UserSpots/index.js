@@ -53,8 +53,10 @@ const UserSpots = () => {
   return (
     <div className="mother">
       <h2 className="user-spot-message">Manage Your Listings Meow!!!</h2>
-      {allSpotsArr < 1 && (<img className="no-spot-meow" alt="no-spot-meow" src="https://drive.google.com/uc?export=view&id=1j_TgRhozzklKVuQfq1OVo3eBRXGPai3K" title="Meowbnb logo" />)}
-      {allSpotsArr < 1 && <h4 className="no-spot"> No listing yet.. </h4>}
+      <div className="no-spot-mother">
+        {allSpotsArr < 1 && (<img className="no-spot-meow" alt="no-spot-meow" src="https://drive.google.com/uc?export=view&id=1j_TgRhozzklKVuQfq1OVo3eBRXGPai3K" title="Meowbnb logo" />)}
+        {allSpotsArr < 1 && <h4 className="no-spot"> No listing yet.. </h4>}
+      </div>
       <div className="spot-mother">
         {ownedSpots?.map((spot) => (
           <div className="all-owned-spot">

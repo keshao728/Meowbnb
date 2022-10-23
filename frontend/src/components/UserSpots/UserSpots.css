@@ -9,6 +9,7 @@
   justify-items: center;
 }
 
+
 .user-spot-image {
   object-fit: cover;
   width: 600px;
@@ -22,7 +23,6 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* padding: 0% 10/%; */
   flex-wrap: wrap;
   gap: 10px;
   width: 600px;
@@ -54,20 +54,19 @@
 }
 
 .user-spot-message {
-  text-align: center;
-  margin-top: 50px;
-  margin-bottom: 0px;
-}
-
-.no-spot {
-  text-align: center;
-  margin-top: 70px;
-  margin-bottom: 0px;
+  margin-top: 3%;
+  display: flex;
+  justify-content: center;
 }
 
 .no-spot-meow {
-  margin-top: 100px;
-  margin-left: 655px;
+width: 600px;
+}
+
+.no-spot-mother{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .spots{
