@@ -80,9 +80,9 @@ const ReviewSpot = () => {
             />
           </label>
 
-          <div className='create-review-input-rating'>
-            <label>
-              ★<input
+          <div className='star-rating'>
+            <label className="stars-box">
+              ★&nbsp;<input
                 type='number'
                 min='1' max='5'
                 step="1"
