@@ -26,6 +26,14 @@
   flex-wrap: wrap;
   gap: 10px;
   width: 600px;
+  padding: 10px;
+  border: 1px solid #EBEBEB;
+  border-radius: 15px;
+}
+
+.all-owned-spot:hover{
+  background-color: #F7F7F7;
+
 }
 
 .delete-edit {

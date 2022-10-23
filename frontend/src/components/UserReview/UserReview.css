@@ -30,6 +30,9 @@
   border: 1px solid #EBEBEB;
   border-radius: 15px;
 }
+.review-child:hover {
+  background-color: #F7F7F7;
+}
 
 .review-mother{
   display: grid;
