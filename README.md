@@ -29,21 +29,21 @@ Cat2: ⭐⭐⭐⭐⭐
 
 <h2>Technologies:</h2>
 
-<h4> Languages: </h4>
+<h3> Languages: </h3>
 
 ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
 ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
 
 
-<h4>Frontend:</a>
+<h3>Frontend:</a>
 
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
 ![Redux](https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white)
 
 
 
-<h4>Backend:</h4>
+<h3>Backend:</h3>
 
 ![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
 ![sequelize](https://img.shields.io/badge/Sequelize-52B0E7?style=for-the-badge&logo=Sequelize&logoColor=white)
@@ -55,26 +55,26 @@ Cat2: ⭐⭐⭐⭐⭐
 
 <h2> Features </h2>
 
-<h4> Sign Up - Log In - Log Out: </h3>
+<h3> Sign Up - Log In - Log Out: </h3>
 
 <a href="https://imgur.com/rWvpHbI"><img src="https://i.imgur.com/rWvpHbI.gif" title="source: imgur.com" /></a>
 
 <br>
 <br>
 
-<h4> Single Spot Browser:</h4>
+<h3> Single Spot Browser:</h3>
 <a href="https://imgur.com/qibVmu4"><img src="https://i.imgur.com/qibVmu4.gif" title="source: imgur.com" /></a>
 
 <br>
 <br>
 
-<h4> My Spots:</h4>
+<h3> My Spots:</h3>
 <a href="https://imgur.com/Ob9fKQs"><img src="https://i.imgur.com/Ob9fKQs.gif" title="source: imgur.com" /></a>
 
 <br>
 <br>
 
-<h4> My Reviews:</h4>
+<h3> My Reviews:</h3>
 <a href="https://imgur.com/8sViPlb"><img src="https://i.imgur.com/8sViPlb.gif" title="source: imgur.com" /></a>
 <br>
 <br>
