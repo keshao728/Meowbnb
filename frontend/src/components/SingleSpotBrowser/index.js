@@ -51,9 +51,9 @@ const SingleSpotBrowser = () => {
         {currSpot.id &&
           <div className="single-spot-parent">
             <div>
-              <strong className="spot-name">
+              <div className="spot-name">
                 {currSpot.name}
-              </strong>
+              </div>
 
               <div className="spot-details">
                 <div className="spot-star">

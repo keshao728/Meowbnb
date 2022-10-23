@@ -31,7 +31,8 @@
 
 .spot-name {
   font-size: 26px;
-  margin-top: 12px;
+  margin-top: 40px;
+  font-weight: bold;
 }
 
 .review-star-foot {
