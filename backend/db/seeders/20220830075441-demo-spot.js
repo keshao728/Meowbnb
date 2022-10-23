@@ -54,7 +54,7 @@ module.exports = {
       },
       {
         //5
-        ownerId: 1,
+        ownerId: 4,
         address: '321 Op Ave',
         city: 'Fairfield',
         state: 'California',
@@ -113,13 +113,13 @@ module.exports = {
       ownerId: {
         [Op.in]: [
           2,
-          5,
-          8,
-          10,
-          1,
           3,
+          4,
+          5,
           6,
           7,
+          8,
+          10,
         ]
       }
     });
