@@ -89,7 +89,7 @@ module.exports = {
         lng: -88.88,
         name: 'Outside of the House',
         description: 'Enjoy some fresh air.',
-        price: 0
+        price: 1
       },
       {
         //8
