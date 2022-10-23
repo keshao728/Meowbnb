@@ -27,7 +27,7 @@
 .spot-star {
   margin-right: 2px;
   align-items: center;
-  margin-bottom: 0;
+  /* margin-bottom: 0px; */
 }
 
 .spot-name {
@@ -64,9 +64,9 @@
 }
 
 .spot-description {
-  border-top: 1px solid #AFAFAF;
-  border-bottom: 1px solid #AFAFAF;
-  padding: 45px 0px;
+  margin-top: 10px;
+  /* border-top: 1px solid #AFAFAF; */
+  padding: 35px 0px;
   font-size: 15px;
   display: inline-block;
   word-break: break-word;
@@ -74,6 +74,7 @@
 }
 
 .left-middle{
+  border-bottom: 1px solid #AFAFAF;
   width: 70%;
 }
 
@@ -113,7 +114,7 @@
 
 .aircover-des {
   margin-top: 30px;
-  margin-bottom: 35px;
+  margin-bottom: 40px;
   font-size: 15px;
 }
 
@@ -226,6 +227,7 @@
 
 .aircover-parent {
   border-top: 1px solid #AFAFAF;
+  border-bottom: 1px solid #AFAFAF;
 }
 
 .fa-door-open {
