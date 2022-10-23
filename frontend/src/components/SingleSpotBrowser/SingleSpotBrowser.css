@@ -41,10 +41,11 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-
+  margin-top: 20px;
   flex-wrap: wrap;
   gap: 10px;
-  width: 600px;
+  width: 100%;
+  border-top: 1px solid #AFAFAF;
 }
 
 .single-spot-parent {
@@ -73,8 +74,8 @@
   width: 100%;
 }
 
-.left-middle{
-  border-bottom: 1px solid #AFAFAF;
+.left-middle {
+  /* border-bottom: 1px solid #AFAFAF; */
   width: 70%;
 }
 
@@ -84,6 +85,9 @@
   justify-content: space-between;
 }
 
+/* .MT{
+ padding: 20px;
+} */
 .browser-wrapper {
   /* display: flex; */
   /* flex-direction: column; */
@@ -94,16 +98,17 @@
 }
 
 .reviews-wrapper {
+  /* border-top: 1px solid #EBEBEB; */
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   flex-wrap: wrap;
-  gap: 10px 60px;
+  gap: 30px 60px;
   margin-top: 20px;
-  width: 83%;
+  width: 100%;
 }
 
 .reviews {
-  width: 100%;
+  width: 45%;
   padding: 20px 0px;
 }
 
@@ -152,13 +157,12 @@
 .profile-name {
   display: flex;
   flex-direction: row;
-  width: 200px;
 }
 
 .review-name-date {
   display: flex;
   flex-direction: column;
-  width: 200px;
+  width: 100%;
   align-content: flex-start;
   /* justify-items: end; */
 }
@@ -180,7 +184,6 @@
 .review-username {
   margin-top: 1px;
   margin-left: 10px;
-
 }
 
 .user-review-date {
@@ -212,6 +215,7 @@
   font-size: 19px;
   margin-top: 30px;
   font-weight: bold;
+  width: 100%;
 }
 
 .self-check-in {
@@ -274,6 +278,6 @@
   text-overflow: ellipsis
 }
 
-.review-this-spot{
+.review-this-spot {
   padding: 10px;
 }

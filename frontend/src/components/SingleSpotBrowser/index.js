@@ -145,6 +145,7 @@ const SingleSpotBrowser = () => {
                     </div>
                   }
                 </div>
+                  {/* <div className="MT"></div> */}
               </div>
             </div>
           </div>
