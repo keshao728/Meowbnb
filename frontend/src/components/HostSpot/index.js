@@ -215,7 +215,7 @@ const HostSpot = () => {
           <label>
             <input
               placeholder="Image (url only)"
-              type="text"
+              type="url"
               className="host-input"
               value={url}
               onChange={(e) => setUrl(e.target.value)}
