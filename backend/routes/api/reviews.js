@@ -75,7 +75,8 @@ router.get('/current', requireAuth, async (req, res, next) => {
 
   for (let review of currentUserReview) {
     let spotimage = await SpotImage.findByPk(review.id, { where: { preview: true }, attributes: ['url'] })
-    let data = review.toJSON()
+    let data = await review.toJSON()
+    console.log("BACKEND REVIEW DATA", data)
     // data.Spot.previewImage = spotimage.url
     if (!spotimage) {
       data.Spot.previewImage = null
