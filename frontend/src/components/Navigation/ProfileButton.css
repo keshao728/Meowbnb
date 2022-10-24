@@ -95,6 +95,8 @@
 .user-info {
   border-bottom: 1px solid #AFAFAF;
   /* margin: 5px 0px; */
+  display: inline-block;
+  word-break: break-word;
 
 }
 
