@@ -23,7 +23,7 @@ const ReviewSpot = () => {
   useEffect(() => {
     const errors = []
     if (!review || review.length < 5 || review.length > 200) errors.push('Please enter more than 5 characters and less than 200 characters')
-    if (!stars || stars < 1 || !Number(stars)|| stars >= 5) errors.push("Please enter a valid rating between 1 to 5 stars")
+    if (!stars || !Number(stars)) errors.push("Please enter a valid rating between 1 to 5 stars")
 
     setValidationErrors(errors)
   }, [review])
