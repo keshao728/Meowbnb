@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import * as sessionActions from "../../store/session";
 import './SignupForm.css';
 
-function SignupForm() {
+function SignupForm({ setShowModal }) {
   const dispatch = useDispatch();
   // const sessionUser = useSelector((state) => state.session.user);
   const [firstName, setFirstName] = useState("")
@@ -31,77 +31,88 @@ function SignupForm() {
     return setErrors(['Confirm Password field must be the same as the Password field']);
   };
 
+  const closeModal = () => {
+    setShowModal(false);
+  }
+
   return (
     <div className="full-signup-form">
+      <div className="login-title-wrap">
+        <div className="login-title">
+          <div className="login-close" onClick={closeModal}>x</div>
+          <div className="login-title-item"> Sign Up </div>
+          <div></div>
+        </div>
+      </div>
 
-      <form onSubmit={handleSubmit}>
+      <form className="signup-form-mother" onSubmit={handleSubmit}>
         <h3 className="welcome-message">Welcome to Meowbnb!</h3>
         <ul className="error-mother">
           {errors?.map((error, idx) =>
             <li className="error-handling" key={idx}>{error}</li>)}
         </ul>
-        <div className="signup-full-form">
-          <div className="input-parent" id="input-parent-id">
-            <label>
+        <div className="signup-form-wrapper">
+          <div className="login-input-parent" id="input-parent-id">
+            <div className="signup-input-box">
               <input
-                placeholder="First Name"
                 type="text"
-                className="input"
+                className="signup-input"
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
-              // required
+                required
               />
-            </label>
-            <label>
+              <label>First Name</label>
+            </div>
+            <div className="signup-input-box">
               <input
-                placeholder="Last Name"
                 type="text"
-                className="input"
+                className="signup-input"
                 value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
-              // required
+                required
               />
-            </label>
-            <label>
+              <label>Last Name</label>
+            </div>
+            <div className="signup-input-box">
               <input
-                placeholder="Email"
                 type="text"
-                className="input"
+                className="signup-input"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-              // required
+                required
               />
-            </label>
-            <label>
+              <label>Email</label>
+            </div>
+            <div className="signup-input-box">
               <input
-                placeholder="Username"
                 type="text"
-                className="input"
+                className="signup-input"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-              // required
+                required
               />
-            </label>
-            <label>
+              <label>Username</label>
+            </div>
+            <div className="signup-input-box">
               <input
-                placeholder="Password"
                 type="password"
-                className="input"
+                className="signup-input"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-              // required
+                required
               />
-            </label>
-            <label>
+              <label>Password</label>
+            </div>
+            <div className="signup-input-box password">
               <input
-                placeholder="Confirm Password"
                 type="password"
-                className="input password"
+                className="signup-input"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
-              // required
+                required
               />
-            </label>
+              <label>Confirm Password</label>
+            </div>
           </div>
           <button className="button-signup" type="submit">Sign Up</button>
         </div>

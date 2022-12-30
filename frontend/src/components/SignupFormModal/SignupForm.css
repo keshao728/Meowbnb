@@ -2,12 +2,11 @@
   font-family: 'Montserrat', sans-serif;
 }
 
-.input-parent {
+/* .input-parent {
   border-radius: 15px;
   background-color: #fff;
   border: 1px solid #AFAFAF;
   overflow: hidden;
-  margin-top: 10px;
   opacity: 1;
   visibility: visible;
 }
@@ -23,6 +22,69 @@
   border-bottom: 1px solid #AFAFAF;
   width: 100%;
   font-size: 12px;
+} */
+
+
+.signup-input-parent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  overflow: hidden;
+  opacity: 1;
+  visibility: visible;
+  border-radius: 10px;
+  border: #AFAFAF 1px solid;
+}
+
+.signup-input-box {
+  position: relative;
+  width: 100%;
+  border-bottom: #AFAFAF 1px solid;
+}
+
+.signup-input-box input {
+  width: 100%;
+  padding-top: 28px;
+  padding-left: 10px;
+  padding-right: 20px;
+  padding-bottom: 10px;
+  font-size: 18px;
+  /* background: #EDEDED; */
+  font: inherit;
+  border: none;
+  color: rgb(0, 0, 0);
+}
+
+.signup-input-box input:focus {
+  background-color: #F9F9F9;
+}
+
+.signup-input-box label {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  padding: 10px;
+  font-size: 14px;
+  pointer-events: none;
+  transition: .5s;
+  color: #666666;
+}
+
+.signup-input-box input:valid+label,
+.signup-input-box input:focus+label {
+  font-size: 12px;
+  top: -2px;
+  left: 0;
+
+}
+
+.signup-input {
+  border: 0;
+  outline: none;
+  box-shadow: none;
+  display: block;
+  border-bottom: 1px solid #AFAFAF;
 }
 
 .button-signup {
@@ -32,29 +94,38 @@
   background-color: #E21C5F;
   color: white;
   width: 100%;
-  padding: 10px 15px;
-  margin-top: 25px;
+  padding: 15px 15px;
+  margin-top: 30px;
   margin-bottom: 25px;
   font-weight: bold;
 }
 
-.button-signup:hover{
+.button-signup:hover {
   background-color: #DD1362;
   cursor: pointer;
 }
 
-.welcome-message{
+.welcome-message {
   text-align: left;
   margin-left: 1%;
   margin-top: 30px;
+  font-size: 20px;
+}
+
+.signup-form-mother {
+  margin: 0px 25px;
+}
+
+.signup-form-wrapper {
+  margin-top: -10px;
 }
 
 .full-signup-form {
   display: flex;
   flex-direction: column;
   border-radius: 12px;
-  margin: 0px 25px;
-  width: 330px;
+  /* margin: 0px 25px; */
+  width: 500px;
   z-index: 0px;
 }
 
@@ -89,5 +160,3 @@
   color: #DD1362;
   margin-bottom: 22px;
 }
-
-
