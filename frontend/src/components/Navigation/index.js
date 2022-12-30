@@ -68,8 +68,13 @@ function Navigation({ isLoaded }) {
     );
   }
 
+  // if (this.props.location.pathname === '/spots/:spotId') {
+  //   let nav = document.getElementById('full-nav')
+  //   nav.style.backgroundColor = "red"
+  // }
+
   return (
-    <div className='full-navigation'>
+    <div className='full-navigation' id="full-nav">
       <div className='left-nav' id="navs">
         <NavLink className="home-button" exact to="/">
           <img id="icon" src="https://drive.google.com/uc?export=view&id=1gemygEIn5eArP1LTHdzR6bXpt87jT3uO" alt="Meowbnb Icon"></img>

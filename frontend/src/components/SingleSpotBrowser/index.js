@@ -120,15 +120,24 @@ const SingleSpotBrowser = () => {
                     </strong>
                     &nbsp;/&nbsp;night
                   </div>
-                  {allowReviewAction &&
+                  <div className="spot-sticky-review">
+                    <div className="spot-star">
+                      <i className="fa-solid fa-paw"></i>
+                      &nbsp;
+                      {currSpot.avgStarRating > 0 ? Number(currSpot.avgStarRating).toFixed(2) : 'New'}
+                      &nbsp;&nbsp;·
+                    </div>
+                    <div>&nbsp;&nbsp;{currSpot.numReviews} reviews</div>
+                  </div>
+                  {/* {allowReviewAction &&
                     <div className='review-this-spot'>
                       <NavLink className="review-click"
                         to={`/spots/${currSpot.id}/review`}>
                         Review This Spot
                       </NavLink>
                     </div>
-                  }
-                  {!allowReviewAction && sessionUser && !alreadyReviewed &&
+                  } */}
+                  {/* {!allowReviewAction && sessionUser && !alreadyReviewed &&
                     <div className='review-this-spot'>
                       <NavLink className="review-click"
                         to="/spots/my-spots">
@@ -143,16 +152,39 @@ const SingleSpotBrowser = () => {
                         Manage My Reviews
                       </NavLink>
                     </div>
-                  }
+                  } */}
                 </div>
-                  {/* <div className="MT"></div> */}
+                {/* <div className="MT"></div> */}
               </div>
             </div>
           </div>
         }
         <div className="review-star-foot">
-
           <div className="stars-n-review">★ {currSpot.avgStarRating > 0 ? Number(currSpot.avgStarRating).toFixed(2) : 'New'} · {currSpot.numReviews} reviews</div>
+          {allowReviewAction &&
+            <div className='review-this-spot'>
+              <NavLink className="review-click"
+                to={`/spots/${currSpot.id}/review`}>
+                Review This Spot
+              </NavLink>
+            </div>
+          }
+          {!allowReviewAction && sessionUser && !alreadyReviewed &&
+            <div className='review-this-spot'>
+              <NavLink className="review-click"
+                to="/spots/my-spots">
+                Manage My Spot
+              </NavLink>
+            </div>
+          }
+          {alreadyReviewed &&
+            <div className='review-this-spot'>
+              <NavLink className="review-click"
+                to="/spots/my-reviews">
+                Manage My Reviews
+              </NavLink>
+            </div>
+          }
         </div>
         <div className="single-spot-parent">
           {/* {console.log("AVG RATING FOR CURR SPOT", currSpot.avgStarRating)} */}

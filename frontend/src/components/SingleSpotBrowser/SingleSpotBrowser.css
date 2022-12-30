@@ -39,14 +39,15 @@
 
 .review-star-foot {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: row;
+  align-content: space-between;
   margin-top: 20px;
-  flex-wrap: wrap;
-  gap: 10px;
   width: 100%;
+  height: 60px;
+  position:relative;
   border-top: 1px solid #AFAFAF;
 }
+
 
 .single-spot-parent {
   display: flex;
@@ -66,7 +67,6 @@
 
 .spot-description {
   margin-top: 10px;
-  /* border-top: 1px solid #AFAFAF; */
   padding: 35px 0px;
   font-size: 15px;
   display: inline-block;
@@ -75,7 +75,6 @@
 }
 
 .left-middle {
-  /* border-bottom: 1px solid #AFAFAF; */
   width: 70%;
 }
 
@@ -85,15 +84,23 @@
   justify-content: space-between;
 }
 
-/* .MT{
- padding: 20px;
-} */
+.spot-price-mother{
+  width: 30%;
+}
+
+.big-mother{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
+
 .browser-wrapper {
-  /* display: flex; */
-  /* flex-direction: column; */
-  padding: 30px 230px;
-  /* margin-left: 5%; */
-  border-top: 1px solid #EBEBEB;
+  display: flex;
+  flex-direction: column;
+  width:60%;
+  /* padding: 30px 260px; */
   border-bottom: 1px solid #EBEBEB;
 }
 
@@ -131,18 +138,21 @@
 .spot-price {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   flex-wrap: wrap;
   border: solid 1px #AFAFAF;
   box-shadow: 2px 2px 5px #AFAFAF;
-  width: fit-content;
+  /* width: fit-content; */
+  /* width: 300px; */
+  width: 80%;
   height: fit-content;
   border-radius: 12px;
   padding: 20px;
-  margin-left: 30px;
+  margin-left: 25px;
   position: sticky;
   top: 700px;
   border: 1px solid #EBEBEB;
-  border-radius: 15px;
+  border-radius: 12px;
 }
 
 .own-this-spot {
@@ -150,7 +160,7 @@
 }
 
 .spot-price-child {
-  padding: 10px;
+  /* padding: 10px; */
   font-size: 16px;
 }
 
@@ -212,10 +222,12 @@
 }
 
 .stars-n-review {
+  display: flex;
   font-size: 19px;
   margin-top: 30px;
   font-weight: bold;
   width: 100%;
+  display: inline-block;
 }
 
 .self-check-in {
@@ -261,23 +273,27 @@
 
 
 .review-click {
-  text-decoration: none;
+  text-decoration: underline;
   color: inherit;
-  border-radius: 6px;
   font-size: 12px;
   border: 0;
-  background-color: #E21C5F;
-  color: white;
-  width: 100%;
   padding: 10px 15px;
-  margin-top: 10%;
   font-weight: bold;
-  /* margin-left: 20px; */
   white-space: nowrap;
+  /* height: 30px; */
   overflow: hidden;
   text-overflow: ellipsis
 }
 
 .review-this-spot {
-  padding: 10px;
+  display: flex;
+  height: 30px;
+  position: absolute;
+  right: 0;
+  top: 25px;
+}
+
+.spot-sticky-review{
+  font-size: 14px;
+  display: flex;
 }
