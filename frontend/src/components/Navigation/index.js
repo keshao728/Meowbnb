@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
@@ -11,7 +11,7 @@ function Navigation({ isLoaded }) {
   const sessionUser = useSelector(state => state.session.user);
   const [showMenu, setShowMenu] = useState(false)
 
-
+  const url = useLocation().pathname;
   // const openMenu = () => {
   //   if (showMenu) return;
   //   setShowMenu(true);
@@ -74,7 +74,7 @@ function Navigation({ isLoaded }) {
   // }
 
   return (
-    <div className='full-navigation' id="full-nav">
+    <div className={url === "/" ? 'full-navigation' : "full-navigation-1"} id="full-nav">
       <div className='left-nav' id="navs">
         <NavLink className="home-button" exact to="/">
           <img id="icon" src="https://drive.google.com/uc?export=view&id=1gemygEIn5eArP1LTHdzR6bXpt87jT3uO" alt="Meowbnb Icon"></img>
