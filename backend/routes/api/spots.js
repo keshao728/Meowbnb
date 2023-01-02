@@ -30,15 +30,15 @@ const validateSpot = [
     .exists({ checkFalsy: true })
     .withMessage('Country is required'),
   // check('lat')
-    // .exists({ checkFalsy: true })
-    // .withMessage('Latitude is required')
-    // .isFloat({ min: -90, max: 90 })
-    // .withMessage('Latitude is not valid'),
+  // .exists({ checkFalsy: true })
+  // .withMessage('Latitude is required')
+  // .isFloat({ min: -90, max: 90 })
+  // .withMessage('Latitude is not valid'),
   // check('lng')
-    // .exists({ checkFalsy: true })
-    // .withMessage('Longitude is required')
-    // .isLength({ min: -180, max: 180 })
-    // .withMessage('Longitude is not valid'),
+  // .exists({ checkFalsy: true })
+  // .withMessage('Longitude is required')
+  // .isLength({ min: -180, max: 180 })
+  // .withMessage('Longitude is not valid'),
   check('name')
     .exists({ checkFalsy: true })
     .withMessage('Name is required')
@@ -117,7 +117,7 @@ router.get('/', async (req, res, next) => {
     spotData.avgRating = parseInt(Number(ratings[0].avgRating).toFixed(1)),
 
 
-    spot.push(spotData)
+      spot.push(spotData)
   }
 
   res.json({
@@ -217,7 +217,7 @@ router.get('/:spotId', async (req, res, next) => {
 
 //create a spot
 router.post('/', validateSpot, requireAuth, async (req, res, next) => {
-  const { address, city, state, country, lat, lng, name, description, price } = req.body;
+  const { address, city, state, country, lat, lng, name, description, price, place, amenities } = req.body;
   const user = req.user
   // console.log(req.user)
   const spot = await Spot.create({
@@ -230,8 +230,9 @@ router.post('/', validateSpot, requireAuth, async (req, res, next) => {
     lng,
     name,
     description,
-    price
-
+    price,
+    amenities,
+    place
   })
 
   const { url, preview } = req.body

@@ -10,8 +10,14 @@ module.exports = {
       },
       ownerId: {
         type: Sequelize.INTEGER,
-        reference : { model : 'Users', key : 'id' },
-        onDelete : 'CASCADE'
+        reference: { model: 'Users', key: 'id' },
+        onDelete: 'CASCADE'
+      },
+      amenities: {
+        type: Sequelize.STRING
+      },
+      place: {
+        type: Sequelize.STRING
       },
       address: {
         type: Sequelize.STRING
@@ -51,7 +57,7 @@ module.exports = {
         type: Sequelize.DATE,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
       }
-    }, {freezeTableName: true});
+    }, { freezeTableName: true });
   },
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable('Spots');

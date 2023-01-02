@@ -6,6 +6,8 @@ module.exports = {
     await queryInterface.bulkInsert('Spots', [
       {
         ownerId: 2,
+        place:'Cat Tree',
+        amenities:'Cat Tree',
         address: '1325 Sunsweet Blvd',
         city: 'Yuba City',
         state: 'California',
@@ -18,6 +20,8 @@ module.exports = {
       },
       {
         ownerId: 5,
+        place:'Cat Tree',
+        amenities:'Cat Tree',
         address: '11421 S Halsted St',
         city: 'Chicago',
         state: 'Illinois',
@@ -30,6 +34,8 @@ module.exports = {
       },
       {
         ownerId: 8,
+        place:'Cat Tree',
+        amenities:'Cat Tree',
         address: '11223 Meowu Cat Ave',
         city: 'Port Angeles',
         state: 'Washington',
@@ -42,6 +48,8 @@ module.exports = {
       },
       {
         ownerId: 10,
+        place:'Cat Tree',
+        amenities:'Cat Tree',
         address: '123 Lux Ave',
         city: 'Beverly Hills',
         state: 'California',
@@ -55,6 +63,8 @@ module.exports = {
       {
         //5
         ownerId: 4,
+        place:'Cat Tree',
+        amenities:'Cat Tree',
         address: '321 Op Ave',
         city: 'Fairfield',
         state: 'California',
@@ -68,6 +78,8 @@ module.exports = {
       {
         //6
         ownerId: 3,
+        place:'Cat Tree',
+        amenities:'Cat Tree',
         address: '1 Best St',
         city: 'Stateline',
         state: 'Nevada',
@@ -81,6 +93,8 @@ module.exports = {
       {
         //7
         ownerId: 6,
+        place:'Cat Tree',
+        amenities:'Cat Tree',
         address: '112 Dammit Dr',
         city: 'Los Angeles',
         state: 'California',
@@ -94,6 +108,8 @@ module.exports = {
       {
         //8
         ownerId: 7,
+        place:'Cat Tree',
+        amenities:'Cat Tree',
         address: '888 Kelly St',
         city: "Labaroche",
         state: 'Grand Est',

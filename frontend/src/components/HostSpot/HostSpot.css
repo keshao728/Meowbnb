@@ -10,7 +10,7 @@
   font-weight: bold;
 }
 
-.button-create-spot:hover{
+.button-create-spot:hover {
   background-color: #DD1362;
   cursor: pointer;
 }
@@ -34,7 +34,6 @@
   /* width: 600px; */
   /* margin: 50px 650px ; */
   margin: 5% 0%
-
 }
 
 
@@ -53,4 +52,15 @@
 .form-errors {
   color: red;
   font-size: 14px;
+}
+
+.test {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 14px;
+}
+
+.test2:focus {
+  background-color: red;
 }

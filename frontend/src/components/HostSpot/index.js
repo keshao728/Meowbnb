@@ -5,6 +5,8 @@ import { useHistory, Redirect } from "react-router-dom"
 import { addOneSpot } from "../../store/spots"
 import { resetData } from "../../store/spots"
 import "./HostSpot.css"
+import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api"
+
 
 import PlacesAutocomplete, {
   geocodeByAddress,
@@ -25,8 +27,14 @@ const HostSpot = () => {
   const [description, setDescription] = useState("")
   const [price, setPrice] = useState("")
   const [url, setUrl] = useState("")
+  const [center, setCenter] = useState({ lat: 37.0902, lng: -95.7129 })
+  const [position, setPosition] = useState({ lat: 37.0902, lng: -95.7129 })
+
+  const [place, setPlace] = useState("")
+  const [amenities, setAmenities] = useState([])
   // const [isLoaded, setIsLoaded] = useState(false)
   // const [preiview, setPreview] = useState("")
+  const [page, setPage] = useState(0);
 
   const [validationErrors, setValidationErrors] = useState([])
   const [showErrors, setShowErrors] = useState(false)
@@ -68,6 +76,8 @@ const HostSpot = () => {
         description,
         price,
         url,
+        amenities,
+        place,
         preview: true
       }
       let createdSpot = await dispatch(addOneSpot(newSpot))
@@ -107,77 +117,94 @@ const HostSpot = () => {
     setCountry(country)
     setLat(ll.lat)
     setLng(ll.lng)
+    // setPage(3)
   }
 
-
-
-
-
-
-  if (!sessionUser) {
-    return <Redirect to="/" />
+  const spotPage0 = () => {
+    return (
+      <div className="step1-wrapper">
+        <div>Step 1</div>
+        <div>Tell us about your place</div>
+        <div>In this step, we'll ask you which type of property you have and if guests will book the entire place or just a room. Then let us know the location and how many guests can stay.</div>
+        <div>INSERT CAT IMG HERE</div>
+        <button onClick={() => setPage(1)}> Next </button>
+      </div >
+    )
   }
 
-  const handleCancel = async (e) => {
-    e.preventDefault()
-    history.push("/")
+  const spotPage1 = () => {
+    return (
+      <div>
+        <div>Which of these best describes your place?</div>
+        <input type="button" value="Cat Tree" onClick={(e) => setPlace(e.target.value)} className="describe-place" />
+        <input type="button" value="Box" onClick={(e) => setPlace(e.target.value)} className="describe-place" />
+        <button onClick={() => setPage(2)}> Next </button>
+      </div>
+    )
   }
+  const centerPoint = { lat: lat, lng: lng }
+  const spotPage2 = () => {
+    return (
+      <div>
+        <div>Where's your place located?</div>
+        <PlacesAutocomplete
+          value={address}
+          onChange={setAddress}
+          onSelect={handleAddress}
 
-  const options = { types: ['address'] }
-  return (
-    <div className="full-host-form">
-      <PlacesAutocomplete
-        value={address}
-        onChange={setAddress}
-        onSelect={handleAddress}
-        searchOptions={options}
-      >
-        {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-          <div>
-            <input
-              {...getInputProps({
-                placeholder: 'Search Places ...',
-                className: 'location-search-input',
-              })}
-            />
-            <div className="autocomplete-dropdown-container">
-              {loading && <div>Loading...</div>}
-              {suggestions.map(suggestion => {
-                const className = suggestion.active
-                  ? 'suggestion-item--active'
-                  : 'suggestion-item';
-                // inline style for demonstration purpose
-                const style = suggestion.active
-                  ? { backgroundColor: '#fafafa', cursor: 'pointer' }
-                  : { backgroundColor: '#ffffff', cursor: 'pointer' };
-                return (
-                  <div
-                    {...getSuggestionItemProps(suggestion, {
-                      className,
-                      style,
-                    })}
-                  >
-                    <span>{suggestion.description}</span>
-                  </div>
-                );
-              })}
+          searchOptions={options}
+        >
+          {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+            <div>
+              <input
+                {...getInputProps({
+                  placeholder: 'Search Places ...',
+                  className: 'location-search-input',
+                })}
+              />
+              <div className="autocomplete-dropdown-container">
+                {loading && <div>Loading...</div>}
+                {suggestions.map(suggestion => {
+                  const className = suggestion.active
+                    ? 'suggestion-item--active'
+                    : 'suggestion-item';
+                  // inline style for demonstration purpose
+                  const style = suggestion.active
+                    ? { backgroundColor: '#fafafa', cursor: 'pointer' }
+                    : { backgroundColor: '#ffffff', cursor: 'pointer' };
+                  return (
+                    <div
+                      {...getSuggestionItemProps(suggestion, {
+                        className,
+                        style,
+                      })}
+                    >
+                      <span>{suggestion.description}</span>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
-          </div>
-        )}
-      </PlacesAutocomplete>
-      <form className="host-form-parent" onSubmit={handleSubmit}>
-        {/* <ul> */}
-        {/* {errors.map((error, idx) => <li key={idx}>{error}</li>)} */}
-        {/* </ul> */}
-        <h3 className="host-message">Create Your Spot Meow!!!</h3>
-        {showErrors &&
-          <ul className="form-errors">
-            {validationErrors.length > 0 &&
-              validationErrors.map(error => (
-                <li key={error}>{error}</li>
-              ))}
-          </ul>
-        }
+          )}
+        </PlacesAutocomplete>
+        {/* <div className="map-wrapper">
+          <GoogleMap
+            zoom={10}
+            center={centerPoint}
+            mapContainerClassName="map-container"
+          >
+            <Marker position={centerPoint} />
+          </GoogleMap>
+        </div> */}
+        <button onClick={() => setPage(3)}> Next </button>
+      </div>
+    )
+  }
+
+  const spotPage3 = () => {
+    return (
+      <div>
+        <h3 className="host-message">Confirm your address</h3>
         <div className="host-form">
           <label>
             <input
@@ -219,62 +246,127 @@ const HostSpot = () => {
             // required
             />
           </label>
-          <label>
-            <input
-              placeholder="Name"
-              type="text"
-              className="host-input"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            // required
-            />
-          </label>
-          <label>
-            <input
-              placeholder="Description"
-              type="text"
-              className="host-input"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-            // required
-            />
-          </label>
-          <label>
-            <input
-              type="number"
-              placeholder="Price"
-              className="host-input"
-              value={price}
-              onChange={(e) => setPrice(parseInt(e.target.value).toFixed(0))}
-            // required
-            />
-          </label>
-          <label>
-            <input
-              placeholder="Image (url only)"
-              type="url"
-              className="host-input"
-              value={url}
-              onChange={(e) => setUrl(e.target.value)}
-            // required
-            />
-          </label>
         </div>
+        <button onClick={() => setPage(4)}> Next </button>
+      </div>
+    )
+  }
+  const spotPage4 = () => {
+    return (
+      <div className="step1-wrapper">
+        <div>Step 2</div>
+        <div>Make your place stand out</div>
+        <div>In this step, you’ll add some of the amenities your place offers, plus 5 or more photos. Then, you’ll create a title and description.</div>
+        <div>INSERT CAT IMG HERE</div>
+        <button onClick={() => setPage(5)}> Next </button>
+      </div >
+    )
+  }
+  const spotPage5 = () => {
+    return (
+      <div>
+        <div>Tell guests what your place has to offer</div>
+        <input type="button" value="Wifi" onClick={(e) => setAmenities(e.target.value)} className="amenities-place" />
+        <input type="button" value="TV" onClick={(e) => setAmenities(e.target.value)} className="amenities-place" />
+        <button onClick={() => setPage(6)}> Next </button>
+      </div>
+    )
+  }
+
+  const spotPage6 = () => {
+    return (
+      <div>
+        <div>Choose at least 1 photo</div>
+        <label>
+          <input
+            placeholder="Image (url only)"
+            type="url"
+            className="host-input"
+            value={url}
+            onChange={(e) => setUrl(e.target.value)}
+          // required
+          />
+        </label>
+        <button onClick={() => setPage(7)}> Next </button>
+      </div>
+    )
+  }
+
+  const spotPage7 = () => {
+    return (
+      <div onSubmit={handleSubmit}>
+        <label>
+          <input
+            placeholder="Name"
+            type="text"
+            className="host-input"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+        </label>
+        <label>
+          <input
+            placeholder="Description"
+            type="text"
+            className="host-input"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+          // required
+          />
+        </label>
+        <label>
+          <input
+            type="number"
+            placeholder="Price"
+            className="host-input"
+            value={price}
+            onChange={(e) => setPrice(parseInt(e.target.value).toFixed(0))}
+          // required
+          />
+        </label>
         <button className="button-create-spot" type="submit"> Create Spot</button>
-        <button type="button" className="button-create-spot" onClick={handleCancel}>Cancel</button>
-      </form>
+      </div>
+    )
+  }
+
+  if (!sessionUser) {
+    return <Redirect to="/" />
+  }
+
+  const handleCancel = async (e) => {
+    e.preventDefault()
+    history.push("/")
+  }
+
+  const options = { types: ['address'] }
+  return (
+    <div className="full-host-form">
+      {page === 0 &&
+        spotPage0()
+      }
+      {page === 1 &&
+        spotPage1()
+      }
+      {page === 2 &&
+        spotPage2()
+      }
+      {page === 3 &&
+        spotPage3()
+      }
+      {page === 4 &&
+        spotPage4()
+      }
+      {page === 5 &&
+        spotPage5()
+      }
+      {page === 6 &&
+        spotPage6()
+      }
+      {page === 7 &&
+        spotPage7()
+      }
+      <button type="button" className="button-create-spot" onClick={handleCancel}>Cancel</button>
     </div>
   )
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   setErrors([]);
-  //   return dispatch(sessionActions.login({ credential, password })).catch(
-  //     async (res) => {
-  //       const data = await res.json();
-  //       if (data && data.errors) setErrors(data.errors);
-  //     }
-  //   );
-  // };
-
 }
 export default HostSpot

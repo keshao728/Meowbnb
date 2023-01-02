@@ -33,6 +33,14 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       // onDelete: 'CASCADE'
     },
+    place: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    amenities: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
     address: {
       type: DataTypes.STRING,
       allowNull: false,
