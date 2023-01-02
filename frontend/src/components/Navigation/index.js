@@ -121,18 +121,24 @@ function Navigation({ isLoaded }) {
           </div>
           <div className="searchIcon">
             {filteredData.length === 0 ?
-              <i class="fa-solid fa-magnifying-glass"></i>
+              <i className="fa-solid fa-magnifying-glass"></i>
               :
-              <div onClick={clearInput}>x</div>
+              <div className="search-cancel" onClick={clearInput}>x</div>
             }
           </div>
         </div>
         {filteredData.length != 0 && (
-          <div className="dataResult">
+          <div className="data-result">
             {filteredData.slice(0, 15).map((value, key) => {
               return (
-                <a className="dataItem" href={`/spots/${spotId}`} target="_blank">
-                  <div className='individual-city'>{value.city} </div>
+                <a className="data-item" href={`/spots/${spotId}`} target="_blank">
+                  <div className='individual-city'>
+                    <img className="data-image" src={value.previewImage} />
+                    <div>
+                      <div> {value.name} </div>
+                      <div className='data-city-state'> at {value.city} {value.state}</div>
+                    </div>
+                  </div>
                 </a>
               );
             })}

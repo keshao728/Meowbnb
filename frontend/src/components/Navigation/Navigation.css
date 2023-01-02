@@ -148,29 +148,63 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
 
-.dataResult {
+.search-cancel {
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 8px;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: #a5a5a5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.data-result {
   position: absolute;
   background-color: white;
   top: 48px;
   left: 0px;
-  width: 250px;
+  width: 300px;
   border: 1px solid #dddddd;
   border-radius: 4px;
 }
 
-.dataItem {
+.data-item {
   text-decoration: none;
   color: black;
   font-size: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .individual-city {
   padding: 10px 12px;
+  display: flex;
 }
 
 
 .individual-city:hover {
   background-color: #dadada;
+}
+
+.data-city-state {
+  display: flex;
+  color: #717171;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.data-image {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  margin-right: 10px;
+  object-fit: cover;
 }
