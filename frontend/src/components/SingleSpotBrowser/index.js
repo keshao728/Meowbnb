@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { NavLink, useParams, useHistory } from "react-router-dom"
 import { getOneSpot } from "../../store/spots"
 import { locationReviewsThunk } from "../../store/reviews"
-import { addBookingThunk } from "../../store/bookings"
+import { addBookingThunk, loadAllBookingThunk } from "../../store/bookings"
 import BookingLoginModal from "./RedirectModal"
 
 import { DateRange } from 'react-date-range'
@@ -69,6 +69,7 @@ const SingleSpotBrowser = () => {
   useEffect(() => {
     dispatch(getOneSpot(spotId))
       .then(() => dispatch(locationReviewsThunk(spotId)))
+      // .then(() => dispatch(loadAllBookingThunk(spotId)))
       // return (() => dispatch(resetData()))
       .then(() => setIsLoaded(true))
   }, [dispatch, spotId])
