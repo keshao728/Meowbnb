@@ -85,7 +85,7 @@
 }
 
 .spot-price-mother {
-  width: 32%;
+  width: 36%;
 }
 
 .big-mother {
@@ -101,7 +101,7 @@
   flex-direction: column;
   width: 60%;
   /* padding: 30px 260px; */
-  border-bottom: 1px solid #EBEBEB;
+  /* border-bottom: 1px solid #EBEBEB; */
 }
 
 .reviews-wrapper {
@@ -110,8 +110,10 @@
   flex-direction: row;
   flex-wrap: wrap;
   gap: 30px 60px;
-  margin-top: 20px;
+  margin-top: 10px;
+  padding-bottom: 20px;
   width: 100%;
+  border-bottom: 1px solid #AFAFAF;
 }
 
 .reviews {
@@ -147,7 +149,7 @@
   width: 80%;
   height: fit-content;
   border-radius: 12px;
-  padding: 20px;
+  padding: 24px 22px;
   margin-left: 25px;
   position: sticky;
   top: 400px;
@@ -163,6 +165,8 @@
 .spot-price-child {
   /* padding: 10px; */
   font-size: 16px;
+  display: flex;
+  align-items: flex-end;
 }
 
 .profile-name {
@@ -272,7 +276,7 @@
 }
 
 
-#spot-star-paw{
+#spot-star-paw {
   font-size: 12px;
 }
 
@@ -303,7 +307,7 @@
 }
 
 .booking-form {
- margin-top: 20px;
+  margin-top: 20px;
 }
 
 .booking-input-wrap {
@@ -311,27 +315,36 @@
   border-radius: 5px;
   width: 100%;
   display: flex;
-  margin-bottom: 13px;
+  margin-bottom: 15px;
   overflow: hidden;
   position: relative;
 }
 
+.price-per-night {
+  font-size: 18px;
+}
+
+.price-per-night-1 {
+  font-size: 15px;
+}
+
+
 .booking-input {
   padding: 0px 10px;
-  padding-top: 20px;
+  padding-top: 24px;
   padding-bottom: 10px;
   border: 1px solid #B0B0B0;
-  position:relative;
+  position: relative;
   border: none;
   /* border-collapse: separate; */
 }
 
 
-.booking-1{
+.booking-1 {
   border-right: 1px solid #B0B0B0;
 }
 
-.booking-calendar{
+.booking-calendar {
   position: absolute;
   right: -10px;
   border: 1px solid #B0B0B0;
@@ -339,16 +352,16 @@
   background-color: white;
 }
 
-.booking-label{
+.booking-label {
   position: absolute;
   top: 0px;
   font-size: 10px;
   font-weight: bold;
   margin-left: 10px;
-  margin-top: 5px;
+  margin-top: 7px;
 }
 
-.booking-individual-input{
+.booking-individual-input {
   display: flex;
   flex-direction: column;
   width: 50%;
@@ -356,22 +369,22 @@
 
 .button-create-booking {
   border-radius: 6px;
-  font-size: 12px;
+  font-size: 13px;
   border: 0;
   background-color: #E21C5F;
   color: white;
   width: 100%;
-  padding: 12px 15px;
+  padding: 13px 15px;
   /* margin-top: 8%; */
   font-weight: bold;
 }
 
-.button-create-booking:hover{
+.button-create-booking:hover {
   background-color: #DD1362;
   cursor: pointer;
 }
 
-.booking-des{
+.booking-des {
   display: flex;
   justify-content: center;
   font-size: 13px;
@@ -379,28 +392,28 @@
   margin-bottom: 18px;
 }
 
-.booking-fee-wrap{
-  display:flex;
+.booking-fee-wrap {
+  display: flex;
   flex-direction: column;
   gap: 10px;
   font-size: 14px;
 }
 
-.booking-individual-fee{
+.booking-individual-fee {
   display: flex;
   justify-content: space-between;
   margin-bottom: 5px;
   text-decoration: underline;
 }
 
-.booking-fee-total{
+.booking-fee-total {
   border-top: #DDDDDD 1px solid;
   text-decoration: none;
   padding-top: 10px;
   font-weight: bold;
 }
 
-.booking-wrapper{
+.booking-wrapper {
   width: 100%;
 }
 
@@ -408,19 +421,106 @@
   display: none;
 }
 
-.spot-checkin{
+.spot-checkin {
   border-top: #AFAFAF 1px solid;
 }
 
-.spot-checkin-title{
+.spot-checkin-title {
   font-size: 19px;
   font-weight: bold;
   margin-top: 30px;
   margin-bottom: 10px;
 }
 
-.spot-checkin-des{
+.spot-checkin-des {
   font-size: 14px;
   margin-bottom: 20px;
-  color:#717171
+  color: #717171
+}
+
+
+.spot-know-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.spot-know-individual-wrap {
+  display: flex;
+  justify-content: space-between;
+  font-size: 15px;
+}
+
+.spot-know-title {
+  font-size: 19px;
+  margin-bottom: 15px;
+  font-weight: bold;
+  margin-top: 30px;
+}
+
+.spot-know-individual-title {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* .spot-know-individual{
+  width: 30%;
+} */
+
+.footer-wrapper {
+  width: 100%;
+  height: 50px;
+  background-color: #F7F7F7;
+  flex-direction: row;
+  display: flex;
+  position: relative;
+  margin-top: 50px;
+  justify-content: center;
+  font-size: 13px;
+}
+
+.footer {
+  flex-direction: row;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  color: rgb(0, 0, 0);
+  width: 60%;
+}
+
+.footer-left {
+  display: flex;
+}
+
+.proj-directory {
+  text-decoration: none;
+  transition: 0.4s;
+  /* padding: 8px 20px; */
+  color: black;
+  border-radius: 8px;
+}
+
+.proj-directory:hover {
+  text-decoration: underline;
+}
+
+.dev-socials {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+
+.fa-github,
+.fa-linkedin {
+  color: #737373;
+  text-decoration: none;
+  font-size: 20px;
+  padding: 10px;
+  border-radius: 12px;
+}
+
+.fa-github:hover,
+.fa-linkedin:hover {
+  color: #505050;
 }

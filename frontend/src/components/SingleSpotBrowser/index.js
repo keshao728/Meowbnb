@@ -85,6 +85,11 @@ const SingleSpotBrowser = () => {
     allowReviewAction = true
   }
 
+  function subractDays(startingDate, number) {
+    return new Date(new Date(startDate).setDate(startingDate.getDate() - number));
+  }
+  const minus15 = subractDays(startDate, 15).toString().split(' ').slice(1, 3).join(' ')
+
   //BOOKING ERROR VALIDATION
   const validateBooking = () => {
     let err = {}
@@ -218,7 +223,9 @@ const SingleSpotBrowser = () => {
                     <strong className="price-per-night">
                       ${currSpot.price}
                     </strong>
-                    &nbsp;/&nbsp;night
+                    <div className="price-per-night-1">
+                      &nbsp;night
+                    </div>
                   </div>
                   <div className="spot-sticky-review">
                     <div className="spot-star">
@@ -384,6 +391,54 @@ const SingleSpotBrowser = () => {
                 </div>
               </div>
             ))}
+          </div>
+          <div className="spot-know-wrapper">
+            <div className="spot-know-title">Things to know</div>
+            <div className="spot-know-individual-wrap">
+              <div className="spot-know-individual">
+                <div className="spot-know-individual-title">House rules</div>
+                <div>
+                  <div>Check-in after 3:00 PM</div>
+                  <div>Checkout before 12:00 PM</div>
+                </div>
+              </div>
+              <div className="spot-know-individual">
+                <div className="spot-know-individual-title">Safety & property</div>
+                <div>
+                  <div>House rules</div>
+                  <div>Carbon monoxide alarm</div>
+                  <div>Smoke alarm</div>
+                </div>
+              </div>
+              <div className="spot-know-individual">
+                <div className="spot-know-individual-title">Cancellation policy</div>
+                <div>
+                  <div>Free cancellation before 3:00 PM on {minus15}.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="footer-wrapper">
+        <div className="footer">
+          <div className="footer-left">
+            <div>© 2023 Meowbnb, Inc. &nbsp;&nbsp;·&nbsp;&nbsp;</div>
+            <a className="proj-directory" href="https://github.com/keshao728/Varorant" target="_blank" rel="noreferrer">
+              Project Github
+            </a>
+          </div>
+          <div className="dev-socials">
+            <div className="dev-socials-links">
+              <a href="https://github.com/keshao728" className="dev-link" target="_blank" rel="noreferrer">
+                <i className="fa-brands fa-github"></i></a>
+            </div>
+
+            <div className="dev-socials-links">
+              <a href="https://www.linkedin.com/in/keyingshao/" className="dev-link" target="_blank" rel="noreferrer">
+                <i className="fa-brands fa-linkedin"></i>
+              </a>
+            </div>
           </div>
         </div>
       </div>
