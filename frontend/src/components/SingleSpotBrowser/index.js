@@ -397,14 +397,14 @@ const SingleSpotBrowser = () => {
             <div className="spot-know-individual-wrap">
               <div className="spot-know-individual">
                 <div className="spot-know-individual-title">House rules</div>
-                <div>
+                <div className="spot-know-items">
                   <div>Check-in after 3:00 PM</div>
                   <div>Checkout before 12:00 PM</div>
                 </div>
               </div>
               <div className="spot-know-individual">
                 <div className="spot-know-individual-title">Safety & property</div>
-                <div>
+                <div className="spot-know-items">
                   <div>House rules</div>
                   <div>Carbon monoxide alarm</div>
                   <div>Smoke alarm</div>
@@ -412,7 +412,7 @@ const SingleSpotBrowser = () => {
               </div>
               <div className="spot-know-individual">
                 <div className="spot-know-individual-title">Cancellation policy</div>
-                <div>
+                <div className="spot-know-items">
                   <div>Free cancellation before 3:00 PM on {minus15}.</div>
                 </div>
               </div>

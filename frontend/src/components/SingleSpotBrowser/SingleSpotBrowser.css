@@ -406,6 +406,8 @@
   text-decoration: underline;
 }
 
+
+
 .booking-fee-total {
   border-top: #DDDDDD 1px solid;
   text-decoration: none;
@@ -462,9 +464,11 @@
   margin-bottom: 10px;
 }
 
-/* .spot-know-individual{
-  width: 30%;
-} */
+.spot-know-items{
+ display: flex;
+ gap: 10px;
+ flex-direction: column;
+}
 
 .footer-wrapper {
   width: 100%;
