@@ -14,6 +14,7 @@ import format from 'date-fns/format'
 import 'react-date-range/dist/styles.css'; // main css file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import './SingleSpotBrowser.css'
+import ReviewFormModal from "../ReviewSpot/ReviewModal"
 
 const SingleSpotBrowser = () => {
   const history = useHistory()
@@ -312,12 +313,13 @@ const SingleSpotBrowser = () => {
         <div className="review-star-foot">
           <div className="stars-n-review"><i className="fa-solid fa-paw" /> {currSpot.avgStarRating > 0 ? Number(currSpot.avgStarRating).toFixed(2) : 'New'} · {currSpot.numReviews} reviews</div>
           {allowReviewAction &&
-            <div className='review-this-spot'>
-              <NavLink className="review-click"
-                to={`/spots/${currSpot.id}/review`}>
-                Review This Spot
-              </NavLink>
-            </div>
+            // <div className='review-this-spot'>
+            //   <NavLink className="review-click"
+            //     to={`/spots/${currSpot.id}/review`}>
+            //     Review This Spot
+            //   </NavLink>
+            // </div>
+            <ReviewFormModal />
           }
           {!allowReviewAction && sessionUser && !alreadyReviewed &&
             <div className='review-this-spot'>
