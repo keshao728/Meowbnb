@@ -29,6 +29,7 @@ const updateBookingAction = (updatedBooking) => ({
 
 const deleteBookingAction = (bookingId) => ({
   type: DELETE_BOOKING,
+  bookingId
 })
 
 //THUNK-----------------
@@ -47,7 +48,7 @@ export const addBookingThunk = (spotId, added) => async dispatch => {
   }
 }
 
-export const loadAllBookingThunk = () => async dispatch => {
+export const loadAllBookingThunk = (spotId) => async dispatch => {
   const response = await csrfFetch(`/api/spots/${spotId}/bookings`)
   if (response.ok) {
     const allBooking = await response.json()
@@ -148,3 +149,5 @@ const bookingsReducer = (state = initialState, action) => {
       return state
   }
 }
+
+export default bookingsReducer

@@ -1,29 +1,36 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { NavLink, useParams } from "react-router-dom"
+import { NavLink, useParams, useHistory } from "react-router-dom"
 import { getOneSpot } from "../../store/spots"
-// import { resetData } from "../../store/spots"
 import { locationReviewsThunk } from "../../store/reviews"
+import { addBookingThunk } from "../../store/bookings"
 
 import './SingleSpotBrowser.css'
 
 const SingleSpotBrowser = () => {
+  const history = useHistory()
   const dispatch = useDispatch()
   const [isLoaded, setIsLoaded] = useState(false)
   const { spotId } = useParams()
+  const [bookingStartDate, setBookingStartDate] = useState('')
+  const [bookingEndDate, setBookingEndDate] = useState('')
+
+  const [errors, setErrors] = useState({});
+  const [showErrors, setShowErrors] = useState(false);
+
   const sessionUser = useSelector(state => state.session.user)
-  // console.log("this is the SESSION USER", sessionUser)
 
   //SPOT
   const currSpot = useSelector(state => state.spots.singleSpot)
-  // console.log("this is the user's current spot", currSpot)
-  // const sessionUser = useSelector((state) => state.session.user)
 
   //REVIEWS
   const allReviews = useSelector(state => state.reviews.spot);
-  // console.log("THIS IS MY COMPONENT OF ALL REVIEWS:", allReviews)
   const allReviewsArr = Object.values(allReviews)
   // console.log("THIS IS MY COMPONENT OF ALL REVIEWS ARR:", allReviewsArr)
+  // console.log("THIS IS MY COMPONENT OF ALL REVIEWS:", allReviews)
+
+  //BOOKINGS
+  // const allBookings = useSelector(state => state.bookings.spot);
 
   //TODO IIFE - async await
   useEffect(() => {
@@ -43,7 +50,37 @@ const SingleSpotBrowser = () => {
     allowReviewAction = true
   }
 
+  //BOOKING ERROR VALIDATION
+  const validateBooking = () => {
+    let err = {}
+    if (!bookingStartDate) err.bookingStartDate = 'Please enter a valid start date'
+    if (!bookingEndDate) err.bookingEndDate = 'Please enter a valid end date'
+    setErrors(err)
+    if (Object.values(err).length) {
+      setShowErrors(true)
+      return false
+    }
+    return err
+  }
 
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    let err = validateBooking()
+    if (Object.values(err).length > 0) {
+      setShowErrors(true)
+      return
+    }
+    if (!Object.values(err).length) {
+      const newBooking = {
+        "startDate": bookingStartDate,
+        "endDate": bookingEndDate,
+      }
+      let createdBooking = await dispatch(addBookingThunk(spotId, newBooking))
+      setShowErrors(false)
+      // history.push(`/bookings/current`)
+      return errors
+    }
+  }
 
   return isLoaded && (
     <div className="big-mother">
