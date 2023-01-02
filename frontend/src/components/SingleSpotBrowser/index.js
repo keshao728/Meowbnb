@@ -1,10 +1,17 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useRef } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { NavLink, useParams, useHistory } from "react-router-dom"
 import { getOneSpot } from "../../store/spots"
 import { locationReviewsThunk } from "../../store/reviews"
 import { addBookingThunk } from "../../store/bookings"
 
+import { DateRange } from 'react-date-range'
+import { addDays } from 'date-fns'
+import format from 'date-fns/format'
+
+
+import 'react-date-range/dist/styles.css'; // main css file
+import 'react-date-range/dist/theme/default.css'; // theme css file
 import './SingleSpotBrowser.css'
 
 const SingleSpotBrowser = () => {
@@ -12,8 +19,27 @@ const SingleSpotBrowser = () => {
   const dispatch = useDispatch()
   const [isLoaded, setIsLoaded] = useState(false)
   const { spotId } = useParams()
-  const [bookingStartDate, setBookingStartDate] = useState('')
-  const [bookingEndDate, setBookingEndDate] = useState('')
+  // const [range, setRange] = useState([
+  //   {
+  //     startDate: new Date(),
+  //     endDate: addDays(new Date(), 7),
+  //     key: 'selection'
+  //   }
+  // ])
+
+  const [startDate, setStartDate] = useState(new Date())
+  const [endDate, setEndDate] = useState(addDays(new Date(), 1))
+
+  const selectionRange = {
+    startDate: startDate,
+    endDate: endDate,
+    key: 'selection',
+  }
+
+
+  const ref = useRef(null)
+
+  const [openCalender, setOpenCalender] = useState(false)
 
   const [errors, setErrors] = useState({});
   const [showErrors, setShowErrors] = useState(false);
@@ -26,13 +52,19 @@ const SingleSpotBrowser = () => {
   //REVIEWS
   const allReviews = useSelector(state => state.reviews.spot);
   const allReviewsArr = Object.values(allReviews)
-  // console.log("THIS IS MY COMPONENT OF ALL REVIEWS ARR:", allReviewsArr)
-  // console.log("THIS IS MY COMPONENT OF ALL REVIEWS:", allReviews)
 
-  //BOOKINGS
-  // const allBookings = useSelector(state => state.bookings.spot);
+  const handleSelect = (ranges) => {
+    setStartDate(ranges.selection.startDate)
+    setEndDate(ranges.selection.endDate)
+  }
 
-  //TODO IIFE - async await
+  // const bookingStartDate = (ranges) => {
+  //   setStartDate(ranges.selection.startDate)
+  // }
+  // const bookingEndDate = (ranges) => {
+  //   setEndDate(ranges.selection.endDate)
+  // }
+
   useEffect(() => {
     dispatch(getOneSpot(spotId))
       .then(() => dispatch(locationReviewsThunk(spotId)))
@@ -53,14 +85,24 @@ const SingleSpotBrowser = () => {
   //BOOKING ERROR VALIDATION
   const validateBooking = () => {
     let err = {}
-    if (!bookingStartDate) err.bookingStartDate = 'Please enter a valid start date'
-    if (!bookingEndDate) err.bookingEndDate = 'Please enter a valid end date'
+    // if (!range.startDate) err.range.startDate = 'Please enter a valid start date'
+    // if (!range.endDate) err.range.endDate = 'Please enter a valid end date'
     setErrors(err)
     if (Object.values(err).length) {
       setShowErrors(true)
       return false
     }
     return err
+  }
+
+  useEffect(() => {
+    document.addEventListener("click", hideOnClickOutside, true)
+  }, [])
+
+  const hideOnClickOutside = (e) => {
+    if (ref.current && !ref.current.contains(e.target)) {
+      setOpenCalender(false)
+    }
   }
 
   const handleSubmit = async (e) => {
@@ -72,8 +114,8 @@ const SingleSpotBrowser = () => {
     }
     if (!Object.values(err).length) {
       const newBooking = {
-        "startDate": bookingStartDate,
-        "endDate": bookingEndDate,
+        "startDate": startDate,
+        "endDate": endDate,
       }
       let createdBooking = await dispatch(addBookingThunk(spotId, newBooking))
       setShowErrors(false)
@@ -166,6 +208,42 @@ const SingleSpotBrowser = () => {
                     </div>
                     <div>&nbsp;&nbsp;{currSpot.numReviews} reviews</div>
                   </div>
+                  <div>
+                    <form onSubmit={handleSubmit}>
+                      <input
+                        value={`${format(startDate, "M/dd/yyyy")}`}
+                        readOnly
+                        className="inputBox"
+                        onClick={() => setOpenCalender(openCalender => !openCalender)}
+                        onChange={(e) => setStartDate(e.target.value)}
+                      />
+                      <input
+                        value={`${format(endDate, "M/dd/yyyy")}`}
+                        readOnly
+                        className="inputBox"
+                        onClick={() => setOpenCalender(openCalender => !openCalender)}
+                        onChange={(e) => setEndDate(e.target.value)}
+                      />
+                      <div ref={ref}>
+                        {openCalender &&
+                          <DateRange
+                            onChange={handleSelect}
+                            editableDateInputs={true}
+                            moveRangeOnFirstSelection={false}
+                            rangeColors={["#222222", "#AFAFAF", "#222222"]}
+                            // rangeColors={['#f33e5b', '#3ecf8e', '#fed14c']}
+                            ranges={[selectionRange]}
+                            months={2}
+                            minDate={new Date()}
+                            direction="horizontal"
+                            className="calendarElement"
+                          />
+                        }
+                      </div>
+                      <button className="button-create-booking" type="submit"> SUBMIT </button>
+                    </form>
+                  </div>
+
                   {/* {allowReviewAction &&
                     <div className='review-this-spot'>
                       <NavLink className="review-click"
