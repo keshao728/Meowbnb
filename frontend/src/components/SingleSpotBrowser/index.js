@@ -4,6 +4,7 @@ import { NavLink, useParams, useHistory } from "react-router-dom"
 import { getOneSpot } from "../../store/spots"
 import { locationReviewsThunk } from "../../store/reviews"
 import { addBookingThunk } from "../../store/bookings"
+import BookingLoginModal from "./RedirectModal"
 
 import { DateRange } from 'react-date-range'
 import { addDays } from 'date-fns'
@@ -201,29 +202,39 @@ const SingleSpotBrowser = () => {
                   </div>
                   <div className="spot-sticky-review">
                     <div className="spot-star">
-                      <i className="fa-solid fa-paw"></i>
+                      <i className="fa-solid fa-paw" id="spot-star-paw"></i>
                       &nbsp;
                       {currSpot.avgStarRating > 0 ? Number(currSpot.avgStarRating).toFixed(2) : 'New'}
-                      &nbsp;&nbsp;·
+                      &nbsp;·
                     </div>
-                    <div>&nbsp;&nbsp;{currSpot.numReviews} reviews</div>
+                    <div>&nbsp;{currSpot.numReviews} reviews</div>
                   </div>
-                  <div>
-                    <form onSubmit={handleSubmit}>
-                      <input
-                        value={`${format(startDate, "M/dd/yyyy")}`}
-                        readOnly
-                        className="inputBox"
-                        onClick={() => setOpenCalender(openCalender => !openCalender)}
-                        onChange={(e) => setStartDate(e.target.value)}
-                      />
-                      <input
-                        value={`${format(endDate, "M/dd/yyyy")}`}
-                        readOnly
-                        className="inputBox"
-                        onClick={() => setOpenCalender(openCalender => !openCalender)}
-                        onChange={(e) => setEndDate(e.target.value)}
-                      />
+                  <div className="booking-wrapper">
+                    <form onSubmit={handleSubmit} className="booking-form">
+                      <div className="booking-input-wrap">
+                        <div className="booking-individual-input">
+                          <input
+                            value={`${format(startDate, "M/dd/yyyy")}`}
+                            readOnly
+                            className="booking-input booking-1"
+                            placeholder="Add date"
+                            onClick={() => setOpenCalender(openCalender => !openCalender)}
+                            onChange={(e) => setStartDate(e.target.value)}
+                          />
+                          <label className="booking-label">CHECK-IN</label>
+                        </div>
+                        <div className="booking-individual-input">
+                          <input
+                            value={`${format(endDate, "M/dd/yyyy")}`}
+                            readOnly
+                            placeholder="Add date"
+                            className="booking-input booking-2"
+                            onClick={() => setOpenCalender(openCalender => !openCalender)}
+                            onChange={(e) => setEndDate(e.target.value)}
+                          />
+                          <label className="booking-label">CHECKOUT</label>
+                        </div>
+                      </div>
                       <div ref={ref}>
                         {openCalender &&
                           <DateRange
@@ -236,12 +247,35 @@ const SingleSpotBrowser = () => {
                             months={2}
                             minDate={new Date()}
                             direction="horizontal"
-                            className="calendarElement"
+                            className="booking-calendar"
                           />
                         }
                       </div>
-                      <button className="button-create-booking" type="submit"> SUBMIT </button>
+                      {sessionUser ?
+                        <button className="button-create-booking" type="submit"> Reserve </button>
+                        : <BookingLoginModal />
+                      }
+
                     </form>
+                    <div className="booking-des"> You won't be charged yet </div>
+                    <div className="booking-fee-wrap">
+                      <div className="booking-individual-fee">
+                        <div> ${currSpot.price} x {((endDate.getTime() - startDate.getTime()) / (1000 * 3600 * 23)).toFixed()} night </div>
+                        <div> ${currSpot.price * ((endDate.getTime() - startDate.getTime()) / (1000 * 3600 * 23)).toFixed()}  </div>
+                      </div>
+                      <div className="booking-individual-fee">
+                        <div> Cleaning fee</div>
+                        <div> $150 </div>
+                      </div>
+                      <div className="booking-individual-fee">
+                        <div>Service fee</div>
+                        <div> $71 </div>
+                      </div>
+                      <div className="booking-individual-fee booking-fee-total">
+                        <div> Total before taxes </div>
+                        <div> ${currSpot.price * ((endDate.getTime() - startDate.getTime()) / (1000 * 3600 * 23)).toFixed() + 150 + 71} </div>
+                      </div>
+                    </div>
                   </div>
 
                   {/* {allowReviewAction &&
@@ -275,7 +309,7 @@ const SingleSpotBrowser = () => {
           </div>
         }
         <div className="review-star-foot">
-          <div className="stars-n-review">★ {currSpot.avgStarRating > 0 ? Number(currSpot.avgStarRating).toFixed(2) : 'New'} · {currSpot.numReviews} reviews</div>
+          <div className="stars-n-review"><i className="fa-solid fa-paw" /> {currSpot.avgStarRating > 0 ? Number(currSpot.avgStarRating).toFixed(2) : 'New'} · {currSpot.numReviews} reviews</div>
           {allowReviewAction &&
             <div className='review-this-spot'>
               <NavLink className="review-click"
