@@ -153,6 +153,7 @@
   top: 400px;
   border: 1px solid #EBEBEB;
   border-radius: 12px;
+  z-index: 1;
 }
 
 .own-this-spot {
@@ -332,10 +333,10 @@
 
 .booking-calendar{
   position: absolute;
-  right: 0;
+  right: -10px;
   border: 1px solid #B0B0B0;
   border-radius: 3px;
-  z-index: 1;
+  background-color: white;
 }
 
 .booking-label{
@@ -401,4 +402,25 @@
 
 .booking-wrapper{
   width: 100%;
+}
+
+.rdrDateDisplayWrapper {
+  display: none;
+}
+
+.spot-checkin{
+  border-top: #AFAFAF 1px solid;
+}
+
+.spot-checkin-title{
+  font-size: 19px;
+  font-weight: bold;
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+
+.spot-checkin-des{
+  font-size: 14px;
+  margin-bottom: 20px;
+  color:#717171
 }

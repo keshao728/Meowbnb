@@ -192,6 +192,24 @@ const SingleSpotBrowser = () => {
                     {currSpot.description}
                   </div>
                 </div>
+                <div className="spot-checkin">
+                  <div className="spot-checkin-title">Select check-in date</div>
+                  <div className="spot-checkin-des">Add your travel dates for exact pricing</div>
+                  <div ref={ref}>
+                    <DateRange
+                      onChange={handleSelect}
+                      editableDateInputs={true}
+                      moveRangeOnFirstSelection={false}
+                      rangeColors={["#222222", "#AFAFAF", "#222222"]}
+                      // rangeColors={['#f33e5b', '#3ecf8e', '#fed14c']}
+                      ranges={[selectionRange]}
+                      months={2}
+                      minDate={new Date()}
+                      direction="horizontal"
+                      className="booking-calendar-1"
+                    />
+                  </div>
+                </div>
               </div>
 
               <div className="spot-price-mother">
