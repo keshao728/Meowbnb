@@ -12,11 +12,37 @@ function Navigation({ isLoaded }) {
   const [showMenu, setShowMenu] = useState(false)
 
   const url = useLocation().pathname;
-  // const openMenu = () => {
-  //   if (showMenu) return;
-  //   setShowMenu(true);
-  // };
 
+  const [filteredData, setFilteredData] = useState([]);
+  const [wordEntered, setWordEntered] = useState("");
+  const [spotId, setSpotId] = useState("");
+
+  const data = useSelector(state => state.spots.allSpots);
+  const dataArr = Object.values(data)
+
+
+  const handleFilter = (e) => {
+    const searchWord = e.target.value;
+    setWordEntered(searchWord);
+    const newFilter = dataArr.filter((value) => {
+      if (value.city.toLowerCase().includes(searchWord.toLowerCase()) || value.state.toLowerCase().includes(searchWord.toLowerCase()) || value.country.toLowerCase().includes(searchWord.toLowerCase()) || value.name.toLowerCase().includes(searchWord.toLowerCase()) || value.address.toLowerCase().includes(searchWord.toLowerCase())) {
+        setSpotId(value.id)
+        return value
+      };
+    });
+
+    if (searchWord === "") {
+      setFilteredData([]);
+    } else {
+      setFilteredData(newFilter);
+    }
+  };
+  console.log(filteredData)
+
+  const clearInput = () => {
+    setFilteredData([]);
+    setWordEntered("");
+  };
 
   const dropdown = () => {
     if (showMenu) {
@@ -80,6 +106,38 @@ function Navigation({ isLoaded }) {
           <img id="icon" src="https://drive.google.com/uc?export=view&id=1gemygEIn5eArP1LTHdzR6bXpt87jT3uO" alt="Meowbnb Icon"></img>
           <img id="logo" src="https://drive.google.com/uc?export=view&id=1EGZCbwX9pZ8eHc4JQDb8SlV88NHk9QYh" alt="Meowbnb Logo"></img>
         </NavLink>
+      </div>
+
+      <div className="search">
+        <div className="search-wrap">
+          <div>
+            <input
+              type="text"
+              placeholder="Start your search"
+              value={wordEntered}
+              onChange={handleFilter}
+              className="search-input"
+            />
+          </div>
+          <div className="searchIcon">
+            {filteredData.length === 0 ?
+              <i class="fa-solid fa-magnifying-glass"></i>
+              :
+              <div onClick={clearInput}>x</div>
+            }
+          </div>
+        </div>
+        {filteredData.length != 0 && (
+          <div className="dataResult">
+            {filteredData.slice(0, 15).map((value, key) => {
+              return (
+                <a className="dataItem" href={`/spots/${spotId}`} target="_blank">
+                  <div className='individual-city'>{value.city} </div>
+                </a>
+              );
+            })}
+          </div>
+        )}
       </div>
       <div>
         {isLoaded && sessionLinks}

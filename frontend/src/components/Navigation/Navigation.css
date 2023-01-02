@@ -17,7 +17,7 @@
 
 .show-drop-menu {
   visibility: visible;
-    /* z-index: 1; */
+  /* z-index: 1; */
 }
 
 .hide-drop-menu {
@@ -33,11 +33,12 @@
   margin-right: 20px;
   padding: 7px;
   display: flex;
-  justify-content: space-around ;
+  justify-content: space-around;
 }
 
 .user-buttons:hover {
-  box-shadow: 1px 1px 2px #AFAFAF;;
+  box-shadow: 1px 1px 2px #AFAFAF;
+  ;
   cursor: pointer;
 
 }
@@ -72,13 +73,13 @@
   padding-left: 20px;
 }
 
-.full-navigation{
+.full-navigation {
   position: sticky;
   display: flex;
   height: 50px;
   justify-content: space-between;
   align-items: center;
-  border-bottom:1px solid #EBEBEB;
+  border-bottom: 1px solid #EBEBEB;
   background-color: white;
   padding: 10px 55px;
   z-index: 1;
@@ -87,19 +88,89 @@
 /* .right-nav{
 } */
 
-.full-navigation-1{
+.full-navigation-1 {
   position: sticky;
   display: flex;
   height: 50px;
   justify-content: space-between;
   align-items: center;
-  border-bottom:1px solid #EBEBEB;
+  border-bottom: 1px solid #EBEBEB;
   background-color: white;
   padding: 10px 350px;
   z-index: 1;
 }
 
-.dropdown-button{
+.dropdown-button {
   position: relative;
 }
 
+
+.search-wrap {
+  display: flex;
+  flex-direction: row;
+  /* position: relative; */
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.search {
+  box-shadow: 1px 1px 4px #eeeeee;
+  border-radius: 20px;
+  border: 1px solid #dddddd;
+  background-color: white;
+  width: 250px;
+  height: 35px;
+  padding: 3px 7px;
+  display: flex;
+  position: relative;
+}
+
+.search-input {
+  border: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0px 10px;
+}
+
+.search-input:focus {
+  outline: none;
+}
+
+.fa-magnifying-glass {
+  color: white;
+  font-size: 14px;
+  padding: 8px;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: #E21C5F;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dataResult {
+  position: absolute;
+  background-color: white;
+  top: 48px;
+  left: 0px;
+  width: 250px;
+  border: 1px solid #dddddd;
+  border-radius: 4px;
+}
+
+.dataItem {
+  text-decoration: none;
+  color: black;
+  font-size: 14px;
+}
+
+.individual-city {
+  padding: 10px 12px;
+}
+
+
+.individual-city:hover {
+  background-color: #dadada;
+}
