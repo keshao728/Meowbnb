@@ -55,6 +55,8 @@ const SingleSpotBrowser = () => {
 
   //SPOT
   const currSpot = useSelector(state => state.spots.singleSpot)
+  const lat = currSpot?.lat
+  const lng = currSpot?.lng
 
   //REVIEWS
   const allReviews = useSelector(state => state.reviews.spot);
@@ -108,8 +110,7 @@ const SingleSpotBrowser = () => {
     return err
   }
 
-  //FIXME - 
-  const center = { lat: 44, lng: -80 }
+  const center = { lat: lat, lng: lng }
 
   useEffect(() => {
     document.addEventListener("click", hideOnClickOutside, true)
