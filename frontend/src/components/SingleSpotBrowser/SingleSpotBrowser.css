@@ -44,7 +44,7 @@
   margin-top: 20px;
   width: 100%;
   height: 60px;
-  position:relative;
+  position: relative;
   border-top: 1px solid #AFAFAF;
 }
 
@@ -75,7 +75,7 @@
 }
 
 .left-middle {
-  width: 68%;
+  width: 66%;
 }
 
 .middle-spot-items {
@@ -84,11 +84,11 @@
   justify-content: space-between;
 }
 
-.spot-price-mother{
-  width: 30%;
+.spot-price-mother {
+  width: 32%;
 }
 
-.big-mother{
+.big-mother {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -99,7 +99,7 @@
 .browser-wrapper {
   display: flex;
   flex-direction: column;
-  width:60%;
+  width: 60%;
   /* padding: 30px 260px; */
   border-bottom: 1px solid #EBEBEB;
 }
@@ -150,9 +150,10 @@
   padding: 20px;
   margin-left: 25px;
   position: sticky;
-  top: 700px;
+  top: 400px;
   border: 1px solid #EBEBEB;
   border-radius: 12px;
+  z-index: 1;
 }
 
 .own-this-spot {
@@ -267,10 +268,13 @@
 
 .fa-paw {
   margin-top: 2px;
+
 }
 
 
-
+#spot-star-paw{
+  font-size: 12px;
+}
 
 .review-click {
   text-decoration: underline;
@@ -293,7 +297,130 @@
   top: 25px;
 }
 
-.spot-sticky-review{
+.spot-sticky-review {
   font-size: 14px;
   display: flex;
+}
+
+.booking-form {
+ margin-top: 20px;
+}
+
+.booking-input-wrap {
+  border: 1px solid #B0B0B0;
+  border-radius: 5px;
+  width: 100%;
+  display: flex;
+  margin-bottom: 13px;
+  overflow: hidden;
+  position: relative;
+}
+
+.booking-input {
+  padding: 0px 10px;
+  padding-top: 20px;
+  padding-bottom: 10px;
+  border: 1px solid #B0B0B0;
+  position:relative;
+  border: none;
+  /* border-collapse: separate; */
+}
+
+
+.booking-1{
+  border-right: 1px solid #B0B0B0;
+}
+
+.booking-calendar{
+  position: absolute;
+  right: -10px;
+  border: 1px solid #B0B0B0;
+  border-radius: 3px;
+  background-color: white;
+}
+
+.booking-label{
+  position: absolute;
+  top: 0px;
+  font-size: 10px;
+  font-weight: bold;
+  margin-left: 10px;
+  margin-top: 5px;
+}
+
+.booking-individual-input{
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+
+.button-create-booking {
+  border-radius: 6px;
+  font-size: 12px;
+  border: 0;
+  background-color: #E21C5F;
+  color: white;
+  width: 100%;
+  padding: 12px 15px;
+  /* margin-top: 8%; */
+  font-weight: bold;
+}
+
+.button-create-booking:hover{
+  background-color: #DD1362;
+  cursor: pointer;
+}
+
+.booking-des{
+  display: flex;
+  justify-content: center;
+  font-size: 13px;
+  margin-top: 15px;
+  margin-bottom: 18px;
+}
+
+.booking-fee-wrap{
+  display:flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 14px;
+}
+
+.booking-individual-fee{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+  text-decoration: underline;
+}
+
+.booking-fee-total{
+  border-top: #DDDDDD 1px solid;
+  text-decoration: none;
+  padding-top: 10px;
+  font-weight: bold;
+}
+
+.booking-wrapper{
+  width: 100%;
+}
+
+.rdrDateDisplayWrapper {
+  display: none;
+}
+
+.spot-checkin{
+  border-top: #AFAFAF 1px solid;
+}
+
+.spot-checkin-title{
+  font-size: 19px;
+  font-weight: bold;
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+
+.spot-checkin-des{
+  font-size: 14px;
+  margin-bottom: 20px;
+  color:#717171
 }

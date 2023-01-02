@@ -1,19 +1,47 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useRef } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { NavLink, useParams, useHistory } from "react-router-dom"
 import { getOneSpot } from "../../store/spots"
 import { locationReviewsThunk } from "../../store/reviews"
-import { addBookingThunk } from "../../store/bookings"
+import { addBookingThunk, loadAllBookingThunk } from "../../store/bookings"
+import BookingLoginModal from "./RedirectModal"
 
+import { DateRange } from 'react-date-range'
+import { addDays } from 'date-fns'
+import format from 'date-fns/format'
+
+
+import 'react-date-range/dist/styles.css'; // main css file
+import 'react-date-range/dist/theme/default.css'; // theme css file
 import './SingleSpotBrowser.css'
+import ReviewFormModal from "../ReviewSpot/ReviewModal"
 
 const SingleSpotBrowser = () => {
   const history = useHistory()
   const dispatch = useDispatch()
   const [isLoaded, setIsLoaded] = useState(false)
   const { spotId } = useParams()
-  const [bookingStartDate, setBookingStartDate] = useState('')
-  const [bookingEndDate, setBookingEndDate] = useState('')
+  // const [range, setRange] = useState([
+  //   {
+  //     startDate: new Date(),
+  //     endDate: addDays(new Date(), 7),
+  //     key: 'selection'
+  //   }
+  // ])
+
+  const [startDate, setStartDate] = useState(new Date())
+  const [endDate, setEndDate] = useState(addDays(new Date(), 1))
+
+  const selectionRange = {
+    startDate: startDate,
+    endDate: endDate,
+    key: 'selection',
+  }
+
+
+  const ref = useRef(null)
+
+  const [openCalender, setOpenCalender] = useState(false)
 
   const [errors, setErrors] = useState({});
   const [showErrors, setShowErrors] = useState(false);
@@ -26,16 +54,23 @@ const SingleSpotBrowser = () => {
   //REVIEWS
   const allReviews = useSelector(state => state.reviews.spot);
   const allReviewsArr = Object.values(allReviews)
-  // console.log("THIS IS MY COMPONENT OF ALL REVIEWS ARR:", allReviewsArr)
-  // console.log("THIS IS MY COMPONENT OF ALL REVIEWS:", allReviews)
 
-  //BOOKINGS
-  // const allBookings = useSelector(state => state.bookings.spot);
+  const handleSelect = (ranges) => {
+    setStartDate(ranges.selection.startDate)
+    setEndDate(ranges.selection.endDate)
+  }
 
-  //TODO IIFE - async await
+  // const bookingStartDate = (ranges) => {
+  //   setStartDate(ranges.selection.startDate)
+  // }
+  // const bookingEndDate = (ranges) => {
+  //   setEndDate(ranges.selection.endDate)
+  // }
+
   useEffect(() => {
     dispatch(getOneSpot(spotId))
       .then(() => dispatch(locationReviewsThunk(spotId)))
+      // .then(() => dispatch(loadAllBookingThunk(spotId)))
       // return (() => dispatch(resetData()))
       .then(() => setIsLoaded(true))
   }, [dispatch, spotId])
@@ -53,14 +88,24 @@ const SingleSpotBrowser = () => {
   //BOOKING ERROR VALIDATION
   const validateBooking = () => {
     let err = {}
-    if (!bookingStartDate) err.bookingStartDate = 'Please enter a valid start date'
-    if (!bookingEndDate) err.bookingEndDate = 'Please enter a valid end date'
+    // if (!range.startDate) err.range.startDate = 'Please enter a valid start date'
+    // if (!range.endDate) err.range.endDate = 'Please enter a valid end date'
     setErrors(err)
     if (Object.values(err).length) {
       setShowErrors(true)
       return false
     }
     return err
+  }
+
+  useEffect(() => {
+    document.addEventListener("click", hideOnClickOutside, true)
+  }, [])
+
+  const hideOnClickOutside = (e) => {
+    if (ref.current && !ref.current.contains(e.target)) {
+      setOpenCalender(false)
+    }
   }
 
   const handleSubmit = async (e) => {
@@ -72,8 +117,8 @@ const SingleSpotBrowser = () => {
     }
     if (!Object.values(err).length) {
       const newBooking = {
-        "startDate": bookingStartDate,
-        "endDate": bookingEndDate,
+        "startDate": startDate,
+        "endDate": endDate,
       }
       let createdBooking = await dispatch(addBookingThunk(spotId, newBooking))
       setShowErrors(false)
@@ -147,6 +192,24 @@ const SingleSpotBrowser = () => {
                     {currSpot.description}
                   </div>
                 </div>
+                <div className="spot-checkin">
+                  <div className="spot-checkin-title">Select check-in date</div>
+                  <div className="spot-checkin-des">Add your travel dates for exact pricing</div>
+                  <div ref={ref}>
+                    <DateRange
+                      onChange={handleSelect}
+                      editableDateInputs={true}
+                      moveRangeOnFirstSelection={false}
+                      rangeColors={["#222222", "#AFAFAF", "#222222"]}
+                      // rangeColors={['#f33e5b', '#3ecf8e', '#fed14c']}
+                      ranges={[selectionRange]}
+                      months={2}
+                      minDate={new Date()}
+                      direction="horizontal"
+                      className="booking-calendar-1"
+                    />
+                  </div>
+                </div>
               </div>
 
               <div className="spot-price-mother">
@@ -159,13 +222,82 @@ const SingleSpotBrowser = () => {
                   </div>
                   <div className="spot-sticky-review">
                     <div className="spot-star">
-                      <i className="fa-solid fa-paw"></i>
+                      <i className="fa-solid fa-paw" id="spot-star-paw"></i>
                       &nbsp;
                       {currSpot.avgStarRating > 0 ? Number(currSpot.avgStarRating).toFixed(2) : 'New'}
-                      &nbsp;&nbsp;·
+                      &nbsp;·
                     </div>
-                    <div>&nbsp;&nbsp;{currSpot.numReviews} reviews</div>
+                    <div>&nbsp;{currSpot.numReviews} reviews</div>
                   </div>
+                  <div className="booking-wrapper">
+                    <form onSubmit={handleSubmit} className="booking-form">
+                      <div className="booking-input-wrap">
+                        <div className="booking-individual-input">
+                          <input
+                            value={`${format(startDate, "M/dd/yyyy")}`}
+                            readOnly
+                            className="booking-input booking-1"
+                            placeholder="Add date"
+                            onClick={() => setOpenCalender(openCalender => !openCalender)}
+                            onChange={(e) => setStartDate(e.target.value)}
+                          />
+                          <label className="booking-label">CHECK-IN</label>
+                        </div>
+                        <div className="booking-individual-input">
+                          <input
+                            value={`${format(endDate, "M/dd/yyyy")}`}
+                            readOnly
+                            placeholder="Add date"
+                            className="booking-input booking-2"
+                            onClick={() => setOpenCalender(openCalender => !openCalender)}
+                            onChange={(e) => setEndDate(e.target.value)}
+                          />
+                          <label className="booking-label">CHECKOUT</label>
+                        </div>
+                      </div>
+                      <div ref={ref}>
+                        {openCalender &&
+                          <DateRange
+                            onChange={handleSelect}
+                            editableDateInputs={true}
+                            moveRangeOnFirstSelection={false}
+                            rangeColors={["#222222", "#AFAFAF", "#222222"]}
+                            // rangeColors={['#f33e5b', '#3ecf8e', '#fed14c']}
+                            ranges={[selectionRange]}
+                            months={2}
+                            minDate={new Date()}
+                            direction="horizontal"
+                            className="booking-calendar"
+                          />
+                        }
+                      </div>
+                      {sessionUser ?
+                        <button className="button-create-booking" type="submit"> Reserve </button>
+                        : <BookingLoginModal />
+                      }
+
+                    </form>
+                    <div className="booking-des"> You won't be charged yet </div>
+                    <div className="booking-fee-wrap">
+                      <div className="booking-individual-fee">
+                        <div> ${currSpot.price} x {((endDate.getTime() - startDate.getTime()) / (1000 * 3600 * 23)).toFixed()} night </div>
+                        <div> ${currSpot.price * ((endDate.getTime() - startDate.getTime()) / (1000 * 3600 * 23)).toFixed()}  </div>
+                      </div>
+                      <div className="booking-individual-fee">
+                        <div> Cleaning fee</div>
+                        <div> $150 </div>
+                      </div>
+                      <div className="booking-individual-fee">
+                        <div>Service fee</div>
+                        <div> $71 </div>
+                      </div>
+                      <div className="booking-individual-fee booking-fee-total">
+                        <div> Total before taxes </div>
+                        <div> ${currSpot.price * ((endDate.getTime() - startDate.getTime()) / (1000 * 3600 * 23)).toFixed() + 150 + 71} </div>
+                      </div>
+                    </div>
+                  </div>
+
                   {/* {allowReviewAction &&
                     <div className='review-this-spot'>
                       <NavLink className="review-click"
@@ -197,14 +329,15 @@ const SingleSpotBrowser = () => {
           </div>
         }
         <div className="review-star-foot">
-          <div className="stars-n-review">★ {currSpot.avgStarRating > 0 ? Number(currSpot.avgStarRating).toFixed(2) : 'New'} · {currSpot.numReviews} reviews</div>
+          <div className="stars-n-review"><i className="fa-solid fa-paw" /> {currSpot.avgStarRating > 0 ? Number(currSpot.avgStarRating).toFixed(2) : 'New'} · {currSpot.numReviews} reviews</div>
           {allowReviewAction &&
-            <div className='review-this-spot'>
-              <NavLink className="review-click"
-                to={`/spots/${currSpot.id}/review`}>
-                Review This Spot
-              </NavLink>
-            </div>
+            // <div className='review-this-spot'>
+            //   <NavLink className="review-click"
+            //     to={`/spots/${currSpot.id}/review`}>
+            //     Review This Spot
+            //   </NavLink>
+            // </div>
+            <ReviewFormModal />
           }
           {!allowReviewAction && sessionUser && !alreadyReviewed &&
             <div className='review-this-spot'>

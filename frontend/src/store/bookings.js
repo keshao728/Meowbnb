@@ -101,14 +101,16 @@ const bookingsReducer = (state = initialState, action) => {
   let newState;
   switch (action.type) {
     case LOAD_ALL_BOOKING:
+      let newAllBookingObj = {}
       newState = {
         ...state,
         user: { ...state.user },
         spot: { ...state.spot }
       }
-      action.allBooking.forEach(booking => {
-        newState.spot[booking.id] = booking
+      action.allBooking.spot.forEach(booking => {
+        newAllBookingObj[booking.id] = booking
       })
+      newState.spot = newAllBookingObj
       return newState
     case ADD_BOOKING:
       newState = {
@@ -116,7 +118,8 @@ const bookingsReducer = (state = initialState, action) => {
         user: { ...state.user },
         spot: { ...state.spot }
       }
-      newState.user[action.newBooking.id] = action.newBooking
+      newState.spot[action.newBooking.id] = action.newBooking
+      newState.user = action.newBooking
       return newState
     case LOAD_USER_BOOKING:
       newState = {
