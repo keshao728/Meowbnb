@@ -528,3 +528,8 @@
 .fa-linkedin:hover {
   color: #505050;
 }
+
+.map-container{
+  width: 100%;
+  height: 400px;
+}

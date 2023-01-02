@@ -1,5 +1,6 @@
-import { useEffect, useState, useRef } from "react"
+import { useEffect, useState, useRef, useMemo } from "react"
 import { useDispatch, useSelector } from "react-redux"
+import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api"
 import { NavLink, useParams, useHistory } from "react-router-dom"
 import { getOneSpot } from "../../store/spots"
 import { locationReviewsThunk } from "../../store/reviews"
@@ -28,6 +29,10 @@ const SingleSpotBrowser = () => {
   //     key: 'selection'
   //   }
   // ])
+
+  // const { mapIsLoaded } = useLoadScript({
+  //   googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
+  // })
 
   const [startDate, setStartDate] = useState(new Date())
   const [endDate, setEndDate] = useState(addDays(new Date(), 1))
@@ -102,6 +107,9 @@ const SingleSpotBrowser = () => {
     }
     return err
   }
+
+  //FIXME - 
+  const center = { lat: 44, lng: -80 }
 
   useEffect(() => {
     document.addEventListener("click", hideOnClickOutside, true)
@@ -380,10 +388,6 @@ const SingleSpotBrowser = () => {
                         {new Date(review.createdAt).toDateString().split(' ').slice(1).join(' ')}
                       </div>
                     </div>
-
-
-
-
                   </div>
                 </div>
                 <div className="review-message">
@@ -391,6 +395,16 @@ const SingleSpotBrowser = () => {
                 </div>
               </div>
             ))}
+          </div>
+
+          <div className="map-wrapper">
+            <GoogleMap
+              zoom={10}
+              center={center}
+              mapContainerClassName="map-container"
+            >
+              <Marker position={center} />
+            </GoogleMap>
           </div>
           <div className="spot-know-wrapper">
             <div className="spot-know-title">Things to know</div>
