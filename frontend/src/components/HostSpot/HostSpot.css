@@ -349,6 +349,31 @@
   border: #222222 2px solid;
 }
 
+
+.describe-place:focus+.place-img {
+  animation: animation 0.3s ease-in-out;
+}
+
+/* .describe-place:active+.place-img {
+  transform: scale(0.8);
+  transition: 0.8s ease-in-out;
+} */
+
+
+@keyframes animation {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(0.8);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
 .step2-input-container {
   position: relative;
 }
@@ -531,7 +556,7 @@
   border-bottom: 1px solid #AFAFAF;
 }
 
-.host-input-parent{
+.host-input-parent {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -543,14 +568,96 @@
   border: #AFAFAF 1px solid;
 }
 
-.host-input-last{
+.host-input-last {
   border-bottom: none;
 }
 
-.step5-left{
+.step5-left {
   width: 60%;
 }
 
-.step5-left-1{
+.step5-left-1 {
   width: 70%;
+}
+
+.amenities-place {
+  /* position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0; */
+  position: absolute;
+
+  visibility: hidden;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  /* display: none; */
+}
+
+.step6-input-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 200px);
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  height: 100%;
+  /* margin-top: 40px; */
+}
+
+.amenities-label {
+  width: 100%;
+  height: 80px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 16px;
+  padding-right: 13px;
+  background-color: white;
+  border: #e4e4e4 solid 2px;
+  border-radius: 6px;
+  transition: 0.1s ease-in;
+  font-weight: bold;
+  text-align: left;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.amenities-container .amenities-label:hover {
+  border: #222222 2px solid;
+}
+
+.amenities-place:checked+.amenities-label {
+  background-color: #F7F7F7;
+  border: #222222 2px solid;
+}
+
+.amenities-label:active+.amenities-img {
+  animation: animation 0.3s ease-in-out;
+}
+
+.amenities-container {
+  position: relative;
+  width: 100%;
+  display: flex;
+}
+
+.amenities-img {
+  position: absolute;
+  top: 28px;
+  left: 18px;
+  width: 33px;
+  height: 33px;
+  z-index: 1;
+}
+
+.step6-title {
+  margin-top: 100px;
+}
+
+.step6-des {
+  margin-top: 15px;
 }

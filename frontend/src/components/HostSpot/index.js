@@ -435,13 +435,56 @@ const HostSpot = () => {
   }
   const spotPage6 = () => {
     return (
-      <div>
-        <div>Tell guests what your place has to offer</div>
-        <input type="button" value="Wifi" onClick={(e) => setAmenities(e.target.value)} className="amenities-place" />
-        <input type="button" value="TV" onClick={(e) => setAmenities(e.target.value)} className="amenities-place" />
-        <div className="step0-footer">
-          <button className="step-button-back" onClick={() => setPage(5)}> Back </button>
-          <button className="step-button-next" onClick={() => setPage(7)}> Next</button>
+      <div className="step2-wrapper">
+        <div className="step2">
+          <div className="step2-title step6-title">Tell guests what your place has to offer</div>
+          <div className="step3-des step6-des">You cannot add more amenities after you publish your listing.</div>
+          <div className="step6-input-wrapper">
+            <div className="amenities-container">
+              <input id="wifi" type="checkbox" value="Wifi" onClick={(e) => setAmenities(e.target.value)} className="amenities-place" />
+              <label for="wifi" className="amenities-label">Wifi</label>
+              <img className="amenities-img" src="https://imgur.com/fHVWE9K.png" />
+            </div>
+            <div className="amenities-container">
+              <input id="tv" type="checkbox" value="TV" onClick={(e) => setAmenities(e.target.value)} className="amenities-place" />
+              <label for="tv" className="amenities-label">TV</label>
+              <img className="amenities-img" src="https://imgur.com/csXC3RL.png" />
+            </div>
+            <div className="amenities-container">
+              <input id="kitchen" type="checkbox" value="Kitchen" onClick={(e) => setAmenities(e.target.value)} className="amenities-place" />
+              <label for="kitchen" className="amenities-label">Kitchen</label>
+              <img className="amenities-img" src="https://imgur.com/uwD4CGY.png" />
+            </div>
+            <div className="amenities-container">
+              <input id="washer" type="checkbox" value="Washer" onClick={(e) => setAmenities(e.target.value)} className="amenities-place" />
+              <label for="washer" className="amenities-label" >Washer</label>
+              <img className="amenities-img" src="https://imgur.com/Xluxljd.png" />
+            </div>
+            <div className="amenities-container">
+              <input id="free-park" type="checkbox" value="Free parking on premises" onClick={(e) => setAmenities(e.target.value)} className="amenities-place" />
+              <label for="free-park" className="amenities-label">Free parking on premises</label>
+              <img className="amenities-img" src="https://imgur.com/z2lA5yX.png" />
+            </div>
+            <div className="amenities-container">
+              <input id="paid-park" type="checkbox" value="Paid parking on premises" onClick={(e) => setAmenities(e.target.value)} className="amenities-place" />
+              <label for="paid-park" className="amenities-label">Paid parking on premises</label>
+              <img className="amenities-img" src="https://imgur.com/nARtwQZ.png" />
+            </div>
+            <div className="amenities-container">
+              <input id="air" type="checkbox" value="Air conditioning" onClick={(e) => setAmenities(e.target.value)} className="amenities-place" />
+              <label for="air" className="amenities-label">Air conditioning</label>
+              <img className="amenities-img" src="https://imgur.com/cHR1Rxx.png" />
+            </div>
+            <div className="amenities-container">
+              <input id="workspace" type="checkbox" value="Dedicated workspace" onClick={(e) => setAmenities(e.target.value)} className="amenities-place" />
+              <label for="workspace" className="amenities-label">Dedicated workspace</label>
+              <img className="amenities-img" src="https://imgur.com/7iFsb5g.png" />
+            </div>
+          </div>
+          <div className="step0-footer">
+            <button className="step-button-back" onClick={() => setPage(5)}> Back </button>
+            <button className="step-button-next" onClick={() => setPage(7)}> Next</button>
+          </div>
         </div>
       </div>
     )
