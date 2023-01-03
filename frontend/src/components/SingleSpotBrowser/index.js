@@ -77,7 +77,7 @@ const SingleSpotBrowser = () => {
   useEffect(() => {
     dispatch(getOneSpot(spotId))
       .then(() => dispatch(locationReviewsThunk(spotId)))
-      // .then(() => dispatch(loadAllBookingThunk(spotId)))
+      .then(() => dispatch(loadAllBookingThunk(spotId)))
       // return (() => dispatch(resetData()))
       .then(() => setIsLoaded(true))
   }, [dispatch, spotId])
@@ -135,6 +135,7 @@ const SingleSpotBrowser = () => {
         "endDate": endDate,
       }
       let createdBooking = await dispatch(addBookingThunk(spotId, newBooking))
+      await dispatch(loadAllBookingThunk(spotId))
       setShowErrors(false)
       // history.push(`/bookings/current`)
       return errors
@@ -383,10 +384,10 @@ const SingleSpotBrowser = () => {
                     <img className='user-profile-pic' src="https://drive.google.com/uc?export=view&id=1e6AIQpUAr0_HcNJNaptcQAHEdO5aib5k" alt="Meowbnb Default Profile"></img>
                     <div className="review-name-date">
                       <strong className="review-username">
-                        {review.User.firstName} {review.User.lastName}
+                        {review?.User?.firstName} {review?.User?.lastName}
                       </strong>
                       <div className='user-review-date'>
-                        {new Date(review.createdAt).toDateString().split(' ').slice(1).join(' ')}
+                        {new Date(review?.createdAt).toDateString().split(' ').slice(1).join(' ')}
                       </div>
                     </div>
                   </div>

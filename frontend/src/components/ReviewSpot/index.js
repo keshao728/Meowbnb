@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory, Redirect, useParams } from "react-router-dom"
-import { addReview } from "../../store/reviews"
+import { addReview, locationReviewsThunk } from "../../store/reviews"
 import { getOneSpot } from "../../store/spots"
 import "./ReviewSpot.css"
 
@@ -48,6 +48,7 @@ const ReviewSpot = ({ setShowModal }) => {
         setShowModal(false)
         // history.push(`/spots/${spotId}`);
       }
+      await dispatch(locationReviewsThunk(spotId))
       await dispatch(getOneSpot(spotId))
 
       return validationErrors

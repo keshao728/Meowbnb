@@ -125,29 +125,64 @@ const HostSpot = () => {
 
   const spotPage0 = () => {
     return (
+      <div className="step0-wrapper">
+        <div>It’s easy to get started on Airbnb</div>
+        <ol>
+          <li>
+            <div>
+              Tell us about your place
+            </div>
+            <div>
+              Share some basic info, like where it is and how many guests can stay.
+            </div>
+          </li>
+          <li>
+            <div>
+              Make it stand out
+            </div>
+            <div>
+              Add 5 or more photos plus a title and description—we’ll help you out.
+            </div>
+          </li>
+          <li>
+            <div>
+              Finish up and publish
+            </div>
+            <div>
+              Choose if you'd like to start with an experienced guest, set a starting price, and publish your listing.
+
+            </div>
+          </li>
+        </ol>
+        <button onClick={() => setPage(1)}> Next </button>
+      </div >
+    )
+  }
+  const spotPage1 = () => {
+    return (
       <div className="step1-wrapper">
         <div>Step 1</div>
         <div>Tell us about your place</div>
         <div>In this step, we'll ask you which type of property you have and if guests will book the entire place or just a room. Then let us know the location and how many guests can stay.</div>
         <div>INSERT CAT IMG HERE</div>
-        <button onClick={() => setPage(1)}> Next </button>
+        <button onClick={() => setPage(2)}> Next </button>
       </div >
     )
   }
 
-  const spotPage1 = () => {
+  const spotPage2 = () => {
     return (
       <div>
         <div>Which of these best describes your place?</div>
         <input type="button" value="Cat Tree" onClick={(e) => setPlace(e.target.value)} className="describe-place" />
         <input type="button" value="Box" onClick={(e) => setPlace(e.target.value)} className="describe-place" />
-        <button onClick={() => setPage(2)}> Next </button>
+        <button onClick={() => setPage(3)}> Next </button>
       </div>
     )
   }
   const options = { types: ['address'] }
   const centerPoint = { lat: lat, lng: lng }
-  const spotPage2 = () => {
+  const spotPage3 = () => {
     return (
       <div>
         <div>Where's your place located?</div>
@@ -200,12 +235,12 @@ const HostSpot = () => {
             <Marker position={centerPoint} />
           </GoogleMap>
         </div> */}
-        <button onClick={() => setPage(3)}> Next </button>
+        <button onClick={() => setPage(4)}> Next </button>
       </div>
     )
   }
 
-  const spotPage3 = () => {
+  const spotPage4 = () => {
     return (
       <div>
         <h3 className="host-message">Confirm your address</h3>
@@ -251,33 +286,33 @@ const HostSpot = () => {
             />
           </label>
         </div>
-        <button onClick={() => setPage(4)}> Next </button>
+        <button onClick={() => setPage(5)}> Next </button>
       </div>
     )
   }
-  const spotPage4 = () => {
+  const spotPage5 = () => {
     return (
       <div className="step1-wrapper">
         <div>Step 2</div>
         <div>Make your place stand out</div>
         <div>In this step, you’ll add some of the amenities your place offers, plus 5 or more photos. Then, you’ll create a title and description.</div>
         <div>INSERT CAT IMG HERE</div>
-        <button onClick={() => setPage(5)}> Next </button>
+        <button onClick={() => setPage(6)}> Next </button>
       </div >
     )
   }
-  const spotPage5 = () => {
+  const spotPage6 = () => {
     return (
       <div>
         <div>Tell guests what your place has to offer</div>
         <input type="button" value="Wifi" onClick={(e) => setAmenities(e.target.value)} className="amenities-place" />
         <input type="button" value="TV" onClick={(e) => setAmenities(e.target.value)} className="amenities-place" />
-        <button onClick={() => setPage(6)}> Next </button>
+        <button onClick={() => setPage(7)}> Next </button>
       </div>
     )
   }
 
-  const spotPage6 = () => {
+  const spotPage7 = () => {
     return (
       <div>
         <div>Choose at least 1 photo</div>
@@ -291,47 +326,10 @@ const HostSpot = () => {
           // required
           />
         </label>
-        <button onClick={() => setPage(7)}> Next </button>
+        <button onClick={() => setPage(8)}> Next </button>
       </div>
     )
   }
-
-  // const spotPage7 = () => {
-  //   return (
-  //     <div>
-  //       <label>
-  //         <input
-  //           placeholder="Name"
-  //           type="text"
-  //           className="host-input"
-  //           value={name}
-  //           onChange={(e) => setName(e.target.value)}
-  //         />
-  //       </label>
-  //       <label>
-  //         <input
-  //           placeholder="Description"
-  //           type="text"
-  //           className="host-input"
-  //           value={description}
-  //           onChange={(e) => setDescription(e.target.value)}
-  //         // required
-  //         />
-  //       </label>
-  //       <label>
-  //         <input
-  //           type="number"
-  //           placeholder="Price"
-  //           className="host-input"
-  //           value={price}
-  //           onChange={(e) => setPrice(parseInt(e.target.value).toFixed(0))}
-  //         // required
-  //         />
-  //       </label>
-  //       <button className="button-create-spot" type="submit"> Create Spot</button>
-  //     </div>
-  //   )
-  // }
 
   if (!sessionUser) {
     return <Redirect to="/" />
@@ -367,6 +365,9 @@ const HostSpot = () => {
           spotPage6()
         }
         {page === 7 &&
+          spotPage7()
+        }
+        {page === 8 &&
           <div>
             <label>
               <input
@@ -397,9 +398,9 @@ const HostSpot = () => {
               // required
               />
             </label>
+            <button className="button-create-spot" form="spot-form" type="submit"> Create Spot</button>
           </div>
         }
-        <button className="button-create-spot" form="spot-form" type="submit"> Create Spot</button>
         <button type="button" className="button-create-spot" onClick={handleCancel}>Cancel</button>
       </form>
     </div >

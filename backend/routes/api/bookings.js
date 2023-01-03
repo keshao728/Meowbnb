@@ -29,6 +29,7 @@ router.get('/current', requireAuth, async (req, res, next) => {
 
   for (let j = 0; j < bookings.length; j++) {
     holder = bookings[j].toJSON()
+    // console.log(holder, "WAKUBHDKB")
     let imageUrl = await SpotImage.findByPk(
       bookings[j].spotId, {
       where: { preview: true },

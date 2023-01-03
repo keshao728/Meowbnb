@@ -51,9 +51,12 @@ export const addBookingThunk = (spotId, added) => async dispatch => {
 export const loadAllBookingThunk = (spotId) => async dispatch => {
   const response = await csrfFetch(`/api/spots/${spotId}/bookings`)
   if (response.ok) {
+    // console.log("LOAD ALL BOOKING THUNK", response)
     const allBooking = await response.json()
-    dispatch(loadAllBookingAction(allBooking))
-    return allBooking
+    const allBookingArr = Object.values(allBooking)
+    // console.log("THIS IS ALL BOOKING IN THUNK", allBookingArr)
+    dispatch(loadAllBookingAction(allBookingArr))
+    return allBookingArr
   }
 }
 
@@ -107,9 +110,13 @@ const bookingsReducer = (state = initialState, action) => {
         user: { ...state.user },
         spot: { ...state.spot }
       }
-      action.allBooking.spot.forEach(booking => {
+      console.log("THIS IS ACTION ALL BOOKING", action.allBooking)
+      action.allBooking[0].forEach(booking => {
+        console.log("booking.is", booking)
         newAllBookingObj[booking.id] = booking
+        // console.log("THIS IS NEW ALL BOOKING OBJ", allBooking)
       })
+      // console.log("THIS IS NEW ALL BOOKING OBJ", newAllBookingObj)
       newState.spot = newAllBookingObj
       return newState
     case ADD_BOOKING:
