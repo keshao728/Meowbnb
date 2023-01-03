@@ -1,17 +1,20 @@
-.button-create-spot {
-  border-radius: 6px;
+.button-cancel-spot {
+  border-radius: 20px;
   font-size: 12px;
-  border: 0;
-  background-color: #E21C5F;
-  color: white;
-  width: 100%;
+  background-color: white;
+  border: #DDDDDD solid 1px;
+  color: black;
+  width: 100px;
   padding: 10px 15px;
-  margin-top: 8%;
+  /* margin-top: 8%; */
   font-weight: bold;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
-.button-create-spot:hover {
-  background-color: #DD1362;
+.button-cancel-spot:hover {
+  border: black solid 1px;
   cursor: pointer;
 }
 
@@ -21,19 +24,23 @@
   margin-bottom: 8%;
 }
 
-.host-form-parent {
-  width: 500px;
+.full-host-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0;
+  width: 100%;
+  height: 90vh;
 }
 
 .full-host-form {
   display: flex;
   justify-content: center;
+  align-items: center;
   border: 0;
-  /* padding: 24px 24px; */
-  border-radius: 31px;
-  /* width: 600px; */
-  /* margin: 50px 650px ; */
-  margin: 5% 0%
+  width: 100%;
+  height: 100vh;
+  position: relative;
 }
 
 
@@ -63,4 +70,165 @@
 
 .test2:focus {
   background-color: red;
+}
+
+/* PROGRESS BAR */
+.progressbar {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  position: absolute;
+  bottom: 10px;
+  width: 100vw;
+  height: 8px;
+  background-color: white;
+  margin-bottom: 50px;
+}
+
+.progress-bar-1 {
+  width: 50vw;
+  background-color: #DDDDDD;
+}
+
+.progress-bar-1 div {
+  width: 33.3%;
+  height: 100%;
+  background-color: black;
+}
+
+.step0-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 90%;
+  height: 100%;
+}
+
+.step0 {
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.step0-footer {
+  display: flex;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  font-size: 16px;
+  justify-content: space-between;
+}
+
+.step0-next {
+  margin: -5px 40px;
+  border-radius: 6px;
+  border: 0;
+  background-color: #E21C5F;
+  color: white;
+  width: 140px;
+  padding: 15px 20px;
+  font-weight: bold;
+}
+
+.step0-next:hover {
+  background-color: #DD1362;
+  cursor: pointer;
+}
+
+.step0-seperate {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.step0-title {
+  font-size: 50px;
+  font-weight: bold;
+  width: 62%;
+}
+
+.step0-individual-wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* gap: 20px; */
+  width: 65%;
+  height: 100%;
+}
+
+.step0-individual {
+  padding: 30px 0px;
+  width: 100%;
+  font-size: 22px;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  /* align-items: space-between; */
+  align-content: space-between;
+}
+
+.step0-1 {
+  border-bottom: #E5E5E5 solid 1px;
+}
+
+.step0-img {
+  width: 110px;
+  height: 100px;
+  object-fit: cover;
+  object-position: left top;
+}
+
+.step0-img-1 {
+  width: 110px;
+  height: 100px;
+  /* object-fit: cover; */
+}
+
+.step0-items {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.step0-item-des {
+  font-size: 16px;
+  font-weight: normal;
+  color: #8d8d8d;
+}
+
+.step-button-next {
+  border-radius: 6px;
+  border: 0;
+  background-color: #222222;
+  color: white;
+  width: fit-content;
+  padding: 15px 20px;
+  margin-top: 8%;
+  font-weight: bold;
+  margin: -5px 40px;
+}
+
+.step-button-next:hover {
+  background-color: black;
+  cursor: pointer;
+}
+
+.step-button-back {
+  margin: -5px 40px;
+  background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+  font-size: 14px;
+  font-weight: bold;
+	cursor: pointer;
+	outline: inherit;
+  text-decoration: underline;
 }

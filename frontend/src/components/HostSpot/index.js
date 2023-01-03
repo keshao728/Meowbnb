@@ -63,7 +63,6 @@ const HostSpot = () => {
     e.preventDefault()
     setShowErrors(true)
 
-    console.log("CLICKED ABDKHDBKHWBSKDHBKWE")
     if (!validationErrors.length) {
 
       const newSpot = {
@@ -92,7 +91,6 @@ const HostSpot = () => {
 
       if (createdSpot) {
         // dispatch(resetData())
-        console.log("UBMITWADBKAB")
         // setErrors([])
         setShowErrors(false)
         // .then(() => setIsLoaded(true))
@@ -126,35 +124,43 @@ const HostSpot = () => {
   const spotPage0 = () => {
     return (
       <div className="step0-wrapper">
-        <div>It’s easy to get started on Airbnb</div>
-        <ol>
-          <li>
-            <div>
-              Tell us about your place
+        <div className="step0">
+          <div className="step0-seperate">
+            <div className="step0-title">It’s easy to get started on Meowbnb</div>
+          </div>
+          <div className="step0-seperate">
+            <div className="step0-individual-wrap">
+              <div className="step0-individual step0-1">
+                <div>1</div>
+                <div className="step0-items">
+                  <div>
+                    Tell us about your place
+                  </div>
+                  <div className="step0-item-des">
+                    Share some basic info, like where it is and how many guests can stay.
+                  </div>
+                </div>
+                <img className="step0-img" src="https://imgur.com/6BpM4wC.png" />
+              </div>
+              <div className="step0-individual">
+                <div>2</div>
+                <div className="step0-items">
+                  <div>
+                    Make it stand out
+                  </div>
+                  <div className="step0-item-des">
+                    Add 1 or more photos plus a title and description - we’ll help you out.
+                  </div>
+                </div>
+                <img className="step0-img-1" src="https://imgur.com/8igNnZe.png" />
+              </div>
             </div>
-            <div>
-              Share some basic info, like where it is and how many guests can stay.
-            </div>
-          </li>
-          <li>
-            <div>
-              Make it stand out
-            </div>
-            <div>
-              Add 5 or more photos plus a title and description—we’ll help you out.
-            </div>
-          </li>
-          <li>
-            <div>
-              Finish up and publish
-            </div>
-            <div>
-              Choose if you'd like to start with an experienced guest, set a starting price, and publish your listing.
-
-            </div>
-          </li>
-        </ol>
-        <button onClick={() => setPage(1)}> Next </button>
+          </div>
+        </div >
+        <div className="step0-footer">
+          <div></div>
+          <button className="step0-next" onClick={() => setPage(1)}> Get started </button>
+        </div>
       </div >
     )
   }
@@ -165,7 +171,11 @@ const HostSpot = () => {
         <div>Tell us about your place</div>
         <div>In this step, we'll ask you which type of property you have and if guests will book the entire place or just a room. Then let us know the location and how many guests can stay.</div>
         <div>INSERT CAT IMG HERE</div>
-        <button onClick={() => setPage(2)}> Next </button>
+        <div className="step0-footer">
+          <button className="step-button-back" onClick={() => setPage(0)}> Back </button>
+          <button className="step-button-next" onClick={() => setPage(2)}> Next</button>
+        </div>
+        {/* <button onClick={() => setPage(2)}> Next </button> */}
       </div >
     )
   }
@@ -176,7 +186,10 @@ const HostSpot = () => {
         <div>Which of these best describes your place?</div>
         <input type="button" value="Cat Tree" onClick={(e) => setPlace(e.target.value)} className="describe-place" />
         <input type="button" value="Box" onClick={(e) => setPlace(e.target.value)} className="describe-place" />
-        <button onClick={() => setPage(3)}> Next </button>
+        <div className="step0-footer">
+          <button className="step-button-back" onClick={() => setPage(1)}> Back </button>
+          <button className="step-button-next" onClick={() => setPage(3)}> Next</button>
+        </div>
       </div>
     )
   }
@@ -235,7 +248,10 @@ const HostSpot = () => {
             <Marker position={centerPoint} />
           </GoogleMap>
         </div> */}
-        <button onClick={() => setPage(4)}> Next </button>
+        <div className="step0-footer">
+          <button className="step-button-back" onClick={() => setPage(2)}> Back </button>
+          <button className="step-button-next" onClick={() => setPage(4)}> Next</button>
+        </div>
       </div>
     )
   }
@@ -286,7 +302,10 @@ const HostSpot = () => {
             />
           </label>
         </div>
-        <button onClick={() => setPage(5)}> Next </button>
+        <div className="step0-footer">
+          <button className="step-button-back" onClick={() => setPage(3)}> Back </button>
+          <button className="step-button-next" onClick={() => setPage(5)}> Next</button>
+        </div>
       </div>
     )
   }
@@ -297,7 +316,10 @@ const HostSpot = () => {
         <div>Make your place stand out</div>
         <div>In this step, you’ll add some of the amenities your place offers, plus 5 or more photos. Then, you’ll create a title and description.</div>
         <div>INSERT CAT IMG HERE</div>
-        <button onClick={() => setPage(6)}> Next </button>
+        <div className="step0-footer">
+          <button className="step-button-back" onClick={() => setPage(4)}> Back </button>
+          <button className="step-button-next" onClick={() => setPage(6)}> Next</button>
+        </div>
       </div >
     )
   }
@@ -307,7 +329,10 @@ const HostSpot = () => {
         <div>Tell guests what your place has to offer</div>
         <input type="button" value="Wifi" onClick={(e) => setAmenities(e.target.value)} className="amenities-place" />
         <input type="button" value="TV" onClick={(e) => setAmenities(e.target.value)} className="amenities-place" />
-        <button onClick={() => setPage(7)}> Next </button>
+        <div className="step0-footer">
+          <button className="step-button-back" onClick={() => setPage(5)}> Back </button>
+          <button className="step-button-next" onClick={() => setPage(7)}> Next</button>
+        </div>
       </div>
     )
   }
@@ -326,7 +351,10 @@ const HostSpot = () => {
           // required
           />
         </label>
-        <button onClick={() => setPage(8)}> Next </button>
+        <div className="step0-footer">
+          <button className="step-button-back" onClick={() => setPage(6)}> Back </button>
+          <button className="step-button-next" onClick={() => setPage(8)}> Next</button>
+        </div>
       </div>
     )
   }
@@ -341,8 +369,9 @@ const HostSpot = () => {
   }
 
   return (
-    <div>
+    <div className="full-host-wrapper">
       <form className="full-host-form" onSubmit={handleSubmit} id="spot-form">
+        <button type="button" className="button-cancel-spot" onClick={handleCancel}>Exit</button>
         {page === 0 &&
           spotPage0()
         }
@@ -398,12 +427,44 @@ const HostSpot = () => {
               // required
               />
             </label>
-            <button className="button-create-spot" form="spot-form" type="submit"> Create Spot</button>
+            <div className="step0-footer">
+              <button className="step-button-back" onClick={() => setPage(7)}> Back </button>
+              {/* <button className="step-button-next" onClick={() => setPage(2)}> Next</button> */}
+              <button className="step-button-next" form="spot-form" type="submit"> Create Spot</button>
+            </div>
           </div>
         }
-        <button type="button" className="button-create-spot" onClick={handleCancel}>Cancel</button>
+        {/* <div className="footer">
+          <button
+            disabled={page == 0}
+            onClick={() => {
+              setPage((currPage) => currPage - 1);
+            }}
+          >
+            Prev
+          </button>
+          <button
+            onClick={() => {
+              if (page === 8) {
+                alert("FORM SUBMITTED");
+              } else {
+                setPage((currPage) => currPage + 1);
+              }
+            }}
+          >
+            {page === 8 ? <button className="button-create-spot" form="spot-form" type="submit"> Create Spot</button> : "Next"}
+          </button>
+        </div> */}
+        <div className="progressbar">
+          <div className="progress-bar-1">
+            <div style={{ width: page === 0 ? "0%" : page === 1 ? "0%" : page === 2 ? "33.3%" : page === 3 ? "66.6%" : "100%" }}></div>
+          </div>
+          <div className="progress-bar-1">
+            <div style={{ width: page === 6 ? "33.3%" : page === 7 ? "66.6%" : page === 8 ? "100%" : "0%" }}></div>
+          </div>
+        </div>
       </form>
-    </div >
+    </div>
   )
 }
 export default HostSpot

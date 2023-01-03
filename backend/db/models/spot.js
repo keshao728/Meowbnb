@@ -35,11 +35,11 @@ module.exports = (sequelize, DataTypes) => {
     },
     place: {
       type: DataTypes.STRING,
-      allowNull: false
+      // allowNull: false
     },
     amenities: {
       type: DataTypes.STRING,
-      allowNull: false
+      // allowNull: false
     },
     address: {
       type: DataTypes.STRING,
