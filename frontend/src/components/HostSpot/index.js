@@ -40,29 +40,30 @@ const HostSpot = () => {
   const [showErrors, setShowErrors] = useState(false)
 
 
-  useEffect(() => {
-    const errors = []
-    if (!address || address.length > 20) { errors.push("Address is required and must be less than 20 characters") }
-    if (!city || city.length > 15) { errors.push("City is required and must be less than 15 characters") }
-    if (!state || state.length > 10) { errors.push("State is required and must be less than 10 characters") }
-    if (!country || country.length > 15) { errors.push("Country is required and must be less than 15 characters") }
-    if (!name || name.length > 20) { errors.push("Name is required and must be less than 20 characters") }
-    if (!description || description.length > 250) { errors.push("Description is required and must be be less than 250 characters") }
-    if (!price || !Number(price) || price < 1) { errors.push("Price per day is required and must be more than $1 (no decimal)") }
-    if (!url.match(/\.(jpg|jpeg|png|gif)$/)) { errors.push("Please enter a valid URL ending with jpg, jpeg, png or gif") }
-    // if (!url.match(/^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/)) { errors.push("Please enter a valid URL") }
-    // if (!url.includes('https')) {errors.push("Please enter a valid URL")}
-    // if (!url.includes('jpg')) {errors.push("Please enter a valid URL")}
-    // if (!url.includes('png')) {errors.push("Please enter a valid URL")}
-    // if (!url.includes('jpeg')) {errors.push("Please enter a valid URL")}
+  // useEffect(() => {
+  //   const errors = []
+  //   if (!address || address.length > 20) { errors.push("Address is required and must be less than 20 characters") }
+  //   if (!city || city.length > 15) { errors.push("City is required and must be less than 15 characters") }
+  //   if (!state || state.length > 10) { errors.push("State is required and must be less than 10 characters") }
+  //   if (!country || country.length > 15) { errors.push("Country is required and must be less than 15 characters") }
+  //   if (!name || name.length > 20) { errors.push("Name is required and must be less than 20 characters") }
+  //   if (!description || description.length > 250) { errors.push("Description is required and must be be less than 250 characters") }
+  //   if (!price || !Number(price) || price < 1) { errors.push("Price per day is required and must be more than $1 (no decimal)") }
+  //   if (!url.match(/\.(jpg|jpeg|png|gif)$/)) { errors.push("Please enter a valid URL ending with jpg, jpeg, png or gif") }
+  //   // if (!url.match(/^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/)) { errors.push("Please enter a valid URL") }
+  //   // if (!url.includes('https')) {errors.push("Please enter a valid URL")}
+  //   // if (!url.includes('jpg')) {errors.push("Please enter a valid URL")}
+  //   // if (!url.includes('png')) {errors.push("Please enter a valid URL")}
+  //   // if (!url.includes('jpeg')) {errors.push("Please enter a valid URL")}
 
-    setValidationErrors(errors)
-  }, [name, address, city, state, country, description, price, url])
+  //   setValidationErrors(errors)
+  // }, [name, address, city, state, country, description, price, url])
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     setShowErrors(true)
 
+    console.log("CLICKED ABDKHDBKHWBSKDHBKWE")
     if (!validationErrors.length) {
 
       const newSpot = {
@@ -80,6 +81,7 @@ const HostSpot = () => {
         place,
         preview: true
       }
+      console.log(newSpot, "NEWSPOT")
       let createdSpot = await dispatch(addOneSpot(newSpot))
 
       // const createdSpot = () => {
@@ -90,6 +92,7 @@ const HostSpot = () => {
 
       if (createdSpot) {
         // dispatch(resetData())
+        console.log("UBMITWADBKAB")
         // setErrors([])
         setShowErrors(false)
         // .then(() => setIsLoaded(true))
@@ -142,6 +145,7 @@ const HostSpot = () => {
       </div>
     )
   }
+  const options = { types: ['address'] }
   const centerPoint = { lat: lat, lng: lng }
   const spotPage2 = () => {
     return (
@@ -292,42 +296,42 @@ const HostSpot = () => {
     )
   }
 
-  const spotPage7 = () => {
-    return (
-      <div onSubmit={handleSubmit}>
-        <label>
-          <input
-            placeholder="Name"
-            type="text"
-            className="host-input"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-        </label>
-        <label>
-          <input
-            placeholder="Description"
-            type="text"
-            className="host-input"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-          // required
-          />
-        </label>
-        <label>
-          <input
-            type="number"
-            placeholder="Price"
-            className="host-input"
-            value={price}
-            onChange={(e) => setPrice(parseInt(e.target.value).toFixed(0))}
-          // required
-          />
-        </label>
-        <button className="button-create-spot" type="submit"> Create Spot</button>
-      </div>
-    )
-  }
+  // const spotPage7 = () => {
+  //   return (
+  //     <div>
+  //       <label>
+  //         <input
+  //           placeholder="Name"
+  //           type="text"
+  //           className="host-input"
+  //           value={name}
+  //           onChange={(e) => setName(e.target.value)}
+  //         />
+  //       </label>
+  //       <label>
+  //         <input
+  //           placeholder="Description"
+  //           type="text"
+  //           className="host-input"
+  //           value={description}
+  //           onChange={(e) => setDescription(e.target.value)}
+  //         // required
+  //         />
+  //       </label>
+  //       <label>
+  //         <input
+  //           type="number"
+  //           placeholder="Price"
+  //           className="host-input"
+  //           value={price}
+  //           onChange={(e) => setPrice(parseInt(e.target.value).toFixed(0))}
+  //         // required
+  //         />
+  //       </label>
+  //       <button className="button-create-spot" type="submit"> Create Spot</button>
+  //     </div>
+  //   )
+  // }
 
   if (!sessionUser) {
     return <Redirect to="/" />
@@ -338,35 +342,67 @@ const HostSpot = () => {
     history.push("/")
   }
 
-  const options = { types: ['address'] }
   return (
-    <div className="full-host-form">
-      {page === 0 &&
-        spotPage0()
-      }
-      {page === 1 &&
-        spotPage1()
-      }
-      {page === 2 &&
-        spotPage2()
-      }
-      {page === 3 &&
-        spotPage3()
-      }
-      {page === 4 &&
-        spotPage4()
-      }
-      {page === 5 &&
-        spotPage5()
-      }
-      {page === 6 &&
-        spotPage6()
-      }
-      {page === 7 &&
-        spotPage7()
-      }
-      <button type="button" className="button-create-spot" onClick={handleCancel}>Cancel</button>
-    </div>
+    <div>
+      <form className="full-host-form" onSubmit={handleSubmit} id="spot-form">
+        {page === 0 &&
+          spotPage0()
+        }
+        {page === 1 &&
+          spotPage1()
+        }
+        {page === 2 &&
+          spotPage2()
+        }
+        {page === 3 &&
+          spotPage3()
+        }
+        {page === 4 &&
+          spotPage4()
+        }
+        {page === 5 &&
+          spotPage5()
+        }
+        {page === 6 &&
+          spotPage6()
+        }
+        {page === 7 &&
+          <div>
+            <label>
+              <input
+                placeholder="Name"
+                type="text"
+                className="host-input"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+            </label>
+            <label>
+              <input
+                placeholder="Description"
+                type="text"
+                className="host-input"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+              // required
+              />
+            </label>
+            <label>
+              <input
+                type="number"
+                placeholder="Price"
+                className="host-input"
+                value={price}
+                onChange={(e) => setPrice(parseInt(e.target.value).toFixed(0))}
+              // required
+              />
+            </label>
+          </div>
+        }
+        <button className="button-create-spot" form="spot-form" type="submit"> Create Spot</button>
+        <button type="button" className="button-create-spot" onClick={handleCancel}>Cancel</button>
+      </form>
+    </div >
   )
 }
 export default HostSpot
