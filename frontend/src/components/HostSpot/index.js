@@ -109,9 +109,9 @@ const HostSpot = () => {
     const streetName = item[1].long_name
     const street = streetNum + " " + streetName
 
-    const city = item[3].long_name
-    const state = item[5].long_name
-    const country = item[6].long_name
+    const city = item[2].long_name
+    const state = item[4].long_name
+    const country = item[5].long_name
     setAddress(street)
     setCity(city)
     setState(state)

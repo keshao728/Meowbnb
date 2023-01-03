@@ -131,7 +131,7 @@ function Navigation({ isLoaded }) {
           <div className="data-result">
             {filteredData.slice(0, 15).map((value, key) => {
               return (
-                <a className="data-item" href={`/spots/${spotId}`} target="_blank">
+                <a className="data-item" href={`/spots/${value.id}`} target="_blank">
                   <div className='individual-city'>
                     <img className="data-image" src={value.previewImage} />
                     <div>
