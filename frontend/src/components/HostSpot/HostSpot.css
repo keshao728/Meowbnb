@@ -104,6 +104,7 @@
   height: 100%;
 }
 
+
 .step0 {
   justify-content: center;
   display: flex;
@@ -222,13 +223,137 @@
 .step-button-back {
   margin: -5px 40px;
   background: none;
-	color: inherit;
-	border: none;
-	padding: 0;
-	font: inherit;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
   font-size: 14px;
   font-weight: bold;
-	cursor: pointer;
-	outline: inherit;
+  cursor: pointer;
+  outline: inherit;
   text-decoration: underline;
+}
+
+.step1-wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  width: 80%;
+  height: 100%;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+
+
+.step1-left-wrap {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: flex-start;
+  margin-left: 10%;
+}
+
+
+.step1-right {
+  width: 50%;
+}
+
+.step1-img-1 {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: left top;
+}
+
+.step1-footer {
+  margin-top: 0px;
+}
+
+.step1-left-1 {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.step1-left-2 {
+  margin-top: 20px;
+  font-size: 48px;
+  font-weight: bold;
+}
+
+.step1-left-3 {
+  font-size: 18px;
+  color: #222222;
+  width: 80%;
+  margin-top: 20px;
+}
+
+
+.step2-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  height: 100%;
+  /* justify-content: center; */
+  align-items: center;
+}
+
+.step2-input-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 200px);
+  /* justify-content: center; */
+  gap: 20px;
+  width: 100%;
+  height: 100%;
+  margin-top: 40px;
+}
+
+.step2 {
+  width: 640px;
+  display: flex;
+  flex-direction: column;
+}
+
+.step2-title {
+  font-size: 32px;
+  font-weight: bold;
+  width: 500px;
+  margin-top: 40px;
+}
+
+.describe-place {
+  width: 200px;
+  height: 100px;
+  padding-top: 40px;
+  padding-left: 13px;
+  background-color: white;
+  border: #e4e4e4 solid 2px;
+  border-radius: 6px;
+  transition: 0.1s ease-in;
+  font-weight: bold;
+  text-align: left;
+}
+
+.describe-place:hover {
+  border: #222222 2px solid;
+}
+
+.describe-place:focus {
+  background-color: #F7F7F7;
+  border: #222222 2px solid;
+}
+
+.step2-input-container {
+  position: relative;
+}
+
+.place-img {
+  position: absolute;
+  top: 22px;
+  left: 15px;
+  width: 35px;
+  height: 35px;
+  z-index: 1;
 }

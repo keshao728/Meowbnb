@@ -167,11 +167,15 @@ const HostSpot = () => {
   const spotPage1 = () => {
     return (
       <div className="step1-wrapper">
-        <div>Step 1</div>
-        <div>Tell us about your place</div>
-        <div>In this step, we'll ask you which type of property you have and if guests will book the entire place or just a room. Then let us know the location and how many guests can stay.</div>
-        <div>INSERT CAT IMG HERE</div>
-        <div className="step0-footer">
+        <div className="step1-left-wrap">
+          <div className="step1-left-1">Step 1</div>
+          <div className="step1-left-2">Tell us about your place</div>
+          <div className="step1-left-3">In this step, we'll ask you which type of property you have and if guests will book the entire place or just a room. Then let us know the location and how many guests can stay.</div>
+        </div>
+        <div className="step1-right">
+          <img className="step1-img-1" src="https://imgur.com/qScRuLe.png" />
+        </div>
+        <div className="step0-footer step1-footer">
           <button className="step-button-back" onClick={() => setPage(0)}> Back </button>
           <button className="step-button-next" onClick={() => setPage(2)}> Next</button>
         </div>
@@ -182,13 +186,85 @@ const HostSpot = () => {
 
   const spotPage2 = () => {
     return (
-      <div>
-        <div>Which of these best describes your place?</div>
-        <input type="button" value="Cat Tree" onClick={(e) => setPlace(e.target.value)} className="describe-place" />
-        <input type="button" value="Box" onClick={(e) => setPlace(e.target.value)} className="describe-place" />
-        <div className="step0-footer">
-          <button className="step-button-back" onClick={() => setPage(1)}> Back </button>
-          <button className="step-button-next" onClick={() => setPage(3)}> Next</button>
+      <div className="step2-wrapper">
+        <div className="step2">
+          <div className="step2-title">Which of these best describes your place?</div>
+          <div className="step2-input-wrapper">
+            <div className="step2-input-container">
+              <input src="https://imgur.com/sz5sFYf.png" type="button" value="Play zone" onClick={(e) => setPlace(e.target.value)} className="describe-place" />
+              <img className="place-img" src="https://imgur.com/bboPy36.png" />
+            </div>
+
+            <div className="step2-input-container">
+              <input type="button" value="Sleep-only" onClick={(e) => setPlace(e.target.value)} className="describe-place" />
+              <img className="place-img" src="https://imgur.com/hpmirKZ.png" />
+            </div>
+
+            <div className="step2-input-container">
+              <input type="button" value="Tree" onClick={(e) => setPlace(e.target.value)} className="describe-place" />
+              <img className="place-img" src="https://imgur.com/xgffVdE.png" />
+            </div>
+
+            <div className="step2-input-container">
+              <input type="button" value="Box" onClick={(e) => setPlace(e.target.value)} className="describe-place" />
+              <img className="place-img" src="https://imgur.com/7oxOZy7.png" />
+            </div>
+
+            <div className="step2-input-container">
+              <input type="button" value="No human" onClick={(e) => setPlace(e.target.value)} className="describe-place" />
+              <img className="place-img" src="https://imgur.com/cIIP3LF.png" />
+            </div>
+
+            <div className="step2-input-container">
+              <input type="button" value="Furball" onClick={(e) => setPlace(e.target.value)} className="describe-place" />
+              <img className="place-img" src="https://imgur.com/B2UcvKy.png" />
+            </div>
+
+            <div className="step2-input-container">
+              <input type="button" value="Catnip" onClick={(e) => setPlace(e.target.value)} className="describe-place" />
+              <img className="place-img" src="https://imgur.com/u6LVB8Y.png" />
+            </div>
+
+            <div className="step2-input-container">
+              <input type="button" value="Shared" onClick={(e) => setPlace(e.target.value)} className="describe-place" />
+              <img className="place-img" src="https://imgur.com/atditdJ.png" />
+            </div>
+
+            <div className="step2-input-container">
+              <input type="button" value="Petting home" onClick={(e) => setPlace(e.target.value)} className="describe-place" />
+              <img className="place-img" src="https://imgur.com/XIsDXKA.png" />
+            </div>
+
+            <div className="step2-input-container">
+              <input type="button" value="Nature" onClick={(e) => setPlace(e.target.value)} className="describe-place" />
+              <img className="place-img" src="https://imgur.com/SGK10E3.png" />
+            </div>
+
+            <div className="step2-input-container">
+              <input type="button" value="No-meows-land" onClick={(e) => setPlace(e.target.value)} className="describe-place" />
+              <img className="place-img" src="https://imgur.com/uQOxjcy.png" />
+            </div>
+
+            <div className="step2-input-container">
+              <input type="button" value="Snacks" onClick={(e) => setPlace(e.target.value)} className="describe-place" />
+              <img className="place-img" src="https://imgur.com/UQ1veNy.png" />
+            </div>
+
+            <div className="step2-input-container">
+              <input type="button" value="Evil" onClick={(e) => setPlace(e.target.value)} className="describe-place" />
+              <img className="place-img" src="https://imgur.com/f0dNDBx.png" />
+            </div>
+
+            <div className="step2-input-container">
+              <input type="button" value="Others" onClick={(e) => setPlace(e.target.value)} className="describe-place" />
+              <img className="place-img" src="https://imgur.com/zgtELKc.png" />
+            </div>
+
+          </div>
+          <div className="step0-footer">
+            <button className="step-button-back" onClick={() => setPage(1)}> Back </button>
+            <button className="step-button-next" onClick={() => setPage(3)}> Next</button>
+          </div>
         </div>
       </div>
     )
