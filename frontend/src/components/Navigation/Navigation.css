@@ -208,3 +208,35 @@
   margin-right: 10px;
   object-fit: cover;
 }
+
+.partial-nav {
+  position: sticky;
+  display: flex;
+  height: 50px;
+  justify-content: space-between;
+  align-items: center;
+  /* border-bottom: 1px solid #EBEBEB; */
+  background-color: white;
+  padding: 10px 30px;
+  z-index: 1;
+}
+.partial-nav .home-button {
+  margin-top: 20px;
+  filter: invert(14%) sepia(1%) saturate(0%) hue-rotate(329deg) brightness(1%) contrast(102%);
+}
+
+.partial-nav .search {
+  display: none;
+}
+
+.partial-nav #logo {
+  display: none;
+}
+
+.partial-nav .right-nav {
+  display: none;
+}
+
+.partial-nav .whole-button {
+  display: none;
+}

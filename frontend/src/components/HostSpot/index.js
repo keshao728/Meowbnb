@@ -80,7 +80,7 @@ const HostSpot = () => {
         place,
         preview: true
       }
-      console.log(newSpot, "NEWSPOT")
+      // console.log(newSpot, "NEWSPOT")
       let createdSpot = await dispatch(addOneSpot(newSpot))
 
       // const createdSpot = () => {
@@ -118,7 +118,7 @@ const HostSpot = () => {
     setCountry(country)
     setLat(ll.lat)
     setLng(ll.lng)
-    // setPage(3)
+    setPage(4)
   }
 
   const spotPage0 = () => {
@@ -271,62 +271,75 @@ const HostSpot = () => {
   }
   const options = { types: ['address'] }
   const centerPoint = { lat: lat, lng: lng }
+  const sanFran = { lat: 37.7749, lng: -122.4194 }
   const spotPage3 = () => {
     return (
-      <div>
-        <div>Where's your place located?</div>
-        <PlacesAutocomplete
-          value={address}
-          onChange={setAddress}
-          onSelect={handleAddress}
-
-          searchOptions={options}
-        >
-          {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-            <div>
-              <input
-                {...getInputProps({
-                  placeholder: 'Search Places ...',
-                  className: 'location-search-input',
-                })}
-              />
-              <div className="autocomplete-dropdown-container">
-                {loading && <div>Loading...</div>}
-                {suggestions.map(suggestion => {
-                  const className = suggestion.active
-                    ? 'suggestion-item--active'
-                    : 'suggestion-item';
-                  // inline style for demonstration purpose
-                  const style = suggestion.active
-                    ? { backgroundColor: '#fafafa', cursor: 'pointer' }
-                    : { backgroundColor: '#ffffff', cursor: 'pointer' };
-                  return (
-                    <div
-                      {...getSuggestionItemProps(suggestion, {
-                        className,
-                        style,
-                      })}
-                    >
-                      <span>{suggestion.description}</span>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          )}
-        </PlacesAutocomplete>
-        {/* <div className="map-wrapper">
-          <GoogleMap
-            zoom={10}
-            center={centerPoint}
-            mapContainerClassName="map-container"
+      <div className="step3-wrapper">
+        <div className="step2">
+          <div className="step3-title">Where's your place located?</div>
+          <div className="step3-des">Your address is only shared with guests after they’ve made a reservation.</div>
+          <PlacesAutocomplete
+            value={address}
+            onChange={setAddress}
+            onSelect={handleAddress}
+            onClick={() => setPage(4)}
+            searchOptions={options}
           >
-            <Marker position={centerPoint} />
-          </GoogleMap>
-        </div> */}
-        <div className="step0-footer">
-          <button className="step-button-back" onClick={() => setPage(2)}> Back </button>
-          <button className="step-button-next" onClick={() => setPage(4)}> Next</button>
+            {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+              <div className="create-search-autocomplete">
+                <div className="create-search">
+                  <i className="fa-solid fa-location-dot" id="create-search-icon"></i>
+                  <input
+                    {...getInputProps({
+                      placeholder: 'Enter your address',
+                      className: 'location-search-input',
+                    })}
+                  />
+                </div>
+                <div className="autocomplete-dropdown-container">
+                  {loading &&
+                    <div className="autocomplete-loading">
+                      <img className="autocomplete-loading-img" src="https://imgur.com/gIENxaI.gif" />
+                    </div>}
+                  {suggestions.map(suggestion => {
+                    const className = suggestion.active
+                      ? 'suggestion-item--active'
+                      : 'suggestion-item';
+                    // inline style for demonstration purpose
+                    const style = suggestion.active
+                      ? { backgroundColor: '#fafafa', cursor: 'pointer' }
+                      : { backgroundColor: '#ffffff', cursor: 'pointer' };
+                    return (
+                      <div
+                        {...getSuggestionItemProps(suggestion, {
+                          className,
+                          style,
+                        })}
+                      >
+                        <span>{suggestion.description}</span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+          </PlacesAutocomplete>
+          <div className="map-wrapper">
+            <GoogleMap
+              zoom={12}
+              center={sanFran}
+              options={{
+                disableDefaultUI: true,
+              }}
+              mapContainerClassName="create-spot-map-container"
+            >
+              {/* <Marker position={sanFran} /> */}
+            </GoogleMap>
+          </div>
+          <div className="step0-footer">
+            <button className="step-button-back" onClick={() => setPage(2)}> Back </button>
+            <button className="step-button-next" onClick={() => setPage(4)}> Next</button>
+          </div>
         </div>
       </div>
     )
