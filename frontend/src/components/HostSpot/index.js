@@ -347,53 +347,69 @@ const HostSpot = () => {
 
   const spotPage4 = () => {
     return (
-      <div>
-        <h3 className="host-message">Confirm your address</h3>
-        <div className="host-form">
-          <label>
-            <input
-              placeholder="Address"
-              type="text"
-              className="host-input"
-              value={address}
-              onChange={(e) => setAddress(e.target.value)}
-            // required
-            />
-          </label>
-          <label>
-            <input
-              placeholder="City"
-              type="text"
-              className="host-input"
-              value={city}
-              onChange={(e) => setCity(e.target.value)}
-            // required
-            />
-          </label>
-          <label>
-            <input
-              placeholder="State"
-              type="text"
-              className="host-input"
-              value={state}
-              onChange={(e) => setState(e.target.value)}
-            // required
-            />
-          </label>
-          <label>
-            <input
-              placeholder="Country"
-              type="text"
-              className="host-input"
-              value={country}
-              onChange={(e) => setCountry(e.target.value)}
-            // required
-            />
-          </label>
-        </div>
-        <div className="step0-footer">
-          <button className="step-button-back" onClick={() => setPage(3)}> Back </button>
-          <button className="step-button-next" onClick={() => setPage(5)}> Next</button>
+      <div className="step4-wrapper">
+        <div className="step2">
+          <div className="step3-title">Confirm your address</div>
+          <div className="step3-des">Your address is only shared with guests after they’ve made a reservation.</div>
+          <div className="host-input-parent">
+            <div className="host-input-box">
+              <input
+                type="text"
+                className="host-input"
+                value={address}
+                onChange={(e) => setAddress(e.target.value)}
+                required
+              />
+              <label>Address</label>
+            </div>
+            <div className="host-input-box">
+              <input
+                type="text"
+                className="host-input"
+                value={city}
+                onChange={(e) => setCity(e.target.value)}
+                required
+              />
+              <label>City</label>
+            </div>
+            <div className="host-input-box">
+              <input
+                type="text"
+                className="host-input"
+                value={state}
+                onChange={(e) => setState(e.target.value)}
+                required
+              />
+              <label>State</label>
+            </div>
+            <div className="host-input-box host-input-last">
+              <input
+                type="text"
+                className="host-input"
+                value={country}
+                onChange={(e) => setCountry(e.target.value)}
+                required
+              />
+              <label>Country</label>
+            </div>
+          </div>
+
+          <div className="map-wrapper">
+            <GoogleMap
+              zoom={14}
+              center={centerPoint}
+              options={{
+                disableDefaultUI: true,
+              }}
+              mapContainerClassName="create-spot-pin-container"
+            >
+              <Marker position={centerPoint} />
+            </GoogleMap>
+          </div>
+          <div className="step0-footer">
+            <button className="step-button-back" onClick={() => setPage(3)}> Back </button>
+            <button className="step-button-next" onClick={() => setPage(5)}> Next</button>
+          </div>
         </div>
       </div>
     )
@@ -401,14 +417,19 @@ const HostSpot = () => {
   const spotPage5 = () => {
     return (
       <div className="step1-wrapper">
-        <div>Step 2</div>
-        <div>Make your place stand out</div>
-        <div>In this step, you’ll add some of the amenities your place offers, plus 5 or more photos. Then, you’ll create a title and description.</div>
-        <div>INSERT CAT IMG HERE</div>
-        <div className="step0-footer">
+        <div className="step1-left-wrap">
+          <div className="step1-left-1">Step 2</div>
+          <div className="step1-left-2 step5-left">Make your place stand out</div>
+          <div className="step1-left-3 step5-left-1">In this step, you’ll add some of the amenities your place offers, plus 1 or more photos. Then, you’ll create a title and description.</div>
+        </div>
+        <div className="step1-right">
+          <img className="step1-img-1" src="https://imgur.com/JyXItmZ.png" />
+        </div>
+        <div className="step0-footer step1-footer">
           <button className="step-button-back" onClick={() => setPage(4)}> Back </button>
           <button className="step-button-next" onClick={() => setPage(6)}> Next</button>
         </div>
+        {/* <button onClick={() => setPage(2)}> Next </button> */}
       </div >
     )
   }
