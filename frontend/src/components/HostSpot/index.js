@@ -550,36 +550,41 @@ const HostSpot = () => {
           spotPage7()
         }
         {page === 8 &&
-          <div>
-            <label>
-              <input
-                placeholder="Name"
-                type="text"
-                className="host-input"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              />
-            </label>
-            <label>
-              <input
-                placeholder="Description"
-                type="text"
-                className="host-input"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-              // required
-              />
-            </label>
-            <label>
+          <div className="step2">
+            <div className="step3-title">Now, let's give your dome a final touchup</div>
+            <div className="step3-des">You can change it anytime..</div>
+            <div className="host-input-parent">
+              <div className="host-input-box">
+                <input
+                  type="text"
+                  className="host-input"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  required
+                />
+                <label>Name</label>
+              </div>
+              <div className="host-input-box host-input-last">
+                <input
+                  type="text"
+                  className="host-input host-input-des"
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
+                  required
+                />
+                <label>Description</label>
+              </div>
+            </div>
+            <div>
+              <label>Price</label>
               <input
                 type="number"
-                placeholder="Price"
                 className="host-input"
                 value={price}
                 onChange={(e) => setPrice(parseInt(e.target.value).toFixed(0))}
-              // required
+                required
               />
-            </label>
+            </div>
             <div className="step0-footer">
               <button className="step-button-back" onClick={() => setPage(7)}> Back </button>
               {/* <button className="step-button-next" onClick={() => setPage(2)}> Next</button> */}
