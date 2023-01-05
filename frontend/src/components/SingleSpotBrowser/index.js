@@ -1,27 +1,37 @@
 import { useEffect, useState, useRef, useMemo } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api"
 import { NavLink, useParams, useHistory } from "react-router-dom"
+
 import { getOneSpot } from "../../store/spots"
 import { locationReviewsThunk } from "../../store/reviews"
 import { addBookingThunk, loadAllBookingThunk } from "../../store/bookings"
-import BookingLoginModal from "./RedirectModal"
 
+import BookingLoginModal from "./RedirectModal"
+import ReviewFormModal from "../ReviewSpot/ReviewModal"
+
+import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api"
 import { DateRange } from 'react-date-range'
 import { addDays } from 'date-fns'
 import format from 'date-fns/format'
 
-
 import 'react-date-range/dist/styles.css'; // main css file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import './SingleSpotBrowser.css'
-import ReviewFormModal from "../ReviewSpot/ReviewModal"
 
 const SingleSpotBrowser = () => {
   const history = useHistory()
   const dispatch = useDispatch()
   const [isLoaded, setIsLoaded] = useState(false)
   const { spotId } = useParams()
+
+
+  const [errors, setErrors] = useState({});
+  const [showErrors, setShowErrors] = useState(false);
+
+  const [startDate, setStartDate] = useState(new Date())
+  const [endDate, setEndDate] = useState(addDays(new Date(), 1))
+  const [openCalender, setOpenCalender] = useState(false)
+
   // const [range, setRange] = useState([
   //   {
   //     startDate: new Date(),
@@ -34,22 +44,7 @@ const SingleSpotBrowser = () => {
   //   googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
   // })
 
-  const [startDate, setStartDate] = useState(new Date())
-  const [endDate, setEndDate] = useState(addDays(new Date(), 1))
-
-  const selectionRange = {
-    startDate: startDate,
-    endDate: endDate,
-    key: 'selection',
-  }
-
-
   const ref = useRef(null)
-
-  const [openCalender, setOpenCalender] = useState(false)
-
-  const [errors, setErrors] = useState({});
-  const [showErrors, setShowErrors] = useState(false);
 
   const sessionUser = useSelector(state => state.session.user)
 
@@ -62,26 +57,6 @@ const SingleSpotBrowser = () => {
   const allReviews = useSelector(state => state.reviews.spot);
   const allReviewsArr = Object.values(allReviews)
 
-  const handleSelect = (ranges) => {
-    setStartDate(ranges.selection.startDate)
-    setEndDate(ranges.selection.endDate)
-  }
-
-  // const bookingStartDate = (ranges) => {
-  //   setStartDate(ranges.selection.startDate)
-  // }
-  // const bookingEndDate = (ranges) => {
-  //   setEndDate(ranges.selection.endDate)
-  // }
-
-  useEffect(() => {
-    dispatch(getOneSpot(spotId))
-      .then(() => dispatch(locationReviewsThunk(spotId)))
-      .then(() => dispatch(loadAllBookingThunk(spotId)))
-      // return (() => dispatch(resetData()))
-      .then(() => setIsLoaded(true))
-  }, [dispatch, spotId])
-
   let alreadyReviewed;
   if (sessionUser && allReviewsArr.length > 0) {
     alreadyReviewed = allReviewsArr.find(review => review.userId === sessionUser.id)
@@ -90,6 +65,18 @@ const SingleSpotBrowser = () => {
   let allowReviewAction = false;
   if ((sessionUser) && (sessionUser.id !== currSpot.ownerId) && (!alreadyReviewed)) {
     allowReviewAction = true
+  }
+
+  //BOOKINGS
+  const handleSelect = (ranges) => {
+    setStartDate(ranges.selection.startDate)
+    setEndDate(ranges.selection.endDate)
+  }
+
+  const selectionRange = {
+    startDate: startDate,
+    endDate: endDate,
+    key: 'selection',
   }
 
   function subractDays(startingDate, number) {
@@ -122,6 +109,14 @@ const SingleSpotBrowser = () => {
     }
   }
 
+  useEffect(() => {
+    dispatch(getOneSpot(spotId))
+      .then(() => dispatch(locationReviewsThunk(spotId)))
+      .then(() => dispatch(loadAllBookingThunk(spotId)))
+      // return (() => dispatch(resetData()))
+      .then(() => setIsLoaded(true))
+  }, [dispatch, spotId])
+
   const handleSubmit = async (e) => {
     e.preventDefault()
     let err = validateBooking()
@@ -134,7 +129,7 @@ const SingleSpotBrowser = () => {
         "startDate": startDate,
         "endDate": endDate,
       }
-      let createdBooking = await dispatch(addBookingThunk(spotId, newBooking))
+      await dispatch(addBookingThunk(spotId, newBooking))
       await dispatch(loadAllBookingThunk(spotId))
       setShowErrors(false)
       // history.push(`/bookings/current`)
@@ -174,7 +169,6 @@ const SingleSpotBrowser = () => {
               <div className="left-middle">
                 <div className="spot-hosted">
                   <div className="hosted-by"> Spot hosted by {currSpot.Owner.firstName} {currSpot.Owner.lastName}</div>
-                  {/* {console.log(currSpot)} */}
                   <img className='hosted-pic' src="https://drive.google.com/uc?export=view&id=1p7ALHdhdZsKxbR6qaFb4Wd_rbqSy1DwI" alt="Meowbnb Default Profile"></img>
                 </div>
 
@@ -314,46 +308,15 @@ const SingleSpotBrowser = () => {
                       </div>
                     </div>
                   </div>
-
-                  {/* {allowReviewAction &&
-                    <div className='review-this-spot'>
-                      <NavLink className="review-click"
-                        to={`/spots/${currSpot.id}/review`}>
-                        Review This Spot
-                      </NavLink>
-                    </div>
-                  } */}
-                  {/* {!allowReviewAction && sessionUser && !alreadyReviewed &&
-                    <div className='review-this-spot'>
-                      <NavLink className="review-click"
-                        to="/spots/my-spots">
-                        Manage My Spot
-                      </NavLink>
-                    </div>
-                  }
-                  {alreadyReviewed &&
-                    <div className='review-this-spot'>
-                      <NavLink className="review-click"
-                        to="/spots/my-reviews">
-                        Manage My Reviews
-                      </NavLink>
-                    </div>
-                  } */}
                 </div>
-                {/* <div className="MT"></div> */}
               </div>
             </div>
           </div>
         }
+
         <div className="review-star-foot">
           <div className="stars-n-review"><i className="fa-solid fa-paw" /> {currSpot.avgStarRating > 0 ? Number(currSpot.avgStarRating).toFixed(2) : 'New'} · {currSpot.numReviews} reviews</div>
           {allowReviewAction &&
-            // <div className='review-this-spot'>
-            //   <NavLink className="review-click"
-            //     to={`/spots/${currSpot.id}/review`}>
-            //     Review This Spot
-            //   </NavLink>
-            // </div>
             <ReviewFormModal />
           }
           {!allowReviewAction && sessionUser && !alreadyReviewed &&
@@ -373,9 +336,8 @@ const SingleSpotBrowser = () => {
             </div>
           }
         </div>
-        <div className="single-spot-parent">
-          {/* {console.log("AVG RATING FOR CURR SPOT", currSpot.avgStarRating)} */}
 
+        <div className="single-spot-parent">
           <div className="reviews-wrapper">
             {allReviewsArr?.map((review) => (
               <div className='reviews' key={review.id}>
