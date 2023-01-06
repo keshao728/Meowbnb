@@ -236,12 +236,20 @@ router.post('/', validateSpot, requireAuth, async (req, res, next) => {
   })
 
   const { url, preview } = req.body
-
-  await SpotImage.create({
-    "spotId": spot.id,
-    "url": url,
-    "preview": preview
-  })
+  // console.log("238.5", url)
+  for (x of url) {
+    // console.log("HIT-------HFBEAIFKAWHBFKHBAWHKDBHKAWBFKHAWBKHFWABK")
+    await SpotImage.create({
+      "spotId": spot.id,
+      "url": x,
+      "preview": preview
+    })
+  }
+  // await SpotImage.create({
+  //   "spotId": spot.id,
+  //   "url": url,
+  //   "preview": preview
+  // })
 
   const spotWithImage = await Spot.findByPk(spot.id, {
     include: SpotImage //include the model

@@ -33,6 +33,7 @@ const HostSpot = () => {
   const [url4, setUrl4] = useState("")
   const [url5, setUrl5] = useState("")
 
+  const [allUrls, setAllUrls] = useState([])
 
   const [center, setCenter] = useState({ lat: 37.0902, lng: -95.7129 })
   const [position, setPosition] = useState({ lat: 37.0902, lng: -95.7129 })
@@ -76,11 +77,11 @@ const HostSpot = () => {
   //   setValidationErrors(errors)
   // }, [name, address, city, state, country, description, price, url])
   let imageUrl = []
-
   const handleSubmit = async (e) => {
     e.preventDefault()
     setShowErrors(true)
-
+    console.log(allUrls, "ALLURLSHIBASHIBASHIBA")
+    console.log(imageUrl, "IMAGEURLSHIBASHIBASHIBA")
     if (!validationErrors.length) {
 
       const newSpot = {
@@ -93,7 +94,7 @@ const HostSpot = () => {
         name,
         description,
         price,
-        url: imageUrl,
+        url: allUrls,
         amenities,
         place,
         preview: true
@@ -508,7 +509,41 @@ const HostSpot = () => {
     )
   }
 
+
   const spotPage7 = () => {
+    // console.log("URL1", url)
+    // console.log("URL2", url2)
+    // console.log("URL3", url3)
+    // console.log("URL4", url4)
+    // console.log("URL5", url5)
+    let error = []
+
+    if (url.length) {
+      if (!url.includes("png") && !url.includes("jpg") && !url.includes("jpeg")) {
+        error.push("Please enter a valid URL ending with jpg, jpeg or png")
+      } else {
+        imageUrl.push(url)
+      }
+    }
+    if (url2.length) {
+      imageUrl.push(url2)
+    }
+    if (url3.length) {
+      imageUrl.push(url3)
+    }
+    if (url4.length) {
+      imageUrl.push(url4)
+    }
+    if (url5.length) {
+      imageUrl.push(url5)
+    }
+
+    // if (imageUrl.length) {
+    //   setAllUrls(imageUrl)
+    // }
+
+    console.log("STUPID IMAGE URL", imageUrl)
+
     return (
       <div className="step7-wrapper">
         <div className="step7-left">
@@ -620,7 +655,10 @@ const HostSpot = () => {
         </div>
         <div className="step0-footer">
           <button className="step-button-back" onClick={() => setPage(6)}> Back </button>
-          <button className="step-button-next" onClick={() => setPage(8)}> Next</button>
+          <button className="step-button-next" onClick={() => {
+            setPage(8);
+            setAllUrls(imageUrl);
+            }}> Next</button>
         </div>
       </div>
     )
