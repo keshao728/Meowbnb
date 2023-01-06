@@ -22,8 +22,12 @@ app.use(morgan('dev'));
 //middleware for parsing cookies:
 app.use(cookieParser());
 //for parsing JSON bodies of requests with Content-Type of "application/json":
+app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
+// var bodyParser = require('body-parser');
+// app.use(bodyParser.urlencoded({ extended: false, limit: '50mb' }));
+// app.use(bodyParser.json({limit: '50mb'}));
 
 
 // Security Middleware

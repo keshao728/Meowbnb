@@ -45,19 +45,51 @@ export const resetData = () => ({
 //THUNK-----------------
 //create
 export const addOneSpot = (added) => async dispatch => {
-  console.log("THUNKTHUNKTNUTNKTNj")
+  const { url, address, city, state, country, lat, lng, name, description, price, place, amenities } = added;
+  console.log(added, "ADDED IN THUNK")
+
+  console.log(url, "IMAGE IN THUNK")
+  // console.log(url, "IMAGES IN THUNK")
+  const formData = new FormData();
+
+  formData['address'] = address;
+  formData['city'] = city;
+  formData['state'] = state;
+  formData['country'] = country;
+  formData['lat'] = lat;
+  formData['lng'] = lng;
+  formData['name'] = name;
+  formData['description'] = description;
+  formData['price'] = price;
+  formData['place'] = place;
+  formData['amenities'] = amenities;
+
+  // for multiple files
+  if (url && url.length !== 0) {
+    for (var i = 0; i < url.length; i++) {
+      formData['url'] = url[i];
+      // formData.a("url", url[i]);
+    }
+  }
+
+  // for single file
+  if (url) formData['url'] = url;
+
+  console.log(formData, "FORM DATA AFTER APPEND")
+
   const response = await csrfFetch('/api/spots', {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json'
+      "Content-Type": "multipart/form-data",
     },
-    body: JSON.stringify(added)
+    body: JSON.stringify(formData),
   })
-  if (response.ok) {
+  // if (response.ok) {
     const newSpot = await response.json()
     dispatch(addSpot(newSpot))
-    return newSpot
-  }
+    // console.log(newSpot, "NEW SPOT")
+    // return newSpot
+  // }
 }
 
 //read

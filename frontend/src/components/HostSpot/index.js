@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { useHistory, Redirect } from "react-router-dom"
+import { useHistory, Redirect, useParams } from "react-router-dom"
 // import { useHistory } from "react-router-dom"
-import { addOneSpot } from "../../store/spots"
+import { getOneSpot, addOneSpot } from "../../store/spots"
 import { resetData } from "../../store/spots"
 import "./HostSpot.css"
+import { csrfFetch } from "../../store/csrf"
 import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api"
 
 
@@ -14,6 +15,7 @@ import PlacesAutocomplete, {
 } from 'react-places-autocomplete';
 
 const HostSpot = () => {
+  const { spotId } = useParams()
   const dispatch = useDispatch()
   const sessionUser = useSelector(state => state.session.user)
   const history = useHistory()
@@ -26,7 +28,7 @@ const HostSpot = () => {
   const [name, setName] = useState("")
   const [description, setDescription] = useState("")
   const [price, setPrice] = useState("")
-  const [url, setUrl] = useState("")
+  const [url, setUrl] = useState(null)
   const [center, setCenter] = useState({ lat: 37.0902, lng: -95.7129 })
   const [position, setPosition] = useState({ lat: 37.0902, lng: -95.7129 })
 
@@ -64,41 +66,44 @@ const HostSpot = () => {
     setShowErrors(true)
 
     if (!validationErrors.length) {
+      // const form = document.getElementById("spot-form")
+      // console.log(form, "form")
+      // const formData = new FormData(form)
 
-      const newSpot = {
-        address,
-        city,
-        state,
-        country,
-        lat,
-        lng,
-        name,
-        description,
-        price,
-        url,
-        amenities,
-        place,
-        preview: true
-      }
-      // console.log(newSpot, "NEWSPOT")
-      let createdSpot = await dispatch(addOneSpot(newSpot))
+      // if (url) formData.append("url", url);
+      // console.log(formData, "formData in HOSTSPOT")
+      // const res = await csrfFetch(`/api/spots`, {
+      //   method: "POST",
+      //   body: formData,
+      // } )
 
-      // const createdSpot = () => {
-      //   dispatch(addOneSpot(newSpot))
-      //   return (() => dispatch(resetData()))
-      //   // window.location.reload()
+      // if (res.ok) {
+      //   const data = await res.json()
+      //   console.log(data, "data")
       // }
-
-      if (createdSpot) {
-        // dispatch(resetData())
-        // setErrors([])
+      const newSpot = dispatch(addOneSpot({ url, address, city, state, country, lat, lng, name, description, price, place, amenities }))
+      console.log("HOSTPOST NEWSPOT THING", newSpot)
+      if (newSpot) {
+        console.log("success", newSpot)
+        // await res.json()
         setShowErrors(false)
         // .then(() => setIsLoaded(true))
-        history.push(`/spots/${createdSpot.id}`)
+        // history.push(`/spots/${spotId}`)
         return (() => dispatch(resetData()))
+
+      } else {
+        console.log("error", newSpot)
       }
+      await dispatch(getOneSpot(spotId))
+
     }
   }
+
+
+  const updateFile = (e) => {
+    const file = e.target.files[0];
+    if (file) setUrl(file);
+  };
 
   const handleAddress = async (address) => {
     const result = await geocodeByAddress(address)
@@ -191,67 +196,67 @@ const HostSpot = () => {
           <div className="step2-title">Which of these best describes your place?</div>
           <div className="step2-input-wrapper">
             <div className="step2-input-container">
-              <input src="https://imgur.com/sz5sFYf.png" type="button" value="Play zone" onClick={(e) => setPlace(e.target.value)} className="describe-place" />
+              <input name="place" src="https://imgur.com/sz5sFYf.png" type="button" value="Play zone" onClick={(e) => setPlace(e.target.value)} className="describe-place" />
               <img className="place-img" src="https://imgur.com/bboPy36.png" />
             </div>
 
             <div className="step2-input-container">
-              <input type="button" value="Sleep-only" onClick={(e) => setPlace(e.target.value)} className="describe-place" />
+              <input name="place" type="button" value="Sleep-only" onClick={(e) => setPlace(e.target.value)} className="describe-place" />
               <img className="place-img" src="https://imgur.com/hpmirKZ.png" />
             </div>
 
             <div className="step2-input-container">
-              <input type="button" value="Tree" onClick={(e) => setPlace(e.target.value)} className="describe-place" />
+              <input name="place" type="button" value="Tree" onClick={(e) => setPlace(e.target.value)} className="describe-place" />
               <img className="place-img" src="https://imgur.com/xgffVdE.png" />
             </div>
 
             <div className="step2-input-container">
-              <input type="button" value="Box" onClick={(e) => setPlace(e.target.value)} className="describe-place" />
+              <input name="place" type="button" value="Box" onClick={(e) => setPlace(e.target.value)} className="describe-place" />
               <img className="place-img" src="https://imgur.com/7oxOZy7.png" />
             </div>
 
             <div className="step2-input-container">
-              <input type="button" value="No human" onClick={(e) => setPlace(e.target.value)} className="describe-place" />
+              <input name="place" type="button" value="No human" onClick={(e) => setPlace(e.target.value)} className="describe-place" />
               <img className="place-img" src="https://imgur.com/cIIP3LF.png" />
             </div>
 
             <div className="step2-input-container">
-              <input type="button" value="Furball" onClick={(e) => setPlace(e.target.value)} className="describe-place" />
+              <input name="place" type="button" value="Furball" onClick={(e) => setPlace(e.target.value)} className="describe-place" />
               <img className="place-img" src="https://imgur.com/B2UcvKy.png" />
             </div>
 
             <div className="step2-input-container">
-              <input type="button" value="Catnip" onClick={(e) => setPlace(e.target.value)} className="describe-place" />
+              <input name="place" type="button" value="Catnip" onClick={(e) => setPlace(e.target.value)} className="describe-place" />
               <img className="place-img" src="https://imgur.com/u6LVB8Y.png" />
             </div>
 
             <div className="step2-input-container">
-              <input type="button" value="Shared" onClick={(e) => setPlace(e.target.value)} className="describe-place" />
+              <input name="place" type="button" value="Shared" onClick={(e) => setPlace(e.target.value)} className="describe-place" />
               <img className="place-img" src="https://imgur.com/atditdJ.png" />
             </div>
 
             <div className="step2-input-container">
-              <input type="button" value="Petting home" onClick={(e) => setPlace(e.target.value)} className="describe-place" />
+              <input name="place" type="button" value="Petting home" onClick={(e) => setPlace(e.target.value)} className="describe-place" />
               <img className="place-img" src="https://imgur.com/XIsDXKA.png" />
             </div>
 
             <div className="step2-input-container">
-              <input type="button" value="Nature" onClick={(e) => setPlace(e.target.value)} className="describe-place" />
+              <input name="place" type="button" value="Nature" onClick={(e) => setPlace(e.target.value)} className="describe-place" />
               <img className="place-img" src="https://imgur.com/SGK10E3.png" />
             </div>
 
             <div className="step2-input-container">
-              <input type="button" value="No-meows-land" onClick={(e) => setPlace(e.target.value)} className="describe-place" />
+              <input name="place" type="button" value="No-meows-land" onClick={(e) => setPlace(e.target.value)} className="describe-place" />
               <img className="place-img" src="https://imgur.com/uQOxjcy.png" />
             </div>
 
             <div className="step2-input-container">
-              <input type="button" value="Snacks" onClick={(e) => setPlace(e.target.value)} className="describe-place" />
+              <input name="place" type="button" value="Snacks" onClick={(e) => setPlace(e.target.value)} className="describe-place" />
               <img className="place-img" src="https://imgur.com/UQ1veNy.png" />
             </div>
 
             <div className="step2-input-container">
-              <input type="button" value="Evil" onClick={(e) => setPlace(e.target.value)} className="describe-place" />
+              <input name="place" type="button" value="Evil" onClick={(e) => setPlace(e.target.value)} className="describe-place" />
               <img className="place-img" src="https://imgur.com/f0dNDBx.png" />
             </div>
 
@@ -356,6 +361,7 @@ const HostSpot = () => {
               <input
                 type="text"
                 className="host-input"
+                name="address"
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}
                 required
@@ -365,6 +371,7 @@ const HostSpot = () => {
             <div className="host-input-box">
               <input
                 type="text"
+                name="city"
                 className="host-input"
                 value={city}
                 onChange={(e) => setCity(e.target.value)}
@@ -376,6 +383,7 @@ const HostSpot = () => {
               <input
                 type="text"
                 className="host-input"
+                name="state"
                 value={state}
                 onChange={(e) => setState(e.target.value)}
                 required
@@ -387,6 +395,7 @@ const HostSpot = () => {
                 type="text"
                 className="host-input"
                 value={country}
+                name="country"
                 onChange={(e) => setCountry(e.target.value)}
                 required
               />
@@ -441,42 +450,42 @@ const HostSpot = () => {
           <div className="step3-des step6-des">You cannot add more amenities after you publish your listing.</div>
           <div className="step6-input-wrapper">
             <div className="amenities-container">
-              <input id="wifi" type="checkbox" value="Wifi" onClick={(e) => setAmenities(e.target.value)} className="amenities-place" />
+              <input name="amenities" id="wifi" type="checkbox" value="Wifi" onClick={(e) => setAmenities(e.target.value)} className="amenities-place" />
               <label for="wifi" className="amenities-label">Wifi</label>
               <img className="amenities-img" src="https://imgur.com/fHVWE9K.png" />
             </div>
             <div className="amenities-container">
-              <input id="tv" type="checkbox" value="TV" onClick={(e) => setAmenities(e.target.value)} className="amenities-place" />
+              <input name="amenities" id="tv" type="checkbox" value="TV" onClick={(e) => setAmenities(e.target.value)} className="amenities-place" />
               <label for="tv" className="amenities-label">TV</label>
               <img className="amenities-img" src="https://imgur.com/csXC3RL.png" />
             </div>
             <div className="amenities-container">
-              <input id="kitchen" type="checkbox" value="Kitchen" onClick={(e) => setAmenities(e.target.value)} className="amenities-place" />
+              <input name="amenities" id="kitchen" type="checkbox" value="Kitchen" onClick={(e) => setAmenities(e.target.value)} className="amenities-place" />
               <label for="kitchen" className="amenities-label">Kitchen</label>
               <img className="amenities-img" src="https://imgur.com/uwD4CGY.png" />
             </div>
             <div className="amenities-container">
-              <input id="washer" type="checkbox" value="Washer" onClick={(e) => setAmenities(e.target.value)} className="amenities-place" />
+              <input name="amenities" id="washer" type="checkbox" value="Washer" onClick={(e) => setAmenities(e.target.value)} className="amenities-place" />
               <label for="washer" className="amenities-label" >Washer</label>
               <img className="amenities-img" src="https://imgur.com/Xluxljd.png" />
             </div>
             <div className="amenities-container">
-              <input id="free-park" type="checkbox" value="Free parking on premises" onClick={(e) => setAmenities(e.target.value)} className="amenities-place" />
+              <input name="amenities" id="free-park" type="checkbox" value="Free parking on premises" onClick={(e) => setAmenities(e.target.value)} className="amenities-place" />
               <label for="free-park" className="amenities-label">Free parking on premises</label>
               <img className="amenities-img" src="https://imgur.com/z2lA5yX.png" />
             </div>
             <div className="amenities-container">
-              <input id="paid-park" type="checkbox" value="Paid parking on premises" onClick={(e) => setAmenities(e.target.value)} className="amenities-place" />
+              <input name="amenities" id="paid-park" type="checkbox" value="Paid parking on premises" onClick={(e) => setAmenities(e.target.value)} className="amenities-place" />
               <label for="paid-park" className="amenities-label">Paid parking on premises</label>
               <img className="amenities-img" src="https://imgur.com/nARtwQZ.png" />
             </div>
             <div className="amenities-container">
-              <input id="air" type="checkbox" value="Air conditioning" onClick={(e) => setAmenities(e.target.value)} className="amenities-place" />
+              <input name="amenities" id="air" type="checkbox" value="Air conditioning" onClick={(e) => setAmenities(e.target.value)} className="amenities-place" />
               <label for="air" className="amenities-label">Air conditioning</label>
               <img className="amenities-img" src="https://imgur.com/cHR1Rxx.png" />
             </div>
             <div className="amenities-container">
-              <input id="workspace" type="checkbox" value="Dedicated workspace" onClick={(e) => setAmenities(e.target.value)} className="amenities-place" />
+              <input name="amenities" id="workspace" type="checkbox" value="Dedicated workspace" onClick={(e) => setAmenities(e.target.value)} className="amenities-place" />
               <label for="workspace" className="amenities-label">Dedicated workspace</label>
               <img className="amenities-img" src="https://imgur.com/7iFsb5g.png" />
             </div>
@@ -495,14 +504,7 @@ const HostSpot = () => {
       <div>
         <div>Choose at least 1 photo</div>
         <label>
-          <input
-            placeholder="Image (url only)"
-            type="url"
-            className="host-input"
-            value={url}
-            onChange={(e) => setUrl(e.target.value)}
-          // required
-          />
+          <input type="file" onChange={updateFile} />
         </label>
         <div className="step0-footer">
           <button className="step-button-back" onClick={() => setPage(6)}> Back </button>
@@ -559,6 +561,7 @@ const HostSpot = () => {
                   type="text"
                   className="host-input"
                   value={name}
+                  name="name"
                   onChange={(e) => setName(e.target.value)}
                   required
                 />
@@ -569,6 +572,7 @@ const HostSpot = () => {
                   type="text"
                   className="host-input host-input-des"
                   value={description}
+                  name="description"
                   onChange={(e) => setDescription(e.target.value)}
                   required
                 />
@@ -581,6 +585,7 @@ const HostSpot = () => {
                 type="number"
                 className="host-input"
                 value={price}
+                name="price"
                 onChange={(e) => setPrice(parseInt(e.target.value).toFixed(0))}
                 required
               />
