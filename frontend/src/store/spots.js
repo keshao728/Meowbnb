@@ -65,12 +65,12 @@ export const addOneSpot = (added) => async dispatch => {
   formData['amenities'] = amenities;
 
   // for multiple files
-  if (url && url.length !== 0) {
-    for (var i = 0; i < url.length; i++) {
-      formData['url'] = url[i];
-      // formData.a("url", url[i]);
-    }
-  }
+  // if (url && url.length !== 0) {
+  //   for (var i = 0; i < url.length; i++) {
+  //     formData['url'] = url[i];
+  //     // formData.a("url", url[i]);
+  //   }
+  // }
 
   // for single file
   if (url) formData['url'] = url;
