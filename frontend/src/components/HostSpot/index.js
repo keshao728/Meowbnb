@@ -26,7 +26,14 @@ const HostSpot = () => {
   const [name, setName] = useState("")
   const [description, setDescription] = useState("")
   const [price, setPrice] = useState("")
+
   const [url, setUrl] = useState("")
+  const [url2, setUrl2] = useState("")
+  const [url3, setUrl3] = useState("")
+  const [url4, setUrl4] = useState("")
+  const [url5, setUrl5] = useState("")
+
+
   const [center, setCenter] = useState({ lat: 37.0902, lng: -95.7129 })
   const [position, setPosition] = useState({ lat: 37.0902, lng: -95.7129 })
 
@@ -38,6 +45,16 @@ const HostSpot = () => {
 
   const [validationErrors, setValidationErrors] = useState([])
   const [showErrors, setShowErrors] = useState(false)
+
+
+  // const spot = useSelector(state => state.spots.singleSpot)
+  // let spotImg;
+  // if (url) {
+  //   spotImg = spot?.SpotImages
+  // }
+  // // const spotImgArr = Object.values(spotImg)
+  // console.log(spotImg, "SPOTIMGARR")
+
 
 
   // useEffect(() => {
@@ -58,6 +75,7 @@ const HostSpot = () => {
 
   //   setValidationErrors(errors)
   // }, [name, address, city, state, country, description, price, url])
+  let imageUrl = []
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -75,7 +93,7 @@ const HostSpot = () => {
         name,
         description,
         price,
-        url,
+        url: imageUrl,
         amenities,
         place,
         preview: true
@@ -492,18 +510,114 @@ const HostSpot = () => {
 
   const spotPage7 = () => {
     return (
-      <div>
-        <div>Choose at least 1 photo</div>
-        <label>
-          <input
-            placeholder="Image (url only)"
-            type="url"
-            className="host-input"
-            value={url}
-            onChange={(e) => setUrl(e.target.value)}
-          // required
-          />
-        </label>
+      <div className="step7-wrapper">
+        <div className="step7-left">
+          <div className="step2-title">Choose at least 1 photo</div>
+          <div className="step3-des step7-des">Cover Photo</div>
+          <div className="host-input-parent">
+            <div className="host-input-box host-input-last">
+              <input
+                type="text"
+                className="host-input"
+                value={url}
+                onChange={(e) => setUrl(e.target.value)}
+                required
+              />
+              <label>Image (url only)</label>
+            </div>
+          </div>
+          <div className="step3-des step7-des">Optional</div>
+          <div className="host-input-parent">
+            <div className="host-input-box">
+              <input
+                type="text"
+                className="host-input"
+                value={url2}
+                onChange={(e) => setUrl2(e.target.value)}
+                required
+              />
+              <label>Image (url only)</label>
+            </div>
+            <div className="host-input-box">
+              <input
+                type="text"
+                className="host-input"
+                value={url3}
+                onChange={(e) => setUrl3(e.target.value)}
+                required
+              />
+              <label>Image (url only)</label>
+            </div>
+            <div className="host-input-box ">
+              <input
+                type="text"
+                className="host-input"
+                value={url4}
+                onChange={(e) => setUrl4(e.target.value)}
+                required
+              />
+              <label>Image (url only)</label>
+            </div>
+            <div className="host-input-box host-input-last">
+              <input
+                type="text"
+                className="host-input"
+                value={url5}
+                onChange={(e) => setUrl5(e.target.value)}
+                required
+              />
+              <label>Image (url only)</label>
+            </div>
+          </div>
+        </div>
+        <div className="step7-right">
+          <div className="step3-des step7-preview">Image Preview</div>
+          {url && !url2 && !url3 && !url4 && !url5 &&
+            <img className="spot-img-upload-1" src={url} />
+          }
+
+          {url && url2 && !url3 && !url4 && !url5 &&
+            <div className="step7-2url">
+              <img className="spot-img-upload-2" src={url} />
+              <img className="spot-img-upload-3" src={url2} />
+            </div>
+          }
+          {url && url2 && url3 && !url4 && !url5 &&
+            <div className="step7-3url">
+              <img className="spot-img-upload-2" src={url} />
+              <div className="step7-3url-bottom">
+                <img className="spot-img-upload-4" src={url2} />
+                <img className="spot-img-upload-5" src={url3} />
+              </div>
+            </div>
+          }
+          {url && url2 && url3 && url4 && !url5 &&
+            <div className="step7-3url">
+              <div className="step8-3url-top">
+                <img className="spot-img-upload-4" src={url} />
+                <img className="spot-img-upload-5" src={url2} />
+              </div>
+              <div className="step7-3url-bottom">
+                <img className="spot-img-upload-4" src={url3} />
+                <img className="spot-img-upload-5" src={url4} />
+              </div>
+            </div>
+          }
+          {url && url2 && url3 && url4 && url5 &&
+            <div className="step7-3url">
+              <div className="step8-3url-top">
+                <img className="spot-img-upload-4" src={url} />
+                <img className="spot-img-upload-5" src={url2} />
+              </div>
+              <div className="step7-3url-bottom">
+                <img className="spot-img-upload-6" src={url3} />
+                <img className="spot-img-upload-7" src={url4} />
+                <img className="spot-img-upload-8" src={url5} />
+              </div>
+            </div>
+          }
+
+        </div>
         <div className="step0-footer">
           <button className="step-button-back" onClick={() => setPage(6)}> Back </button>
           <button className="step-button-next" onClick={() => setPage(8)}> Next</button>

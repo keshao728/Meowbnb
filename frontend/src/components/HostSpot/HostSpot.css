@@ -554,6 +554,8 @@
   box-shadow: none;
   display: block;
   border-bottom: 1px solid #AFAFAF;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .host-input-parent {
@@ -662,7 +664,99 @@
   margin-top: 15px;
 }
 
-.host-input-des{
+.host-input-des {
   height: 100px;
   padding-bottom: 20px;
+}
+
+
+.step7-des {
+  margin-bottom: 5px;
+}
+
+.step7-wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  margin-top: -60px;
+}
+
+.step7-left {
+  width: 40%;
+}
+
+.step7-right {
+  width: 40%;
+  margin-left: 25px;
+  height: 600px;
+  background-color: #e8e8e8;
+}
+
+.step7-preview {
+  margin-bottom: 5px;
+  margin-left: 12px;
+  padding: 10px 15px;
+  width: fit-content;
+  background-color: #ffffff;
+  color: #222222;
+  font-size: 14px;
+  border-radius: 10px;
+  z-index: 1;
+  position: relative;
+}
+
+.spot-img-upload-1 {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  margin-top: -55px;
+}
+
+.step7-2url {
+  margin-top: -55px;
+  width: 100%;
+  height: 100%;
+}
+
+.spot-img-upload-2 {
+  height: 50%;
+  object-fit: cover;
+  width: 100%;
+}
+
+.spot-img-upload-3 {
+  height: 50%;
+  object-fit: cover;
+  width: 100%;
+}
+
+.step7-3url{
+  margin-top: -55px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.step7-3url-bottom, .step8-3url-top{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 50%;
+}
+
+.spot-img-upload-4, .spot-img-upload-5{
+  height: 100%;
+  object-fit: cover;
+  width: 50%;
+}
+
+.spot-img-upload-6, .spot-img-upload-7, .spot-img-upload-8{
+  height: 100%;
+  object-fit: cover;
+  width: 33.33%;
 }
