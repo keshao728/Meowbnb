@@ -215,11 +215,11 @@
   height: 50px;
   justify-content: space-between;
   align-items: center;
-  /* border-bottom: 1px solid #EBEBEB; */
   background-color: white;
   padding: 10px 30px;
   z-index: 1;
 }
+
 .partial-nav .home-button {
   margin-top: 20px;
   filter: invert(14%) sepia(1%) saturate(0%) hue-rotate(329deg) brightness(1%) contrast(102%);
@@ -239,4 +239,48 @@
 
 .partial-nav .whole-button {
   display: none;
+}
+
+
+
+
+.hosting-nav {
+  position: sticky;
+  display: flex;
+  height: 50px;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  padding: 10px 30px;
+  z-index: 1;
+}
+
+.hosting-nav .home-button {
+  margin-top: 20px;
+  /* filter: invert(14%) sepia(1%) saturate(0%) hue-rotate(329deg) brightness(1%) contrast(102%); */
+}
+
+.hosting-nav .search {
+  display: none;
+}
+
+.hosting-nav #logo {
+  display: none;
+}
+
+.hosting-nav .right-nav {
+  display: none;
+}
+
+.hosting-nav .fa-bars {
+  display: none;
+}
+
+.hosting-nav .user-button {
+  padding: 5px;
+}
+
+.hosting-nav .profile-pic {
+  width: 30px;
+  border-radius: 30px;
 }

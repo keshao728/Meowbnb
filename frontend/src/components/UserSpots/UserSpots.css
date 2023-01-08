@@ -97,7 +97,7 @@
 }
 
 .no-spot-meow {
-  width: 600px;
+  width: 80%;
 }
 
 .no-spot-mother {
@@ -152,11 +152,38 @@
 .user-spot-rating {
   display: flex;
   flex-direction: row;
-  gap:5px;
+  gap: 5px;
 }
 
-.user-spots-middle{
+.user-spots-middle {
   display: flex;
   gap: 8px;
   flex-direction: column;
+}
+
+.user-welcome-host {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 50px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.user-host {
+  text-decoration: none;
+  color: inherit;
+  border: 1px solid black;
+  font-size: 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  padding: 10px 20px;
+  font-weight: bold;
+  height: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.user-host:hover {
+  background-color: rgb(226, 226, 226);
 }

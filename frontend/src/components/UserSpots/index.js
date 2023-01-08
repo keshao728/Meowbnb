@@ -56,15 +56,23 @@ const UserSpots = () => {
     <div className="user-spots-mother">
       <div className="message-spot-mother">
         <div className="message-spot-container">
-          <div className="user-spot-message">Welcome, {sessionUser.username}!</div>
+          <div className="user-welcome-host">
+            <div className="user-spot-message">Welcome, {sessionUser.username}!</div>
+
+            <NavLink className="user-host" to="/spots/create">
+              + Create listing
+            </NavLink>
+
+          </div>
+
           {allSpotsArr && <div className="user-spot-your-spot">Your spots</div>}
         </div>
       </div>
       <div className="spot-mother">
-          <div className="no-spot-mother">
-            {allSpotsArr < 1 && (<img className="no-spot-meow" alt="no-spot-meow" src="https://drive.google.com/uc?export=view&id=1j_TgRhozzklKVuQfq1OVo3eBRXGPai3K" title="Meowbnb logo" />)}
-            {allSpotsArr < 1 && <h4 className="no-spot"> No listing yet.. </h4>}
-          </div>
+        <div className="no-spot-mother">
+          {allSpotsArr < 1 && (<img className="no-spot-meow" alt="no-spot-meow" src="https://drive.google.com/uc?export=view&id=1j_TgRhozzklKVuQfq1OVo3eBRXGPai3K" title="Meowbnb logo" />)}
+          {allSpotsArr < 1 && <h4 className="no-spot"> No listing yet.. </h4>}
+        </div>
         {ownedSpots?.map((spot) => (
           <div className="all-owned-spot">
             <NavLink className="user-spots" to={`/spots/${spot.id}`}>
