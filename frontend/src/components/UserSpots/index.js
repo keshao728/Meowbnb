@@ -2,6 +2,7 @@ import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 import { getCurrentSpots, deleteSpot } from "../../store/spots"
+import { loadUserBookingThunk } from "../../store/bookings"
 import { locationReviewsThunk, resetData } from "../../store/reviews"
 import { NavLink, Redirect } from "react-router-dom"
 import * as moment from 'moment';
@@ -31,7 +32,8 @@ const UserSpots = () => {
 
   useEffect(() => {
     dispatch(getCurrentSpots())
-    dispatch(locationReviewsThunk(spotId))
+    //FIXME - this is not working
+    // dispatch(locationReviewsThunk(spotId))
     return (() => dispatch(resetData()))
   }, [dispatch])
 

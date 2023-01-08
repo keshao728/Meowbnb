@@ -91,12 +91,12 @@
 .full-navigation-1 {
   position: sticky;
   display: flex;
-  height: 50px;
-  justify-content: space-between;
+  height: 60px;
+  justify-content: space-around;
   align-items: center;
   border-bottom: 1px solid #EBEBEB;
   background-color: white;
-  padding: 10px 350px;
+  padding: 10px 11.5%;
   z-index: 1;
 }
 

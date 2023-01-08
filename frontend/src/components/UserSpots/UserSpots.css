@@ -27,6 +27,7 @@
   flex-wrap: wrap;
   list-style: none;
   gap: 40px;
+  width: 100%;
   align-items: center;
   justify-content: center;
 }

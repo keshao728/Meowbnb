@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { NavLink, Redirect } from "react-router-dom";
 
@@ -8,6 +8,7 @@ import "./bookings.css"
 
 const UserBookings = () => {
   const dispatch = useDispatch()
+  const [isLoaded, setIsLoaded] = useState(false)
   const sessionUser = useSelector(state => state.session.user)
   const bookings = useSelector(state => state.bookings.user)
   const bookingsArr = Object.values(bookings)
@@ -15,6 +16,7 @@ const UserBookings = () => {
 
   useEffect(() => {
     dispatch(loadUserBookingThunk())
+      .then(() => setIsLoaded(true))
   }, [dispatch])
 
 
@@ -24,7 +26,7 @@ const UserBookings = () => {
     return <Redirect to="/" />
   }
 
-  return (
+  return isLoaded && (
     <div className="user-booking-wrapper">
       <div className="booking-container">
         <div className="user-booking-title">Trips</div>
@@ -59,7 +61,7 @@ const UserBookings = () => {
 
                 <div className="individual-booking-left">
                   <div className="booking-left-top">
-                    <div className="booking-name">{booking.Spot.name}</div>
+                    <div className="booking-name">{booking?.Spot?.name}</div>
                   </div>
 
                   <div className="booking-left-bottom">
@@ -112,18 +114,18 @@ const UserBookings = () => {
                     <div className="booking-address-wrapper">
                       <div className="booking-address-container">
                         <div>
-                          {booking.Spot.address}
+                          {booking?.Spot?.address}
                         </div>
                         <div className="booking-specific-city-state">
                           <div>
-                            {booking.Spot.city},
+                            {booking?.Spot?.city},
                           </div>
                           <div>
-                            {booking.Spot.state}
+                            {booking?.Spot?.state}
                           </div>
                         </div>
                         <div className="booking-specific-country">
-                          {booking.Spot.country}
+                          {booking?.Spot?.country}
                         </div>
                       </div>
                     </div>
@@ -131,8 +133,8 @@ const UserBookings = () => {
                 </div>
 
                 <div className="individual-booking-right">
-                  <img className="booking-img" src={booking.Spot.previewImage} onError={(e) => e.target.src = 'https://imgur.com/WghnM0b.png'} />
-                  <div className="booking-upcoming-days">{new moment().to(moment(booking.startDate))}</div>
+                  <img className="booking-img" src={booking?.Spot?.previewImage} onError={(e) => e.target.src = 'https://imgur.com/WghnM0b.png'} />
+                  <div className="booking-upcoming-days">{new moment().to(moment(booking?.startDate))}</div>
                 </div>
 
 

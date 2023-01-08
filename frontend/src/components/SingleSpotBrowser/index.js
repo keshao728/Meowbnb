@@ -4,7 +4,7 @@ import { NavLink, useParams, useHistory } from "react-router-dom"
 
 import { getOneSpot } from "../../store/spots"
 import { locationReviewsThunk } from "../../store/reviews"
-import { addBookingThunk, loadAllBookingThunk } from "../../store/bookings"
+import { addBookingThunk, loadAllBookingThunk, loadUserBookingThunk } from "../../store/bookings"
 
 import BookingLoginModal from "./RedirectModal"
 import ReviewFormModal from "../ReviewSpot/ReviewModal"
@@ -12,6 +12,8 @@ import ReviewFormModal from "../ReviewSpot/ReviewModal"
 import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api"
 import { DateRange } from 'react-date-range'
 import { addDays } from 'date-fns'
+import * as moment from 'moment';
+
 import format from 'date-fns/format'
 
 import 'react-date-range/dist/styles.css'; // main css file
@@ -28,8 +30,8 @@ const SingleSpotBrowser = () => {
   const [errors, setErrors] = useState({});
   const [showErrors, setShowErrors] = useState(false);
 
-  const [startDate, setStartDate] = useState(new Date())
-  const [endDate, setEndDate] = useState(addDays(new Date(), 1))
+  const [startDate, setStartDate] = useState(addDays(new Date(), 1))
+  const [endDate, setEndDate] = useState(addDays(new Date(), 2))
   const [openCalender, setOpenCalender] = useState(false)
 
   // const [range, setRange] = useState([
@@ -66,8 +68,57 @@ const SingleSpotBrowser = () => {
   if ((sessionUser) && (sessionUser.id !== currSpot.ownerId) && (!alreadyReviewed)) {
     allowReviewAction = true
   }
+  // const disabledDates = () => {
+  //   let disabledDates = []
+  //   bookingArr.forEach(booking => {
+  //     let start = new Date(booking.startDate)
+  //     let start1 = start.setDate(start.getDate() + 1)
+
+  //     let end = new Date(booking.endDate)
+  //     let end1 = end.setDate(end.getDate() + 1)
+
+  //     console.log("start", start1.toString())
+  //     console.log("end", end1.toString())
+  //     while (start <= end) {
+  //       disabledDates.push(new Date(start))
+  //       start.setDate(start.getDate() + 1)
+  //     }
+  //   })
+  //   let final = disabledDates.map(date => moment(date).format('YYYY-MM-DD'))
+  //   // let final = disabledDates.map(date => date.toString().split(' ').slice(1, 3).join(' '))
+  //   // setDisabledTime(final)
+  //   return final
+  // }
+  // console.log("disabledDates", disabledDates())
 
   //BOOKINGS
+  const booking = useSelector(state => state.bookings.spot)
+  const bookingArr = Object.values(booking)
+  console.log("bookingArr", bookingArr)
+
+  // const disabledDates = () => {
+  let disabledDates = []
+  bookingArr.forEach(booking => {
+    let start = new Date(booking.startDate)
+    let start1 = start.setDate(start.getDate() + 1)
+
+    let end = new Date(booking.endDate)
+    let end1 = end.setDate(end.getDate() + 1)
+
+    console.log("start", start1.toString())
+    console.log("end", end1.toString())
+    while (start <= end) {
+      disabledDates.push(new Date(start))
+      start.setDate(start.getDate() + 1)
+    }
+    return disabledDates
+  })
+
+  // }
+  console.log("disabledDates", disabledDates)
+
+
+
   const handleSelect = (ranges) => {
     setStartDate(ranges.selection.startDate)
     setEndDate(ranges.selection.endDate)
@@ -109,10 +160,12 @@ const SingleSpotBrowser = () => {
     }
   }
 
+
   useEffect(() => {
     dispatch(getOneSpot(spotId))
       .then(() => dispatch(locationReviewsThunk(spotId)))
       .then(() => dispatch(loadAllBookingThunk(spotId)))
+      .then(() => dispatch(loadUserBookingThunk()))
       // return (() => dispatch(resetData()))
       .then(() => setIsLoaded(true))
   }, [dispatch, spotId])
@@ -263,9 +316,12 @@ const SingleSpotBrowser = () => {
                       // rangeColors={['#f33e5b', '#3ecf8e', '#fed14c']}
                       ranges={[selectionRange]}
                       months={2}
-                      minDate={new Date()}
+                      minDate={addDays(new Date(), 1)}
                       direction="horizontal"
                       className="booking-calendar-1"
+                      disabledDates={disabledDates}
+
+                    // disabledDays={[0, 6]}
                     />
                   </div>
                 </div>
@@ -326,14 +382,17 @@ const SingleSpotBrowser = () => {
                             // rangeColors={['#f33e5b', '#3ecf8e', '#fed14c']}
                             ranges={[selectionRange]}
                             months={2}
-                            minDate={new Date()}
+                            minDate={addDays(new Date(), 1)}
                             direction="horizontal"
                             className="booking-calendar"
+                            disabledDates={disabledDates}
                           />
                         }
                       </div>
                       {sessionUser ?
+                        // <NavLink to={`/spots/trips`}>
                         <button className="button-create-booking" type="submit"> Reserve </button>
+                        // </NavLink>
                         : <BookingLoginModal />
                       }
 
