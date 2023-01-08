@@ -34,6 +34,7 @@ const HostSpot = () => {
   const [url5, setUrl5] = useState("")
 
   const [allUrls, setAllUrls] = useState([])
+  const [isChecked, setIsChecked] = useState(false);
 
   const [center, setCenter] = useState({ lat: 37.0902, lng: -95.7129 })
   const [position, setPosition] = useState({ lat: 37.0902, lng: -95.7129 })
@@ -472,6 +473,20 @@ const HostSpot = () => {
     )
   }
   const spotPage6 = () => {
+
+    const handleChange = (e) => {
+      if (e.target.checked && !amenities.includes(e.target.value)) {
+        setAmenities([...amenities, e.target.value])
+      } else if (!e.target.checked && amenities.includes(e.target.value)) {
+        amenities.splice(amenities.indexOf(e.target.value), 1)
+        console.log(amenities, "amenities")
+      }
+    }
+    console.log(amenities, "amenities")
+
+
+    // console.log(allAmenities, "allAmenities")
+
     return (
       <div className="step2-wrapper">
         <div className="step2">
@@ -479,49 +494,58 @@ const HostSpot = () => {
           <div className="step3-des step6-des">You cannot add more amenities after you publish your listing.</div>
           <div className="step6-input-wrapper">
             <div className="amenities-container">
-              <input id="wifi" type="checkbox" value="Wifi" onClick={(e) => setAmenities(e.target.value)} className="amenities-place" />
+              <input id="wifi" type="checkbox" value="Wifi" onClick={handleChange} className="amenities-place" />
               <label for="wifi" className="amenities-label">Wifi</label>
               <img className="amenities-img" src="https://imgur.com/fHVWE9K.png" />
             </div>
             <div className="amenities-container">
-              <input id="tv" type="checkbox" value="TV" onClick={(e) => setAmenities(e.target.value)} className="amenities-place" />
+              <input id="tv" type="checkbox" value="TV" onClick={handleChange} className="amenities-place" />
               <label for="tv" className="amenities-label">TV</label>
               <img className="amenities-img" src="https://imgur.com/csXC3RL.png" />
             </div>
             <div className="amenities-container">
-              <input id="kitchen" type="checkbox" value="Kitchen" onClick={(e) => setAmenities(e.target.value)} className="amenities-place" />
+              <input id="kitchen" type="checkbox" value="Kitchen" onClick={handleChange} className="amenities-place" />
               <label for="kitchen" className="amenities-label">Kitchen</label>
               <img className="amenities-img" src="https://imgur.com/uwD4CGY.png" />
             </div>
             <div className="amenities-container">
-              <input id="washer" type="checkbox" value="Washer" onClick={(e) => setAmenities(e.target.value)} className="amenities-place" />
+              <input id="washer" type="checkbox" value="Washer" onClick={handleChange} className="amenities-place" />
               <label for="washer" className="amenities-label" >Washer</label>
               <img className="amenities-img" src="https://imgur.com/Xluxljd.png" />
             </div>
             <div className="amenities-container">
-              <input id="free-park" type="checkbox" value="Free parking on premises" onClick={(e) => setAmenities(e.target.value)} className="amenities-place" />
+              <input id="free-park" type="checkbox" value="Free parking on premises" onClick={handleChange} className="amenities-place" />
               <label for="free-park" className="amenities-label">Free parking on premises</label>
               <img className="amenities-img" src="https://imgur.com/z2lA5yX.png" />
             </div>
             <div className="amenities-container">
-              <input id="paid-park" type="checkbox" value="Paid parking on premises" onClick={(e) => setAmenities(e.target.value)} className="amenities-place" />
+              <input id="paid-park" type="checkbox" value="Paid parking on premises" onClick={handleChange} className="amenities-place" />
               <label for="paid-park" className="amenities-label">Paid parking on premises</label>
               <img className="amenities-img" src="https://imgur.com/nARtwQZ.png" />
             </div>
             <div className="amenities-container">
-              <input id="air" type="checkbox" value="Air conditioning" onClick={(e) => setAmenities(e.target.value)} className="amenities-place" />
+              <input id="air" type="checkbox" value="Air conditioning" onClick={handleChange} className="amenities-place" />
               <label for="air" className="amenities-label">Air conditioning</label>
               <img className="amenities-img" src="https://imgur.com/cHR1Rxx.png" />
             </div>
             <div className="amenities-container">
-              <input id="workspace" type="checkbox" value="Dedicated workspace" onClick={(e) => setAmenities(e.target.value)} className="amenities-place" />
+              <input id="workspace" type="checkbox" value="Dedicated workspace"
+                onClick={handleChange}
+                className="amenities-place" />
               <label for="workspace" className="amenities-label">Dedicated workspace</label>
               <img className="amenities-img" src="https://imgur.com/7iFsb5g.png" />
             </div>
           </div>
           <div className="step0-footer">
             <button className="step-button-back" onClick={() => setPage(5)}> Back </button>
-            <button className="step-button-next" onClick={() => setPage(7)}> Next</button>
+            {amenities.length ?
+              <button className="step-button-next" onClick={() => setPage(7)}> Next</button>
+              :
+              <button className="step-button-disabled"
+                disabled={true}
+              > Next
+              </button>
+            }
           </div>
         </div>
       </div>
@@ -828,7 +852,7 @@ const HostSpot = () => {
                 :
                 <button className="step-button-disabled"
                   disabled={true}
-                > Next
+                > Create Spot
                 </button>
               }
             </div>
