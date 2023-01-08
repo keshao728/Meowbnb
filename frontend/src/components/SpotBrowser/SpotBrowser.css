@@ -43,10 +43,6 @@
 .individual-spots {
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
-  /* padding: 30px 110px; */
-  /* flex-wrap: wrap; */
-  /* gap: 10px; */
   width: 100%;
   margin-top: 20px;
 }

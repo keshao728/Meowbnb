@@ -58,9 +58,9 @@ function ProfileButton({ user }) {
                 </div>
               </div>
               <div>
-                <NavLink to="/spots/my-spots">
+                <NavLink to="/spots/hosting">
                   <button className="logout-button" id="user-hover-effect">
-                    My Spots
+                    Manage listings
                   </button>
                 </NavLink>
                 <NavLink to="/spots/my-reviews">

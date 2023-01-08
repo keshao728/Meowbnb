@@ -77,7 +77,7 @@ const UpdateSpot = () => {
       let newUpdatedSpot = await dispatch(updateSpot(editSpot, spotId)) // bc i passed in 2 params in Thunk
       if (newUpdatedSpot) {
         setShowErrors(false)
-        history.push('/spots/my-spots')
+        history.push('/spots/hosting')
       }
     }
 
@@ -88,7 +88,7 @@ const UpdateSpot = () => {
 
   const handleCancel = async (e) => {
     e.preventDefault()
-    history.push("/spots/my-spots")
+    history.push("/spots/hosting")
   }
 
 

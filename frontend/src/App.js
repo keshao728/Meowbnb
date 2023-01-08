@@ -38,7 +38,7 @@ function App() {
             <UpdateSpot />
           </Route>
 
-          <Route exact path='/spots/my-spots'>
+          <Route exact path='/spots/hosting'>
             <UserSpots />
           </Route>
 
