@@ -110,9 +110,9 @@ const bookingsReducer = (state = initialState, action) => {
         user: { ...state.user },
         spot: { ...state.spot }
       }
-      console.log("THIS IS ACTION ALL BOOKING", action.allBooking)
+      // console.log("THIS IS ACTION ALL BOOKING", action.allBooking)
       action.allBooking[0].forEach(booking => {
-        console.log("booking.is", booking)
+        // console.log("booking.is", booking)
         newAllBookingObj[booking.id] = booking
         // console.log("THIS IS NEW ALL BOOKING OBJ", allBooking)
       })
@@ -134,7 +134,8 @@ const bookingsReducer = (state = initialState, action) => {
         user: { ...state.user },
         spot: { ...state.spot }
       }
-      action.userBooking.forEach(booking => {
+      // console.log("THIS IS ACTION USER BOOKING", action.userBooking.Bookings)
+      action.userBooking.Bookings.forEach(booking => {
         newState.user[booking.id] = booking
       })
       return newState
