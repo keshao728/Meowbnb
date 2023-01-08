@@ -606,7 +606,9 @@ const HostSpot = () => {
           </div>
         </div>
         <div className="step7-right">
-          <div className="step3-des step7-preview">Image Preview</div>
+          {!url ?
+            <div className="step3-des step7-preview">Image Preview</div> : <div className="step3-des step7-preview">Cover Photo</div>
+          }
           {url && !url2 && !url3 && !url4 && !url5 &&
             <img className="spot-img-upload-1" src={url} />
           }
@@ -658,7 +660,7 @@ const HostSpot = () => {
           <button className="step-button-next" onClick={() => {
             setPage(8);
             setAllUrls(imageUrl);
-            }}> Next</button>
+          }}> Next</button>
         </div>
       </div>
     )
@@ -727,16 +729,22 @@ const HostSpot = () => {
                 <label>Description</label>
               </div>
             </div>
-            <div>
-              <label>Price</label>
-              <input
-                type="number"
-                className="host-input"
-                value={price}
-                onChange={(e) => setPrice(parseInt(e.target.value).toFixed(0))}
-                required
-              />
+
+            <div className="host-input-price-wrapper">
+              <div className="host-input-price-container">
+                <div>-</div>
+                <input
+                  type="number"
+                  className="host-input"
+                  value={price}
+                  onChange={(e) => setPrice(parseInt(e.target.value).toFixed(0))}
+                  required
+                />
+              </div>
+              <div onClick={() => price + 1}>+</div>
+              <div>per night</div>
             </div>
+
             <div className="step0-footer">
               <button className="step-button-back" onClick={() => setPage(7)}> Back </button>
               {/* <button className="step-button-next" onClick={() => setPage(2)}> Next</button> */}

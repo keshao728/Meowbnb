@@ -740,6 +740,7 @@
   height: 100%;
   display: flex;
   flex-direction: column;
+  gap: 4px;
 }
 
 .step7-3url-bottom, .step8-3url-top{
@@ -747,16 +748,51 @@
   flex-direction: row;
   width: 100%;
   height: 50%;
+  gap: 4px;
 }
 
 .spot-img-upload-4, .spot-img-upload-5{
   height: 100%;
   object-fit: cover;
   width: 50%;
+  gap: 4px;
 }
 
 .spot-img-upload-6, .spot-img-upload-7, .spot-img-upload-8{
   height: 100%;
   object-fit: cover;
-  width: 33.33%;
+  width: 33%;
+  gap: 4px;
+}
+
+.host-input-price{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.host-input-price-wrapper{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100px;
+  background-color: #F7F7F7;
+  margin-top: 20px;
+  border-radius: 10px;
+}
+
+.host-input-price-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  width: 50%;
+  height: fit-content;
 }
