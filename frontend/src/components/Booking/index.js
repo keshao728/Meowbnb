@@ -28,7 +28,26 @@ const UserBookings = () => {
     <div className="user-booking-wrapper">
       <div className="booking-container">
         <div className="user-booking-title">Trips</div>
-        <div className="user-booking-des">Upcoming reservations</div>
+        {bookingsArr.length ?
+          <div className="user-booking-des">Upcoming reservations</div> :
+          <div className="no-booking-wrapper">
+            <div className="no-booking-left">
+              <img className="no-booking-wave" src="https://imgur.com/qBkxBRR.png" />
+              <div className="no-booking-texts">
+                <div className="no-booking-title">
+                  No trips booked...yet!
+                </div>
+                <div className="no-booking-des">Time to dust off your bags and start planning your next adventure</div>
+              </div>
+              <NavLink to="/" className="user-booking-link">
+                <button className="no-booking-button">Start searching</button>
+              </NavLink>
+            </div>
+            <div className="no-booking-right">
+              <img className="no-booking-img" src="https://imgur.com/gIMSpLk.png" />
+            </div>
+          </div>
+        }
 
         <div className="individual-bookings-wrapper">
 

@@ -14,7 +14,7 @@ module.exports = {
         onDelete: 'CASCADE'
       },
       amenities: {
-        type: Sequelize.STRING
+        type: DataTypes.ARRAY(DataTypes.STRING),
       },
       place: {
         type: Sequelize.STRING

@@ -73,54 +73,57 @@ const UserSpots = () => {
           {allSpotsArr < 1 && (<img className="no-spot-meow" alt="no-spot-meow" src="https://drive.google.com/uc?export=view&id=1j_TgRhozzklKVuQfq1OVo3eBRXGPai3K" title="Meowbnb logo" />)}
           {allSpotsArr < 1 && <h4 className="no-spot"> No listing yet.. </h4>}
         </div>
-        {ownedSpots?.map((spot) => (
-          <div className="all-owned-spot">
-            <div className="all-owned-spot-container">
-              <NavLink className="user-spots" to={`/spots/${spot.id}`}>
-                <div className="user-spots-left">
-                  <img className="user-spot-image" key={spot.previewImage} src={spot.previewImage} alt={spot.previewImage} onError={(e) => e.target.src='https://imgur.com/WghnM0b.png'} />
-                </div>
-
-                <div className="user-spots-middle">
-                  <div className="user-spot-name">{spot.name}</div>
-                  <div className="user-address-star" key={spot.name}>{spot.address}, {spot.city}, {spot.state}</div>
-                </div>
-
-                <div className="user-price-per">
-                  <strong>
-                    ${spot.price}
-                  </strong>
-                  &nbsp;/&nbsp;night
-                </div>
-
-
-
-                <div className="user-spot-rating">
-                  <i className="fa-solid fa-paw"></i>
-                  <div>
-                    {spot.avgStarRating > 0 ? Number(spot.avgStarRating).toFixed(2) : 'New'}
+        <div className="all-owned-spot-wrapper">
+          {ownedSpots?.map((spot) => (
+            <div className="all-owned-spot">
+              <div className="all-owned-spot-container">
+                <NavLink className="user-spots" to={`/spots/${spot.id}`}>
+                  <div className="user-spots-left">
+                    <img className="user-spot-image" key={spot.previewImage} src={spot.previewImage} alt={spot.previewImage} onError={(e) => e.target.src = 'https://imgur.com/WghnM0b.png'} />
                   </div>
-                </div>
 
-                <div>{moment(spot.createdAt).fromNow()}</div>
+                  <div className="user-spots-texts">
+                    <div className="user-spots-middle">
+                      <div className="user-spot-name">{spot.name}</div>
+                      <div className="user-address-star" key={spot.name}>{spot.address}, {spot.city}, {spot.state}</div>
+                    </div>
 
-              </NavLink>
+                    <div className="user-price-per">
+                      <strong>
+                        ${spot.price}
+                      </strong>
+                      &nbsp;/&nbsp;night
+                    </div>
 
-              <div className="user-spot-buttons">
-                <NavLink to={`/spots/${spot.id}/edit`}>
-                  <button className="delete-edit">
-                    Edit
-                  </button>
+
+
+                    <div className="user-spot-rating">
+                      <i className="fa-solid fa-paw"></i>
+                      <div>
+                        {spot.avgStarRating > 0 ? Number(spot.avgStarRating).toFixed(2) : 'New'}
+                      </div>
+                    </div>
+
+                    <div>{moment(spot.createdAt).fromNow()}</div>
+                  </div>
                 </NavLink>
-                {/* <button className="logout-button" onClick={() => history.push('/my-spots')}>My Spot</button> */}
-                <button className="delete-edit"
-                  onClick={() => dispatch(deleteSpot(spot.id))}>
-                  Delete
-                </button>
+
+                <div className="user-spot-buttons">
+                  <NavLink to={`/spots/${spot.id}/edit`}>
+                    <button className="delete-edit">
+                      Edit
+                    </button>
+                  </NavLink>
+                  {/* <button className="logout-button" onClick={() => history.push('/my-spots')}>My Spot</button> */}
+                  <button className="delete-edit"
+                    onClick={() => dispatch(deleteSpot(spot.id))}>
+                    Delete
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   )
