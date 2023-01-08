@@ -161,9 +161,59 @@ const SingleSpotBrowser = () => {
                 </div>
               </div>
 
-              <div className="all-images">
-                <img className="big-image" alt="spot" src={currSpot.SpotImages[0]?.url}></img>
-              </div>
+              {currSpot.SpotImages[0]?.url && !currSpot.SpotImages[1]?.url && !currSpot.SpotImages[2]?.url && !currSpot.SpotImages[3]?.url && !currSpot.SpotImages[4]?.url &&
+                <div className="all-images">
+                  <img className="big-image one-image" alt="spot" src={currSpot.SpotImages[0]?.url}></img>
+                </div>
+              }
+              {currSpot.SpotImages[0]?.url && currSpot.SpotImages[1]?.url && !currSpot.SpotImages[2]?.url && !currSpot.SpotImages[3]?.url && !currSpot.SpotImages[4]?.url &&
+                <div className="all-images">
+                  <div className="left-image">
+                    <img className="big-image" alt="spot" src={currSpot.SpotImages[0]?.url}></img>
+                  </div>
+                  <div className="right-3-image">
+                    <img className="big-image-10" alt="spot" src={currSpot.SpotImages[1]?.url}></img>
+                  </div>
+                </div>
+              }
+              {currSpot.SpotImages[0]?.url && currSpot.SpotImages[1]?.url && currSpot.SpotImages[2]?.url && !currSpot.SpotImages[3]?.url && !currSpot.SpotImages[4]?.url &&
+                <div className="all-images">
+                  <div className="left-image">
+                    <img className="big-image" alt="spot" src={currSpot.SpotImages[0]?.url}></img>
+                  </div>
+                  <div className="right-3-image">
+                    <img className="big-image-8" alt="spot" src={currSpot.SpotImages[1]?.url}></img>
+                    <img className="big-image-9" alt="spot" src={currSpot.SpotImages[2]?.url}></img>
+                  </div>
+                </div>
+              }
+              {currSpot.SpotImages[0]?.url && currSpot.SpotImages[1]?.url && currSpot.SpotImages[2]?.url && currSpot.SpotImages[3]?.url && !currSpot.SpotImages[4]?.url &&
+                <div className="all-images">
+                  <div className="left-image">
+                    <img className="big-image" alt="spot" src={currSpot.SpotImages[0]?.url}></img>
+                  </div>
+                  <div className="right-3-image">
+                    <img className="big-image-5" alt="spot" src={currSpot.SpotImages[1]?.url}></img>
+                    <img className="big-image-6" alt="spot" src={currSpot.SpotImages[2]?.url}></img>
+                    <img className="big-image-7" alt="spot" src={currSpot.SpotImages[3]?.url}></img>
+                  </div>
+                </div>
+              }
+              {currSpot.SpotImages[0]?.url && currSpot.SpotImages[1]?.url && currSpot.SpotImages[2]?.url && currSpot.SpotImages[3]?.url && currSpot.SpotImages[4]?.url &&
+                <div className="all-images">
+                  <div className="left-image">
+                    <img className="big-image" alt="spot" src={currSpot.SpotImages[0]?.url}></img>
+                  </div>
+                  <div className="middle-image">
+                    <img className="big-image-1" alt="spot" src={currSpot.SpotImages[1]?.url}></img>
+                    <img className="big-image-2" alt="spot" src={currSpot.SpotImages[2]?.url}></img>
+                  </div>
+                  <div className="right-image">
+                    <img className="big-image-3" alt="spot" src={currSpot.SpotImages[3]?.url}></img>
+                    <img className="big-image-4" alt="spot" src={currSpot.SpotImages[4]?.url}></img>
+                  </div>
+                </div>
+              }
             </div>
             <div className="middle-spot-items">
               <div className="left-middle">
@@ -361,10 +411,17 @@ const SingleSpotBrowser = () => {
             ))}
           </div>
 
-          <div className="map-wrapper">
+          <div className="map-wrapper-single">
+            <div className="map-title">Where you'll be</div>
+            <div className="spot-address-1" key={currSpot.name}>
+              {currSpot.city}, {currSpot.state}, {currSpot.country}
+            </div>
             <GoogleMap
               zoom={10}
               center={center}
+              options={{
+                disableDefaultUI: true,
+              }}
               mapContainerClassName="map-container"
             >
               <Marker position={center} />
