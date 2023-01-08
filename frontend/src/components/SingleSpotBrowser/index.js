@@ -163,54 +163,54 @@ const SingleSpotBrowser = () => {
 
               {currSpot.SpotImages[0]?.url && !currSpot.SpotImages[1]?.url && !currSpot.SpotImages[2]?.url && !currSpot.SpotImages[3]?.url && !currSpot.SpotImages[4]?.url &&
                 <div className="all-images">
-                  <img className="big-image one-image" alt="spot" src={currSpot.SpotImages[0]?.url}></img>
+                  <img className="big-image one-image" alt="spot" src={currSpot.SpotImages[0]?.url ? currSpot.SpotImages[0]?.url : 'https://imgur.com/WghnM0b.png'} ></img>
                 </div>
               }
               {currSpot.SpotImages[0]?.url && currSpot.SpotImages[1]?.url && !currSpot.SpotImages[2]?.url && !currSpot.SpotImages[3]?.url && !currSpot.SpotImages[4]?.url &&
                 <div className="all-images">
                   <div className="left-image">
-                    <img className="big-image" alt="spot" src={currSpot.SpotImages[0]?.url}></img>
+                    <img className="big-image" alt="spot" src={currSpot.SpotImages[0]?.url ? currSpot.SpotImages[0].url : 'https://imgur.com/WghnM0b.png'} ></img>
                   </div>
                   <div className="right-3-image">
-                    <img className="big-image-10" alt="spot" src={currSpot.SpotImages[1]?.url}></img>
+                    <img className="big-image-10" alt="spot" src={currSpot.SpotImages[1]?.url ? currSpot.SpotImages[1].url : 'https://imgur.com/WghnM0b.png'}></img>
                   </div>
                 </div>
               }
               {currSpot.SpotImages[0]?.url && currSpot.SpotImages[1]?.url && currSpot.SpotImages[2]?.url && !currSpot.SpotImages[3]?.url && !currSpot.SpotImages[4]?.url &&
                 <div className="all-images">
                   <div className="left-image">
-                    <img className="big-image" alt="spot" src={currSpot.SpotImages[0]?.url}></img>
+                    <img className="big-image" alt="spot" src={currSpot.SpotImages[0]?.url ? currSpot.SpotImages[0].url : 'https://imgur.com/WghnM0b.png'}></img>
                   </div>
                   <div className="right-3-image">
-                    <img className="big-image-8" alt="spot" src={currSpot.SpotImages[1]?.url}></img>
-                    <img className="big-image-9" alt="spot" src={currSpot.SpotImages[2]?.url}></img>
+                    <img className="big-image-8" alt="spot" src={currSpot.SpotImages[1]?.url ? currSpot.SpotImages[1].url : 'https://imgur.com/WghnM0b.png'}></img>
+                    <img className="big-image-9" alt="spot" src={currSpot.SpotImages[2]?.url ? currSpot.SpotImages[2].url : 'https://imgur.com/WghnM0b.png'}></img>
                   </div>
                 </div>
               }
               {currSpot.SpotImages[0]?.url && currSpot.SpotImages[1]?.url && currSpot.SpotImages[2]?.url && currSpot.SpotImages[3]?.url && !currSpot.SpotImages[4]?.url &&
                 <div className="all-images">
                   <div className="left-image">
-                    <img className="big-image" alt="spot" src={currSpot.SpotImages[0]?.url}></img>
+                    <img className="big-image" alt="spot" src={currSpot.SpotImages[0]?.url ? currSpot.SpotImages[0].url : 'https://imgur.com/WghnM0b.png'}></img>
                   </div>
                   <div className="right-3-image">
-                    <img className="big-image-5" alt="spot" src={currSpot.SpotImages[1]?.url}></img>
-                    <img className="big-image-6" alt="spot" src={currSpot.SpotImages[2]?.url}></img>
-                    <img className="big-image-7" alt="spot" src={currSpot.SpotImages[3]?.url}></img>
+                    <img className="big-image-5" alt="spot" src={currSpot.SpotImages[1]?.url ? currSpot.SpotImages[1].url : 'https://imgur.com/WghnM0b.png'}></img>
+                    <img className="big-image-6" alt="spot" src={currSpot.SpotImages[2]?.url ? currSpot.SpotImages[2].url : 'https://imgur.com/WghnM0b.png'}></img>
+                    <img className="big-image-7" alt="spot" src={currSpot.SpotImages[3]?.url ? currSpot.SpotImages[3].url : 'https://imgur.com/WghnM0b.png'}></img>
                   </div>
                 </div>
               }
               {currSpot.SpotImages[0]?.url && currSpot.SpotImages[1]?.url && currSpot.SpotImages[2]?.url && currSpot.SpotImages[3]?.url && currSpot.SpotImages[4]?.url &&
                 <div className="all-images">
                   <div className="left-image">
-                    <img className="big-image" alt="spot" src={currSpot.SpotImages[0]?.url}></img>
+                    <img className="big-image" alt="spot" src={currSpot.SpotImages[0]?.url ? currSpot.SpotImages[0].url : 'https://imgur.com/WghnM0b.png'}></img>
                   </div>
                   <div className="middle-image">
-                    <img className="big-image-1" alt="spot" src={currSpot.SpotImages[1]?.url}></img>
-                    <img className="big-image-2" alt="spot" src={currSpot.SpotImages[2]?.url}></img>
+                    <img className="big-image-1" alt="spot" src={currSpot.SpotImages[1]?.url ? currSpot.SpotImages[1].url : 'https://imgur.com/WghnM0b.png'}></img>
+                    <img className="big-image-2" alt="spot" src={currSpot.SpotImages[2]?.url ? currSpot.SpotImages[2].url : 'https://imgur.com/WghnM0b.png'}></img>
                   </div>
                   <div className="right-image">
-                    <img className="big-image-3" alt="spot" src={currSpot.SpotImages[3]?.url}></img>
-                    <img className="big-image-4" alt="spot" src={currSpot.SpotImages[4]?.url}></img>
+                    <img className="big-image-3" alt="spot" src={currSpot.SpotImages[3]?.url ? currSpot.SpotImages[3].url : 'https://imgur.com/WghnM0b.png'}></img>
+                    <img className="big-image-4" alt="spot" src={currSpot.SpotImages[4]?.url ? currSpot.SpotImages[4].url : 'https://imgur.com/WghnM0b.png'}></img>
                   </div>
                 </div>
               }
@@ -372,7 +372,7 @@ const SingleSpotBrowser = () => {
           {!allowReviewAction && sessionUser && !alreadyReviewed &&
             <div className='review-this-spot'>
               <NavLink className="review-click"
-                to="/spots/hodyinh">
+                to="/spots/hosting">
                 Manage My Spot
               </NavLink>
             </div>

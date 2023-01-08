@@ -511,16 +511,11 @@ const HostSpot = () => {
 
 
   const spotPage7 = () => {
-    // console.log("URL1", url)
-    // console.log("URL2", url2)
-    // console.log("URL3", url3)
-    // console.log("URL4", url4)
-    // console.log("URL5", url5)
     let error = []
 
     if (url.length) {
       if (!url.includes("png") && !url.includes("jpg") && !url.includes("jpeg")) {
-        error.push("Please enter a valid URL ending with jpg, jpeg or png")
+        error.push("Please enter at least one valid URL ending with jpg, jpeg or png")
       } else {
         imageUrl.push(url)
       }
@@ -538,17 +533,36 @@ const HostSpot = () => {
       imageUrl.push(url5)
     }
 
-    // if (imageUrl.length) {
-    //   setAllUrls(imageUrl)
-    // }
+    const handleSubmit = async (e) => {
+      // e.preventDefault()
+      setShowErrors(true)
 
-    console.log("STUPID IMAGE URL", imageUrl)
+      // setUrl("")
+      // setUrl2("")
+      // setUrl3("")
+      // setUrl4("")
+      // setUrl5("")
+
+      if (!error.length) {
+        setShowErrors(false)
+        setAllUrls(imageUrl);
+        setPage(8);
+      }
+    }
 
     return (
       <div className="step7-wrapper">
         <div className="step7-left">
           <div className="step2-title">Choose at least 1 photo</div>
           <div className="step3-des step7-des">Cover Photo</div>
+          {showErrors && error.length && (
+            <div className='error-wrap'>
+              <img className="caution" src="https://imgur.com/E1p7Fvo.png" alt="Error Message" />
+              {error.map((error) => (
+                <div className="error-message">{error}</div>
+              ))}
+            </div>
+          )}
           <div className="host-input-parent">
             <div className="host-input-box host-input-last">
               <input
@@ -566,40 +580,45 @@ const HostSpot = () => {
             <div className="host-input-box">
               <input
                 type="text"
+                id="url2"
                 className="host-input"
                 value={url2}
                 onChange={(e) => setUrl2(e.target.value)}
-                required
+              // required
+              // formnovalidate
               />
               <label>Image (url only)</label>
             </div>
             <div className="host-input-box">
               <input
                 type="text"
+                id="url3"
                 className="host-input"
                 value={url3}
                 onChange={(e) => setUrl3(e.target.value)}
-                required
+              // required
               />
               <label>Image (url only)</label>
             </div>
             <div className="host-input-box ">
               <input
                 type="text"
+                id="url4"
                 className="host-input"
                 value={url4}
                 onChange={(e) => setUrl4(e.target.value)}
-                required
+              // required
               />
               <label>Image (url only)</label>
             </div>
             <div className="host-input-box host-input-last">
               <input
                 type="text"
+                id="url5"
                 className="host-input"
                 value={url5}
                 onChange={(e) => setUrl5(e.target.value)}
-                required
+              // required
               />
               <label>Image (url only)</label>
             </div>
@@ -610,7 +629,8 @@ const HostSpot = () => {
             <div className="step3-des step7-preview">Image Preview</div> : <div className="step3-des step7-preview">Cover Photo</div>
           }
           {url && !url2 && !url3 && !url4 && !url5 &&
-            <img className="spot-img-upload-1" src={url} />
+            <img className="spot-img-upload-1" src={url} onError={(e) => e.target.src='https://imgur.com/WghnM0b.png'} />
+            // <img className="spot-img-upload-1" src='https://imgur.com/WghnM0b.png' />
           }
 
           {url && url2 && !url3 && !url4 && !url5 &&
@@ -621,35 +641,35 @@ const HostSpot = () => {
           }
           {url && url2 && url3 && !url4 && !url5 &&
             <div className="step7-3url">
-              <img className="spot-img-upload-2" src={url} />
+              <img className="spot-img-upload-2" src={url} onError={(e) => e.target.src='https://imgur.com/WghnM0b.png'}/>
               <div className="step7-3url-bottom">
-                <img className="spot-img-upload-4" src={url2} />
-                <img className="spot-img-upload-5" src={url3} />
+                <img className="spot-img-upload-4" src={url2} onError={(e) => e.target.src='https://imgur.com/WghnM0b.png'}/>
+                <img className="spot-img-upload-5" src={url3} onError={(e) => e.target.src='https://imgur.com/WghnM0b.png'}/>
               </div>
             </div>
           }
           {url && url2 && url3 && url4 && !url5 &&
             <div className="step7-3url">
               <div className="step8-3url-top">
-                <img className="spot-img-upload-4" src={url} />
-                <img className="spot-img-upload-5" src={url2} />
+                <img className="spot-img-upload-4" src={url} onError={(e) => e.target.src='https://imgur.com/WghnM0b.png'}/>
+                <img className="spot-img-upload-5" src={url2} onError={(e) => e.target.src='https://imgur.com/WghnM0b.png'}/>
               </div>
               <div className="step7-3url-bottom">
-                <img className="spot-img-upload-4" src={url3} />
-                <img className="spot-img-upload-5" src={url4} />
+                <img className="spot-img-upload-4" src={url3} onError={(e) => e.target.src='https://imgur.com/WghnM0b.png'}/>
+                <img className="spot-img-upload-5" src={url4} onError={(e) => e.target.src='https://imgur.com/WghnM0b.png'}/>
               </div>
             </div>
           }
           {url && url2 && url3 && url4 && url5 &&
             <div className="step7-3url">
               <div className="step8-3url-top">
-                <img className="spot-img-upload-4" src={url} />
-                <img className="spot-img-upload-5" src={url2} />
+                <img className="spot-img-upload-4" src={url} onError={(e) => e.target.src='https://imgur.com/WghnM0b.png'}/>
+                <img className="spot-img-upload-5" src={url2} onError={(e) => e.target.src='https://imgur.com/WghnM0b.png'}/>
               </div>
               <div className="step7-3url-bottom">
-                <img className="spot-img-upload-6" src={url3} />
-                <img className="spot-img-upload-7" src={url4} />
-                <img className="spot-img-upload-8" src={url5} />
+                <img className="spot-img-upload-6" src={url3} onError={(e) => e.target.src='https://imgur.com/WghnM0b.png'}/>
+                <img className="spot-img-upload-7" src={url4} onError={(e) => e.target.src='https://imgur.com/WghnM0b.png'}/>
+                <img className="spot-img-upload-8" src={url5} onError={(e) => e.target.src='https://imgur.com/WghnM0b.png'}/>
               </div>
             </div>
           }
@@ -657,10 +677,24 @@ const HostSpot = () => {
         </div>
         <div className="step0-footer">
           <button className="step-button-back" onClick={() => setPage(6)}> Back </button>
-          <button className="step-button-next" onClick={() => {
-            setPage(8);
-            setAllUrls(imageUrl);
-          }}> Next</button>
+          {url ?
+            <button className="step-button-next"
+              // disabled={() => { !url; error }}
+              // formnovalidate
+              onClick={() => {
+                // { !url2 && document.getElementById("url2").removeAttribute("required") }
+                // { !url3 && document.getElementById("url3").removeAttribute("required") }
+                // { !url4 && document.getElementById("url4").removeAttribute("required") }
+                // { !url5 && document.getElementById("url5").removeAttribute("required") }
+                handleSubmit();
+                // setAllUrls(imageUrl);
+                // setPage(8);
+              }}> Next</button>
+            :
+            <button className="step-button-disabled"
+              disabled={true}
+            > Next</button>
+          }
         </div>
       </div>
     )
