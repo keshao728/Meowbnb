@@ -30,8 +30,8 @@ const SingleSpotBrowser = () => {
   const [errors, setErrors] = useState({});
   const [showErrors, setShowErrors] = useState(false);
 
-  const [startDate, setStartDate] = useState(addDays(new Date(), 1))
-  const [endDate, setEndDate] = useState(addDays(new Date(), 2))
+  // const [startDate, setStartDate] = useState(addDays(new Date(), 1))
+  // const [endDate, setEndDate] = useState(addDays(new Date(), 2))
   const [openCalender, setOpenCalender] = useState(false)
 
   // const [range, setRange] = useState([
@@ -91,10 +91,20 @@ const SingleSpotBrowser = () => {
   // }
   // console.log("disabledDates", disabledDates())
 
-  //BOOKINGS
   const booking = useSelector(state => state.bookings.spot)
   const bookingArr = Object.values(booking)
   console.log("bookingArr", bookingArr)
+  useEffect(() => {
+    dispatch(getOneSpot(spotId))
+      .then(() => dispatch(locationReviewsThunk(spotId)))
+      .then(() => dispatch(loadAllBookingThunk(spotId)))
+      .then(() => dispatch(loadUserBookingThunk()))
+      // return (() => dispatch(resetData()))
+      .then(() => setIsLoaded(true))
+  }, [dispatch, spotId])
+
+
+  //BOOKINGS
 
   // const disabledDates = () => {
   let disabledDates = []
@@ -105,8 +115,6 @@ const SingleSpotBrowser = () => {
     let end = new Date(booking.endDate)
     let end1 = end.setDate(end.getDate() + 1)
 
-    console.log("start", start1.toString())
-    console.log("end", end1.toString())
     while (start <= end) {
       disabledDates.push(new Date(start))
       start.setDate(start.getDate() + 1)
@@ -114,8 +122,33 @@ const SingleSpotBrowser = () => {
     return disabledDates
   })
 
+  function dateChecker(number) {
+    let bookedDates = disabledDates.map(date => date.toString().split(' ').slice(1, 4).join(' '))
+    let newBookDate = addDays(new Date(), number).toString().split(' ').slice(1, 4).join(' ')
+
+    let count = number + 1
+    // let hehe = new Date().toString().split(' ').slice(1, 4).join(' ')
+    // let newBookDate = hehe.toString()
+    console.log("bookedDates", bookedDates)
+    console.log("newBookDate", newBookDate)
+    if (bookedDates.includes(newBookDate)) {
+      count += 1
+      dateChecker(count)
+    }
+
+    return addDays(new Date(), count)
+  }
+
+  let startcount = 1
+  let starting = dateChecker(startcount)
+  let ending = dateChecker(startcount + 1)
+
+  const [startDate, setStartDate] = useState(starting)
+  const [endDate, setEndDate] = useState(ending)
   // }
   console.log("disabledDates", disabledDates)
+
+
 
 
 
@@ -161,14 +194,6 @@ const SingleSpotBrowser = () => {
   }
 
 
-  useEffect(() => {
-    dispatch(getOneSpot(spotId))
-      .then(() => dispatch(locationReviewsThunk(spotId)))
-      .then(() => dispatch(loadAllBookingThunk(spotId)))
-      .then(() => dispatch(loadUserBookingThunk()))
-      // return (() => dispatch(resetData()))
-      .then(() => setIsLoaded(true))
-  }, [dispatch, spotId])
 
   const handleSubmit = async (e) => {
     e.preventDefault()
