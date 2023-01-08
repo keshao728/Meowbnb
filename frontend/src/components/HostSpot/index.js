@@ -25,7 +25,7 @@ const HostSpot = () => {
   const [lng, setLng] = useState(null)
   const [name, setName] = useState("")
   const [description, setDescription] = useState("")
-  const [price, setPrice] = useState("")
+  const [price, setPrice] = useState("99")
 
   const [url, setUrl] = useState("")
   const [url2, setUrl2] = useState("")
@@ -57,6 +57,16 @@ const HostSpot = () => {
   // console.log(spotImg, "SPOTIMGARR")
 
 
+  useEffect(() => {
+    let error = []
+
+    if (!name || name.length > 20 || !name.trim().length) error.name = "Name is required and must be less than 20 characters"
+    if (!description || description.length > 250 || !description.trim().length) error.description = "Description is required and must be be less than 250 characters"
+    if (!price || !Number(price) || price < 1) error.price = "Price per day is required and must be more than $1 (no decimal)"
+
+    setValidationErrors(error)
+
+  }, [description, price, name])
 
   // useEffect(() => {
   //   const errors = []
@@ -80,8 +90,7 @@ const HostSpot = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     setShowErrors(true)
-    console.log(allUrls, "ALLURLSHIBASHIBASHIBA")
-    console.log(imageUrl, "IMAGEURLSHIBASHIBASHIBA")
+
     if (!validationErrors.length) {
 
       const newSpot = {
@@ -119,6 +128,16 @@ const HostSpot = () => {
     }
   }
 
+  function increment() {
+    let count = document.getElementById('price')
+    count.value++
+  }
+
+  function decrement() {
+    let count = document.getElementById('price')
+    count.value--
+  }
+
   const handleAddress = async (address) => {
     const result = await geocodeByAddress(address)
     const ll = await getLatLng(result[0])
@@ -131,10 +150,10 @@ const HostSpot = () => {
     const city = item[2].long_name
     const state = item[4].long_name
     const country = item[5].long_name
-    setAddress(street)
-    setCity(city)
-    setState(state)
-    setCountry(country)
+    setAddress(street.trimStart())
+    setCity(city.trimStart())
+    setState(state.trimStart())
+    setCountry(country.trimStart())
     setLat(ll.lat)
     setLng(ll.lng)
     setPage(4)
@@ -376,7 +395,7 @@ const HostSpot = () => {
                 type="text"
                 className="host-input"
                 value={address}
-                onChange={(e) => setAddress(e.target.value)}
+                onChange={(e) => setAddress(e.target.value.trimStart())}
                 required
               />
               <label>Address</label>
@@ -386,7 +405,7 @@ const HostSpot = () => {
                 type="text"
                 className="host-input"
                 value={city}
-                onChange={(e) => setCity(e.target.value)}
+                onChange={(e) => setCity(e.target.value.trimStart())}
                 required
               />
               <label>City</label>
@@ -396,7 +415,7 @@ const HostSpot = () => {
                 type="text"
                 className="host-input"
                 value={state}
-                onChange={(e) => setState(e.target.value)}
+                onChange={(e) => setState(e.target.value.trimStart())}
                 required
               />
               <label>State</label>
@@ -406,7 +425,7 @@ const HostSpot = () => {
                 type="text"
                 className="host-input"
                 value={country}
-                onChange={(e) => setCountry(e.target.value)}
+                onChange={(e) => setCountry(e.target.value.trimStart())}
                 required
               />
               <label>Country</label>
@@ -555,21 +574,21 @@ const HostSpot = () => {
         <div className="step7-left">
           <div className="step2-title">Choose at least 1 photo</div>
           <div className="step3-des step7-des">Cover Photo</div>
-          {showErrors && error.length && (
+          {showErrors && error.length ? (
             <div className='error-wrap'>
               <img className="caution" src="https://imgur.com/E1p7Fvo.png" alt="Error Message" />
               {error.map((error) => (
                 <div className="error-message">{error}</div>
               ))}
             </div>
-          )}
+          ) : null}
           <div className="host-input-parent">
             <div className="host-input-box host-input-last">
               <input
                 type="text"
                 className="host-input"
                 value={url}
-                onChange={(e) => setUrl(e.target.value)}
+                onChange={(e) => setUrl(e.target.value.trim())}
                 required
               />
               <label>Image (url only)</label>
@@ -583,7 +602,7 @@ const HostSpot = () => {
                 id="url2"
                 className="host-input"
                 value={url2}
-                onChange={(e) => setUrl2(e.target.value)}
+                onChange={(e) => setUrl2(e.target.value.trim())}
               // required
               // formnovalidate
               />
@@ -595,7 +614,7 @@ const HostSpot = () => {
                 id="url3"
                 className="host-input"
                 value={url3}
-                onChange={(e) => setUrl3(e.target.value)}
+                onChange={(e) => setUrl3(e.target.value.trim())}
               // required
               />
               <label>Image (url only)</label>
@@ -606,7 +625,7 @@ const HostSpot = () => {
                 id="url4"
                 className="host-input"
                 value={url4}
-                onChange={(e) => setUrl4(e.target.value)}
+                onChange={(e) => setUrl4(e.target.value.trim())}
               // required
               />
               <label>Image (url only)</label>
@@ -617,7 +636,7 @@ const HostSpot = () => {
                 id="url5"
                 className="host-input"
                 value={url5}
-                onChange={(e) => setUrl5(e.target.value)}
+                onChange={(e) => setUrl5(e.target.value.trim())}
               // required
               />
               <label>Image (url only)</label>
@@ -629,7 +648,7 @@ const HostSpot = () => {
             <div className="step3-des step7-preview">Image Preview</div> : <div className="step3-des step7-preview">Cover Photo</div>
           }
           {url && !url2 && !url3 && !url4 && !url5 &&
-            <img className="spot-img-upload-1" src={url} onError={(e) => e.target.src='https://imgur.com/WghnM0b.png'} />
+            <img className="spot-img-upload-1" src={url} onError={(e) => e.target.src = 'https://imgur.com/WghnM0b.png'} />
             // <img className="spot-img-upload-1" src='https://imgur.com/WghnM0b.png' />
           }
 
@@ -641,35 +660,35 @@ const HostSpot = () => {
           }
           {url && url2 && url3 && !url4 && !url5 &&
             <div className="step7-3url">
-              <img className="spot-img-upload-2" src={url} onError={(e) => e.target.src='https://imgur.com/WghnM0b.png'}/>
+              <img className="spot-img-upload-2" src={url} onError={(e) => e.target.src = 'https://imgur.com/WghnM0b.png'} />
               <div className="step7-3url-bottom">
-                <img className="spot-img-upload-4" src={url2} onError={(e) => e.target.src='https://imgur.com/WghnM0b.png'}/>
-                <img className="spot-img-upload-5" src={url3} onError={(e) => e.target.src='https://imgur.com/WghnM0b.png'}/>
+                <img className="spot-img-upload-4" src={url2} onError={(e) => e.target.src = 'https://imgur.com/WghnM0b.png'} />
+                <img className="spot-img-upload-5" src={url3} onError={(e) => e.target.src = 'https://imgur.com/WghnM0b.png'} />
               </div>
             </div>
           }
           {url && url2 && url3 && url4 && !url5 &&
             <div className="step7-3url">
               <div className="step8-3url-top">
-                <img className="spot-img-upload-4" src={url} onError={(e) => e.target.src='https://imgur.com/WghnM0b.png'}/>
-                <img className="spot-img-upload-5" src={url2} onError={(e) => e.target.src='https://imgur.com/WghnM0b.png'}/>
+                <img className="spot-img-upload-4" src={url} onError={(e) => e.target.src = 'https://imgur.com/WghnM0b.png'} />
+                <img className="spot-img-upload-5" src={url2} onError={(e) => e.target.src = 'https://imgur.com/WghnM0b.png'} />
               </div>
               <div className="step7-3url-bottom">
-                <img className="spot-img-upload-4" src={url3} onError={(e) => e.target.src='https://imgur.com/WghnM0b.png'}/>
-                <img className="spot-img-upload-5" src={url4} onError={(e) => e.target.src='https://imgur.com/WghnM0b.png'}/>
+                <img className="spot-img-upload-4" src={url3} onError={(e) => e.target.src = 'https://imgur.com/WghnM0b.png'} />
+                <img className="spot-img-upload-5" src={url4} onError={(e) => e.target.src = 'https://imgur.com/WghnM0b.png'} />
               </div>
             </div>
           }
           {url && url2 && url3 && url4 && url5 &&
             <div className="step7-3url">
               <div className="step8-3url-top">
-                <img className="spot-img-upload-4" src={url} onError={(e) => e.target.src='https://imgur.com/WghnM0b.png'}/>
-                <img className="spot-img-upload-5" src={url2} onError={(e) => e.target.src='https://imgur.com/WghnM0b.png'}/>
+                <img className="spot-img-upload-4" src={url} onError={(e) => e.target.src = 'https://imgur.com/WghnM0b.png'} />
+                <img className="spot-img-upload-5" src={url2} onError={(e) => e.target.src = 'https://imgur.com/WghnM0b.png'} />
               </div>
               <div className="step7-3url-bottom">
-                <img className="spot-img-upload-6" src={url3} onError={(e) => e.target.src='https://imgur.com/WghnM0b.png'}/>
-                <img className="spot-img-upload-7" src={url4} onError={(e) => e.target.src='https://imgur.com/WghnM0b.png'}/>
-                <img className="spot-img-upload-8" src={url5} onError={(e) => e.target.src='https://imgur.com/WghnM0b.png'}/>
+                <img className="spot-img-upload-6" src={url3} onError={(e) => e.target.src = 'https://imgur.com/WghnM0b.png'} />
+                <img className="spot-img-upload-7" src={url4} onError={(e) => e.target.src = 'https://imgur.com/WghnM0b.png'} />
+                <img className="spot-img-upload-8" src={url5} onError={(e) => e.target.src = 'https://imgur.com/WghnM0b.png'} />
               </div>
             </div>
           }
@@ -741,48 +760,77 @@ const HostSpot = () => {
           <div className="step2">
             <div className="step3-title">Now, let's give your dome a final touchup</div>
             <div className="step3-des">You can change it anytime..</div>
+            {showErrors && !!validationErrors.name &&
+              <div className="error-wrap error-name">
+                <img className="caution" src="https://imgur.com/E1p7Fvo.png" alt="Error Message" />
+                <div className="error-message">{validationErrors.name}</div>
+              </div>
+            }
+            {showErrors && !!validationErrors.description &&
+              <div className="error-wrap error-name">
+                <img className="caution" src="https://imgur.com/E1p7Fvo.png" alt="Error Message" />
+                <div className="error-message">{validationErrors.description}</div>
+              </div>
+            }
             <div className="host-input-parent">
               <div className="host-input-box">
                 <input
                   type="text"
                   className="host-input"
                   value={name}
-                  onChange={(e) => setName(e.target.value)}
+                  onChange={(e) => setName(e.target.value.trimStart())}
                   required
                 />
                 <label>Name</label>
               </div>
               <div className="host-input-box host-input-last">
-                <input
+                <textarea
                   type="text"
                   className="host-input host-input-des"
                   value={description}
-                  onChange={(e) => setDescription(e.target.value)}
+                  onChange={(e) => setDescription(e.target.value.trimStart())}
                   required
                 />
                 <label>Description</label>
               </div>
             </div>
 
-            <div className="host-input-price-wrapper">
+            <div className="step8-title">Set your price</div>
+            <div className="host-input-price-wrapper ">
               <div className="host-input-price-container">
-                <div>-</div>
+                <button className="price-increase-decrese" onClick={decrement}>-</button>
                 <input
                   type="number"
-                  className="host-input"
+                  placeholder="00"
+                  id='price'
+                  min="1"
+                  className="host-input-price-item"
                   value={price}
                   onChange={(e) => setPrice(parseInt(e.target.value).toFixed(0))}
                   required
                 />
+                <button className="price-increase-decrese" onClick={increment}>+</button>
+
               </div>
-              <div onClick={() => price + 1}>+</div>
-              <div>per night</div>
+              <div className="host-input-per-night">per night</div>
+              {showErrors && !!validationErrors.price &&
+                <div className="error-wrap">
+                  <img className="caution" src="https://imgur.com/E1p7Fvo.png" alt="Error Message" />
+                  <div className="error-message">{validationErrors.price}</div>
+                </div>
+              }
             </div>
 
             <div className="step0-footer">
               <button className="step-button-back" onClick={() => setPage(7)}> Back </button>
-              {/* <button className="step-button-next" onClick={() => setPage(2)}> Next</button> */}
-              <button className="step-button-next" form="spot-form" type="submit"> Create Spot</button>
+              {name && description && price ?
+                <button className="step-button-next" onClick={handleSubmit} form="spot-form" type="submit"> Create Spot</button>
+                :
+                <button className="step-button-disabled"
+                  disabled={true}
+                > Next
+                </button>
+              }
             </div>
           </div>
         }

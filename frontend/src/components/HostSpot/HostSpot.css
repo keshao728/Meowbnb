@@ -55,6 +55,8 @@
   border-bottom: 1px solid #AFAFAF;
   width: 100%;
   font-size: 12px;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .form-errors {
@@ -498,6 +500,13 @@
   margin-top: -90px;
 }
 
+.step8-title {
+  font-size: 30px;
+  font-weight: bold;
+  width: 500px;
+  margin-top: 40px;
+}
+
 .step3-des {
   font-size: 17px;
   color: #8d8d8d;
@@ -529,7 +538,8 @@
   border-bottom: #AFAFAF 1px solid;
 }
 
-.host-input-box input {
+.host-input-box input,
+.host-input-box textarea {
   width: 100%;
   padding-top: 28px;
   padding-left: 15px;
@@ -542,7 +552,8 @@
   color: rgb(0, 0, 0);
 }
 
-.host-input-box input:focus {
+.host-input-box input:focus,
+.host-input-box textarea:focus {
   background-color: #F9F9F9;
 }
 
@@ -558,7 +569,9 @@
 }
 
 .host-input-box input:valid+label,
-.host-input-box input:focus+label {
+.host-input-box input:focus+label,
+.host-input-box textarea:valid+label,
+.host-input-box textarea:focus+label {
   font-size: 12px;
   top: -2px;
   left: 5;
@@ -585,6 +598,8 @@
   visibility: visible;
   border-radius: 10px;
   border: #AFAFAF 1px solid;
+  position: relative;
+  height: 100%;
 }
 
 .host-input-last {
@@ -684,6 +699,7 @@
 .host-input-des {
   height: 100px;
   padding-bottom: 20px;
+  /* margin-top: 30px; */
 }
 
 
@@ -802,10 +818,36 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 100px;
+  height: fit-content;
   background-color: #F7F7F7;
   margin-top: 20px;
   border-radius: 10px;
+  border: #AFAFAF 1px solid;
+}
+
+.host-input-per-night {
+  margin-top: 15px;
+  margin-bottom: 20px;
+}
+
+.host-input-price-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  border: 0;
+  outline: none;
+  box-shadow: none;
+  border-radius: 5px;
+  padding: 8px 8px;
+  border: 1px solid #AFAFAF;
+  width: 100%;
+  font-size: 40px;
+  font-weight: bold;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .host-input-price-container {
@@ -815,11 +857,12 @@
   align-items: center;
   gap: 10px;
   width: 50%;
+  margin-top: 30px;
   height: fit-content;
 }
 
 
-.error-wrap{
+.error-wrap {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -838,4 +881,26 @@
 .error-message {
   color: red;
   font-size: 12px;
+}
+
+.error-name {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+  width: 100%;
+  height: 20px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.price-increase-decrese {
+  background-color: white;
+  border-radius: 30px;
+  width: 65px;
+  height: 45px;
+  font-size: 25px;
+  color: #AFAFAF;
+  border: 1px solid #AFAFAF;
+  cursor: pointer;
 }

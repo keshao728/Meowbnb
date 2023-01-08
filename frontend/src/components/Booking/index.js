@@ -112,7 +112,7 @@ const UserBookings = () => {
                 </div>
 
                 <div className="individual-booking-right">
-                  <img className="booking-img" src={booking.Spot.previewImage} />
+                  <img className="booking-img" src={booking.Spot.previewImage} onError={(e) => e.target.src = 'https://imgur.com/WghnM0b.png'} />
                   <div className="booking-upcoming-days">{new moment().to(moment(booking.startDate))}</div>
                 </div>
 
