@@ -561,7 +561,7 @@
   border-bottom-left-radius: 15px;
 }
 
-.one-image{
+.one-image {
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
 }
@@ -629,21 +629,22 @@
   object-fit: cover;
 }
 
-.big-image-8{
+.big-image-8 {
   border-top-right-radius: 15px;
   height: 49.5%;
   object-fit: cover;
 }
 
-.big-image-9{
+.big-image-9 {
   border-bottom-right-radius: 15px;
   height: 49%;
   object-fit: cover;
 }
 
-.big-image-10{
+.big-image-10 {
   border-bottom-right-radius: 15px;
   border-top-right-radius: 15px;
   width: 100%;
   height: 100%;
+  object-fit: cover;
 }
