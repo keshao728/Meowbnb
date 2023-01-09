@@ -126,7 +126,9 @@ const bookingsReducer = (state = initialState, action) => {
         spot: { ...state.spot }
       }
       newState.spot[action.newBooking.id] = action.newBooking
-      newState.user = action.newBooking
+      console.log("newState SPOT", newState.spot)
+      newState.user[action.newBooking.id] = action.newBooking
+      console.log("newState USER", newState.user)
       return newState
     case LOAD_USER_BOOKING:
       newState = {

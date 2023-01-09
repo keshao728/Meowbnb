@@ -54,6 +54,7 @@ const SingleSpotBrowser = () => {
   const currSpot = useSelector(state => state.spots.singleSpot)
   const lat = currSpot?.lat
   const lng = currSpot?.lng
+  const center = { lat: lat, lng: lng }
 
   //REVIEWS
   const allReviews = useSelector(state => state.reviews.spot);
@@ -68,6 +69,8 @@ const SingleSpotBrowser = () => {
   if ((sessionUser) && (sessionUser.id !== currSpot.ownerId) && (!alreadyReviewed)) {
     allowReviewAction = true
   }
+
+
   // const disabledDates = () => {
   //   let disabledDates = []
   //   bookingArr.forEach(booking => {
@@ -93,12 +96,12 @@ const SingleSpotBrowser = () => {
 
   const booking = useSelector(state => state.bookings.spot)
   const bookingArr = Object.values(booking)
-  console.log("bookingArr", bookingArr)
+  // console.log("bookingArr", bookingArr)
   useEffect(() => {
     dispatch(getOneSpot(spotId))
       .then(() => dispatch(locationReviewsThunk(spotId)))
       .then(() => dispatch(loadAllBookingThunk(spotId)))
-      .then(() => dispatch(loadUserBookingThunk()))
+      // .then(() => dispatch(loadUserBookingThunk()))
       // return (() => dispatch(resetData()))
       .then(() => setIsLoaded(true))
   }, [dispatch, spotId])
@@ -110,10 +113,10 @@ const SingleSpotBrowser = () => {
   let disabledDates = []
   bookingArr.forEach(booking => {
     let start = new Date(booking.startDate)
-    let start1 = start.setDate(start.getDate() + 1)
+    // let start1 = start.setDate(start.getDate() + 1)
 
     let end = new Date(booking.endDate)
-    let end1 = end.setDate(end.getDate() + 1)
+    // let end1 = end.setDate(end.getDate() + 1)
 
     while (start <= end) {
       disabledDates.push(new Date(start))
@@ -130,14 +133,14 @@ const SingleSpotBrowser = () => {
     // let hehe = new Date().toString().split(' ').slice(1, 4).join(' ')
     // let newBookDate = hehe.toString()
     // console.log("bookedDates", bookedDates)
-    console.log("newBookDate", newBookDate)
+    // console.log("newBookDate", newBookDate)
     if (bookedDates.includes(newBookDate)) {
       count += 1
-      console.log("THIS IS COUNT", count)
+      // console.log("THIS IS COUNT", count)
       dateChecker(count)
     }
     if (!bookedDates.includes(newBookDate)) {
-      console.log("THIS IS SHIBA COUNT", count)
+      // console.log("THIS IS SHIBA COUNT", count)
       return addDays(new Date(), count)
     }
     // count += 1
@@ -146,8 +149,8 @@ const SingleSpotBrowser = () => {
     // return
   }
 
-  const [startDate, setStartDate] = useState(dateChecker(0))
-  const [endDate, setEndDate] = useState(dateChecker(1))
+  const [startDate, setStartDate] = useState(dateChecker(0)? dateChecker(0) : addDays(new Date(), 1))
+  const [endDate, setEndDate] = useState(dateChecker(1)? dateChecker(1) : addDays(new Date(), 2))
   // }
 
   // console.log("startDate", startDate)
@@ -168,13 +171,11 @@ const SingleSpotBrowser = () => {
     key: 'selection',
   }
 
-  function subractDays(startingDate, number) {
-    return new Date(new Date(startDate).setDate(startingDate.getDate() - number));
-  }
-  const minus15 = subractDays(startDate, 15).toString().split(' ').slice(1, 3).join(' ')
 
 
   //BOOKING ERROR VALIDATION
+
+  //CHECKING IF SELECTED DATE RANGE IS ALREADY BOOKED
   let clickedDates = []
 
   function unavaliableDates() {
@@ -202,18 +203,24 @@ const SingleSpotBrowser = () => {
     const err = []
 
     if (unavaliableDateRange.some(date => selectedDateRange.includes(date))) err.push("Please select a valid date range")
-    if (startDate.toString().split(' ').slice(1, 4).join(' ') === endDate.toString().split(' ').slice(1, 4).join(' ')) err.push("Check out date must be at least a day after check in")
+    if (startDate?.toString().split(' ').slice(1, 4).join(' ') === endDate?.toString().split(' ').slice(1, 4).join(' ')) err.push("Check out date must be at least a day after check in")
     if (!startDate) err.startDate = err.push('Please enter a start date')
     if (!endDate) err.endDate = err.push('Please enter a end date')
 
     setValidationErrors(err)
   }, [startDate, endDate])
 
-  const center = { lat: lat, lng: lng }
 
+  function subractDays(startingDate, number) {
+    return new Date(new Date(startDate).setDate(startingDate?.getDate() - number));
+  }
+  const minus15 = subractDays(startDate, 15).toString().split(' ').slice(1, 3).join(' ')
+
+  //CLOSE CALENDER UPON CLICK
   useEffect(() => {
     document.addEventListener("click", hideOnClickOutside, true)
   }, [])
+
 
   const hideOnClickOutside = (e) => {
     if (ref.current && !ref.current.contains(e.target)) {

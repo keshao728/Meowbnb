@@ -37,7 +37,7 @@ function Navigation({ isLoaded }) {
       setFilteredData(newFilter);
     }
   };
-  console.log(filteredData)
+  // console.log(filteredData)
 
   const clearInput = () => {
     setFilteredData([]);
