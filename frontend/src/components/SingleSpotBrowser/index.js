@@ -174,9 +174,10 @@ const SingleSpotBrowser = () => {
   const minus15 = subractDays(startDate, 15).toString().split(' ').slice(1, 3).join(' ')
 
 
+  //BOOKING ERROR VALIDATION
   let clickedDates = []
 
-  function idk() {
+  function unavaliableDates() {
     let start1 = new Date(startDate)
 
     let end1 = new Date(endDate)
@@ -187,20 +188,21 @@ const SingleSpotBrowser = () => {
     }
     return clickedDates
   }
-  let goddam = disabledDates.map(date => date.toString().split(' ').slice(1, 4).join(' '))
-  let goddam2 = idk().map(date => date.toString().split(' ').slice(1, 4).join(' '))
 
-  console.log("clickedDates", goddam2)
-  console.log("disabledDates", goddam)
+  let unavaliableDateRange = disabledDates.map(date => date.toString().split(' ').slice(1, 4).join(' '))
+  let selectedDateRange = unavaliableDates().map(date => date.toString().split(' ').slice(1, 4).join(' '))
 
-  // console.log(goddam.some(hi => goddam2.includes(hi)), "HAHAHHAHHHAHHA")
+  // console.log("clickedDates", selectedDateRange)
+  // console.log("disabledDates", unavaliableDateRange)
+
+  // console.log(unavaliableDateRange.some(date => selectedDateRange.includes(date)), "HAHAHHAHHHAHHA")
 
 
-  //BOOKING ERROR VALIDATION
   useEffect(() => {
     const err = []
 
-    if (goddam.some(hi => goddam2.includes(hi)) || startDate === endDate) err.push("Please select a valid date range")
+    if (unavaliableDateRange.some(date => selectedDateRange.includes(date))) err.push("Please select a valid date range")
+    if (startDate.toString().split(' ').slice(1, 4).join(' ') === endDate.toString().split(' ').slice(1, 4).join(' ')) err.push("Check out date must be at least a day after check in")
     if (!startDate) err.startDate = err.push('Please enter a start date')
     if (!endDate) err.endDate = err.push('Please enter a end date')
 
@@ -220,7 +222,6 @@ const SingleSpotBrowser = () => {
   }
 
 
-
   const handleSubmit = async (e) => {
     e.preventDefault()
 
@@ -238,6 +239,7 @@ const SingleSpotBrowser = () => {
 
       if (addedBooking) {
         setShowErrors(false)
+        history.push(`/spots/trips`)
       }
     }
   }
