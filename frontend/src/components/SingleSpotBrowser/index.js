@@ -27,8 +27,8 @@ const SingleSpotBrowser = () => {
   const { spotId } = useParams()
 
 
-  const [errors, setErrors] = useState({});
-  const [showErrors, setShowErrors] = useState(false);
+  const [validationErrors, setValidationErrors] = useState([])
+  const [showErrors, setShowErrors] = useState(false)
 
   // const [startDate, setStartDate] = useState(addDays(new Date(), 1))
   // const [endDate, setEndDate] = useState(addDays(new Date(), 2))
@@ -129,24 +129,29 @@ const SingleSpotBrowser = () => {
     let count = number + 1
     // let hehe = new Date().toString().split(' ').slice(1, 4).join(' ')
     // let newBookDate = hehe.toString()
-    console.log("bookedDates", bookedDates)
+    // console.log("bookedDates", bookedDates)
     console.log("newBookDate", newBookDate)
     if (bookedDates.includes(newBookDate)) {
       count += 1
+      console.log("THIS IS COUNT", count)
       dateChecker(count)
     }
-
-    return addDays(new Date(), count)
+    if (!bookedDates.includes(newBookDate)) {
+      console.log("THIS IS SHIBA COUNT", count)
+      return addDays(new Date(), count)
+    }
+    // count += 1
+    // console.log("THIS IS MAI COUNT", count)
+    // return addDays(new Date(), count)
+    // return
   }
 
-  let startcount = 1
-  let starting = dateChecker(startcount)
-  let ending = dateChecker(startcount + 1)
-
-  const [startDate, setStartDate] = useState(starting)
-  const [endDate, setEndDate] = useState(ending)
+  const [startDate, setStartDate] = useState(dateChecker(0))
+  const [endDate, setEndDate] = useState(dateChecker(1))
   // }
-  console.log("disabledDates", disabledDates)
+
+  // console.log("startDate", startDate)
+  // console.log("disabledDates", disabledDates)
 
 
 
@@ -168,18 +173,39 @@ const SingleSpotBrowser = () => {
   }
   const minus15 = subractDays(startDate, 15).toString().split(' ').slice(1, 3).join(' ')
 
-  //BOOKING ERROR VALIDATION
-  const validateBooking = () => {
-    let err = {}
-    // if (!range.startDate) err.range.startDate = 'Please enter a valid start date'
-    // if (!range.endDate) err.range.endDate = 'Please enter a valid end date'
-    setErrors(err)
-    if (Object.values(err).length) {
-      setShowErrors(true)
-      return false
+
+  let clickedDates = []
+
+  function idk() {
+    let start1 = new Date(startDate)
+
+    let end1 = new Date(endDate)
+
+    while (start1 <= end1) {
+      clickedDates.push(new Date(start1))
+      start1.setDate(start1.getDate() + 1)
     }
-    return err
+    return clickedDates
   }
+  let goddam = disabledDates.map(date => date.toString().split(' ').slice(1, 4).join(' '))
+  let goddam2 = idk().map(date => date.toString().split(' ').slice(1, 4).join(' '))
+
+  console.log("clickedDates", goddam2)
+  console.log("disabledDates", goddam)
+
+  // console.log(goddam.some(hi => goddam2.includes(hi)), "HAHAHHAHHHAHHA")
+
+
+  //BOOKING ERROR VALIDATION
+  useEffect(() => {
+    const err = []
+
+    if (goddam.some(hi => goddam2.includes(hi)) || startDate === endDate) err.push("Please select a valid date range")
+    if (!startDate) err.startDate = err.push('Please enter a start date')
+    if (!endDate) err.endDate = err.push('Please enter a end date')
+
+    setValidationErrors(err)
+  }, [startDate, endDate])
 
   const center = { lat: lat, lng: lng }
 
@@ -197,21 +223,22 @@ const SingleSpotBrowser = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    let err = validateBooking()
-    if (Object.values(err).length > 0) {
-      setShowErrors(true)
-      return
-    }
-    if (!Object.values(err).length) {
+
+    setShowErrors(true)
+
+    if (!validationErrors.length) {
+      setShowErrors(false)
       const newBooking = {
         "startDate": startDate,
         "endDate": endDate,
       }
-      await dispatch(addBookingThunk(spotId, newBooking))
+
+      let addedBooking = await dispatch(addBookingThunk(spotId, newBooking))
       await dispatch(loadAllBookingThunk(spotId))
-      setShowErrors(false)
-      // history.push(`/bookings/current`)
-      return errors
+
+      if (addedBooking) {
+        setShowErrors(false)
+      }
     }
   }
 
@@ -372,6 +399,14 @@ const SingleSpotBrowser = () => {
                     <div>&nbsp;{currSpot.numReviews} reviews</div>
                   </div>
                   <div className="booking-wrapper">
+                    {showErrors && validationErrors.length ? (
+                      <div className='error-wrap booking-error'>
+                        <img className="caution" src="https://imgur.com/E1p7Fvo.png" alt="Error Message" />
+                        {validationErrors.map((error) => (
+                          <div className="error-message">{error}</div>
+                        ))}
+                      </div>
+                    ) : null}
                     <form onSubmit={handleSubmit} className="booking-form">
                       <div className="booking-input-wrap">
                         <div className="booking-individual-input">
