@@ -34,6 +34,8 @@ const SingleSpotBrowser = () => {
   // const [endDate, setEndDate] = useState(addDays(new Date(), 2))
   const [openCalender, setOpenCalender] = useState(false)
 
+  const [dates, setDates] = useState(false)
+
   // const [range, setRange] = useState([
   //   {
   //     startDate: new Date(),
@@ -94,6 +96,7 @@ const SingleSpotBrowser = () => {
   // }
   // console.log("disabledDates", disabledDates())
 
+  //BOOKINGS
   const booking = useSelector(state => state.bookings.spot)
   const bookingArr = Object.values(booking)
   // console.log("bookingArr", bookingArr)
@@ -106,14 +109,18 @@ const SingleSpotBrowser = () => {
       .then(() => setIsLoaded(true))
   }, [dispatch, spotId])
 
+  let currSpotBooked;
+  if (bookingArr.length > 0) {
+    currSpotBooked = bookingArr.filter(booking => booking.spotId === currSpot.id)
+  }
+  // console.log(currSpotBooked, "----------------------")
 
-  //BOOKINGS
 
-  // const disabledDates = () => {
   let disabledDates = []
-  bookingArr.forEach(booking => {
+  currSpotBooked?.forEach(booking => {
     let start = new Date(booking.startDate)
     // let start1 = start.setDate(start.getDate() + 1)
+    // console.log(start, "============================")
 
     let end = new Date(booking.endDate)
     // let end1 = end.setDate(end.getDate() + 1)
@@ -125,35 +132,81 @@ const SingleSpotBrowser = () => {
     return disabledDates
   })
 
+  // function dateChecker(number) {
+  //   let bookedDates = disabledDates.map(date => date.toString().split(' ').slice(1, 4).join(' '))
+  //   let newBookDate = addDays(new Date(), number).toString().split(' ').slice(1, 4).join(' ')
+
+  //   let count = number + 1
+  //   console.log("bookedDates", bookedDates)
+  //   console.log("newBookDate", newBookDate)
+  //   if (bookedDates.includes(newBookDate)) {
+  //     count += 1
+  //     console.log("THIS IS COUNT", count)
+  //     dateChecker(count)
+  //   }
+  //   if (!bookedDates.includes(newBookDate)) {
+  //     console.log("THIS IS SHIBA COUNT", count)
+  //     console.log((new Date(), count), "MEOWMEOW")
+  //     return addDays(new Date(), count)
+  //   }
+  //   // count += 1
+  //   // console.log("THIS IS MAI COUNT", count)
+  //   // return addDays(new Date(), count)
+  //   // return
+  // }
+
+  // function dateChecker() {
+  //   let bookedDates = disabledDates.map(date => date.toString().split(' ').slice(1, 4).join(' '))
+  //   let newBookDate = addDays(new Date(), 0).toString().split(' ').slice(1, 4).join(' ')
+
+  //   let count = 1
+  //   console.log("bookedDates", bookedDates)
+  //   console.log("newBookDate", newBookDate)
+  //   if (bookedDates.includes(newBookDate)) {
+  //     count += 1
+  //     // newBookDate = addDays(newBookDate, 1)
+  //     console.log("THIS IS COUNT", count)
+  //   }
+  //   console.log(addDays(new Date(), count), "MEOWMEOW")
+  //   return addDays(new Date(), count)
+  // }
+  // console.log(dateChecker(),"SIMON HEHEHEHEH")
+
+
+
   function dateChecker(number) {
     let bookedDates = disabledDates.map(date => date.toString().split(' ').slice(1, 4).join(' '))
     let newBookDate = addDays(new Date(), number).toString().split(' ').slice(1, 4).join(' ')
+    let count = number
 
-    let count = number + 1
-    // let hehe = new Date().toString().split(' ').slice(1, 4).join(' ')
-    // let newBookDate = hehe.toString()
-    // console.log("bookedDates", bookedDates)
-    // console.log("newBookDate", newBookDate)
-    if (bookedDates.includes(newBookDate)) {
-      count += 1
-      // console.log("THIS IS COUNT", count)
-      dateChecker(count)
-    }
+    // console.log(bookedDates)
+    console.log("bookedDates", bookedDates)
+
     if (!bookedDates.includes(newBookDate)) {
-      // console.log("THIS IS SHIBA COUNT", count)
+      console.log((new Date(), count), "MEOWMEOW")
       return addDays(new Date(), count)
     }
-    // count += 1
-    // console.log("THIS IS MAI COUNT", count)
-    // return addDays(new Date(), count)
-    // return
+
+
+    console.log("newBookDate", newBookDate)
+    count += 1
+
+    return dateChecker(count)
   }
 
-  const [startDate, setStartDate] = useState(dateChecker(0)? dateChecker(0) : addDays(new Date(), 1))
-  const [endDate, setEndDate] = useState(dateChecker(1)? dateChecker(1) : addDays(new Date(), 2))
+  // console.log(dateChecker(0),"-----------------------------------")
+
+  const shibashakeit = dateChecker(1)
+  const [startDate, setStartDate] = useState(shibashakeit)
+
+  const [endDate, setEndDate] = useState(addDays(startDate, 1))
+  // console.log(endDate, "ENDDATE")
+  // const [startDate, setStartDate] = useState(dateChecker(0) ? dateChecker(0) : addDays(new Date(), 1))
+  // const [endDate, setEndDate] = useState(dateChecker(1)  ? dateChecker(1) : addDays(new Date(), 2))
   // }
 
-  // console.log("startDate", startDate)
+  console.log("startDate", startDate)
+  console.log("endDate", endDate)
   // console.log("disabledDates", disabledDates)
 
 
@@ -201,14 +254,15 @@ const SingleSpotBrowser = () => {
 
   useEffect(() => {
     const err = []
+    setDates(unavaliableDateRange.some(date => selectedDateRange.includes(date)))
 
-    if (unavaliableDateRange.some(date => selectedDateRange.includes(date))) err.push("Please select a valid date range")
+    if (dates) err.push("Please select a valid date range")
     if (startDate?.toString().split(' ').slice(1, 4).join(' ') === endDate?.toString().split(' ').slice(1, 4).join(' ')) err.push("Check out date must be at least a day after check in")
     if (!startDate) err.startDate = err.push('Please enter a start date')
     if (!endDate) err.endDate = err.push('Please enter a end date')
 
     setValidationErrors(err)
-  }, [startDate, endDate])
+  }, [startDate, endDate, dates])
 
 
   function subractDays(startingDate, number) {
@@ -377,7 +431,7 @@ const SingleSpotBrowser = () => {
                       // rangeColors={['#f33e5b', '#3ecf8e', '#fed14c']}
                       ranges={[selectionRange]}
                       months={2}
-                      minDate={addDays(new Date(), 1)}
+                      minDate={addDays(new Date, 1)}
                       direction="horizontal"
                       className="booking-calendar-1"
                       disabledDates={disabledDates}
@@ -451,7 +505,7 @@ const SingleSpotBrowser = () => {
                             // rangeColors={['#f33e5b', '#3ecf8e', '#fed14c']}
                             ranges={[selectionRange]}
                             months={2}
-                            minDate={addDays(new Date(), 1)}
+                            minDate={addDays(new Date, 1)}
                             direction="horizontal"
                             className="booking-calendar"
                             disabledDates={disabledDates}
