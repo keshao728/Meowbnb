@@ -724,7 +724,7 @@
 
 .individual-amenities-wrapper {
   display: grid;
-  grid-template-columns: repeat(auto-fill, 360px);
+  grid-template-columns: repeat(auto-fill, 350px);
   margin-top: 25px;
   gap: 15px;
 }
