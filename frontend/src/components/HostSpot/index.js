@@ -365,7 +365,7 @@ const HostSpot = () => {
     }
     return (
       <div className="step3-wrapper">
-        <div className="step4">
+        <div className="step3">
           <div className="step3-title">Where's your place located?</div>
           <div className="step3-des">Your address is only shared with guests after they’ve made a reservation.</div>
           {showErrors && errors.length ? (

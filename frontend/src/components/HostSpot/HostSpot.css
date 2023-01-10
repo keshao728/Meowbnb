@@ -261,6 +261,7 @@
   gap: 10px;
   width: 80%;
   height: 100%;
+  margin-top: 40px;
   justify-content: center;
   align-content: center;
   align-items: center;
@@ -450,7 +451,7 @@
 .location-search-input {
   position: absolute;
   top: 20px;
-  left: 30px;
+  left: 20px;
   z-index: 3;
   width: 490px;
   padding: 20px 30px 20px 60px;
@@ -471,7 +472,7 @@
 #create-search-icon {
   position: absolute;
   top: 38px;
-  left: 55px;
+  left: 45px;
   font-size: 22px;
   z-index: 5;
 }
@@ -480,7 +481,7 @@
   position: absolute;
   z-index: 2;
   top: 77px;
-  left: 36px;
+  left: 26px;
   width: 570px;
 }
 
