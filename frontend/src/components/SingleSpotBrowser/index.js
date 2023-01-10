@@ -23,12 +23,14 @@ import './SingleSpotBrowser.css'
 const SingleSpotBrowser = () => {
   const history = useHistory()
   const dispatch = useDispatch()
-  const [isLoaded, setIsLoaded] = useState(false)
+  const [isLoaded, setIsLoaded] = useState(true)
   const { spotId } = useParams()
 
 
   const [validationErrors, setValidationErrors] = useState([])
   const [showErrors, setShowErrors] = useState(false)
+
+  const [displayBookings, setDisplayBookings] = useState(false)
 
   // const [startDate, setStartDate] = useState(addDays(new Date(), 1))
   // const [endDate, setEndDate] = useState(addDays(new Date(), 2))
@@ -96,10 +98,27 @@ const SingleSpotBrowser = () => {
   // }
   // console.log("disabledDates", disabledDates())
 
+
+
+
   //BOOKINGS
+
+
   const booking = useSelector(state => state.bookings.spot)
   const bookingArr = Object.values(booking)
   // console.log("bookingArr", bookingArr)
+
+  const ownerBookingDisplay = () => {
+    setDisplayBookings(!displayBookings)
+  }
+
+
+  let allowBookingAction = true;
+  if ((sessionUser) && (sessionUser.id !== currSpot.ownerId)) {
+    allowBookingAction = false
+  }
+
+
   useEffect(() => {
     dispatch(getOneSpot(spotId))
       .then(() => dispatch(locationReviewsThunk(spotId)))
@@ -419,27 +438,29 @@ const SingleSpotBrowser = () => {
                     {currSpot.description}
                   </div>
                 </div>
-                <div className="spot-checkin">
-                  <div className="spot-checkin-title">Select check-in date</div>
-                  <div className="spot-checkin-des">Add your travel dates for exact pricing</div>
-                  <div ref={ref}>
-                    <DateRange
-                      onChange={handleSelect}
-                      editableDateInputs={true}
-                      moveRangeOnFirstSelection={false}
-                      rangeColors={["#222222", "#AFAFAF", "#222222"]}
-                      // rangeColors={['#f33e5b', '#3ecf8e', '#fed14c']}
-                      ranges={[selectionRange]}
-                      months={2}
-                      minDate={addDays(new Date, 1)}
-                      direction="horizontal"
-                      className="booking-calendar-1"
-                      disabledDates={disabledDates}
+                {!allowBookingAction &&
+                  <div className="spot-checkin">
+                    <div className="spot-checkin-title">Select check-in date</div>
+                    <div className="spot-checkin-des">Add your travel dates for exact pricing</div>
+                    <div ref={ref}>
+                      <DateRange
+                        onChange={handleSelect}
+                        editableDateInputs={true}
+                        moveRangeOnFirstSelection={false}
+                        rangeColors={["#222222", "#AFAFAF", "#222222"]}
+                        // rangeColors={['#f33e5b', '#3ecf8e', '#fed14c']}
+                        ranges={[selectionRange]}
+                        months={2}
+                        minDate={addDays(new Date, 1)}
+                        direction="horizontal"
+                        className="booking-calendar-1"
+                        disabledDates={disabledDates}
 
-                    // disabledDays={[0, 6]}
-                    />
+                      // disabledDays={[0, 6]}
+                      />
+                    </div>
                   </div>
-                </div>
+                }
               </div>
 
               <div className="spot-price-mother">
@@ -461,85 +482,117 @@ const SingleSpotBrowser = () => {
                     </div>
                     <div>&nbsp;{currSpot.numReviews} reviews</div>
                   </div>
-                  <div className="booking-wrapper">
-                    {showErrors && validationErrors.length ? (
-                      <div className='error-wrap booking-error'>
-                        <img className="caution" src="https://imgur.com/E1p7Fvo.png" alt="Error Message" />
-                        {validationErrors.map((error) => (
-                          <div className="error-message">{error}</div>
-                        ))}
-                      </div>
-                    ) : null}
-                    <form onSubmit={handleSubmit} className="booking-form">
-                      <div className="booking-input-wrap">
-                        <div className="booking-individual-input">
-                          <input
-                            value={`${format(startDate, "M/dd/yyyy")}`}
-                            readOnly
-                            className="booking-input booking-1"
-                            placeholder="Add date"
-                            onClick={() => setOpenCalender(openCalender => !openCalender)}
-                            onChange={(e) => setStartDate(e.target.value)}
-                          />
-                          <label className="booking-label">CHECK-IN</label>
+                  {!allowBookingAction ?
+                    <div className="booking-wrapper">
+                      {showErrors && validationErrors.length ? (
+                        <div className='error-wrap booking-error'>
+                          <img className="caution" src="https://imgur.com/E1p7Fvo.png" alt="Error Message" />
+                          {validationErrors.map((error) => (
+                            <div className="error-message">{error}</div>
+                          ))}
                         </div>
-                        <div className="booking-individual-input">
-                          <input
-                            value={`${format(endDate, "M/dd/yyyy")}`}
-                            readOnly
-                            placeholder="Add date"
-                            className="booking-input booking-2"
-                            onClick={() => setOpenCalender(openCalender => !openCalender)}
-                            onChange={(e) => setEndDate(e.target.value)}
-                          />
-                          <label className="booking-label">CHECKOUT</label>
+                      ) : null}
+                      <form onSubmit={handleSubmit} className="booking-form">
+                        <div className="booking-input-wrap">
+                          <div className="booking-individual-input">
+                            <input
+                              value={`${format(startDate, "M/dd/yyyy")}`}
+                              readOnly
+                              className="booking-input booking-1"
+                              placeholder="Add date"
+                              onClick={() => setOpenCalender(openCalender => !openCalender)}
+                              onChange={(e) => setStartDate(e.target.value)}
+                            />
+                            <label className="booking-label">CHECK-IN</label>
+                          </div>
+                          <div className="booking-individual-input">
+                            <input
+                              value={`${format(endDate, "M/dd/yyyy")}`}
+                              readOnly
+                              placeholder="Add date"
+                              className="booking-input booking-2"
+                              onClick={() => setOpenCalender(openCalender => !openCalender)}
+                              onChange={(e) => setEndDate(e.target.value)}
+                            />
+                            <label className="booking-label">CHECKOUT</label>
+                          </div>
                         </div>
-                      </div>
-                      <div ref={ref}>
-                        {openCalender &&
-                          <DateRange
-                            onChange={handleSelect}
-                            editableDateInputs={true}
-                            moveRangeOnFirstSelection={false}
-                            rangeColors={["#222222", "#AFAFAF", "#222222"]}
-                            // rangeColors={['#f33e5b', '#3ecf8e', '#fed14c']}
-                            ranges={[selectionRange]}
-                            months={2}
-                            minDate={addDays(new Date, 1)}
-                            direction="horizontal"
-                            className="booking-calendar"
-                            disabledDates={disabledDates}
-                          />
+                        <div ref={ref}>
+                          {openCalender &&
+                            <DateRange
+                              onChange={handleSelect}
+                              editableDateInputs={true}
+                              moveRangeOnFirstSelection={false}
+                              rangeColors={["#222222", "#AFAFAF", "#222222"]}
+                              // rangeColors={['#f33e5b', '#3ecf8e', '#fed14c']}
+                              ranges={[selectionRange]}
+                              months={2}
+                              minDate={addDays(new Date, 1)}
+                              direction="horizontal"
+                              className="booking-calendar"
+                              disabledDates={disabledDates}
+                            />
+                          }
+                        </div>
+                        {sessionUser ?
+                          // <NavLink to={`/spots/trips`}>
+                          <button className="button-create-booking" type="submit"> Reserve </button>
+                          // </NavLink>
+                          : <BookingLoginModal />
                         }
-                      </div>
-                      {sessionUser ?
-                        // <NavLink to={`/spots/trips`}>
-                        <button className="button-create-booking" type="submit"> Reserve </button>
-                        // </NavLink>
-                        : <BookingLoginModal />
-                      }
-
-                    </form>
-                    <div className="booking-des"> You won't be charged yet </div>
-                    <div className="booking-fee-wrap">
-                      <div className="booking-individual-fee">
-                        <div> ${currSpot.price} x {((endDate.getTime() - startDate.getTime()) / (1000 * 3600 * 23)).toFixed()} night </div>
-                        <div> ${currSpot.price * ((endDate.getTime() - startDate.getTime()) / (1000 * 3600 * 23)).toFixed()}  </div>
-                      </div>
-                      <div className="booking-individual-fee">
-                        <div> Cleaning fee</div>
-                        <div> $150 </div>
-                      </div>
-                      <div className="booking-individual-fee">
-                        <div>Service fee</div>
-                        <div> $71 </div>
-                      </div>
-                      <div className="booking-individual-fee booking-fee-total">
-                        <div> Total before taxes </div>
-                        <div> ${currSpot.price * ((endDate.getTime() - startDate.getTime()) / (1000 * 3600 * 23)).toFixed() + 150 + 71} </div>
+                      </form>
+                      <div className="booking-des"> You won't be charged yet </div>
+                      <div className="booking-fee-wrap">
+                        <div className="booking-individual-fee">
+                          <div> ${currSpot.price} x {((endDate.getTime() - startDate.getTime()) / (1000 * 3600 * 23)).toFixed()} night </div>
+                          <div> ${currSpot.price * ((endDate.getTime() - startDate.getTime()) / (1000 * 3600 * 23)).toFixed()}  </div>
+                        </div>
+                        <div className="booking-individual-fee">
+                          <div> Cleaning fee</div>
+                          <div> $150 </div>
+                        </div>
+                        <div className="booking-individual-fee">
+                          <div>Service fee</div>
+                          <div> $71 </div>
+                        </div>
+                        <div className="booking-individual-fee booking-fee-total">
+                          <div> Total before taxes </div>
+                          <div> ${currSpot.price * ((endDate.getTime() - startDate.getTime()) / (1000 * 3600 * 23)).toFixed() + 150 + 71} </div>
+                        </div>
                       </div>
                     </div>
-                  </div>
+                    :
+                    <div className="owner-booking-wrapper">
+                      <div className="owner-booking-buttons">
+                        <div className="owner-booking-button" onClick={ownerBookingDisplay}> Display Bookings</div>
+                        <NavLink className="owner-booking-button"
+                          to="/spots/hosting">
+                          Manage My Spot
+                        </NavLink>
+                      </div>
+                      <div className="owner-booking-display-wrap">
+                        {displayBookings && currSpotBooked ?
+                          <div className="owner-booking-display">
+                            {currSpotBooked?.map((bookings) => (
+                              <div className="owner-booking-container">
+                                <div className="owner-booking-display-details owner-booking-details">
+                                  <div>Guest name</div>
+                                  <div>Booking dates</div>
+                                </div>
+                                <div className="owner-booking-display-details">
+                                  <div>{bookings.User.firstName} {bookings.User.lastName}</div>
+                                  <div>{moment(booking.startDate).format('MMM D YYYY')} - {moment(booking.endDate).format('MMM D YYYY')}</div>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                          : displayBookings ?
+                            <div className="owner-booking-display"> Your spot currently has no bookings </div>
+                            : null
+                        }
+                      </div>
+                    </div>
+                  }
                 </div>
               </div>
             </div>
@@ -659,7 +712,7 @@ const SingleSpotBrowser = () => {
           </div>
         </div>
       </div>
-    </div>
+    </div >
 
   )
 }

@@ -102,7 +102,7 @@ const UserSpots = () => {
                     <div className="user-spot-rating">
                       <i className="fa-solid fa-paw"></i>
                       <div>
-                        {spot.avgStarRating > 0 ? Number(spot.avgStarRating).toFixed(2) : 'New'}
+                        {spot.avgRating > 0 ? Number(spot.avgRating).toFixed(2) : 'New'}
                       </div>
                     </div>
 
