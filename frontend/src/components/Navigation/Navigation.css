@@ -87,7 +87,22 @@
 
 .right-nav{
   display: flex;
-  
+
+}
+
+.host-parent {
+  flex: wrap;
+  margin-right: 20px;
+}
+
+
+.host1 {
+  text-decoration: none;
+  color: inherit;
+  /* margin-right: 20%; */
+  padding: 10px 10px;
+  font-size: 14px;
+  width: 83px;
 }
 
 .full-navigation-1 {

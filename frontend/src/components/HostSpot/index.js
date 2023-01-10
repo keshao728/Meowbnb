@@ -131,12 +131,18 @@ const HostSpot = () => {
 
   function increment() {
     let count = document.getElementById('price')
-    count.value++
+    if (count) {
+      count.value++
+    }
+    setPrice(count.value)
   }
 
   function decrement() {
     let count = document.getElementById('price')
-    count.value--
+    if (count) {
+      count.value--
+    }
+    setPrice(count.value)
   }
 
   const handleAddress = async (address) => {
@@ -447,7 +453,7 @@ const HostSpot = () => {
   const spotPage4 = () => {
     let errors = []
 
-    if (!address || address.length > 20) { errors.push("Address is required and must be less than 20 characters") }
+    if (!address || address.length > 30) { errors.push("Address is required and must be less than 30 characters") }
     if (!city || city.length > 15) { errors.push("City is required and must be less than 15 characters") }
     if (!state || state.length > 10) { errors.push("State is required and must be less than 10 characters") }
     if (!country || country.length > 15) { errors.push("Country is required and must be less than 15 characters") }
@@ -971,7 +977,7 @@ const HostSpot = () => {
             <div className="step8-title">Set your price</div>
             <div className="host-input-price-wrapper ">
               <div className="host-input-price-container">
-                <button className="price-increase-decrese" onClick={decrement}>-</button>
+                <button className="price-increase-decrese" type="button" onClick={decrement}>-</button>
                 <input
                   type="number"
                   placeholder="00"
@@ -982,7 +988,7 @@ const HostSpot = () => {
                   onChange={(e) => setPrice(parseInt(e.target.value).toFixed(0))}
                   required
                 />
-                <button className="price-increase-decrese" onClick={increment}>+</button>
+                <button className="price-increase-decrese" type="button" onClick={increment}>+</button>
 
               </div>
               <div className="host-input-per-night">per night</div>

@@ -848,7 +848,17 @@
   font-weight: bold;
   text-overflow: ellipsis;
   overflow: hidden;
+
+
 }
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
 
 .host-input-price-container {
   display: flex;

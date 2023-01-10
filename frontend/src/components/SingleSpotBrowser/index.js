@@ -60,6 +60,10 @@ const SingleSpotBrowser = () => {
   const lng = currSpot?.lng
   const center = { lat: lat, lng: lng }
 
+  //AMENITIES
+  const amenities = currSpot.amenities
+  console.log("amenities", amenities)
+
   //REVIEWS
   const allReviews = useSelector(state => state.reviews.spot);
   const allReviewsArr = Object.values(allReviews)
@@ -199,15 +203,15 @@ const SingleSpotBrowser = () => {
     let count = number
 
     // console.log(bookedDates)
-    console.log("bookedDates", bookedDates)
+    // console.log("bookedDates", bookedDates)
 
     if (!bookedDates.includes(newBookDate)) {
-      console.log((new Date(), count), "MEOWMEOW")
+      // console.log((new Date(), count), "MEOWMEOW")
       return addDays(new Date(), count)
     }
 
 
-    console.log("newBookDate", newBookDate)
+    // console.log("newBookDate", newBookDate)
     count += 1
 
     return dateChecker(count)
@@ -224,8 +228,8 @@ const SingleSpotBrowser = () => {
   // const [endDate, setEndDate] = useState(dateChecker(1)  ? dateChecker(1) : addDays(new Date(), 2))
   // }
 
-  console.log("startDate", startDate)
-  console.log("endDate", endDate)
+  // console.log("startDate", startDate)
+  // console.log("endDate", endDate)
   // console.log("disabledDates", disabledDates)
 
 
@@ -405,7 +409,7 @@ const SingleSpotBrowser = () => {
             <div className="middle-spot-items">
               <div className="left-middle">
                 <div className="spot-hosted">
-                  <div className="hosted-by"> Spot hosted by {currSpot.Owner.firstName} {currSpot.Owner.lastName}</div>
+                  <div className="hosted-by"> Spot hosted by {currSpot?.Owner?.firstName} {currSpot?.Owner?.lastName}</div>
                   <img className='hosted-pic' src="https://drive.google.com/uc?export=view&id=1p7ALHdhdZsKxbR6qaFb4Wd_rbqSy1DwI" alt="Meowbnb Default Profile"></img>
                 </div>
 
@@ -423,7 +427,7 @@ const SingleSpotBrowser = () => {
                 <div className="self-check-in" id="super">
                   <i class="fa-regular fa-id-badge"></i>
                   <div className="superhost">
-                    <strong> {currSpot.Owner.firstName} is a Superhost </strong>
+                    <strong> {currSpot?.Owner?.firstName} is a Superhost </strong>
                     <div> Superhosts are experienced, highly rated hosts who are committed to providing great stays for guests.</div>
                   </div>
                 </div>
@@ -433,11 +437,70 @@ const SingleSpotBrowser = () => {
                   <img className="aircover-pic" src="https://a0.muscache.com/im/pictures/54e427bb-9cb7-4a81-94cf-78f19156faad.jpg" />
                   <div className="aircover-des">Every booking includes free protection from Host cancellations, listing inaccuracies, and other issues like trouble checking in.</div>
                 </div>
+
                 <div>
                   <div className="spot-description">
-                    {currSpot.description}
+                    {currSpot?.description}
                   </div>
                 </div>
+
+                {amenities &&
+                  <div className="amenities-wrapper">
+                    <div className="spot-checkin-title">What this place offers </div>
+                    <div className="individual-amenities-wrapper">
+                      {amenities.includes('Wifi') &&
+                        <div className="individual-amenities-container">
+                          <img className="individual-amenities-img" src="https://imgur.com/fHVWE9K.png" />
+                          <div className="individual-amenities-title">Wifi</div>
+                        </div>
+                      }
+                      {amenities.includes('TV') &&
+                        <div className="individual-amenities-container">
+                          <img className="individual-amenities-img" src="https://imgur.com/csXC3RL.png" />
+                          <div className="individual-amenities-title">TV</div>
+                        </div>
+                      }
+                      {amenities.includes('Kitchen') &&
+                        <div className="individual-amenities-container">
+                          <img className="individual-amenities-img" src="https://imgur.com/uwD4CGY.png" />
+                          <div className="individual-amenities-title">Kitchen</div>
+                        </div>
+                      }
+                      {amenities.includes('Washer') &&
+                        <div className="individual-amenities-container">
+                          <img className="individual-amenities-img" src="https://imgur.com/Xluxljd.png" />
+                          <div className="individual-amenities-title">Washer</div>
+                        </div>
+                      }
+                      {amenities.includes('Free parking on premises') &&
+                        <div className="individual-amenities-container">
+                          <img className="individual-amenities-img" src="https://imgur.com/z2lA5yX.png" />
+                          <div className="individual-amenities-title">Free parking on premises</div>
+                        </div>
+                      }
+                      {amenities.includes('Paid parking on premises') &&
+                        <div className="individual-amenities-container">
+                          <img className="individual-amenities-img" src="https://imgur.com/nARtwQZ.png" />
+                          <div className="individual-amenities-title">Paid parking on premises</div>
+                        </div>
+                      }
+                      {amenities.includes('Air conditioning') &&
+                        <div className="individual-amenities-container">
+                          <img className="individual-amenities-img" src="https://imgur.com/cHR1Rxx.png" />
+                          <div className="individual-amenities-title">Air conditioning</div>
+                        </div>
+                      }
+                      {amenities.includes('Dedicated workspace') &&
+                        <div className="individual-amenities-container">
+                          <img className="individual-amenities-img" src="https://imgur.com/7iFsb5g.png" />
+                          <div className="individual-amenities-title">Dedicated workspace</div>
+                        </div>
+                      }
+                    </div>
+                  </div>
+                }
+
+
                 {!allowBookingAction || !sessionUser &&
                   <div className="spot-checkin">
                     <div className="spot-checkin-title">Select check-in date</div>

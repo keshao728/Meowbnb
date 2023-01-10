@@ -75,8 +75,8 @@ function Navigation({ isLoaded }) {
     sessionLinks = (
       <div className='right-nav' id="navs">
         <div className='host-parent'>
-          <div className="host">
-            
+          <div className="host1">
+
           </div>
         </div>
         <div className='dropdown-button'>
