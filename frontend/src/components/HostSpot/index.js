@@ -365,7 +365,7 @@ const HostSpot = () => {
     }
     return (
       <div className="step3-wrapper">
-        <div className="step2">
+        <div className="step4">
           <div className="step3-title">Where's your place located?</div>
           <div className="step3-des">Your address is only shared with guests after they’ve made a reservation.</div>
           {showErrors && errors.length ? (
@@ -472,7 +472,7 @@ const HostSpot = () => {
 
     return (
       <div className="step4-wrapper">
-        <div className="step2">
+        <div className="step3">
           <div className="step3-title">Confirm your address</div>
           <div className="step3-des">Your address is only shared with guests after they’ve made a reservation.</div>
           {showErrors && errors.length ? (
@@ -937,7 +937,7 @@ const HostSpot = () => {
           spotPage7()
         }
         {page === 8 &&
-          <div className="step2">
+          <div className="step3">
             <div className="step3-title">Now, let's give your dome a final touchup</div>
             <div className="step3-des">You can change it anytime..</div>
             {showErrors && !!validationErrors.name &&

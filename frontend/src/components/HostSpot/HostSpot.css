@@ -31,7 +31,7 @@
   align-items: center;
   border: 0;
   width: 100%;
-  height: 90vh;
+  height: 81vh;
 }
 
 .full-host-form {
@@ -317,9 +317,10 @@
   flex-direction: column;
   width: 100%;
   height: 100%;
-  /* justify-content: center; */
+  justify-content: center;
   align-items: center;
   position: relative;
+
 }
 
 .step2-input-wrapper {
@@ -336,6 +337,22 @@
   width: 640px;
   display: flex;
   flex-direction: column;
+  margin-top: -50px;
+}
+
+
+/* .step6 {
+  width: 640px;
+  display: flex;
+  flex-direction: column;
+  margin-top: -100px;
+} */
+
+.step3 {
+  width: 640px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 80px;
 }
 
 .step2-title {
@@ -688,9 +705,9 @@
   z-index: 1;
 }
 
-.step6-title {
+/* .step6-title {
   margin-top: 100px;
-}
+} */
 
 .step6-des {
   margin-top: 15px;
@@ -715,7 +732,7 @@
   height: 100%;
   justify-content: center;
   align-items: center;
-  margin-top: -60px;
+  /* margin-top: -60px; */
 }
 
 .step7-left {
@@ -854,9 +871,10 @@
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-    /* display: none; <- Crashes Chrome on hover */
-    -webkit-appearance: none;
-    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+  /* display: none; <- Crashes Chrome on hover */
+  -webkit-appearance: none;
+  margin: 0;
+  /* <-- Apparently some margin are still there even though it's hidden */
 }
 
 
