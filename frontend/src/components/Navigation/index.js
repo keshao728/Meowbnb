@@ -127,7 +127,8 @@ function Navigation({ isLoaded }) {
         url === "/" ? 'full-navigation' :
           url === "/spots/create" ? "partial-nav" :
             url === "/spots/hosting" ? "hosting-nav" :
-              "full-navigation-1"}
+              url === "/spots/my-reviews" ? "hosting-nav" :
+                "full-navigation-1"}
         id="full-nav">
         <div className='left-nav' id="navs">
           <NavLink className="home-button" exact to="/">
