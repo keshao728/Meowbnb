@@ -37,9 +37,9 @@ function App() {
             <HostSpot />
           </Route>
 
-          <Route path='/spots/:spotId/edit'>
+          {/* <Route path='/spots/:spotId/edit'>
             <UpdateSpot />
-          </Route>
+          </Route> */}
 
           <Route exact path='/spots/hosting'>
             <UserSpots />

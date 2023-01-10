@@ -1,8 +1,9 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 import { getCurrentSpots, deleteSpot } from "../../store/spots"
-import { loadUserBookingThunk } from "../../store/bookings"
+// import { loadUserBookingThunk } from "../../store/bookings"
+import UpdateSpotModal from "../UpdateSpot/UpdateSpotModal"
 import { locationReviewsThunk, resetData } from "../../store/reviews"
 import { NavLink, Redirect } from "react-router-dom"
 import * as moment from 'moment';
@@ -12,7 +13,8 @@ const UserSpots = () => {
   const dispatch = useDispatch()
   const allSpots = useSelector(state => state.spots.allSpots)
   const allSpotsArr = Object.values(allSpots)
-  const { spotId } = useParams()
+  // const { spotId } = useParams()
+  const [id, setId] = useState()
   // console.log("USERSPOT SPOTID", spotId)
 
 
@@ -111,12 +113,10 @@ const UserSpots = () => {
                 </NavLink>
 
                 <div className="user-spot-buttons">
-                  <NavLink to={`/spots/${spot.id}/edit`}>
-                    <button className="delete-edit">
-                      Edit
-                    </button>
-                  </NavLink>
-                  {/* <button className="logout-button" onClick={() => history.push('/my-spots')}>My Spot</button> */}
+                  <div onClick={() => setId(spot.id)}>
+                    <UpdateSpotModal id={id} />
+                  </div>
+
                   <button className="delete-edit"
                     onClick={() => dispatch(deleteSpot(spot.id))}>
                     Delete
