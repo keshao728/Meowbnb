@@ -115,13 +115,14 @@
 }
 
 .aircover-pic {
-  width: 130px;
+  width: 150px;
   margin-top: 35px;
+  height: 17px;
 }
 
 .aircover-des {
   margin-top: 30px;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
   font-size: 15px;
 }
 
@@ -716,7 +717,7 @@
 
 
 
-.amenities-wrapper{
+.amenities-wrapper {
   border-top: 1px solid #AFAFAF;
   padding-top: 20px;
   padding-bottom: 50px;
@@ -738,4 +739,72 @@
 .individual-amenities-img {
   width: 27px;
   height: 27px;
+}
+
+.meow-wrapper {
+  width: 950px;
+  height: 470px;
+  background-color: white;
+  border-radius: 15px;
+  padding: 20px 30px;
+}
+
+.meow-aircover-pic {
+  width: 200px;
+  margin-top: 10px;
+}
+
+.meow-heading {
+  border-bottom: 1px solid #DDDDDD;
+  padding-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  font-size: 15px;
+}
+
+.all-meows {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 450px);
+  justify-content: space-between;
+  gap: 25px;
+
+  font-size: 15px;
+  padding-top: 40px;
+}
+
+.meow-title {
+  font-weight: bold;
+}
+
+.meow-des {
+  color: #727272;
+}
+
+.meow-exit {
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.meow-individual {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.meow-button {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+  text-decoration: underline;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.aircover-modal {
+  padding-bottom: 35px;
 }

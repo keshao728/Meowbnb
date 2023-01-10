@@ -6,6 +6,7 @@ import { getOneSpot } from "../../store/spots"
 import { locationReviewsThunk } from "../../store/reviews"
 import { addBookingThunk, loadAllBookingThunk, loadUserBookingThunk } from "../../store/bookings"
 
+import MeowCoverModal from "./MeowCoverModal"
 import BookingLoginModal from "./RedirectModal"
 import ReviewFormModal from "../ReviewSpot/ReviewModal"
 
@@ -118,11 +119,11 @@ const SingleSpotBrowser = () => {
 
 
   let allowBookingAction = true;
-  if(sessionUser) {
+  if (sessionUser) {
     if (sessionUser.id !== currSpot.ownerId) {
       allowBookingAction = false
     }
-  } else{
+  } else {
     allowBookingAction = false
   }
 
@@ -438,8 +439,10 @@ const SingleSpotBrowser = () => {
                 {/* </div> */}
 
                 <div className="aircover-parent">
-                  <img className="aircover-pic" src="https://a0.muscache.com/im/pictures/54e427bb-9cb7-4a81-94cf-78f19156faad.jpg" />
+                  <img className="aircover-pic" src="https://imgur.com/0SJuCdh.png" />
+                  {/* <img className="aircover-pic" src="https://a0.muscache.com/im/pictures/54e427bb-9cb7-4a81-94cf-78f19156faad.jpg" /> */}
                   <div className="aircover-des">Every booking includes free protection from Host cancellations, listing inaccuracies, and other issues like trouble checking in.</div>
+                  <div className="aircover-modal"><MeowCoverModal /></div>
                 </div>
 
                 <div>
