@@ -118,3 +118,16 @@
 
 
 
+.review-full-host-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 600px;
+  height: fit-content;
+}
+
+.review-spot-host-form {
+  padding: 10px 20px;
+  /* width: ; */
+}

@@ -1,4 +1,62 @@
-.review-delete{
+.user-review-mother {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+  width: 100%;
+}
+
+.review-mother {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 35px 20px;
+  align-items: center;
+  justify-content: center;
+  width: 70%;
+  border-radius: 15px;
+  background-color: #F7F7F7;
+}
+
+.all-owned-review-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  list-style: none;
+  gap: 40px;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-address-star {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.all-owned-review {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 10px;
+  border: 1px solid #EBEBEB;
+  border-radius: 10px;
+  background-color: white;
+}
+
+.all-owned-review:hover {
+  background-color: #fcfcfc;
+
+}
+
+.delete-edit {
   border-radius: 6px;
   font-size: 12px;
   border: 0;
@@ -10,121 +68,193 @@
   font-weight: bold;
 }
 
-.review-delete:hover{
+.delete-edit:hover {
   background-color: #DD1362;
   cursor: pointer;
 }
 
-.review-link{
-  text-decoration: none;
-  color: inherit;
-}
-
-.review-child {
-  display: grid;
-  grid-template-columns: repeat(1,1fr);
-  /* grid-gap: 50px 0px; */
-  /* list-style: none; */
-  padding: 20px 30px;
-  justify-items: center;
-  border: 1px solid #EBEBEB;
-  border-radius: 15px;
-}
-.review-child:hover {
-  background-color: #F7F7F7;
-}
-
-.review-mother{
-  display: grid;
-  grid-template-columns: repeat(1,1fr);
-  grid-gap: 50px 0px;
-  list-style: none;
-  /* padding: 50px 500px; */
-  justify-items: center;
-  /* border-top: 1px solid #EBEBEB; */
-  /* border-bottom: 1px solid #EBEBEB; */
-}
-
-.review-item-name{
-  /* display: flex; */
-  display: inline-block;
-  flex-direction: column;
-  justify-content: center;
-  /* align-content: flex-start; */
-  flex-wrap: wrap;
-  gap: 10px;
-  width: 300px;
-  overflow-wrap: break-word;
-  /* white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis */
-}
-
-.right-review {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 10px;
-  width: 160px;
-}
-
-.review-text {
-  margin-top: 10px;
-  font-size: 14px;
-}
-
-.review-item{
-  display: grid;
-  /* border: 1px solid #AFAFAF; */
-  grid-template-columns: repeat(2,1fr);
-  grid-gap: 50px 0px;
-  list-style: none;
-  padding: 40px 20px;
-  margin-right: 170px;
-  /* justify-items: center; */
-  width: 300px;
-
-
-}
-
-.user-review-message{
-  text-align: center;
-  margin-top: 50px;
-  margin-bottom: 50px;
-
-}
-
-.location-name{
+.user-review-message {
+  font-size: 32px;
   font-weight: bold;
 }
 
-.right-review{
+.user-review-your-review {
+  font-size: 26px;
+  font-weight: bold;
+  margin-top: 50px;
+}
+
+.message-review-mother {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+  width: 72.5%;
+  padding: 35px 0px;
+}
+
+
+.message-review-container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+  width: 100%;
+}
+
+.no-review-meow {
+  width: 80%;
+}
+
+.no-review-mother {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* width: 1000px; */
+}
+
+.all-owned-review-container {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  /* justify-content: center; */
+
+  position: relative;
+}
+
+.user-review {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+
+  flex-direction: column;
+  width: 100%;
+
+}
+
+
+.user-review-texts {
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.user-review-location{
-  font-size: 12px;
-  margin-top: 3px;
+
+.user-review-left {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 92px;
+  height: 100%;
 }
 
-.user-review-date{
-  font-size: 14px;
-
+.user-review-right {
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+  align-items: flex-end;
 }
 
-.review-spot-star{
-  margin-top: 10px;
-  justify-content: flex-end;
+.user-review-buttons {
+  position: absolute;
+  display: flex;
+  width: 8%;
+  height: fit-content;
+  bottom: 0px;
+  right: 0;
+}
+
+.user-review-name {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.user-review-rating {
   display: flex;
   flex-direction: row;
-  margin-top: 10px;
-  font-size: 14px;
-
-
-  /* justify-content: space-between; */
+  gap: 5px;
 }
 
+.user-review-middle {
+  display: flex;
+  gap: 8px;
+  flex-direction: column;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
+.user-welcome-host {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 50px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.user-host {
+  text-decoration: none;
+  color: inherit;
+  border: 1px solid black;
+  font-size: 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  padding: 10px 20px;
+  font-weight: bold;
+  height: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.user-host:hover {
+  background-color: rgb(226, 226, 226);
+}
+
+.user-reviews {
+  margin-top: 10px;
+  font-size: 15px;
+  display: inline-block;
+  word-break: break-word;
+  width: 85%;
+  white-space: normal;
+
+  /* text-align: bottom; */
+  /* justify-content: flex-end; */
+}
+
+.user-reviews-wrap {
+  width: 100%;
+}
+
+.user-review-container {
+  display: flex;
+  width: 100%;
+  height: auto;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  /* height: 100%; */
+  align-items: center;
+  /* justify-content: flex-start; */
+  justify-content: space-between;
+
+
+}

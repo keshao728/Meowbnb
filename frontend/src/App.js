@@ -11,7 +11,7 @@ import UserSpots from "./components/UserSpots"
 import UpdateSpot from "./components/UpdateSpot"
 import SingleSpotBrowser from "./components/SingleSpotBrowser"
 import ReviewSpot from "./components/ReviewSpot"
-import UserReview from "./components/UserReview"
+import UserReviews from "./components/UserReview";
 import UserBookings from "./components/Booking";
 
 
@@ -49,7 +49,7 @@ function App() {
             <UserBookings />
           </Route>
           <Route path='/spots/my-reviews'>
-            <UserReview />
+            <UserReviews />
           </Route>
 
           <Route exact path='/spots/:spotId'>

@@ -65,7 +65,7 @@ const ReviewSpot = ({ setShowModal }) => {
   }
 
   return (
-    <div className="full-host-form">
+    <div className="review-full-host-form">
       <div className="login-title-wrap">
         <div className="login-title">
           <div className="login-close" onClick={handleCancel}>x</div>
@@ -83,7 +83,7 @@ const ReviewSpot = ({ setShowModal }) => {
               ))}
           </ul>
         }
-        <div className="host-form">
+        <div className="review-spot-host-form">
           <div className="rate-stay">
             <img className="review-image" alt="spot" src={currSpot.SpotImages[0]?.url}></img>
             <div>Rate your stay at {currSpot.Owner.firstName}'s place</div>
@@ -111,7 +111,7 @@ const ReviewSpot = ({ setShowModal }) => {
             <textarea
               placeholder="Write a public review"
               type="text"
-              className="review-input host-input-des"
+              className="review-input"
               value={review}
               onChange={(e) => setReview(e.target.value)}
             // required
@@ -130,8 +130,8 @@ const ReviewSpot = ({ setShowModal }) => {
               </input>
             </label>
           </div> */}
-        </div>
         <button className="button-create-review" type="submit"> Add Review</button>
+        </div>
         {/* <button type="button" className="button-create-spot" onClick={handleCancel}>Cancel</button> */}
       </form>
     </div>
