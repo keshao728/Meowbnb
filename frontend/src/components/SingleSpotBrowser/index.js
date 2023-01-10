@@ -438,7 +438,7 @@ const SingleSpotBrowser = () => {
                     {currSpot.description}
                   </div>
                 </div>
-                {!allowBookingAction &&
+                {!allowBookingAction || !sessionUser &&
                   <div className="spot-checkin">
                     <div className="spot-checkin-title">Select check-in date</div>
                     <div className="spot-checkin-des">Add your travel dates for exact pricing</div>
@@ -482,7 +482,7 @@ const SingleSpotBrowser = () => {
                     </div>
                     <div>&nbsp;{currSpot.numReviews} reviews</div>
                   </div>
-                  {!allowBookingAction ?
+                  {!allowBookingAction || !sessionUser ?
                     <div className="booking-wrapper">
                       {showErrors && validationErrors.length ? (
                         <div className='error-wrap booking-error'>
