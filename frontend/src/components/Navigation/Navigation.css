@@ -85,8 +85,10 @@
   z-index: 1;
 }
 
-/* .right-nav{
-} */
+.right-nav{
+  display: flex;
+  
+}
 
 .full-navigation-1 {
   position: sticky;

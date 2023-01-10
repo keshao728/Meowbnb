@@ -74,6 +74,11 @@ function Navigation({ isLoaded }) {
   } else {
     sessionLinks = (
       <div className='right-nav' id="navs">
+        <div className='host-parent'>
+          <div className="host">
+            
+          </div>
+        </div>
         <div className='dropdown-button'>
           <button className="user-buttons" onClick={(() => showMenu ? setShowMenu(false) : setShowMenu(true))}>
             <i className="fas fa-bars" />
@@ -103,8 +108,8 @@ function Navigation({ isLoaded }) {
     <div className={
       url === "/" ? 'full-navigation' :
         url === "/spots/create" ? "partial-nav" :
-        url === "/spots/hosting" ? "hosting-nav" :
-          "full-navigation-1"}
+          url === "/spots/hosting" ? "hosting-nav" :
+            "full-navigation-1"}
       id="full-nav">
       <div className='left-nav' id="navs">
         <NavLink className="home-button" exact to="/">

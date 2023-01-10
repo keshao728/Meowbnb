@@ -63,7 +63,8 @@
   margin-bottom: 3px;
   /* border-top: 1px solid #AFAFAF; */
 }
-.listing-review-wrap{
+
+.listing-review-wrap {
   margin-top: 3px;
   margin-bottom: 3px;
 }
@@ -80,7 +81,7 @@
   border-bottom-right-radius: 10px;
 }
 
-.logout-review-wrap{
+.logout-review-wrap {
   border-top: 1px solid #AFAFAF;
   padding-top: 3px;
   margin-bottom: 3px;
@@ -129,7 +130,7 @@
   /* margin-right: 20%; */
   padding: 10px 10px;
   font-size: 14px;
-
+  width: 83px;
 }
 
 .host:hover {
