@@ -4,7 +4,8 @@ import { Route, Switch } from "react-router-dom";
 // import SignupFormPage from "./components/SignupFormModal";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
-import SpotBrowser from "./components/SpotBrowser"
+import SpotBrowser from "./components/SpotBrowser/index"
+import FilteredSpots from "./components/SpotBrowser/FilteredSpots"
 import HostSpot from "./components/HostSpot"
 import UserSpots from "./components/UserSpots"
 import UpdateSpot from "./components/UpdateSpot"
@@ -28,7 +29,8 @@ function App() {
       {isLoaded && (
         <Switch>
           <Route exact path='/'>
-            <SpotBrowser />
+            <FilteredSpots />
+            {/* <SpotBrowser /> */}
           </Route>
 
           <Route path='/spots/create'>
