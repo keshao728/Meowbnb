@@ -163,7 +163,7 @@ const SpotBrowser = () => {
 
   return (
     <div>
-      <div>
+      <div className="nav-wrapper-1">
         <div className='nav-place'>
           <div className={filterSpot === "All" ? "nav-individual-place nav-clicked " : 'nav-individual-place'} onClick={() => setFilterSpot("All")}>
             <img className="nav-place-img" src="https://imgur.com/bboPy36.png" />
@@ -262,6 +262,28 @@ const SpotBrowser = () => {
       </div>
       <div className={filterSpot === "All" ? "all-spot-display" : filteredArr.length > 0 ? "all-spot-display" : "no-spot-display"}>
         {allSpotDetails}
+      </div>
+      <div className="all-spot-footer-wrapper">
+        <div className="all-spot-footer">
+          <div className="all-spot-footer-left">
+            <div>© 2023 Meowbnb, Inc. &nbsp;&nbsp;·&nbsp;&nbsp;</div>
+            <a className="proj-directory" href="https://github.com/keshao728/Varorant" target="_blank" rel="noreferrer">
+              Project Github
+            </a>
+          </div>
+          <div className="dev-socials">
+            <div className="dev-socials-links">
+              <a href="https://github.com/keshao728" className="dev-link" target="_blank" rel="noreferrer">
+                <i className="fa-brands fa-github"></i></a>
+            </div>
+
+            <div className="dev-socials-links">
+              <a href="https://www.linkedin.com/in/keyingshao/" className="dev-link" target="_blank" rel="noreferrer">
+                <i className="fa-brands fa-linkedin"></i>
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   )

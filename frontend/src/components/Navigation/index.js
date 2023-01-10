@@ -122,14 +122,14 @@ function Navigation({ isLoaded }) {
   // }
 
   return (
-    <div>
-      <div className={
-        url === "/" ? 'full-navigation' :
-          url === "/spots/create" ? "partial-nav" :
-            url === "/spots/hosting" ? "hosting-nav" :
-              url === "/spots/my-reviews" ? "hosting-nav" :
-                "full-navigation-1"}
-        id="full-nav">
+    <div className={
+      url === "/" ? 'full-navigation' :
+        url === "/spots/create" ? "partial-nav" :
+          url === "/spots/hosting" ? "hosting-nav" :
+            url === "/spots/my-reviews" ? "hosting-nav" :
+              "full-navigation-1"}
+      id="full-nav">
+      <div className="full-nav-container">
         <div className='left-nav' id="navs">
           <NavLink className="home-button" exact to="/">
             <img id="icon" src="https://drive.google.com/uc?export=view&id=1gemygEIn5eArP1LTHdzR6bXpt87jT3uO" alt="Meowbnb Icon"></img>
