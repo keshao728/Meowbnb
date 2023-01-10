@@ -1,38 +1,67 @@
+.user-spots-mother {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+  width: 100%;
+}
+
 .spot-mother {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  grid-gap: 50px 0px;
   list-style: none;
-  gap:40px 40px;
-  padding: 50px 300px;
-  justify-items: center;
+  /* gap: 40px 40px; */
+  padding: 35px 20px;
+  align-items: center;
+  justify-content: center;
+  width: 70%;
+  border-radius: 15px;
+  background-color: #F7F7F7;
 }
 
+.all-owned-spot-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  list-style: none;
+  gap: 40px;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
 
 .user-spot-image {
   object-fit: cover;
-  width: 600px;
-  height: 300px;
+  height: 95.3px;
   overflow: hidden;
   position: relative;
-  border-radius: 15px;
+  width: 100%;
+}
+
+.user-address-star {
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .all-owned-spot {
   display: flex;
   flex-direction: column;
+  width: 100%;
+  height: 100px;
   justify-content: center;
+  align-items: center;
   flex-wrap: wrap;
   gap: 10px;
-  width: 600px;
   padding: 10px;
   border: 1px solid #EBEBEB;
-  border-radius: 15px;
+  border-radius: 10px;
+  background-color: white;
 }
 
-.all-owned-spot:hover{
-  background-color: #F7F7F7;
+.all-owned-spot:hover {
+  background-color: #fcfcfc;
 
 }
 
@@ -48,33 +77,153 @@
   font-weight: bold;
 }
 
-.delete-edit:hover{
+.delete-edit:hover {
   background-color: #DD1362;
   cursor: pointer;
 }
 
 .user-spot-message {
-  margin-top: 3%;
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.user-spot-your-spot {
+  font-size: 26px;
+  font-weight: bold;
+  margin-top: 50px;
+}
+
+.message-spot-mother {
   display: flex;
-  justify-content: center;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+  width: 72.5%;
+  padding: 35px 0px;
+}
+
+
+.message-spot-container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+  width: 100%;
 }
 
 .no-spot-meow {
-width: 600px;
+  width: 80%;
 }
 
-.no-spot-mother{
+.no-spot-mother {
   display: flex;
   flex-direction: column;
   align-items: center;
+  /* width: 1000px; */
 }
 
-.spots{
+.all-owned-spot-container {
   white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis
+  text-overflow: ellipsis;
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
 }
 
-.user-price-per{
-  margin-top: 10px;
+.user-spots {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  margin-right: 7%;
+}
+
+
+.user-spots-texts {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  margin-left: 3%;
+}
+
+
+.user-spots-left {
+  display: flex;
+  flex-direction: column;
+  width: 15%;
+  min-width: 92px;
+  height: 100%;
+}
+
+.user-spots-right {
+  display: flex;
+  flex-direction: row;
+  width: 30%;
+}
+
+.user-spot-buttons {
+  display: flex;
+  flex-direction: column;
+  width: 8%;
+  height: 100%;
+}
+
+.user-spot-name {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.user-spot-rating {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}
+
+.user-spots-middle {
+  display: flex;
+  gap: 8px;
+  flex-direction: column;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /* margin-left: -60px; */
+}
+
+.user-welcome-host {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 50px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.user-host {
+  text-decoration: none;
+  color: inherit;
+  border: 1px solid black;
+  font-size: 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  padding: 10px 20px;
+  font-weight: bold;
+  height: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.user-host:hover {
+  background-color: rgb(226, 226, 226);
 }

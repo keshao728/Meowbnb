@@ -21,7 +21,12 @@ const SpotBrowser = () => {
         <NavLink className="spots" to={`spots/${spot.id}`}>
           <div className="individual-spots">
             <div>
-              <img className="spot-image" key={spot.previewImage} src={spot.previewImage} alt={spot.previewImage} />
+              <img className="spot-image"
+                key={spot.previewImage}
+                src={spot.previewImage ? spot.previewImage : 'https://imgur.com/WghnM0b.png'}
+                onError={(e) => e.target.src='https://imgur.com/WghnM0b.png'}
+                alt={spot.previewImage}
+              />
             </div>
             <div className="spot-info">
               <div className="address-star">

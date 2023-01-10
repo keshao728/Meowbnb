@@ -45,6 +45,8 @@ export const resetData = () => ({
 //THUNK-----------------
 //create
 export const addOneSpot = (added) => async dispatch => {
+  console.log("THUNKTHUNKTNUTNKTNj")
+  console.log(added)
   const response = await csrfFetch('/api/spots', {
     method: 'POST',
     headers: {
@@ -54,6 +56,7 @@ export const addOneSpot = (added) => async dispatch => {
   })
   if (response.ok) {
     const newSpot = await response.json()
+
     dispatch(addSpot(newSpot))
     return newSpot
   }

@@ -4,13 +4,15 @@ import { Route, Switch } from "react-router-dom";
 // import SignupFormPage from "./components/SignupFormModal";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
-import SpotBrowser from "./components/SpotBrowser"
+import SpotBrowser from "./components/SpotBrowser/index"
+import FilteredSpots from "./components/SpotBrowser/FilteredSpots"
 import HostSpot from "./components/HostSpot"
 import UserSpots from "./components/UserSpots"
 import UpdateSpot from "./components/UpdateSpot"
 import SingleSpotBrowser from "./components/SingleSpotBrowser"
 import ReviewSpot from "./components/ReviewSpot"
-import UserReview from "./components/UserReview"
+import UserReviews from "./components/UserReview";
+import UserBookings from "./components/Booking";
 
 
 function App() {
@@ -27,23 +29,27 @@ function App() {
       {isLoaded && (
         <Switch>
           <Route exact path='/'>
-            <SpotBrowser />
+            <FilteredSpots />
+            {/* <SpotBrowser /> */}
           </Route>
 
           <Route path='/spots/create'>
             <HostSpot />
           </Route>
 
-          <Route path='/spots/:spotId/edit'>
+          {/* <Route path='/spots/:spotId/edit'>
             <UpdateSpot />
-          </Route>
+          </Route> */}
 
-          <Route exact path='/spots/my-spots'>
+          <Route exact path='/spots/hosting'>
             <UserSpots />
           </Route>
 
+          <Route exact path='/spots/trips'>
+            <UserBookings />
+          </Route>
           <Route path='/spots/my-reviews'>
-            <UserReview />
+            <UserReviews />
           </Route>
 
           <Route exact path='/spots/:spotId'>

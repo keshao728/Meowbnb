@@ -33,6 +33,27 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       // onDelete: 'CASCADE'
     },
+    place: {
+      type: DataTypes.STRING,
+      // allowNull: false
+    },
+    amenities: {
+      type: DataTypes.STRING,
+      get() {
+        return this.getDataValue('amenities').split(';')
+      },
+      set(val) {
+        this.setDataValue('amenities', val.join(';'));
+      },
+      // get: function () {
+      //   return JSON.parse(this.getDataValue('amenities'));
+      // },
+      // set: function (val) {
+      //   return this.setDataValue('amenities', JSON.stringify(val));
+      // }
+      // type: DataTypes.ARRAY(DataTypes.STRING),
+      // allowNull: false
+    },
     address: {
       type: DataTypes.STRING,
       allowNull: false,

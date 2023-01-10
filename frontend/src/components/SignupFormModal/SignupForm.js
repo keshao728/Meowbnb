@@ -45,6 +45,12 @@ function SignupForm({ setShowModal }) {
         </div>
       </div>
 
+      {/* <input type="checkbox" id="hacky-input" />
+
+      <label for="hacky-input">
+        <div className="crossRotate">SHIBA</div>
+      </label> */}
+
       <form className="signup-form-mother" onSubmit={handleSubmit}>
         <h3 className="welcome-message">Welcome to Meowbnb!</h3>
         <ul className="error-mother">

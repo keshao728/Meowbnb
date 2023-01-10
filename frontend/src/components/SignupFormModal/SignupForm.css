@@ -160,3 +160,26 @@
   color: #DD1362;
   margin-bottom: 22px;
 }
+
+/* #hacky-input {
+  display: none; 
+}
+
+#hacky-input:checked + label .crossRotate {
+  animation: animation 0.3s ease-in-out;
+}
+
+
+@keyframes animation {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(0.8);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+} */

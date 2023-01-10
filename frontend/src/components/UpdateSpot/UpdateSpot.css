@@ -1,0 +1,158 @@
+.host-input-box {
+  position: relative;
+  width: 100%;
+  border-bottom: #AFAFAF 1px solid;
+}
+
+.host-input-box input,
+.host-input-box textarea {
+  width: 100%;
+  padding-top: 28px;
+  padding-left: 15px;
+  padding-right: 20px;
+  padding-bottom: 10px;
+  font-size: 18px;
+  /* background: #EDEDED; */
+  font: inherit;
+  border: none;
+  color: rgb(0, 0, 0);
+}
+
+.host-input-box input:focus,
+.host-input-box textarea:focus {
+  background-color: #F9F9F9;
+}
+
+.host-input-box label {
+  position: absolute;
+  top: 10px;
+  left: 5px;
+  padding: 10px;
+  font-size: 14px;
+  pointer-events: none;
+  transition: .5s;
+  color: #666666;
+}
+
+.host-input-box input:valid+label,
+.host-input-box input:focus+label,
+.host-input-box textarea:valid+label,
+.host-input-box textarea:focus+label {
+  font-size: 12px;
+  top: -2px;
+  left: 5;
+
+}
+
+.host-input {
+  border: 0;
+  outline: none;
+  box-shadow: none;
+  display: block;
+  border-bottom: 1px solid #AFAFAF;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.host-input-parent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  overflow: hidden;
+  opacity: 1;
+  visibility: visible;
+  border-radius: 10px;
+  border: #AFAFAF 1px solid;
+  position: relative;
+  height: 100%;
+}
+
+.host-input-last {
+  border-bottom: none;
+}
+
+.update-this-spot {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+}
+
+
+.delete-edit {
+  border-radius: 6px;
+  font-size: 12px;
+  border: 0;
+  background-color: #E21C5F;
+  color: white;
+  width: 100%;
+  padding: 10px 10px;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.host-input-des {
+  overflow-y: scroll;
+}
+
+.update-spot-form-parent {
+  width: 80%;
+  padding: 25px 10px;
+}
+
+.edit-spot-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 25px;
+  margin-bottom: 15px;
+  gap: 25px;
+}
+
+
+.button-edit-spot {
+  border-radius: 6px;
+  font-size: 12px;
+  border: 0;
+  background-color: #E21C5F;
+  color: white;
+  width: 100%;
+  padding: 15px 15px;
+  font-weight: bold;
+  height: fit-content;
+}
+
+.button-edit-spot:hover {
+  background-color: #DD1362;
+  cursor: pointer;
+}
+
+.button-cancel-edit {
+  border-radius: 6px;
+  font-size: 12px;
+  border: 1px solid black;
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  width: 100%;
+  padding: 15px 15px;
+  font-weight: bold;
+  height: fit-content;
+}
+
+.button-cancel-edit:hover {
+  background-color: #eaeaea;
+  cursor: pointer;
+}
+
+.full-update-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0;
+  width: 500px;
+  height: fit-content;
+  position: relative;
+}

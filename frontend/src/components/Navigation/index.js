@@ -10,13 +10,56 @@ import './Navigation.css';
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector(state => state.session.user);
   const [showMenu, setShowMenu] = useState(false)
+  // const [filterSpot, setFilterSpot] = useState("")
+
+  // const [showSpot, setShowSpot] = useState("")
 
   const url = useLocation().pathname;
-  // const openMenu = () => {
-  //   if (showMenu) return;
-  //   setShowMenu(true);
-  // };
 
+  const [filteredData, setFilteredData] = useState([]);
+  const [wordEntered, setWordEntered] = useState("");
+  const [spotId, setSpotId] = useState("");
+
+  const data = useSelector(state => state.spots.allSpots);
+  const dataArr = Object.values(data)
+
+  // const handleSpotsFilter = (place) => {
+  //   if (filterSpot !== place) {
+  //     setFilterSpot(place)
+  //   }
+  //   // if (filterSpot === place) setFilterSpot("")
+  //   // else setFilterSpot(e)
+  //   // filterSpot === e ? setFilterSpot("") : setFilterSpot(e)
+
+  //   // let displaySpots = dataArr
+  //   // setShowSpot(displaySpots)
+  // }
+
+  // console.log(filterSpot)
+
+
+  const handleFilter = (e) => {
+    const searchWord = e.target.value;
+    setWordEntered(searchWord);
+    const newFilter = dataArr.filter((value) => {
+      if (value.city.toLowerCase().includes(searchWord.toLowerCase()) || value.state.toLowerCase().includes(searchWord.toLowerCase()) || value.country.toLowerCase().includes(searchWord.toLowerCase()) || value.name.toLowerCase().includes(searchWord.toLowerCase()) || value.address.toLowerCase().includes(searchWord.toLowerCase())) {
+        setSpotId(value.id)
+        return value
+      };
+    });
+
+    if (searchWord === "") {
+      setFilteredData([]);
+    } else {
+      setFilteredData(newFilter);
+    }
+  };
+  // console.log(filteredData)
+
+  const clearInput = () => {
+    setFilteredData([]);
+    setWordEntered("");
+  };
 
   const dropdown = () => {
     if (showMenu) {
@@ -48,6 +91,11 @@ function Navigation({ isLoaded }) {
   } else {
     sessionLinks = (
       <div className='right-nav' id="navs">
+        <div className='host-parent'>
+          <div className="host1">
+
+          </div>
+        </div>
         <div className='dropdown-button'>
           <button className="user-buttons" onClick={(() => showMenu ? setShowMenu(false) : setShowMenu(true))}>
             <i className="fas fa-bars" />
@@ -74,16 +122,170 @@ function Navigation({ isLoaded }) {
   // }
 
   return (
-    <div className={url === "/" ? 'full-navigation' : "full-navigation-1"} id="full-nav">
-      <div className='left-nav' id="navs">
-        <NavLink className="home-button" exact to="/">
-          <img id="icon" src="https://drive.google.com/uc?export=view&id=1gemygEIn5eArP1LTHdzR6bXpt87jT3uO" alt="Meowbnb Icon"></img>
-          <img id="logo" src="https://drive.google.com/uc?export=view&id=1EGZCbwX9pZ8eHc4JQDb8SlV88NHk9QYh" alt="Meowbnb Logo"></img>
-        </NavLink>
+    <div>
+      <div className={
+        url === "/" ? 'full-navigation' :
+          url === "/spots/create" ? "partial-nav" :
+            url === "/spots/hosting" ? "hosting-nav" :
+              url === "/spots/my-reviews" ? "hosting-nav" :
+                "full-navigation-1"}
+        id="full-nav">
+        <div className='left-nav' id="navs">
+          <NavLink className="home-button" exact to="/">
+            <img id="icon" src="https://drive.google.com/uc?export=view&id=1gemygEIn5eArP1LTHdzR6bXpt87jT3uO" alt="Meowbnb Icon"></img>
+            <img id="logo" src="https://drive.google.com/uc?export=view&id=1EGZCbwX9pZ8eHc4JQDb8SlV88NHk9QYh" alt="Meowbnb Logo"></img>
+          </NavLink>
+        </div>
+
+        <div className="search">
+          <div className="search-wrap">
+            <div>
+              <input
+                type="text"
+                placeholder="Start your search"
+                value={wordEntered}
+                onChange={handleFilter}
+                className="search-input"
+              />
+            </div>
+            <div className="searchIcon">
+              {filteredData.length === 0 ?
+                <i className="fa-solid fa-magnifying-glass"></i>
+                :
+                <div className="search-cancel" onClick={clearInput}>x</div>
+              }
+            </div>
+          </div>
+          {filteredData.length != 0 && (
+            <div className="data-result">
+              {filteredData.slice(0, 15).map((value, key) => {
+                return (
+                  <a className="data-item" href={`/spots/${value.id}`} target="_blank">
+                    <div className='individual-city'>
+                      <img className="data-image" src={value.previewImage} />
+                      <div>
+                        <div> {value.name} </div>
+                        <div className='data-city-state'> at {value.city} {value.state}</div>
+                      </div>
+                    </div>
+                  </a>
+                );
+              })}
+            </div>
+          )}
+        </div>
+        <div>
+          {isLoaded && sessionLinks}
+        </div>
       </div>
-      <div>
-        {isLoaded && sessionLinks}
-      </div>
+
+      {/* <div className='nav-place'>
+
+        <div className='nav-individual-place' onClick={() => setFilterSpot("All")}>
+          <img className="nav-place-img" src="https://imgur.com/bboPy36.png" />
+
+          <div>
+            All
+          </div>
+        </div>
+
+        <div className='nav-individual-place'>
+          <img className="nav-place-img" src="https://imgur.com/bboPy36.png" />
+          <div>
+            Play zone
+          </div>
+        </div>
+
+        <div className='nav-individual-place'>
+          <img className="nav-place-img" src="https://imgur.com/hpmirKZ.png" />
+
+          <div>
+            Sleep-only
+          </div>
+        </div>
+
+        <div className='nav-individual-place'>
+          <img className="nav-place-img" src="https://imgur.com/xgffVdE.png" />
+
+          <div>
+            Tree
+          </div>
+        </div>
+
+        <div className='nav-individual-place'>
+          <img className="nav-place-img" src="https://imgur.com/7oxOZy7.png" />
+
+          <div>
+            Box
+          </div>
+        </div>
+
+
+        <div className='nav-individual-place'>
+          <img className="nav-place-img" src="https://imgur.com/cIIP3LF.png" />
+
+          <div>
+            No human
+          </div>
+        </div>
+
+        <div className='nav-individual-place'>
+          <img className="nav-place-img" src="https://imgur.com/B2UcvKy.png" />
+
+          <div>Furball</div>
+        </div>
+
+
+        <div className='nav-individual-place'>
+          <img className="nav-place-img" src="https://imgur.com/u6LVB8Y.png" />
+
+          <div>Catnip</div>
+        </div>
+
+
+        <div className='nav-individual-place'>
+          <img className="nav-place-img" src="https://imgur.com/atditdJ.png" />
+
+          <div>Shared</div>
+        </div>
+
+        <div className='nav-individual-place'>
+          <img className="nav-place-img" src="https://imgur.com/XIsDXKA.png" />
+
+          <div>Petting home</div>
+        </div>
+
+        <div className='nav-individual-place'>
+          <img className="nav-place-img" src="https://imgur.com/SGK10E3.png" />
+
+          <div>Nature</div>
+        </div>
+
+        <div className='nav-individual-place'>
+          <img className="nav-place-img" src="https://imgur.com/uQOxjcy.png" />
+
+          <div>No-meows-land</div>
+        </div>
+
+        <div className='nav-individual-place'>
+          <img className="nav-place-img" src="https://imgur.com/UQ1veNy.png" />
+
+          <div>Snacks </div>
+        </div>
+
+        <div className='nav-individual-place'>
+          <img className="nav-place-img" src="https://imgur.com/f0dNDBx.png" />
+
+          <div>Evil</div>
+        </div>
+
+        <div className='nav-individual-place'>
+          <img className="nav-place-img" src="https://imgur.com/zgtELKc.png" />
+
+          <div>Others</div>
+        </div>
+
+      </div> */}
     </div>
   );
 }

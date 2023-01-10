@@ -30,15 +30,15 @@ const validateSpot = [
     .exists({ checkFalsy: true })
     .withMessage('Country is required'),
   // check('lat')
-    // .exists({ checkFalsy: true })
-    // .withMessage('Latitude is required')
-    // .isFloat({ min: -90, max: 90 })
-    // .withMessage('Latitude is not valid'),
+  // .exists({ checkFalsy: true })
+  // .withMessage('Latitude is required')
+  // .isFloat({ min: -90, max: 90 })
+  // .withMessage('Latitude is not valid'),
   // check('lng')
-    // .exists({ checkFalsy: true })
-    // .withMessage('Longitude is required')
-    // .isLength({ min: -180, max: 180 })
-    // .withMessage('Longitude is not valid'),
+  // .exists({ checkFalsy: true })
+  // .withMessage('Longitude is required')
+  // .isLength({ min: -180, max: 180 })
+  // .withMessage('Longitude is not valid'),
   check('name')
     .exists({ checkFalsy: true })
     .withMessage('Name is required')
@@ -117,7 +117,7 @@ router.get('/', async (req, res, next) => {
     spotData.avgRating = parseInt(Number(ratings[0].avgRating).toFixed(1)),
 
 
-    spot.push(spotData)
+      spot.push(spotData)
   }
 
   res.json({
@@ -217,8 +217,14 @@ router.get('/:spotId', async (req, res, next) => {
 
 //create a spot
 router.post('/', validateSpot, requireAuth, async (req, res, next) => {
-  const { address, city, state, country, lat, lng, name, description, price } = req.body;
+  const { address, city, state, country, lat, lng, name, description, price, place, amenities } = req.body;
   const user = req.user
+
+  // let amenity;
+  // for (a of amenities) {
+  //   amenity = a
+  // }
+
   // console.log(req.user)
   const spot = await Spot.create({
     ownerId: user.id,
@@ -230,17 +236,27 @@ router.post('/', validateSpot, requireAuth, async (req, res, next) => {
     lng,
     name,
     description,
-    price
-
+    price,
+    amenities,
+    // amenities,
+    place
   })
 
   const { url, preview } = req.body
-
-  await SpotImage.create({
-    "spotId": spot.id,
-    "url": url,
-    "preview": preview
-  })
+  // console.log("238.5", url)
+  for (x of url) {
+    // console.log("HIT-------HFBEAIFKAWHBFKHBAWHKDBHKAWBFKHAWBKHFWABK")
+    await SpotImage.create({
+      "spotId": spot.id,
+      "url": x,
+      "preview": preview
+    })
+  }
+  // await SpotImage.create({
+  //   "spotId": spot.id,
+  //   "url": url,
+  //   "preview": preview
+  // })
 
   const spotWithImage = await Spot.findByPk(spot.id, {
     include: SpotImage //include the model
@@ -443,8 +459,9 @@ router.get('/:spotId/reviews', async (req, res) => {
   })
 })
 
+
 //GET all bookings for a spot based on spot's id
-router.get('/:spotId/bookings', requireAuth, async (req, res) => {
+router.get('/:spotId/bookings', async (req, res) => {
   const spot = await Spot.findByPk(req.params.spotId);
 
   if (!spot) {
@@ -454,31 +471,69 @@ router.get('/:spotId/bookings', requireAuth, async (req, res) => {
       "statusCode": 404
     })
   }
-
+  if (req.user) {
+    if (spot.ownerId === req.user.id) {
+      const bookings = await Booking.findAll({
+        where: {
+          spotId: spot.id
+        },
+        include: [{ model: User, attributes: ['id', 'firstName', 'lastName'] }]
+      })
+      return res.json({ Bookings: bookings })
+    }
+  }
   // spot = spot.toJSON()
   // console.log(spot)
-  if (spot.ownerId !== req.user.id) {
-    const bookings = await Booking.findAll({
-      where: {
-        spotId: spot.id,
-      },
-      attributes: [
-        'spotId', 'startDate', 'endDate'
-      ]
-    })
-    return res.json({ Bookings: bookings })
-  }
+  // if (spot.ownerId !== req.user.id) {
+  const bookings = await Booking.findAll({
+    where: {
+      spotId: spot.id,
+    },
+    attributes: [
+      'id', 'spotId', 'startDate', 'endDate'
+    ]
+  })
+  return res.json({ Bookings: bookings })
+  // }
 
-  if (spot.ownerId === req.user.id) {
-    const bookings = await Booking.findAll({
-      where: {
-        spotId: spot.id
-      },
-      include: [{ model: User, attributes: ['id', 'firstName', 'lastName'] }]
-    })
-    return res.json({ Bookings: bookings })
-  }
 })
+
+// //GET all bookings for a spot based on spot's id
+// router.get('/:spotId/bookings', requireAuth, async (req, res) => {
+//   const spot = await Spot.findByPk(req.params.spotId);
+
+//   if (!spot) {
+//     res.status(404)
+//     res.json({
+//       "message": "Spot couldn't be found",
+//       "statusCode": 404
+//     })
+//   }
+
+//   // spot = spot.toJSON()
+//   // console.log(spot)
+//   if (spot.ownerId !== req.user.id) {
+//     const bookings = await Booking.findAll({
+//       where: {
+//         spotId: spot.id,
+//       },
+//       attributes: [
+//         'id', 'spotId', 'startDate', 'endDate'
+//       ]
+//     })
+//     return res.json({ Bookings: bookings })
+//   }
+
+//   if (spot.ownerId === req.user.id) {
+//     const bookings = await Booking.findAll({
+//       where: {
+//         spotId: spot.id
+//       },
+//       include: [{ model: User, attributes: ['id', 'firstName', 'lastName'] }]
+//     })
+//     return res.json({ Bookings: bookings })
+//   }
+// })
 
 //create a booking from a spot based on the spot's id
 router.post('/:spotId/bookings', requireAuth, async (req, res) => {

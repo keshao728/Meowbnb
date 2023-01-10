@@ -5,7 +5,7 @@
   z-index: 2;
   margin-top: 10px;
   /* padding: 10px 10px; */
-  height: 185px;
+  height: fit-content;
   width: 200px;
   background-color: white;
   box-shadow: 0px 1px 8px #dddddd;
@@ -22,10 +22,11 @@
   border-radius: 20px;
   border: 1px solid #dddddd;
   background-color: white;
-  width: 70px;
+  width: fit-content;
   margin-right: 20px;
-  padding: 7px;
+  padding: 7px 10px;
   display: flex;
+  gap: 10px;
   justify-content: space-around;
   /* z-index: 1; */
 }
@@ -59,19 +60,31 @@
   padding: 8px 15px;
   text-align: left;
   margin-top: 3px;
+  margin-bottom: 3px;
   /* border-top: 1px solid #AFAFAF; */
+}
+
+.listing-review-wrap {
+  margin-top: 3px;
+  margin-bottom: 3px;
 }
 
 .user-logout-button {
   font-size: 14px;
   border: 0;
-  border-top: 1px solid #AFAFAF;
   background-color: white;
   color: black;
   width: 100%;
   padding: 10px 15px;
   text-align: left;
-  margin-top: 3px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.logout-review-wrap {
+  border-top: 1px solid #AFAFAF;
+  padding-top: 3px;
+  margin-bottom: 3px;
 }
 
 #user-hover-effect:hover {
@@ -100,7 +113,7 @@
 
 }
 
-.user-name{
+.user-name {
   font-weight: bold;
 }
 
@@ -117,7 +130,7 @@
   /* margin-right: 20%; */
   padding: 10px 10px;
   font-size: 14px;
-
+  /* width: 83px; */
 }
 
 .host:hover {
@@ -132,6 +145,6 @@
   margin-right: 20px;
 }
 
-.whole-button{
+.whole-button {
   position: relative;
 }
