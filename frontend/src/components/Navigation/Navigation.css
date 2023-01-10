@@ -85,7 +85,7 @@
   z-index: 1;
 }
 
-.right-nav{
+.right-nav {
   display: flex;
 
 }
@@ -213,7 +213,7 @@
 
 .data-city-state {
   display: flex;
-  color: #717171;
+  color: #DDDDDD;
   overflow: hidden;
   text-overflow: ellipsis;
 }
@@ -301,3 +301,33 @@
   width: 30px;
   border-radius: 30px;
 }
+
+/* .nav-place {
+  display: flex;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+  gap: 30px;
+  gap: 40px;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 0px 3%;
+  margin-top: 30px;
+  font-size: 12px;
+  width: 100%;
+}
+
+.nav-individual-place {
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: #585858;
+}
+
+.nav-place-img {
+  width: 25px;
+  height: 25px;
+  filter: invert(31%) sepia(18%) saturate(0%) hue-rotate(177deg) brightness(98%) contrast(85%);
+} */

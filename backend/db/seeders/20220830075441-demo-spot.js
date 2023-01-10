@@ -6,7 +6,7 @@ module.exports = {
     await queryInterface.bulkInsert('Spots', [
       {
         ownerId: 2,
-        place: 'Cat Tree',
+        place: 'Play zone',
         amenities: 'Air conditioning, Dedicated workspace, Kitchen, Wifi, TV, Washer, Free parking on premises, Paid parking on premises',
         address: '1325 Sunsweet Blvd',
         city: 'Yuba City',
@@ -20,7 +20,7 @@ module.exports = {
       },
       {
         ownerId: 5,
-        place: 'Cat Tree',
+        place: 'Box',
         amenities: 'Wifi, TV, Air conditioning, Free parking on premises',
         address: '11421 S Halsted St',
         city: 'Chicago',
@@ -34,7 +34,7 @@ module.exports = {
       },
       {
         ownerId: 8,
-        place: 'Cat Tree',
+        place: 'Tree',
         amenities: 'Wifi, TV, Dedicated workspace, Free parking on premises',
         address: '4500 Wilbur Avenue',
         city: 'Oakley',
@@ -48,7 +48,7 @@ module.exports = {
       },
       {
         ownerId: 10,
-        place: 'Cat Tree',
+        place: 'Box',
         amenities: 'Air conditioning, TV, Dedicated workspace, Free parking on premises',
         address: '5450 Concord Boulevard',
         city: 'Concord',
@@ -63,7 +63,7 @@ module.exports = {
       {
         //5
         ownerId: 4,
-        place: 'Cat Tree',
+        place: 'Others',
         amenities: 'Kitchen, Wifi, TV, Washer, Free parking on premises, Paid parking on premises',
         address: '4456 East Absolut Avenue',
         city: 'Fresno',
@@ -78,7 +78,7 @@ module.exports = {
       {
         //6
         ownerId: 3,
-        place: 'Cat Tree',
+        place: 'Others',
         amenities: 'Air conditioning, Dedicated workspace, Kitchen, Wifi, TV, Washer, Free parking on premises, Paid parking on premises',
         address: '5643 Apex Drive',
         city: 'Dublin',
@@ -93,7 +93,7 @@ module.exports = {
       {
         //7
         ownerId: 6,
-        place: 'Cat Tree',
+        place: 'No-meows-land',
         amenities: 'Dedicated workspace, Kitchen, Wifi, TV, Washer, Paid parking on premises',
         address: '765 Montague Expressway',
         city: 'Milpitas',
@@ -108,7 +108,7 @@ module.exports = {
       {
         //8
         ownerId: 7,
-        place: 'Cat Tree',
+        place: 'Sleep-only',
         amenities: 'Kitchen, Wifi, TV, Washer, Paid parking on premises',
         address: '6970 Brentwood Boulevard',
         city: "Brentwood",

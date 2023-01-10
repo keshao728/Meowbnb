@@ -10,6 +10,9 @@ import './Navigation.css';
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector(state => state.session.user);
   const [showMenu, setShowMenu] = useState(false)
+  // const [filterSpot, setFilterSpot] = useState("")
+
+  // const [showSpot, setShowSpot] = useState("")
 
   const url = useLocation().pathname;
 
@@ -19,6 +22,20 @@ function Navigation({ isLoaded }) {
 
   const data = useSelector(state => state.spots.allSpots);
   const dataArr = Object.values(data)
+
+  // const handleSpotsFilter = (place) => {
+  //   if (filterSpot !== place) {
+  //     setFilterSpot(place)
+  //   }
+  //   // if (filterSpot === place) setFilterSpot("")
+  //   // else setFilterSpot(e)
+  //   // filterSpot === e ? setFilterSpot("") : setFilterSpot(e)
+
+  //   // let displaySpots = dataArr
+  //   // setShowSpot(displaySpots)
+  // }
+
+  // console.log(filterSpot)
 
 
   const handleFilter = (e) => {
@@ -160,9 +177,114 @@ function Navigation({ isLoaded }) {
           {isLoaded && sessionLinks}
         </div>
       </div>
-      <div>
-        {/* <div>All</div> */}
-      </div>
+
+      {/* <div className='nav-place'>
+
+        <div className='nav-individual-place' onClick={() => setFilterSpot("All")}>
+          <img className="nav-place-img" src="https://imgur.com/bboPy36.png" />
+
+          <div>
+            All
+          </div>
+        </div>
+
+        <div className='nav-individual-place'>
+          <img className="nav-place-img" src="https://imgur.com/bboPy36.png" />
+          <div>
+            Play zone
+          </div>
+        </div>
+
+        <div className='nav-individual-place'>
+          <img className="nav-place-img" src="https://imgur.com/hpmirKZ.png" />
+
+          <div>
+            Sleep-only
+          </div>
+        </div>
+
+        <div className='nav-individual-place'>
+          <img className="nav-place-img" src="https://imgur.com/xgffVdE.png" />
+
+          <div>
+            Tree
+          </div>
+        </div>
+
+        <div className='nav-individual-place'>
+          <img className="nav-place-img" src="https://imgur.com/7oxOZy7.png" />
+
+          <div>
+            Box
+          </div>
+        </div>
+
+
+        <div className='nav-individual-place'>
+          <img className="nav-place-img" src="https://imgur.com/cIIP3LF.png" />
+
+          <div>
+            No human
+          </div>
+        </div>
+
+        <div className='nav-individual-place'>
+          <img className="nav-place-img" src="https://imgur.com/B2UcvKy.png" />
+
+          <div>Furball</div>
+        </div>
+
+
+        <div className='nav-individual-place'>
+          <img className="nav-place-img" src="https://imgur.com/u6LVB8Y.png" />
+
+          <div>Catnip</div>
+        </div>
+
+
+        <div className='nav-individual-place'>
+          <img className="nav-place-img" src="https://imgur.com/atditdJ.png" />
+
+          <div>Shared</div>
+        </div>
+
+        <div className='nav-individual-place'>
+          <img className="nav-place-img" src="https://imgur.com/XIsDXKA.png" />
+
+          <div>Petting home</div>
+        </div>
+
+        <div className='nav-individual-place'>
+          <img className="nav-place-img" src="https://imgur.com/SGK10E3.png" />
+
+          <div>Nature</div>
+        </div>
+
+        <div className='nav-individual-place'>
+          <img className="nav-place-img" src="https://imgur.com/uQOxjcy.png" />
+
+          <div>No-meows-land</div>
+        </div>
+
+        <div className='nav-individual-place'>
+          <img className="nav-place-img" src="https://imgur.com/UQ1veNy.png" />
+
+          <div>Snacks </div>
+        </div>
+
+        <div className='nav-individual-place'>
+          <img className="nav-place-img" src="https://imgur.com/f0dNDBx.png" />
+
+          <div>Evil</div>
+        </div>
+
+        <div className='nav-individual-place'>
+          <img className="nav-place-img" src="https://imgur.com/zgtELKc.png" />
+
+          <div>Others</div>
+        </div>
+
+      </div> */}
     </div>
   );
 }
