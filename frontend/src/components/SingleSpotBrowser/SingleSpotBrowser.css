@@ -121,8 +121,8 @@
 }
 
 .aircover-des {
-  margin-top: 30px;
-  margin-bottom: 20px;
+  margin-top: 15px;
+  margin-bottom: 18px;
   font-size: 15px;
 }
 
@@ -751,7 +751,7 @@
 
 .meow-aircover-pic {
   width: 200px;
-  margin-top: 10px;
+  margin-top: 15px;
 }
 
 .meow-heading {
@@ -806,5 +806,5 @@
 }
 
 .aircover-modal {
-  padding-bottom: 35px;
+  padding-bottom: 30px;
 }
