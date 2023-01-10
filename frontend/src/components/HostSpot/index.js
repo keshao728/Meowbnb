@@ -224,10 +224,32 @@ const HostSpot = () => {
   }
 
   const spotPage2 = () => {
+    let errors = []
+
+    if (!place) { errors.push("Please select an option") }
+    const handleSubmit = async (e) => {
+      // e.preventDefault()
+      setShowErrors(true)
+
+
+      if (!errors.length) {
+        setShowErrors(false)
+        setPage(3);
+      }
+    }
+
     return (
       <div className="step2-wrapper">
         <div className="step2">
           <div className="step2-title">Which of these best describes your place?</div>
+          {showErrors && errors.length ? (
+            <div className='error-wrap'>
+              <img className="caution" src="https://imgur.com/E1p7Fvo.png" alt="Error Message" />
+              {errors.map((error) => (
+                <div className="error-message">{error}</div>
+              ))}
+            </div>
+          ) : null}
           <div className="step2-input-wrapper">
             <div className="step2-input-container">
               <input src="https://imgur.com/sz5sFYf.png" type="button" value="Play zone" onClick={(e) => setPlace(e.target.value)} className="describe-place" />
@@ -302,10 +324,17 @@ const HostSpot = () => {
           </div>
           <div className="step0-footer">
             <button className="step-button-back" onClick={() => setPage(1)}> Back </button>
-            <button className="step-button-next" onClick={() => setPage(3)}> Next</button>
+            {place ?
+              <button className="test step-button-next" onClick={handleSubmit}> Next</button>
+              :
+              <button className="step-button-disabled"
+                disabled={true}
+              > Next
+              </button>
+            }
           </div>
         </div>
-      </div>
+      </div >
     )
   }
   const options = { types: ['address'] }
@@ -408,7 +437,8 @@ const HostSpot = () => {
                 disabled={true}
               > Next
               </button>
-            }          </div>
+            }
+          </div>
         </div>
       </div>
     )
