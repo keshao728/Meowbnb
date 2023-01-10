@@ -311,12 +311,36 @@ const HostSpot = () => {
   const options = { types: ['address'] }
   const centerPoint = { lat: lat, lng: lng }
   const sanFran = { lat: 37.7749, lng: -122.4194 }
+
   const spotPage3 = () => {
+
+    let errors = []
+
+    if (!address || address.length > 20) { errors.push("Address is required and must be less than 20 characters") }
+    const handleSubmit = async (e) => {
+      // e.preventDefault()
+      setShowErrors(true)
+      if (!lat) setLat(37.7749)
+      if (!lng) setLng(-122.4194)
+
+      if (!errors.length) {
+        setShowErrors(false)
+        setPage(4);
+      }
+    }
     return (
       <div className="step3-wrapper">
         <div className="step2">
           <div className="step3-title">Where's your place located?</div>
           <div className="step3-des">Your address is only shared with guests after they’ve made a reservation.</div>
+          {showErrors && errors.length ? (
+            <div className='error-wrap'>
+              <img className="caution" src="https://imgur.com/E1p7Fvo.png" alt="Error Message" />
+              {errors.map((error) => (
+                <div className="error-message">{error}</div>
+              ))}
+            </div>
+          ) : null}
           <PlacesAutocomplete
             value={address}
             onChange={setAddress}
@@ -377,19 +401,54 @@ const HostSpot = () => {
           </div>
           <div className="step0-footer">
             <button className="step-button-back" onClick={() => setPage(2)}> Back </button>
-            <button className="step-button-next" onClick={() => setPage(4)}> Next</button>
-          </div>
+            {address ?
+              <button className="test step-button-next" onClick={handleSubmit}> Next</button>
+              :
+              <button className="step-button-disabled"
+                disabled={true}
+              > Next
+              </button>
+            }          </div>
         </div>
       </div>
     )
   }
 
   const spotPage4 = () => {
+    let errors = []
+
+    if (!address || address.length > 20) { errors.push("Address is required and must be less than 20 characters") }
+    if (!city || city.length > 15) { errors.push("City is required and must be less than 15 characters") }
+    if (!state || state.length > 10) { errors.push("State is required and must be less than 10 characters") }
+    if (!country || country.length > 15) { errors.push("Country is required and must be less than 15 characters") }
+
+    const handleSubmit = async (e) => {
+      // e.preventDefault()
+      setShowErrors(true)
+      if (!lat) setLat(37.7749)
+      if (!lng) setLng(-122.4194)
+
+      if (!errors.length) {
+        setShowErrors(false)
+        setPage(5);
+      }
+    }
+
     return (
       <div className="step4-wrapper">
         <div className="step2">
           <div className="step3-title">Confirm your address</div>
           <div className="step3-des">Your address is only shared with guests after they’ve made a reservation.</div>
+          {showErrors && errors.length ? (
+            <div className='error-wrap-address'>
+              {errors.map((error) => (
+                <div className='error-wrap-address-1'>
+                  <img className="caution" src="https://imgur.com/E1p7Fvo.png" alt="Error Message" />
+                  <div className="error-message">{error}</div>
+                </div>
+              ))}
+            </div>
+          ) : null}
           <div className="host-input-parent">
             <div className="host-input-box">
               <input
@@ -447,7 +506,14 @@ const HostSpot = () => {
           </div>
           <div className="step0-footer">
             <button className="step-button-back" onClick={() => setPage(3)}> Back </button>
-            <button className="step-button-next" onClick={() => setPage(5)}> Next</button>
+            {address && city && state && country ?
+              <button className="step-button-next"
+                onClick={handleSubmit}> Next</button>
+              :
+              <button className="step-button-disabled"
+                disabled={true}
+              > Next</button>
+            }
           </div>
         </div>
       </div>
@@ -474,24 +540,77 @@ const HostSpot = () => {
   }
   const spotPage6 = () => {
 
-    const handleChange = (e) => {
-      if (e.target.checked && !amenities.includes(e.target.value)) {
-        setAmenities([...amenities, e.target.value])
-      } else if (!e.target.checked && amenities.includes(e.target.value)) {
-        amenities.splice(amenities.indexOf(e.target.value), 1)
-        console.log(amenities, "amenities")
+    let error = []
+
+    if (!amenities || amenities.length === 0) {
+      error.push("Please select at least one amenities")
+    }
+    // function anyCheckbox() {
+    //   var inputElements = document.getElementsByTagName("input");
+    //   for (var i = 0; i < inputElements.length; i++) {
+
+    //     if (inputElements[i].type === "checkbox") {
+    //       if (inputElements[i].checked) {
+    //         console.log("checked")
+    //         return true;
+    //       }
+    //     }
+    //   }
+    //   console.log("not checked")
+    //   return false;
+    // }
+
+    const handleSubmit = async (e) => {
+      e.preventDefault()
+      setShowErrors(true)
+
+      if (!error.length) {
+        setShowErrors(false)
+        setPage(7);
       }
     }
+
+
+    const handleChange = (e) => {
+      let amenitiesButton = document.getElementById('testing')
+      if (e.target.checked && !amenities.includes(e.target.value)) {
+        setAmenities([...amenities, e.target.value])
+        console.log(amenities, "add amenities")
+        if (amenities.length > 0 || amenities) {
+          amenitiesButton.classList.remove("step-button-disabled")
+          amenitiesButton.classList.add("step-button-next")
+        }
+      } else if (!e.target.checked && amenities.includes(e.target.value)) {
+        amenities.splice(amenities.indexOf(e.target.value), 1)
+        console.log(amenities, "deleted amenities")
+        console.log(amenities, "amenities")
+        if (amenities.length === 0 || !amenities) {
+          amenitiesButton.classList.remove("step-button-next")
+          amenitiesButton.classList.add("step-button-disabled")
+          console.log(amenities, "no amenities")
+          // return setAmenities(amenities)
+        }
+      }
+    }
+
     console.log(amenities, "amenities")
 
 
-    // console.log(allAmenities, "allAmenities")
+    console.log(amenities, "allAmenities")
 
     return (
       <div className="step2-wrapper">
         <div className="step2">
           <div className="step2-title step6-title">Tell guests what your place has to offer</div>
           <div className="step3-des step6-des">You cannot add more amenities after you publish your listing.</div>
+          {showErrors && error.length ? (
+            <div className='error-wrap'>
+              <img className="caution" src="https://imgur.com/E1p7Fvo.png" alt="Error Message" />
+              {error.map((error) => (
+                <div className="error-message">{error}</div>
+              ))}
+            </div>
+          ) : null}
           <div className="step6-input-wrapper">
             <div className="amenities-container">
               <input id="wifi" type="checkbox" value="Wifi" onClick={handleChange} className="amenities-place" />
@@ -538,8 +657,8 @@ const HostSpot = () => {
           </div>
           <div className="step0-footer">
             <button className="step-button-back" onClick={() => setPage(5)}> Back </button>
-            {amenities.length ?
-              <button className="step-button-next" onClick={() => setPage(7)}> Next</button>
+            {amenities.length && amenities ?
+              <button className="test step-button-next" id="testing" onClick={handleSubmit}> Next</button>
               :
               <button className="step-button-disabled"
                 disabled={true}

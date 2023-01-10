@@ -873,6 +873,21 @@
   margin-bottom: 5px;
 }
 
+.error-wrap-address {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 100%;
+  height: 100%;
+  margin-top: 5px;
+  margin-bottom: -45px;
+}
+
+.error-wrap-address-1 {
+  display: flex;
+  flex-direction: row;
+}
+
 .caution {
   width: 20px;
   color: #AFAFAF;
