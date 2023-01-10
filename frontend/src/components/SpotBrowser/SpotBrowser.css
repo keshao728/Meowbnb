@@ -139,3 +139,20 @@
 .nav-clicked:hover .nav-place-underline {
   background-color: black;
 }
+
+.no-spot-display {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-top: 30px;
+}
+
+.nav-no-spot {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
