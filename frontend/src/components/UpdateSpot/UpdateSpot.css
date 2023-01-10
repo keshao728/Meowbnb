@@ -72,14 +72,14 @@
   border-bottom: none;
 }
 
-.update-this-spot{
+.update-this-spot {
   background: none;
-	color: inherit;
-	border: none;
-	padding: 0;
-	font: inherit;
-	cursor: pointer;
-	outline: inherit;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
 }
 
 
@@ -93,4 +93,66 @@
   padding: 10px 10px;
   margin-top: 10px;
   font-weight: bold;
+}
+
+.host-input-des {
+  overflow-y: scroll;
+}
+
+.update-spot-form-parent {
+  width: 80%;
+  padding: 25px 10px;
+}
+
+.edit-spot-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 25px;
+  margin-bottom: 15px;
+  gap: 25px;
+}
+
+
+.button-edit-spot {
+  border-radius: 6px;
+  font-size: 12px;
+  border: 0;
+  background-color: #E21C5F;
+  color: white;
+  width: 100%;
+  padding: 15px 15px;
+  font-weight: bold;
+  height: fit-content;
+}
+
+.button-edit-spot:hover {
+  background-color: #DD1362;
+  cursor: pointer;
+}
+
+.button-cancel-edit {
+  border-radius: 6px;
+  font-size: 12px;
+  border: 1px solid black;
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  width: 100%;
+  padding: 15px 15px;
+  font-weight: bold;
+  height: fit-content;
+}
+
+.button-cancel-edit:hover {
+  background-color: #eaeaea;
+  cursor: pointer;
+}
+
+.full-update-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0;
+  width: 500px;
+  height: fit-content;
+  position: relative;
 }

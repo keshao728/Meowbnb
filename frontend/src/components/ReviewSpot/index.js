@@ -111,7 +111,7 @@ const ReviewSpot = ({ setShowModal }) => {
             <textarea
               placeholder="Write a public review"
               type="text"
-              className="review-input"
+              className="review-input host-input-des"
               value={review}
               onChange={(e) => setReview(e.target.value)}
             // required
