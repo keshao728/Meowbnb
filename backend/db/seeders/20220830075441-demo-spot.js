@@ -120,7 +120,96 @@ module.exports = {
         description: 'Best place in the world',
         price: 99
       },
-
+      {
+        //9
+        ownerId: 5,
+        place: 'Furball',
+        amenities: 'Dedicated workspace, Kitchen, Wifi, TV, Washer, Paid parking on premises',
+        address: '430 Railroad Avenue',
+        city: 'Old Town',
+        state: 'Contra Costa County',
+        country: 'United States',
+        lat: 38.0325107,
+        lng: -121.8838967,
+        name: 'Warm-Knited Home',
+        description: 'This place has a unique feature that will surely amaze and delight guests; its wall is designed to open and close at will, offering a breathtaking view of the southern side of the Meowmeow Mountains. ',
+        price: 1459
+      },
+      {
+        //10
+        ownerId: 3,
+        place: 'Furball',
+        amenities: 'Kitchen, Wifi, TV, Washer, Free parking on premises, Paid parking on premises',
+        address: '6675 Brentwood Boulevard',
+        city: 'Brentwood',
+        state: 'California',
+        country: 'United States',
+        lat: 37.9593747,
+        lng: -121.6964766,
+        name: 'Carpet of Fur',
+        description: 'Are you bored and tired of quarantine and longing for a new place and a new atmosphere to just break away for a couple of days, week or month? the Carpet of Fur has the answer.',
+        price: 559
+      },
+      {
+        //11
+        ownerId: 4,
+        place: 'Shared',
+        amenities: 'Kitchen, Wifi, TV, Washer, Free parking on premises, Paid parking on premises',
+        address: '12435 West Jefferson Boulevard',
+        city: 'Westchester',
+        state: 'LA County',
+        country: 'United States',
+        lat: 33.9807115,
+        lng: -118.4109238,
+        name: 'Carpet of Fur',
+        description: 'Enjoy beautiful views of the other cats and spectacular sunsets at this five star rated home in Westchester.',
+        price: 79
+      },
+      {
+        //12
+        ownerId: 6,
+        place: 'Sleep-only',
+        amenities: 'Wifi, TV, Dedicated workspace, Free parking on premises',
+        address: '548 Bliss Avenue',
+        city: 'Pittsburg',
+        state: 'California',
+        country: 'United States',
+        lat: 38.012758,
+        lng: -121.8786304,
+        name: 'Snooze Room',
+        description: 'Snooze Room is a Frank Lloyd Wright inspired modern California Ranch w/ subtle Prairie & International architectural design; perched on a promontory overlooking cove w/ jaw dropping ocean views and mesmerizing - audible crashing white water waves.',
+        price: 2199
+      },
+      {
+        //13
+        ownerId: 7,
+        place: 'No-meows-land',
+        amenities: 'Dedicated workspace, Kitchen, Wifi, TV, Washer, Paid parking on premises',
+        address: '2701 Contra Loma Boulevard',
+        city: 'Antioch',
+        state: 'California',
+        country: 'United States',
+        lat: 37.9976579,
+        lng: -121.8216976,
+        name: 'Quite-Time Single Family Home',
+        description: 'Channel the pursuit of pause in this tranquil retreat. The private space is set in a lovingly decorated home with a mid-century modern aesthetic, chic furnishings, contrasting textures, and features a shared living space and kitchen.',
+        price: 186
+      },
+      {
+        //14
+        ownerId: 8,
+        place: 'Evil',
+        amenities: 'Wifi, TV, Air conditioning, Free parking on premises',
+        address: '65923 Rimrock Court',
+        city: 'Bend',
+        state: 'California',
+        country: 'Oregon',
+        lat: 44.192829,
+        lng: -121.1780685,
+        name: 'A Place to Stay',
+        description: 'Big Horn Lodge 403 is designated Platinum with exquisite mountain modern décor, luxe flooring and finishes as well as exceptional sleeping capacity.',
+        price: 86
+      },
     ]);
   },
 
@@ -128,6 +217,7 @@ module.exports = {
     await queryInterface.bulkDelete('Spots', {
       ownerId: {
         [Op.in]: [
+          1,
           2,
           3,
           4,
@@ -135,7 +225,12 @@ module.exports = {
           6,
           7,
           8,
+          9,
           10,
+          11,
+          12,
+          13,
+          14
         ]
       }
     });

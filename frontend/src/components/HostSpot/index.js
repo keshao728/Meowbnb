@@ -527,8 +527,8 @@ const HostSpot = () => {
               <label>Country</label>
             </div>
           </div>
-          {/* {console.log(lat, "LAT")}
-          {console.log(lng, "LNG")} */}
+          {console.log(lat, "LAT")}
+          {console.log(lng, "LNG")}
           <div className="map-wrapper">
             <GoogleMap
               zoom={14}

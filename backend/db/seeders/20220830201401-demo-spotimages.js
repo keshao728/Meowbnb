@@ -44,11 +44,36 @@ module.exports = {
         url: 'https://images.fineartamerica.com/images/artworkimages/mediumlarge/2/sleeping-kittens-in-bowl-sanna-pudas.jpg',
         preview: true
       },
-      // {
-      //   spotId: 9,
-      //   url: 'https://miro.medium.com/max/720/1*0VU_jlhukyJN7IdefYnHZg.jpeg',
-      //   preview: true
-      // },
+      {
+        spotId: 9,
+        url: 'https://miro.medium.com/max/720/1*0VU_jlhukyJN7IdefYnHZg.jpeg',
+        preview: true
+      },
+      {
+        spotId: 10,
+        url: 'https://imgur.com/4AO1Mtt.png',
+        preview: true
+      },
+      {
+        spotId: 11,
+        url: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/cute-photos-of-cats-cuddling-1593203046.jpg',
+        preview: true
+      },
+      {
+        spotId: 12,
+        url: 'https://media.timeout.com/images/105634590/image.jpg',
+        preview: true
+      },
+      {
+        spotId: 13,
+        url: 'https://www.incimages.com/uploaded_files/image/1920x1080/getty_513189787_110007.jpg',
+        preview: true
+      },
+      {
+        spotId: 14,
+        url: 'https://styles.redditmedia.com/t5_2r5i1/styles/communityIcon_x4lqmqzu1hi81.jpg',
+        preview: true
+      },
     ]);
   },
 
@@ -64,6 +89,12 @@ module.exports = {
           6,
           7,
           8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14
         ]
       }
     });
