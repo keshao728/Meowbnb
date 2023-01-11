@@ -16,6 +16,8 @@ import { addDays } from 'date-fns'
 import * as moment from 'moment';
 
 import format from 'date-fns/format'
+import { HashLink as Link } from 'react-router-hash-link';
+
 
 import 'react-date-range/dist/styles.css'; // main css file
 import 'react-date-range/dist/theme/default.css'; // theme css file
@@ -54,6 +56,21 @@ const SingleSpotBrowser = () => {
   const ref = useRef(null)
 
   const sessionUser = useSelector(state => state.session.user)
+
+
+  //NAV SCROLL
+  const nav = document.getElementById('scroll-nav');
+
+  window.addEventListener('scroll', () => {
+    if (nav) {
+      const top = window.scrollY > 680;
+      if (top) {
+        nav.className = 'scroll-nav';
+      } else {
+        nav.className = 'no-scroll-nav';
+      }
+    }
+  });
 
   //SPOT
   const currSpot = useSelector(state => state.spots.singleSpot)
@@ -337,8 +354,8 @@ const SingleSpotBrowser = () => {
     <div className="big-mother">
       <div className="browser-wrapper">
         {currSpot.id &&
-          <div className="single-spot-parent">
-            <div className="top-spot">
+          <div className="single-spot-parent" >
+            <div className="top-spot" id="photos">
               <div className="spot-name">
                 {currSpot.name}
               </div>
@@ -446,7 +463,7 @@ const SingleSpotBrowser = () => {
                 </div>
 
                 <div>
-                  <div className="spot-description">
+                  <div className="spot-description" id="amenities">
                     {currSpot?.description}
                   </div>
                 </div>
@@ -669,7 +686,7 @@ const SingleSpotBrowser = () => {
           </div>
         }
 
-        <div className="review-star-foot">
+        <div className="review-star-foot" id="reviews">
           <div className="stars-n-review"><i className="fa-solid fa-paw" /> {currSpot.avgStarRating > 0 ? Number(currSpot.avgStarRating).toFixed(2) : 'New'} · {currSpot.numReviews} reviews</div>
           {allowReviewAction &&
             <ReviewFormModal />
@@ -716,7 +733,7 @@ const SingleSpotBrowser = () => {
             ))}
           </div>
 
-          <div className="map-wrapper-single">
+          <div className="map-wrapper-single" id="location">
             <div className="map-title">Where you'll be</div>
             <div className="spot-address-1" key={currSpot.name}>
               {currSpot.city}, {currSpot.state}, {currSpot.country}
@@ -760,6 +777,40 @@ const SingleSpotBrowser = () => {
           </div>
         </div>
       </div>
+
+      <div id="scroll-nav">
+        <div className="scroll-container">
+          <Link
+            smooth to={`/spots/${currSpot.id}/#photos`}
+            className="scroll-link"
+          >
+            Photos
+            <div className="scroll-line"></div>
+          </Link>
+          <Link
+            smooth to={`/spots/${currSpot.id}/#amenities`}
+            className="scroll-link"
+          >
+            Amenities
+            <div className="scroll-line"></div>
+          </Link>
+          <Link
+            smooth to={`/spots/${currSpot.id}/#reviews`}
+            className="scroll-link"
+          >
+            Reviews
+            <div className="scroll-line"></div>
+          </Link>
+          <Link
+            smooth to={`/spots/${currSpot.id}/#location`}
+            className="scroll-link"
+          >
+            Location
+            <div className="scroll-line"></div>
+          </Link>
+        </div>
+      </div>
+
       <div className="footer-wrapper">
         <div className="footer">
           <div className="footer-left">

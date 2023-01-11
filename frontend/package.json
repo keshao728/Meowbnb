@@ -15,6 +15,7 @@
     "react-places-autocomplete": "^7.3.0",
     "react-redux": "^7.2.9",
     "react-router-dom": "^5.3.4",
+    "react-router-hash-link": "^2.4.3",
     "react-scripts": "5.0.1",
     "redux": "^4.2.0",
     "redux-thunk": "^2.4.1"
