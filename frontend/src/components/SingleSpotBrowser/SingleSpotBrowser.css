@@ -550,7 +550,7 @@
 .middle-image,
 .right-image {
   width: 25%;
-  height: 500px;
+  height: 510px;
   display: flex;
   flex-direction: column;
   gap: 8px;
