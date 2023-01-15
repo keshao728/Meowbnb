@@ -365,13 +365,11 @@
 
 .booking-calendar {
   position: absolute;
-  right: -30px;
   border: 1px solid #B0B0B0;
   border-radius: 15px;
   background-color: white;
-  top: -90px;
+  top: 0px;
   height: fit-content;
-  /* max-height: 445px; */
   width: 700px;
 
   display: flex;
@@ -399,11 +397,27 @@
   left: -300px;
 }
 
-.shiba {
+.SHIBA {
   position: relative;
-  width: 100%;
-  height: 100%;
-  background-color: rebeccapurple;
+}
+
+.calbox {
+  width: 700px;
+  position: absolute;
+  height: fit-content;
+  right: -30px;
+  top: -90px;
+  display: inline-flex;
+}
+
+.booking-calendar {
+  position: relative;
+  padding-bottom: 40px;
+}
+
+.close-booking-calender {
+  position: absolute;
+  bottom: 20px;
 }
 
 .booking-dates-night {
@@ -419,10 +433,10 @@
 
 .close-booking-calender {
   position: absolute;
-  /* top: 310px; */
-  bottom: -310px;
+  top: 370px;
+  /* bottom: 10px; */
   /* bottom: 1px; */
-  right: 0px;
+  right: 30px;
   font-size: 20px;
   color: #ffffff;
   background-color: black;
@@ -430,6 +444,7 @@
   padding: 5px 10px;
   font-size: 13px;
   cursor: pointer;
+  /* max-height: 39px; */
 }
 
 .rdrDays {
@@ -964,7 +979,7 @@
   background-color: black;
 }
 
-.position-marker{
+.position-marker {
   width: 40px;
   height: 40px;
   background-color: #DD1362;

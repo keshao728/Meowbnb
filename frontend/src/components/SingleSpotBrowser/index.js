@@ -643,24 +643,26 @@ const SingleSpotBrowser = () => {
                                 <div className="booking-dates-night"> Add your travel dates for exact pricing</div>
                               }
                               <div className="SHIBA">
-                                <DateRange
-                                  onChange={handleSelect}
-                                  editableDateInputs={true}
-                                  moveRangeOnFirstSelection={false}
-                                  rangeColors={["#222222", "#AFAFAF", "#222222"]}
-                                  // rangeColors={['#f33e5b', '#3ecf8e', '#fed14c']}
-                                  ranges={[selectionRange]}
-                                  months={2}
-                                  minDate={addDays(new Date, 1)}
-                                  direction="horizontal"
-                                  className="booking-calendar"
-                                  disabledDates={disabledDates}
-                                />
-                                {/* <button type="button" className="close-booking-calender" onClick={() => setStartDate()}> Clear dates </button> */}
-                                {bookingNights ?
-                                  <button type="button" className="close-booking-calender" onClick={() => setOpenCalender(false)}> Confirm </button> :
-                                  <button type="button" className="close-booking-calender" onClick={() => setOpenCalender(false)}> Close </button>
-                                }
+                                <div className="calbox">
+                                  <DateRange
+                                    onChange={handleSelect}
+                                    editableDateInputs={true}
+                                    moveRangeOnFirstSelection={false}
+                                    rangeColors={["#222222", "#AFAFAF", "#222222"]}
+                                    // rangeColors={['#f33e5b', '#3ecf8e', '#fed14c']}
+                                    ranges={[selectionRange]}
+                                    months={2}
+                                    minDate={addDays(new Date, 1)}
+                                    direction="horizontal"
+                                    className="booking-calendar"
+                                    disabledDates={disabledDates}
+                                  />
+                                  {/* <button type="button" className="close-booking-calender" onClick={() => setStartDate()}> Clear dates </button> */}
+                                  {bookingNights ?
+                                    <button type="button" className="close-booking-calender" onClick={() => setOpenCalender(false)}> Confirm </button> :
+                                    <button type="button" className="close-booking-calender" onClick={() => setOpenCalender(false)}> Close </button>
+                                  }
+                                </div>
                               </div>
                             </div>
                           }
