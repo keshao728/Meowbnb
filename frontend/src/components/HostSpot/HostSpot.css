@@ -207,6 +207,10 @@
   color: #8d8d8d;
 }
 
+.step-right-buttons {
+  display: flex;
+}
+
 .step-button-next {
   border-radius: 6px;
   border: 0;
@@ -217,6 +221,23 @@
   margin-top: 8%;
   font-weight: bold;
   margin: -5px 40px;
+}
+
+.step-button-demo {
+  border-radius: 6px;
+  border: 1px solid #DDDDDD;
+  background-color: #ffffff;
+  color: rgb(73, 73, 73);
+  width: fit-content;
+  padding: 15px 20px;
+  margin-top: 8%;
+  font-weight: bold;
+  margin: -5px 0px;
+  cursor: pointer;
+}
+
+.step-button-demo:hover {
+  background-color: #F7F7F7;
 }
 
 .step-button-disabled {

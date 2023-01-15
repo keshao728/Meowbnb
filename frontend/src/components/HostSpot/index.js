@@ -109,7 +109,7 @@ const HostSpot = () => {
         place,
         preview: true
       }
-      // console.log(newSpot, "NEWSPOT")
+      console.log(newSpot, "NEWSPOT")
       let createdSpot = await dispatch(addOneSpot(newSpot))
 
       // const createdSpot = () => {
@@ -148,15 +148,59 @@ const HostSpot = () => {
   const handleAddress = async (address) => {
     const result = await geocodeByAddress(address)
     const ll = await getLatLng(result[0])
-    console.log(result, "result")
+    // console.log(result, "result")
     const item = result[0].address_components
-    const streetNum = item[0].long_name
-    const streetName = item[1].long_name
-    const street = streetNum + " " + streetName
 
-    const city = item[2].long_name
-    const state = item[4].long_name
-    const country = item[5].long_name
+    let streetNum;
+    let streetName;
+    let city;
+    let state;
+    let country;
+    item.map((item) => {
+      console.log(item, "item")
+      // console.log(item, "item")
+      if (item.types.includes("street_number")) {
+        streetNum = item.long_name
+      }
+      if (item.types.includes("route")) {
+        streetName = item.long_name
+      }
+      if (item.types.includes("locality")) {
+        city = item.long_name
+      }
+      if (item.types.includes("administrative_area_level_1") ||
+        item.types.includes("administrative_area_level_2") ||
+        item.types.includes("administrative_area_level_3") ||
+        item.types.includes("administrative_area_level_4")) {
+        state = item.long_name
+      }
+      if (item.types.includes("country")) {
+        country = item.long_name
+      }
+      // if (item.types[0] === "street_number") {
+      //   item.long_name
+      // }
+      // if (item.types[0] === "route") {
+      //   item.long_name
+      // }
+      // if (item.types[0] === "locality") {
+      //   item.long_name
+      // }
+      // if (item.types[0] === "administrative_area_level_1") {
+      //   item.long_name
+      // }
+      // if (item.types[0] === "country") {
+      //   item.long_name
+      // }
+    })
+    // const streetNum = item[0].long_name
+    // const streetName = item[1].long_name
+    // console.log(street, "street")
+
+    // const city = item[2].long_name
+    // const state = item[4].long_name
+    // const country = item[5].long_name
+    const street = streetNum + " " + streetName
     setAddress(street.trimStart())
     setCity(city.trimStart())
     setState(state.trimStart())
@@ -330,15 +374,25 @@ const HostSpot = () => {
           </div>
           <div className="step0-footer">
             <button type="button" className="step-button-back" onClick={() => setPage(1)}> Back </button>
-            {place ?
-              <button className="test step-button-next" type="button" onClick={handleSubmit}> Next</button>
-              :
-              <button className="step-button-disabled"
+            <div className="step-right-buttons">
+              <button className="step-button-demo"
                 type="button"
-                disabled={true}
-              > Next
+                onClick={() => {
+                  setPlace("Nature")
+                  setPage(3)
+                }}>
+                Autofill
               </button>
-            }
+              {place ?
+                <button className="test step-button-next" type="button" onClick={handleSubmit}> Next</button>
+                :
+                <button className="step-button-disabled"
+                  type="button"
+                  disabled={true}
+                > Next
+                </button>
+              }
+            </div>
           </div>
         </div>
       </div >
@@ -437,14 +491,24 @@ const HostSpot = () => {
           </div>
           <div className="step0-footer">
             <button className="step-button-back" type="button" onClick={() => setPage(2)}> Back </button>
-            {address ?
-              <button className="test step-button-next" type="button" onClick={handleSubmit}> Next</button>
-              :
-              <button type="button" className="step-button-disabled"
-                disabled={true}
-              > Next
+            <div className="step-right-buttons">
+              <button className="step-button-demo"
+                type="button"
+                onClick={() => {
+                  handleAddress("180 Geary Street")
+                  setPage(4)
+                }}>
+                Autofill
               </button>
-            }
+              {address ?
+                <button className="test step-button-next" type="button" onClick={handleSubmit}> Next</button>
+                :
+                <button type="button" className="step-button-disabled"
+                  disabled={true}
+                > Next
+                </button>
+              }
+            </div>
           </div>
         </div>
       </div>
@@ -456,7 +520,7 @@ const HostSpot = () => {
 
     if (!address || address.length > 30) { errors.push("Address is required and must be less than 30 characters") }
     if (!city || city.length > 15) { errors.push("City is required and must be less than 15 characters") }
-    if (!state || state.length > 10) { errors.push("State is required and must be less than 10 characters") }
+    if (!state || state.length > 20) { errors.push("State is required and must be less than 20 characters") }
     if (!country || country.length > 15) { errors.push("Country is required and must be less than 15 characters") }
 
     const handleSubmit = async (e) => {
@@ -634,7 +698,7 @@ const HostSpot = () => {
     console.log(amenities, "amenities")
 
 
-    console.log(amenities, "allAmenities")
+    // console.log(amenities, "allAmenities")
 
     return (
       <div className="step2-wrapper">
@@ -695,20 +759,47 @@ const HostSpot = () => {
           </div>
           <div className="step0-footer">
             <button type="button" className="step-button-back" onClick={() => setPage(5)}> Back </button>
-            {amenities.length && amenities ?
-              <button type="button" className="test step-button-next" id="testing" onClick={handleSubmit}> Next</button>
-              :
-              <button type="button" className="step-button-disabled"
-                disabled={true}
-              > Next
+            <div className="step-right-buttons">
+              <button className="step-button-demo"
+                type="button"
+                onClick={() => {
+                  setAmenities(['Dedicated workspace', 'Kitchen', 'Wifi', 'TV', 'Washer', 'Paid parking on premises'])
+                  setPage(7)
+                }}>
+                Autofill
               </button>
-            }
+              {amenities.length && amenities ?
+                <button type="button" className="test step-button-next" id="testing" onClick={handleSubmit}> Next</button>
+                :
+                <button type="button" className="step-button-disabled"
+                  disabled={true}
+                > Next
+                </button>
+              }
+            </div>
           </div>
         </div>
       </div>
     )
   }
 
+  // useEffect(() => {
+  //   if (url.length) {
+  //     imageUrl.push(url)
+  //   }
+  //   if (url2.length) {
+  //     imageUrl.push(url2)
+  //   }
+  //   if (url3.length) {
+  //     imageUrl.push(url3)
+  //   }
+  //   if (url4.length) {
+  //     imageUrl.push(url4)
+  //   }
+  //   if (url5.length) {
+  //     imageUrl.push(url5)
+  //   }
+  // }, [url, url2, url3, url4, url5])
 
   const spotPage7 = () => {
     let error = []
@@ -732,6 +823,7 @@ const HostSpot = () => {
     if (url5.length) {
       imageUrl.push(url5)
     }
+
 
     const handleSubmit = async (e) => {
       // e.preventDefault()
@@ -877,24 +969,38 @@ const HostSpot = () => {
         </div>
         <div className="step0-footer">
           <button className="step-button-back" type="button" onClick={() => setPage(6)}> Back </button>
-          {url ?
-            <button type="button" className="step-button-next"
-              // disabled={() => { !url; error }}
-              // formnovalidate
+          <div className="step-right-buttons">
+            <button className="step-button-demo"
+              type="button"
               onClick={() => {
-                // { !url2 && document.getElementById("url2").removeAttribute("required") }
-                // { !url3 && document.getElementById("url3").removeAttribute("required") }
-                // { !url4 && document.getElementById("url4").removeAttribute("required") }
-                // { !url5 && document.getElementById("url5").removeAttribute("required") }
-                handleSubmit();
-                // setAllUrls(imageUrl);
-                // setPage(8);
-              }}> Next</button>
-            :
-            <button type="button" className="step-button-disabled"
-              disabled={true}
-            > Next</button>
-          }
+                // setUrl("https://bouncymustard.com/wp-content/uploads/2021/12/11-funny-cat-reaction-to-snow.jpg")
+                // setUrl2("https://bouncymustard.com/wp-content/uploads/2021/12/11-funny-cat-reaction-to-snow.jpg")
+                // setUrl3("https://bouncymustard.com/wp-content/uploads/2021/12/11-funny-cat-reaction-to-snow.jpg")
+                // handleSubmit()
+                setAllUrls(["https://bouncymustard.com/wp-content/uploads/2021/12/11-funny-cat-reaction-to-snow.jpg", "https://bouncymustard.com/wp-content/uploads/2021/12/11-funny-cat-reaction-to-snow.jpg", "https://bouncymustard.com/wp-content/uploads/2021/12/11-funny-cat-reaction-to-snow.jpg"]);
+                setPage(8)
+              }}>
+              Autofill
+            </button>
+            {url ?
+              <button type="button" className="step-button-next"
+                // disabled={() => { !url; error }}
+                // formnovalidate
+                onClick={() => {
+                  // { !url2 && document.getElementById("url2").removeAttribute("required") }
+                  // { !url3 && document.getElementById("url3").removeAttribute("required") }
+                  // { !url4 && document.getElementById("url4").removeAttribute("required") }
+                  // { !url5 && document.getElementById("url5").removeAttribute("required") }
+                  handleSubmit();
+                  // setAllUrls(imageUrl);
+                  // setPage(8);
+                }}> Next</button>
+              :
+              <button type="button" className="step-button-disabled"
+                disabled={true}
+              > Next</button>
+            }
+          </div>
         </div>
       </div>
     )
@@ -1004,14 +1110,28 @@ const HostSpot = () => {
 
             <div type="button" className="step0-footer">
               <button className="step-button-back" onClick={() => setPage(7)}> Back </button>
-              {name && description && price ?
-                <button className="step-button-next" onClick={handleSubmit} form="spot-form" type="submit"> Create Spot</button>
-                :
-                <button type="button" className="step-button-disabled"
-                  disabled={true}
-                > Create Spot
+              <div className="step-right-buttons">
+                <button className="step-button-demo"
+                  type="submit"
+                  form="spot-form"
+                  onClick={() => {
+                    setName("Cats Meowtside")
+                    setDescription("A tranquil contemplative nature retreat, in a magnificent setting surrounded by a creek, meadow and woodlands. You’ll love this place because of the light, the comfy beds and the location.")
+                    setPrice("333")
+                    handleSubmit()
+                  }}>
+                  Autofill
                 </button>
-              }
+
+                {name && description && price ?
+                  <button className="step-button-next" onClick={handleSubmit} form="spot-form" type="submit"> Create Spot</button>
+                  :
+                  <button type="button" className="step-button-disabled"
+                    disabled={true}
+                  > Create Spot
+                  </button>
+                }
+              </div>
             </div>
           </div>
         }

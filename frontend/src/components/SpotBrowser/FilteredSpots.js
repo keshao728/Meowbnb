@@ -29,7 +29,7 @@ const SpotBrowser = () => {
   const filteredArr = allSpotsArr.filter(spot => spot.place.includes(filterSpot));
 
   // setFinalSpot(filteredArr)
-  console.log(filteredArr, "GODDAMIT")
+  // console.log(filteredArr, "GODDAMIT")
   // console.log(allSpotsDisplay, "SHIBA")
 
   // if (filteredArr) {
@@ -166,7 +166,7 @@ const SpotBrowser = () => {
       <div className="nav-wrapper-1">
         <div className='nav-place'>
           <div className={filterSpot === "All" ? "nav-individual-place nav-clicked " : 'nav-individual-place'} onClick={() => setFilterSpot("All")}>
-            <img className="nav-place-img" src="https://imgur.com/bboPy36.png" />
+            <img className="nav-place-img" src="https://imgur.com/9aXhDUr.png" />
             <div>All</div>
             <div className="nav-place-underline"></div>
           </div>
