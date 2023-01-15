@@ -657,7 +657,10 @@ const SingleSpotBrowser = () => {
                                   disabledDates={disabledDates}
                                 />
                                 {/* <button type="button" className="close-booking-calender" onClick={() => setStartDate()}> Clear dates </button> */}
-                                <button type="button" className="close-booking-calender" onClick={() => setOpenCalender(false)}> Close </button>
+                                {bookingNights ?
+                                  <button type="button" className="close-booking-calender" onClick={() => setOpenCalender(false)}> Confirm </button> :
+                                  <button type="button" className="close-booking-calender" onClick={() => setOpenCalender(false)}> Close </button>
+                                }
                               </div>
                             </div>
                           }

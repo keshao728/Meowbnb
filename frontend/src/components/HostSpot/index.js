@@ -204,7 +204,7 @@ const HostSpot = () => {
         </div >
         <div className="step0-footer">
           <div></div>
-          <button className="step0-next" onClick={() => setPage(1)}> Get started </button>
+          <button className="step0-next" type="button" onClick={() => setPage(1)}> Get started </button>
         </div>
       </div >
     )
@@ -221,8 +221,8 @@ const HostSpot = () => {
           <img className="step1-img-1" src="https://imgur.com/qScRuLe.png" />
         </div>
         <div className="step0-footer step1-footer">
-          <button className="step-button-back" onClick={() => setPage(0)}> Back </button>
-          <button className="step-button-next" onClick={() => setPage(2)}> Next</button>
+          <button className="step-button-back" type="button" onClick={() => setPage(0)}> Back </button>
+          <button className="step-button-next" type="button" onClick={() => setPage(2)}> Next</button>
         </div>
         {/* <button onClick={() => setPage(2)}> Next </button> */}
       </div >
@@ -329,11 +329,12 @@ const HostSpot = () => {
 
           </div>
           <div className="step0-footer">
-            <button className="step-button-back" onClick={() => setPage(1)}> Back </button>
+            <button type="button" className="step-button-back" onClick={() => setPage(1)}> Back </button>
             {place ?
-              <button className="test step-button-next" onClick={handleSubmit}> Next</button>
+              <button className="test step-button-next" type="button" onClick={handleSubmit}> Next</button>
               :
               <button className="step-button-disabled"
+                type="button"
                 disabled={true}
               > Next
               </button>
@@ -435,11 +436,11 @@ const HostSpot = () => {
             </GoogleMap>
           </div>
           <div className="step0-footer">
-            <button className="step-button-back" onClick={() => setPage(2)}> Back </button>
+            <button className="step-button-back" type="button" onClick={() => setPage(2)}> Back </button>
             {address ?
-              <button className="test step-button-next" onClick={handleSubmit}> Next</button>
+              <button className="test step-button-next" type="button" onClick={handleSubmit}> Next</button>
               :
-              <button className="step-button-disabled"
+              <button type="button" className="step-button-disabled"
                 disabled={true}
               > Next
               </button>
@@ -542,12 +543,12 @@ const HostSpot = () => {
             </GoogleMap>
           </div>
           <div className="step0-footer">
-            <button className="step-button-back" onClick={() => setPage(3)}> Back </button>
+            <button type="button" className="step-button-back" onClick={() => setPage(3)}> Back </button>
             {address && city && state && country ?
-              <button className="step-button-next"
+              <button type="button" className="step-button-next"
                 onClick={handleSubmit}> Next</button>
               :
-              <button className="step-button-disabled"
+              <button type="button" className="step-button-disabled"
                 disabled={true}
               > Next</button>
             }
@@ -568,8 +569,8 @@ const HostSpot = () => {
           <img className="step1-img-1" src="https://imgur.com/JyXItmZ.png" />
         </div>
         <div className="step0-footer step1-footer">
-          <button className="step-button-back" onClick={() => setPage(4)}> Back </button>
-          <button className="step-button-next" onClick={() => setPage(6)}> Next</button>
+          <button type="button" className="step-button-back" onClick={() => setPage(4)}> Back </button>
+          <button type="button" className="step-button-next" onClick={() => setPage(6)}> Next</button>
         </div>
         {/* <button onClick={() => setPage(2)}> Next </button> */}
       </div >
@@ -693,11 +694,11 @@ const HostSpot = () => {
             </div>
           </div>
           <div className="step0-footer">
-            <button className="step-button-back" onClick={() => setPage(5)}> Back </button>
+            <button type="button" className="step-button-back" onClick={() => setPage(5)}> Back </button>
             {amenities.length && amenities ?
-              <button className="test step-button-next" id="testing" onClick={handleSubmit}> Next</button>
+              <button type="button" className="test step-button-next" id="testing" onClick={handleSubmit}> Next</button>
               :
-              <button className="step-button-disabled"
+              <button type="button" className="step-button-disabled"
                 disabled={true}
               > Next
               </button>
@@ -875,9 +876,9 @@ const HostSpot = () => {
 
         </div>
         <div className="step0-footer">
-          <button className="step-button-back" onClick={() => setPage(6)}> Back </button>
+          <button className="step-button-back" type="button" onClick={() => setPage(6)}> Back </button>
           {url ?
-            <button className="step-button-next"
+            <button type="button" className="step-button-next"
               // disabled={() => { !url; error }}
               // formnovalidate
               onClick={() => {
@@ -890,7 +891,7 @@ const HostSpot = () => {
                 // setPage(8);
               }}> Next</button>
             :
-            <button className="step-button-disabled"
+            <button type="button" className="step-button-disabled"
               disabled={true}
             > Next</button>
           }
@@ -1001,12 +1002,12 @@ const HostSpot = () => {
               }
             </div>
 
-            <div className="step0-footer">
+            <div type="button" className="step0-footer">
               <button className="step-button-back" onClick={() => setPage(7)}> Back </button>
               {name && description && price ?
                 <button className="step-button-next" onClick={handleSubmit} form="spot-form" type="submit"> Create Spot</button>
                 :
-                <button className="step-button-disabled"
+                <button type="button" className="step-button-disabled"
                   disabled={true}
                 > Create Spot
                 </button>
