@@ -642,8 +642,8 @@ const SingleSpotBrowser = () => {
                                 </div> :
                                 <div className="booking-dates-night"> Add your travel dates for exact pricing</div>
                               }
-                              <div className="SHIBA">
-                                <div className="calbox">
+                              <div className="spot-calendar-wrapper">
+                                <div className="spot-calendar-container">
                                   <DateRange
                                     onChange={handleSelect}
                                     editableDateInputs={true}
@@ -659,8 +659,12 @@ const SingleSpotBrowser = () => {
                                   />
                                   {/* <button type="button" className="close-booking-calender" onClick={() => setStartDate()}> Clear dates </button> */}
                                   {bookingNights ?
-                                    <button type="button" className="close-booking-calender" onClick={() => setOpenCalender(false)}> Confirm </button> :
-                                    <button type="button" className="close-booking-calender" onClick={() => setOpenCalender(false)}> Close </button>
+                                    <div className="spot-booking-button">
+                                      <button type="button" className="close-booking-calender" onClick={() => setOpenCalender(false)}> Confirm </button>
+                                    </div> :
+                                    <div className="spot-booking-button">
+                                      <button type="button" className="close-booking-calender" onClick={() => setOpenCalender(false)}> Close </button>
+                                    </div>
                                   }
                                 </div>
                               </div>

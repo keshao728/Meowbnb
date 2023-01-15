@@ -397,17 +397,21 @@
   left: -300px;
 }
 
-.SHIBA {
+.spot-calendar-wrapper {
   position: relative;
 }
 
-.calbox {
+.spot-calendar-container {
   width: 700px;
   position: absolute;
   height: fit-content;
   right: -30px;
   top: -90px;
   display: inline-flex;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .booking-calendar {
@@ -431,12 +435,19 @@
   left: -300px;
 }
 
+.spot-booking-button {
+  display: flex;
+  margin-top: -30px;
+  justify-content: flex-end;
+  padding-right: 20px;
+}
+
 .close-booking-calender {
-  position: absolute;
-  top: 370px;
+  position: relative;
+  /* top: 370px; */
   /* bottom: 10px; */
   /* bottom: 1px; */
-  right: 30px;
+  /* right: 30px; */
   font-size: 20px;
   color: #ffffff;
   background-color: black;
