@@ -444,20 +444,22 @@ const SingleSpotBrowser = () => {
 
                 {/* <div className="check-in-super"> */}
                 <div className="self-check-in">
-                  <i className="fa-solid fa-door-open"></i>
+                  {/* <i className="fa-solid fa-door-open"></i> */}
+                  <img className="check-in-img" src="https://imgur.com/Y8A5rKd.png" />
                   <div className="check-in">
                     <strong> Self check-in </strong>
-                    <div>
+                    <div className="check-in-des">
                       Check yourself in with the lockbox.
                     </div>
                   </div>
                 </div>
 
                 <div className="self-check-in" id="super">
-                  <i class="fa-regular fa-id-badge"></i>
+                  {/* <i class="fa-regular fa-id-badge"></i> */}
+                  <img className="check-in-img" src="https://imgur.com/5gPJvEp.png" />
                   <div className="superhost">
                     <strong> {currSpot?.Owner?.firstName} is a Superhost </strong>
-                    <div> Superhosts are experienced, highly rated hosts who are committed to providing great stays for guests.</div>
+                    <div className="check-in-des"> Superhosts are experienced, highly rated hosts who are committed to providing great stays for guests.</div>
                   </div>
                 </div>
                 {/* </div> */}
@@ -534,9 +536,19 @@ const SingleSpotBrowser = () => {
 
                 {!allowBookingAction &&
                   <div className="spot-checkin">
-                    <div className="spot-checkin-title">Select check-in date</div>
-                    <div className="spot-checkin-des">Add your travel dates for exact pricing</div>
-                    <div ref={ref}>
+                    {bookingNights === 1 ?
+                      <div className="spot-checkin-title">{bookingNights} night </div> :
+                      bookingNights > 1 ?
+                        <div className="spot-checkin-title">{bookingNights} nights </div> :
+                        <div className="spot-checkin-title">Select dates</div>
+                    }
+                    {bookingNights ?
+                      <div className="spot-checkin-des">
+                        {moment(startDate).format('MMM D, YYYY')} - {moment(endDate).format('MMM D, YYYY')}
+                      </div> :
+                      <div className="spot-checkin-des"> Add your travel dates for exact pricing</div>
+                    }
+                    <div ref={ref} className="open-calendar-wrap">
                       <DateRange
                         onChange={handleSelect}
                         editableDateInputs={true}
@@ -610,7 +622,7 @@ const SingleSpotBrowser = () => {
                             <label className="booking-label">CHECKOUT</label>
                           </div>
                         </div>
-                        <div ref={ref}>
+                        <div ref={ref} className="open-calendar-wrap">
                           {openCalender &&
                             <div className="open-calendar-wrap">
                               {bookingNights === 1 ?
@@ -625,22 +637,23 @@ const SingleSpotBrowser = () => {
                                 </div> :
                                 <div className="booking-dates-night"> Add your travel dates for exact pricing</div>
                               }
-                              <DateRange
-                                onChange={handleSelect}
-                                editableDateInputs={true}
-                                moveRangeOnFirstSelection={false}
-                                rangeColors={["#222222", "#AFAFAF", "#222222"]}
-                                // rangeColors={['#f33e5b', '#3ecf8e', '#fed14c']}
-                                ranges={[selectionRange]}
-                                months={2}
-                                minDate={addDays(new Date, 1)}
-                                direction="horizontal"
-                                className="booking-calendar"
-                                disabledDates={disabledDates}
-                              />
-                              {/* <button type="button" className="close-booking-calender" onClick={() => setStartDate()}> Clear dates </button> */}
-
-                              <button type="button" className="close-booking-calender" onClick={() => setOpenCalender(false)}> Close </button>
+                              <div className="SHIBA">
+                                <DateRange
+                                  onChange={handleSelect}
+                                  editableDateInputs={true}
+                                  moveRangeOnFirstSelection={false}
+                                  rangeColors={["#222222", "#AFAFAF", "#222222"]}
+                                  // rangeColors={['#f33e5b', '#3ecf8e', '#fed14c']}
+                                  ranges={[selectionRange]}
+                                  months={2}
+                                  minDate={addDays(new Date, 1)}
+                                  direction="horizontal"
+                                  className="booking-calendar"
+                                  disabledDates={disabledDates}
+                                />
+                                {/* <button type="button" className="close-booking-calender" onClick={() => setStartDate()}> Clear dates </button> */}
+                                <button type="button" className="close-booking-calender" onClick={() => setOpenCalender(false)}> Close </button>
+                              </div>
                             </div>
                           }
                         </div>
@@ -762,7 +775,7 @@ const SingleSpotBrowser = () => {
               {currSpot.city}, {currSpot.state}, {currSpot.country}
             </div>
             <GoogleMap
-              zoom={10}
+              zoom={13}
               center={center}
               options={{
                 disableDefaultUI: true,
