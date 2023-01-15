@@ -374,8 +374,10 @@ const SingleSpotBrowser = () => {
                   {currSpot.avgStarRating > 0 ? Number(currSpot.avgStarRating).toFixed(2) : 'New'}
                   &nbsp;&nbsp;·
                 </div>
-
-                <div>&nbsp;&nbsp;{currSpot.numReviews} reviews&nbsp;&nbsp;·&nbsp;&nbsp;</div>
+                {currSpot.numReviews === 1 ?
+                  <div>&nbsp;&nbsp;{currSpot.numReviews} review&nbsp;&nbsp;·&nbsp;&nbsp;</div> :
+                  <div>&nbsp;&nbsp;{currSpot.numReviews} reviews&nbsp;&nbsp;·&nbsp;&nbsp;</div>
+                }
                 <div className="spot-address" key={currSpot.name}>
                   {currSpot.city}, {currSpot.state}, {currSpot.country}
                 </div>
@@ -585,7 +587,10 @@ const SingleSpotBrowser = () => {
                       {currSpot.avgStarRating > 0 ? Number(currSpot.avgStarRating).toFixed(2) : 'New'}
                       &nbsp;·
                     </div>
-                    <div>&nbsp;{currSpot.numReviews} reviews</div>
+                    {currSpot.numReviews === 1 ?
+                      <div>&nbsp;{currSpot.numReviews} review</div> :
+                      <div>&nbsp;{currSpot.numReviews} reviews</div>
+                    }
                   </div>
                   {!allowBookingAction ?
                     <div className="booking-wrapper">
@@ -723,7 +728,10 @@ const SingleSpotBrowser = () => {
         }
 
         <div className="review-star-foot" id="reviews">
-          <div className="stars-n-review"><i className="fa-solid fa-paw" /> {currSpot.avgStarRating > 0 ? Number(currSpot.avgStarRating).toFixed(2) : 'New'} · {currSpot.numReviews} reviews</div>
+          {currSpot.numReviews === 1 ?
+            <div className="stars-n-review"><i className="fa-solid fa-paw" /> {currSpot.avgStarRating > 0 ? Number(currSpot.avgStarRating).toFixed(2) : 'New'} · {currSpot.numReviews} review</div> :
+            <div className="stars-n-review"><i className="fa-solid fa-paw" /> {currSpot.avgStarRating > 0 ? Number(currSpot.avgStarRating).toFixed(2) : 'New'} · {currSpot.numReviews} reviews</div>
+          }
           {allowReviewAction &&
             <ReviewFormModal />
           }
@@ -784,8 +792,8 @@ const SingleSpotBrowser = () => {
             >
               <Marker
                 position={center}
-                // icon={'https://imgur.com/djlC571.png'}
-                />
+              // icon={'https://imgur.com/djlC571.png'}
+              />
             </GoogleMap>
           </div>
           <div className="spot-know-wrapper">
