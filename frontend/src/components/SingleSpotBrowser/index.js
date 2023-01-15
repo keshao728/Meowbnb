@@ -34,6 +34,7 @@ const SingleSpotBrowser = () => {
   const [showErrors, setShowErrors] = useState(false)
 
   const [displayBookings, setDisplayBookings] = useState(false)
+  const [bookingNights, setBookingNights] = useState(0)
 
   // const [startDate, setStartDate] = useState(addDays(new Date(), 1))
   // const [endDate, setEndDate] = useState(addDays(new Date(), 2))
@@ -294,8 +295,14 @@ const SingleSpotBrowser = () => {
   // console.log("clickedDates", selectedDateRange)
   // console.log("disabledDates", unavaliableDateRange)
 
-  // console.log(unavaliableDateRange.some(date => selectedDateRange.includes(date)), "HAHAHHAHHHAHHA")
 
+  useEffect(() => {
+    if (startDate && endDate) {
+      setBookingNights(endDate?.getDate() - startDate?.getDate())
+    }
+  })
+
+  // console.log("SHIBA", new Date(new Date().setDate(startDate?.getDate() - endDate?.getDate())))
 
   useEffect(() => {
     const err = []
@@ -542,7 +549,6 @@ const SingleSpotBrowser = () => {
                         direction="horizontal"
                         className="booking-calendar-1"
                         disabledDates={disabledDates}
-
                       // disabledDays={[0, 6]}
                       />
                     </div>
@@ -606,19 +612,36 @@ const SingleSpotBrowser = () => {
                         </div>
                         <div ref={ref}>
                           {openCalender &&
-                            <DateRange
-                              onChange={handleSelect}
-                              editableDateInputs={true}
-                              moveRangeOnFirstSelection={false}
-                              rangeColors={["#222222", "#AFAFAF", "#222222"]}
-                              // rangeColors={['#f33e5b', '#3ecf8e', '#fed14c']}
-                              ranges={[selectionRange]}
-                              months={2}
-                              minDate={addDays(new Date, 1)}
-                              direction="horizontal"
-                              className="booking-calendar"
-                              disabledDates={disabledDates}
-                            />
+                            <div className="open-calendar-wrap">
+                              {bookingNights === 1 ?
+                                <div className="booking-nights">{bookingNights} night </div> :
+                                bookingNights > 1 ?
+                                  <div className="booking-nights">{bookingNights} nights </div> :
+                                  <div className="booking-nights">Select dates</div>
+                              }
+                              {bookingNights ?
+                                <div className="booking-dates-night">
+                                  {moment(startDate).format('MMM D, YYYY')} - {moment(endDate).format('MMM D, YYYY')}
+                                </div> :
+                                <div className="booking-dates-night"> Add your travel dates for exact pricing</div>
+                              }
+                              <DateRange
+                                onChange={handleSelect}
+                                editableDateInputs={true}
+                                moveRangeOnFirstSelection={false}
+                                rangeColors={["#222222", "#AFAFAF", "#222222"]}
+                                // rangeColors={['#f33e5b', '#3ecf8e', '#fed14c']}
+                                ranges={[selectionRange]}
+                                months={2}
+                                minDate={addDays(new Date, 1)}
+                                direction="horizontal"
+                                className="booking-calendar"
+                                disabledDates={disabledDates}
+                              />
+                              {/* <button type="button" className="close-booking-calender" onClick={() => setStartDate()}> Clear dates </button> */}
+
+                              <button type="button" className="close-booking-calender" onClick={() => setOpenCalender(false)}> Close </button>
+                            </div>
                           }
                         </div>
                         {sessionUser ?
