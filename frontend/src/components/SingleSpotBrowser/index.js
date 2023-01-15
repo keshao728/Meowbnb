@@ -775,14 +775,17 @@ const SingleSpotBrowser = () => {
               {currSpot.city}, {currSpot.state}, {currSpot.country}
             </div>
             <GoogleMap
-              zoom={13}
+              zoom={12}
               center={center}
               options={{
                 disableDefaultUI: true,
               }}
               mapContainerClassName="map-container"
             >
-              <Marker position={center} />
+              <Marker
+                position={center}
+                // icon={'https://imgur.com/djlC571.png'}
+                />
             </GoogleMap>
           </div>
           <div className="spot-know-wrapper">
