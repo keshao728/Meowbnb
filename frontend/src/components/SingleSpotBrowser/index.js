@@ -375,11 +375,28 @@ const SingleSpotBrowser = () => {
                   &nbsp;&nbsp;·
                 </div>
                 {currSpot.numReviews === 1 ?
-                  <div>&nbsp;&nbsp;{currSpot.numReviews} review&nbsp;&nbsp;·&nbsp;&nbsp;</div> :
-                  <div>&nbsp;&nbsp;{currSpot.numReviews} reviews&nbsp;&nbsp;·&nbsp;&nbsp;</div>
+                  <Link
+                    smooth to={`/spots/${currSpot.id}/#reviews`}
+                    className="head-scroll-link"
+                  >
+                    <div>{currSpot.numReviews} review</div>
+                  </Link> :
+                  <Link
+                    smooth to={`/spots/${currSpot.id}/#reviews`}
+                    className="head-scroll-link"
+                  >
+                    <div>{currSpot.numReviews} reviews</div>
+                  </Link>
                 }
+                <div className="spot-top-super">
+                  ·&nbsp;&nbsp;
+                  <img src="https://imgur.com/227Uv81.png" />
+                  <div>Superhost </div>
+                  &nbsp;&nbsp;
+                </div>
+
                 <div className="spot-address" key={currSpot.name}>
-                  {currSpot.city}, {currSpot.state}, {currSpot.country}
+                  ·&nbsp;&nbsp;{currSpot.city}, {currSpot.state}, {currSpot.country}
                 </div>
               </div>
 
@@ -550,7 +567,7 @@ const SingleSpotBrowser = () => {
                       </div> :
                       <div className="spot-checkin-des"> Add your travel dates for exact pricing</div>
                     }
-                    <div ref={ref} className="open-calendar-wrap">
+                    <div ref={ref} className="open-calendar-wrap" >
                       <DateRange
                         onChange={handleSelect}
                         editableDateInputs={true}
@@ -707,7 +724,7 @@ const SingleSpotBrowser = () => {
                           Manage My Spot
                         </NavLink>
                       </div>
-                      <div className="owner-booking-display-wrap">
+                      <div className="owner-booking-display-wrap" >
                         {displayBookings && currSpotBooked ?
                           <div className="owner-booking-display">
                             {currSpotBooked?.map((bookings) => (

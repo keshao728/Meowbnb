@@ -4,7 +4,7 @@
 
 
 .spot-details {
-  font-size: 15px;
+  font-size: 14px;
   display: flex;
   flex-direction: row;
   margin-bottom: 20px;
@@ -12,7 +12,8 @@
   align-items: flex-start;
   white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis
+  text-overflow: ellipsis;
+  /* font-weight: bold; */
 }
 
 
@@ -258,7 +259,7 @@
 .check-in,
 .superhost {
   margin-left: 20px;
-  font-size: 16px;
+  font-size: 15px;
 }
 
 
@@ -734,6 +735,12 @@
 .spot-address-1 {
   margin-bottom: 20px;
 }
+.spot-top-super{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+}
 
 .map-title {
   font-size: 19px;
@@ -864,18 +871,19 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, 350px);
   margin-top: 25px;
+  font-size: 15px;
   gap: 15px;
 }
 
 .individual-amenities-container {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 15px;
 }
 
 .individual-amenities-img {
-  width: 27px;
-  height: 27px;
+  width: 25px;
+  height: 25px;
 }
 
 .meow-wrapper {
@@ -974,6 +982,11 @@
 
 .scroll-link {
   text-decoration: none;
+  color: black;
+}
+
+.head-scroll-link {
+  margin: 0px 10px;
   color: black;
 }
 
