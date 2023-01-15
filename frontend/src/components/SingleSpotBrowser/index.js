@@ -34,6 +34,7 @@ const SingleSpotBrowser = () => {
   const [showErrors, setShowErrors] = useState(false)
 
   const [displayBookings, setDisplayBookings] = useState(false)
+  const [bookingNights, setBookingNights] = useState(0)
 
   // const [startDate, setStartDate] = useState(addDays(new Date(), 1))
   // const [endDate, setEndDate] = useState(addDays(new Date(), 2))
@@ -294,8 +295,14 @@ const SingleSpotBrowser = () => {
   // console.log("clickedDates", selectedDateRange)
   // console.log("disabledDates", unavaliableDateRange)
 
-  // console.log(unavaliableDateRange.some(date => selectedDateRange.includes(date)), "HAHAHHAHHHAHHA")
 
+  useEffect(() => {
+    if (startDate && endDate) {
+      setBookingNights(endDate?.getDate() - startDate?.getDate())
+    }
+  })
+
+  // console.log("SHIBA", new Date(new Date().setDate(startDate?.getDate() - endDate?.getDate())))
 
   useEffect(() => {
     const err = []
@@ -437,20 +444,22 @@ const SingleSpotBrowser = () => {
 
                 {/* <div className="check-in-super"> */}
                 <div className="self-check-in">
-                  <i className="fa-solid fa-door-open"></i>
+                  {/* <i className="fa-solid fa-door-open"></i> */}
+                  <img className="check-in-img" src="https://imgur.com/Y8A5rKd.png" />
                   <div className="check-in">
                     <strong> Self check-in </strong>
-                    <div>
+                    <div className="check-in-des">
                       Check yourself in with the lockbox.
                     </div>
                   </div>
                 </div>
 
                 <div className="self-check-in" id="super">
-                  <i class="fa-regular fa-id-badge"></i>
+                  {/* <i class="fa-regular fa-id-badge"></i> */}
+                  <img className="check-in-img" src="https://imgur.com/5gPJvEp.png" />
                   <div className="superhost">
                     <strong> {currSpot?.Owner?.firstName} is a Superhost </strong>
-                    <div> Superhosts are experienced, highly rated hosts who are committed to providing great stays for guests.</div>
+                    <div className="check-in-des"> Superhosts are experienced, highly rated hosts who are committed to providing great stays for guests.</div>
                   </div>
                 </div>
                 {/* </div> */}
@@ -527,9 +536,19 @@ const SingleSpotBrowser = () => {
 
                 {!allowBookingAction &&
                   <div className="spot-checkin">
-                    <div className="spot-checkin-title">Select check-in date</div>
-                    <div className="spot-checkin-des">Add your travel dates for exact pricing</div>
-                    <div ref={ref}>
+                    {bookingNights === 1 ?
+                      <div className="spot-checkin-title">{bookingNights} night </div> :
+                      bookingNights > 1 ?
+                        <div className="spot-checkin-title">{bookingNights} nights </div> :
+                        <div className="spot-checkin-title">Select dates</div>
+                    }
+                    {bookingNights ?
+                      <div className="spot-checkin-des">
+                        {moment(startDate).format('MMM D, YYYY')} - {moment(endDate).format('MMM D, YYYY')}
+                      </div> :
+                      <div className="spot-checkin-des"> Add your travel dates for exact pricing</div>
+                    }
+                    <div ref={ref} className="open-calendar-wrap">
                       <DateRange
                         onChange={handleSelect}
                         editableDateInputs={true}
@@ -542,7 +561,6 @@ const SingleSpotBrowser = () => {
                         direction="horizontal"
                         className="booking-calendar-1"
                         disabledDates={disabledDates}
-
                       // disabledDays={[0, 6]}
                       />
                     </div>
@@ -604,21 +622,39 @@ const SingleSpotBrowser = () => {
                             <label className="booking-label">CHECKOUT</label>
                           </div>
                         </div>
-                        <div ref={ref}>
+                        <div ref={ref} className="open-calendar-wrap">
                           {openCalender &&
-                            <DateRange
-                              onChange={handleSelect}
-                              editableDateInputs={true}
-                              moveRangeOnFirstSelection={false}
-                              rangeColors={["#222222", "#AFAFAF", "#222222"]}
-                              // rangeColors={['#f33e5b', '#3ecf8e', '#fed14c']}
-                              ranges={[selectionRange]}
-                              months={2}
-                              minDate={addDays(new Date, 1)}
-                              direction="horizontal"
-                              className="booking-calendar"
-                              disabledDates={disabledDates}
-                            />
+                            <div className="open-calendar-wrap">
+                              {bookingNights === 1 ?
+                                <div className="booking-nights">{bookingNights} night </div> :
+                                bookingNights > 1 ?
+                                  <div className="booking-nights">{bookingNights} nights </div> :
+                                  <div className="booking-nights">Select dates</div>
+                              }
+                              {bookingNights ?
+                                <div className="booking-dates-night">
+                                  {moment(startDate).format('MMM D, YYYY')} - {moment(endDate).format('MMM D, YYYY')}
+                                </div> :
+                                <div className="booking-dates-night"> Add your travel dates for exact pricing</div>
+                              }
+                              <div className="SHIBA">
+                                <DateRange
+                                  onChange={handleSelect}
+                                  editableDateInputs={true}
+                                  moveRangeOnFirstSelection={false}
+                                  rangeColors={["#222222", "#AFAFAF", "#222222"]}
+                                  // rangeColors={['#f33e5b', '#3ecf8e', '#fed14c']}
+                                  ranges={[selectionRange]}
+                                  months={2}
+                                  minDate={addDays(new Date, 1)}
+                                  direction="horizontal"
+                                  className="booking-calendar"
+                                  disabledDates={disabledDates}
+                                />
+                                {/* <button type="button" className="close-booking-calender" onClick={() => setStartDate()}> Clear dates </button> */}
+                                <button type="button" className="close-booking-calender" onClick={() => setOpenCalender(false)}> Close </button>
+                              </div>
+                            </div>
                           }
                         </div>
                         {sessionUser ?
@@ -739,14 +775,17 @@ const SingleSpotBrowser = () => {
               {currSpot.city}, {currSpot.state}, {currSpot.country}
             </div>
             <GoogleMap
-              zoom={10}
+              zoom={12}
               center={center}
               options={{
                 disableDefaultUI: true,
               }}
               mapContainerClassName="map-container"
             >
-              <Marker position={center} />
+              <Marker
+                position={center}
+                // icon={'https://imgur.com/djlC571.png'}
+                />
             </GoogleMap>
           </div>
           <div className="spot-know-wrapper">
