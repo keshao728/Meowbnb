@@ -10,6 +10,8 @@ import MeowCoverModal from "./MeowCoverModal"
 import BookingLoginModal from "./RedirectModal"
 import ReviewFormModal from "../ReviewSpot/ReviewModal"
 
+import { MapStyle } from "../HostSpot/MapStyle"
+
 import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api"
 import { DateRange } from 'react-date-range'
 import { addDays } from 'date-fns'
@@ -792,6 +794,7 @@ const SingleSpotBrowser = () => {
               center={center}
               options={{
                 disableDefaultUI: true,
+                styles: MapStyle,
               }}
               mapContainerClassName="map-container"
             >
