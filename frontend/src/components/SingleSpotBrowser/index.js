@@ -811,7 +811,7 @@ const SingleSpotBrowser = () => {
               {currSpot.city}, {currSpot.state}, {currSpot.country}
             </div>
             <GoogleMap
-              zoom={12}
+              zoom={14}
               center={center}
               options={{
                 disableDefaultUI: true,
@@ -821,7 +821,7 @@ const SingleSpotBrowser = () => {
             >
               <Marker
                 position={center}
-              // icon={'https://imgur.com/djlC571.png'}
+                icon={'https://imgur.com/KSss7VS.png'}
               />
             </GoogleMap>
           </div>
