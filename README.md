@@ -57,13 +57,13 @@ Cat2: ⭐⭐⭐⭐⭐
 
 <h3> Sign Up - Log In - Log Out: </h3>
 
-<a href="https://imgur.com/rWvpHbI"><img src="https://i.imgur.com/rWvpHbI.gif" title="source: imgur.com" /></a>
+<a href="https://meow-bnb.herokuapp.com/"><img src="https://imgur.com/cIMEmba.gif" title="source: imgur.com" /></a>
 
 <br>
 <br>
 
 <h3> Single Spot Browser:</h3>
-<a href="https://imgur.com/qibVmu4"><img src="https://i.imgur.com/qibVmu4.gif" title="source: imgur.com" /></a>
+<a href="https://meow-bnb.herokuapp.com/"><img src="https://imgur.com/i4pHzQJ.gif" title="source: imgur.com" /></a>
 
 <br>
 <br>

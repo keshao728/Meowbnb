@@ -10,7 +10,43 @@ const { Op } = require('sequelize');
 
 const router = express.Router();
 
-//GET all current user's bookings
+// //GET all current user's bookings
+// router.get('/current', requireAuth, async (req, res, next) => {
+//   let holder
+//   const { user } = req
+//   let result = []
+//   const bookings = await Booking.findAll({
+//     where: {
+//       userId: user.id
+//     },
+//     include: {
+//       model: Spot,
+//       attributes: {
+//         exclude: ['createdAt', 'updatedAt', 'description']
+//       }
+//     }
+//   })
+
+//   for (let j = 0; j < bookings.length; j++) {
+//     holder = bookings[j].toJSON()
+//     // console.log(holder, "WAKUBHDKB")
+//     console.log(bookings[j].spotId, "WHAT IS THIS")
+//     let imageUrl = await SpotImage.findByPk(
+//       bookings[j].spotId, {
+//       where:
+//       {
+//         preview: true,
+//       },
+//       attributes: ['url']
+//     })
+//     console.log(bookings[j], "WHAT IS THIS IMAGE URL")
+//     holder.Spot.previewImage = imageUrl.url
+//     result.push(holder)
+//   }
+//   res.json({ Bookings: result });
+// })
+
+// //GET all current user's bookings
 router.get('/current', requireAuth, async (req, res, next) => {
   let holder
   const { user } = req
@@ -29,14 +65,20 @@ router.get('/current', requireAuth, async (req, res, next) => {
 
   for (let j = 0; j < bookings.length; j++) {
     holder = bookings[j].toJSON()
-    // console.log(holder, "WAKUBHDKB")
-    let imageUrl = await SpotImage.findByPk(
-      bookings[j].spotId, {
-      where: { preview: true },
+    console.log(holder, "WAKUBHDKB")
+    // console.log(bookings[j].spotId, "WHAT IS THIS")
+    let imageUrl = await SpotImage.findOne({
+      where:
+      {
+        spotId: bookings[j].spotId,
+        preview: true,
+      },
       attributes: ['url']
     })
+    console.log(bookings[j], "WHAT IS THIS IMAGE URL")
     holder.Spot.previewImage = imageUrl.url
     result.push(holder)
+    console.log(result, "RESULT")
   }
   res.json({ Bookings: result });
 })
@@ -83,7 +125,7 @@ router.put('/:bookingId', requireAuth, async (req, res) => {
     })
   }
 
-  if ((booking.startDate >= startDate && booking.endDate <= endDate) ||(booking.startDate <= startDate && booking.endDate >= endDate)) {
+  if ((booking.startDate >= startDate && booking.endDate <= endDate) || (booking.startDate <= startDate && booking.endDate >= endDate)) {
     res.statusCode = 403
     return res.json({
       message: "Sorry, this spot is already booked for the specified dates",
