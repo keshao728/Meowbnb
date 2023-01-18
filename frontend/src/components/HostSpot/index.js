@@ -5,6 +5,7 @@ import { useHistory, Redirect } from "react-router-dom"
 import { addOneSpot } from "../../store/spots"
 import { resetData } from "../../store/spots"
 import "./HostSpot.css"
+import { MapStyle } from "./MapStyle"
 import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api"
 
 
@@ -483,6 +484,7 @@ const HostSpot = () => {
               center={sanFran}
               options={{
                 disableDefaultUI: true,
+                styles: MapStyle
               }}
               mapContainerClassName="create-spot-map-container"
             >
@@ -600,6 +602,7 @@ const HostSpot = () => {
               center={centerPoint}
               options={{
                 disableDefaultUI: true,
+                styles: MapStyle,
               }}
               mapContainerClassName="create-spot-pin-container"
             >
