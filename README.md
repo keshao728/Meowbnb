@@ -82,13 +82,13 @@ Cat2: ⭐⭐⭐⭐⭐
 <br>
 
 <h3> My Spots:</h3>
-<a href="https://imgur.com/Ob9fKQs"><img src="https://i.imgur.com/Ob9fKQs.gif" title="source: imgur.com" /></a>
+<a href="https://meow-bnb.herokuapp.com/"><img src="https://imgur.com/m8ndnHW.gif" title="source: imgur.com" /></a>
 
 <br>
 <br>
 
 <h3> Reviews:</h3>
-<a href="https://imgur.com/8sViPlb"><img src="https://imgur.com/YedafaP.gif" title="source: imgur.com" /></a>
+<a href="https://meow-bnb.herokuapp.com/"><img src="https://imgur.com/YedafaP.gif" title="source: imgur.com" /></a>
 <br>
 <br>
 
