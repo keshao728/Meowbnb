@@ -1117,17 +1117,17 @@ const HostSpot = () => {
               }
             </div>
 
-            <div type="button" className="step0-footer">
+            <div className="step0-footer">
               <button className="step-button-back" onClick={() => setPage(7)}> Back </button>
               <div className="step-right-buttons">
                 <button className="step-button-demo"
-                  type="submit"
+                  type="button"
                   form="spot-form"
                   onClick={() => {
                     setName("Cats Meowtside")
                     setDescription("A tranquil contemplative nature retreat, in a magnificent setting surrounded by a creek, meadow and woodlands. You’ll love this place because of the light, the comfy beds and the location.")
                     setPrice("333")
-                    handleSubmit()
+                    // handleSubmit()
                   }}>
                   Autofill
                 </button>

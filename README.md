@@ -55,9 +55,9 @@ Cat2: ⭐⭐⭐⭐⭐
 
 <h2> Features </h2>
 
-<h3> Sign Up - Log In - Log Out: </h3>
+<h3> Splash Page (Search, Log In, Log Out): </h3>
 
-<a href="https://meow-bnb.herokuapp.com/"><img src="https://imgur.com/cIMEmba.gif" title="source: imgur.com" /></a>
+<a href="https://meow-bnb.herokuapp.com/"><img src="https://imgur.com/F58yD3G.gif" title="source: imgur.com" /></a>
 
 <br>
 <br>
