@@ -79,7 +79,7 @@ const SpotBrowser = () => {
     allSpotDetails = filteredArr.map(spot => {
       return (
         <div className="all-spot">
-          <NavLink className="spots" to={`spots/${spot.id}`}>
+          <NavLink className="spots" to={`spots/${spot.id}`} onClick={() => window.scrollTo(0, 0)}>
             <div className="individual-spots">
               <div>
                 <img className="spot-image"
@@ -115,7 +115,7 @@ const SpotBrowser = () => {
     allSpotDetails = allSpotsArr.map(spot => {
       return (
         <div className="all-spot">
-          <NavLink className="spots" to={`spots/${spot.id}`}>
+          <NavLink className="spots" to={`spots/${spot.id}`} onClick={() => window.scrollTo(0, 0)}>
             <div className="individual-spots">
               <div>
                 <img className="spot-image"
