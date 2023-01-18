@@ -34,7 +34,6 @@ const UserSpots = () => {
 
   useEffect(() => {
     dispatch(getCurrentSpots())
-    //FIXME - this is not working
     // dispatch(locationReviewsThunk(spotId))
     return (() => dispatch(resetData()))
   }, [dispatch])
@@ -83,7 +82,7 @@ const UserSpots = () => {
               <div className="all-owned-spot-container">
                 <NavLink className="user-spots" to={`/spots/${spot.id}`}>
                   <div className="user-spots-left">
-                    <img className="user-spot-image" key={spot.previewImage} src={spot.previewImage} alt={spot.previewImage} onError={(e) => e.target.src = 'https://imgur.com/WghnM0b.png'} />
+                    <img className="user-spot-image" key={spot?.previewImage} src={spot?.previewImage} alt={spot?.previewImage} onError={(e) => e.target.src = 'https://imgur.com/WghnM0b.png'} />
                   </div>
 
                   <div className="user-spots-texts">

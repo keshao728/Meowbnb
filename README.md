@@ -65,6 +65,19 @@ Cat2: ⭐⭐⭐⭐⭐
 <h3> Single Spot Browser:</h3>
 <a href="https://meow-bnb.herokuapp.com/"><img src="https://imgur.com/i4pHzQJ.gif" title="source: imgur.com" /></a>
 
+
+<br>
+<br>
+
+<h3> Bookings (CRD):</h3>
+<a href="https://meow-bnb.herokuapp.com/"><img src="https://imgur.com/1hqGVFo.gif" title="source: imgur.com" /></a>
+
+<br>
+<br>
+
+<h3> Create a Spot:</h3>
+<a href="https://meow-bnb.herokuapp.com/"><img src="https://imgur.com/lykTBKo.gif" title="source: imgur.com" /></a>
+
 <br>
 <br>
 
@@ -74,8 +87,8 @@ Cat2: ⭐⭐⭐⭐⭐
 <br>
 <br>
 
-<h3> My Reviews:</h3>
-<a href="https://imgur.com/8sViPlb"><img src="https://i.imgur.com/8sViPlb.gif" title="source: imgur.com" /></a>
+<h3> Reviews:</h3>
+<a href="https://imgur.com/8sViPlb"><img src="https://imgur.com/YedafaP.gif" title="source: imgur.com" /></a>
 <br>
 <br>
 

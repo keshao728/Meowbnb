@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory, Redirect, useParams } from "react-router-dom"
-import { updateSpot, getOneSpot } from "../../store/spots"
+import { updateSpot, getOneSpot, getCurrentSpots } from "../../store/spots"
 
 import "./UpdateSpot.css"
 
@@ -77,8 +77,10 @@ const UpdateSpot = ({ setShowModal, id }) => {
         // url,
         // preview: true
       }
-      let newUpdatedSpot = await dispatch(updateSpot(editSpot, spotId)) // bc i passed in 2 params in Thunk
+      let newUpdatedSpot = await dispatch(updateSpot(editSpot, singleSpot.id)) // bc i passed in 2 params in Thunk
       if (newUpdatedSpot) {
+        await dispatch(getCurrentSpots())
+        // await dispatch(getOneSpot(singleSpot.id))
         setShowErrors(false)
         setShowModal(false)
         history.push('/spots/hosting')
@@ -100,14 +102,14 @@ const UpdateSpot = ({ setShowModal, id }) => {
     <div className="full-update-form">
       <form className="update-spot-form-parent" onSubmit={handleSubmit}>
         <h2 className="update-host-message">Update {singleSpot.name}</h2>
-        {showErrors && validationErrors.length &&
+        {showErrors && validationErrors.length ?
           <div className='error-wrap'>
             <img className="caution" src="https://imgur.com/E1p7Fvo.png" alt="Error Message" />
             {validationErrors.map(error => (
               <div className="error-message" key={error}>{error}</div>
             ))}
           </div>
-        }
+        : null }
         <div className="host-form">
           <div className="host-input-parent">
             <div className="host-input-box">
