@@ -238,12 +238,12 @@
 
 
 .individual-city:hover {
-  background-color: #dadada;
+  background-color: #dddddd;
 }
 
 .data-city-state {
   display: flex;
-  color: #DDDDDD;
+  color: #999999;
   overflow: hidden;
   text-overflow: ellipsis;
 }
