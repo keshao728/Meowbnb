@@ -110,7 +110,7 @@ const HostSpot = () => {
         place,
         preview: true
       }
-      console.log(newSpot, "NEWSPOT")
+      // console.log(newSpot, "NEWSPOT")
       let createdSpot = await dispatch(addOneSpot(newSpot))
 
       // const createdSpot = () => {
@@ -686,25 +686,25 @@ const HostSpot = () => {
       let amenitiesButton = document.getElementById('testing')
       if (e.target.checked && !amenities.includes(e.target.value)) {
         setAmenities([...amenities, e.target.value])
-        console.log(amenities, "add amenities")
+        // console.log(amenities, "add amenities")
         if (amenities.length > 0 || amenities) {
           amenitiesButton.classList.remove("step-button-disabled")
           amenitiesButton.classList.add("step-button-next")
         }
       } else if (!e.target.checked && amenities.includes(e.target.value)) {
         amenities.splice(amenities.indexOf(e.target.value), 1)
-        console.log(amenities, "deleted amenities")
-        console.log(amenities, "amenities")
+        // console.log(amenities, "deleted amenities")
+        // console.log(amenities, "amenities")
         if (amenities.length === 0 || !amenities) {
           amenitiesButton.classList.remove("step-button-next")
           amenitiesButton.classList.add("step-button-disabled")
-          console.log(amenities, "no amenities")
+          // console.log(amenities, "no amenities")
           // return setAmenities(amenities)
         }
       }
     }
 
-    console.log(amenities, "amenities")
+    // console.log(amenities, "amenities")
 
 
     // console.log(amenities, "allAmenities")

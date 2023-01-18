@@ -83,7 +83,7 @@ const SingleSpotBrowser = () => {
 
   //AMENITIES
   const amenities = currSpot.amenities
-  console.log("amenities", amenities)
+  // console.log("amenities", amenities)
 
   //REVIEWS
   const allReviews = useSelector(state => state.reviews.spot);

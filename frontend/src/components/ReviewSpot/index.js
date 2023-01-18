@@ -13,7 +13,7 @@ const ReviewSpot = ({ setShowModal }) => {
   // const spot = useSelector(state => state.spots.singleSpot)
   const currSpot = useSelector(state => state.spots.singleSpot)
 
-  console.log("currSpot", currSpot)
+  // console.log("currSpot", currSpot)
   const [review, setReview] = useState('')
   const [stars, setStars] = useState(0)
   const [hover, setHover] = useState(0)

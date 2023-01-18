@@ -12,7 +12,7 @@ const UserBookings = () => {
   const sessionUser = useSelector(state => state.session.user)
   const bookings = useSelector(state => state.bookings.user)
   const bookingsArr = Object.values(bookings)
-  console.log("this is bookingsArr", bookingsArr)
+  // console.log("this is bookingsArr", bookingsArr)
 
   useEffect(() => {
     dispatch(loadUserBookingThunk())
@@ -133,7 +133,7 @@ const UserBookings = () => {
                 </div>
 
                 <div className="individual-booking-right">
-                  {console.log(booking.Spot, "this is booking spot")}
+                  {/* {console.log(booking.Spot, "this is booking spot")} */}
                   <img className="booking-img" src={booking?.Spot?.previewImage} onError={(e) => e.target.src = 'https://imgur.com/WghnM0b.png'} />
                   <div className="booking-upcoming-days">{new moment().to(moment(booking?.startDate))}</div>
                 </div>
