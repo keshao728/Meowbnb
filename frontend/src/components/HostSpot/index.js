@@ -401,6 +401,7 @@ const HostSpot = () => {
   }
   const options = { types: ['address'] }
   const centerPoint = { lat: lat, lng: lng }
+  const markerPoint = { lat: lat - +15, lng: lng - +15 }
   const sanFran = { lat: 37.7749, lng: -122.4194 }
 
   const spotPage3 = () => {
@@ -594,8 +595,8 @@ const HostSpot = () => {
               <label>Country</label>
             </div>
           </div>
-          {console.log(lat, "LAT")}
-          {console.log(lng, "LNG")}
+          {/* {console.log(lat, "LAT")}
+          {console.log(lng, "LNG")} */}
           <div className="map-wrapper">
             <GoogleMap
               zoom={14}
@@ -606,7 +607,12 @@ const HostSpot = () => {
               }}
               mapContainerClassName="create-spot-pin-container"
             >
-              <Marker position={centerPoint} />
+              <Marker
+                position={centerPoint}
+                icon={{
+                  url: 'https://imgur.com/KSss7VS.png',
+                }}
+              />
             </GoogleMap>
           </div>
           <div className="step0-footer">
