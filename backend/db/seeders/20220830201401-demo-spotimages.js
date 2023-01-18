@@ -171,12 +171,12 @@ module.exports = {
       },
       {
         spotId: 14,
-        url: 'https://styles.redditmedia.com/t5_2r5i1/styles/communityIcon_x4lqmqzu1hi81.jpg',
+        url: 'https://imgur.com/t6FwCrH.jpg',
         preview: true
       },
       {
         spotId: 14,
-        url: 'https://styles.redditmedia.com/t5_2r5i1/styles/communityIcon_x4lqmqzu1hi81.jpg',
+        url: 'https://imgur.com/t6FwCrH.jpg',
         preview: true
       },
     ]);
