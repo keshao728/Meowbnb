@@ -14,10 +14,9 @@ const UserBookings = () => {
   const bookingsArr = Object.values(bookings)
   // console.log("this is bookingsArr", bookingsArr)
 
-  const sortedBookingArr = []
-  for (let i = bookingsArr.length - 1; i >= 0; i--) {
-    sortedBookingArr.push(bookingsArr[i])
-  }
+  const sortedBookingArr = bookingsArr.sort((a, b) => {
+    return new Date(a.startDate) - new Date(b.startDate);
+  });
 
   useEffect(() => {
     dispatch(loadUserBookingThunk())
