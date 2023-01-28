@@ -2,6 +2,8 @@ import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { NavLink } from "react-router-dom"
 import { getAllSpots } from "../../store/spots"
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 import './SpotBrowser.css'
 
 const SpotBrowser = () => {
@@ -12,15 +14,44 @@ const SpotBrowser = () => {
   // console.log("------------------------", state.spots)
   // console.log("ADDDDDD SPOTTTTTT", allSpots)
   const [filterSpot, setFilterSpot] = useState("")
-  // const [finalSpot, setFinalSpot] = useState([])
+  const [cardsLoading, setCardsLoading] = useState(0)
 
+  // let timeoutId;
   // useEffect(() => {
-  //   const filteredArr = allSpotsArr.filter(spot => spot.place.includes(filterSpot));
-  //   setFinalSpot(filteredArr)
-  // })
+  //   if (isLoaded) {
+  //     let timer = cardsLoading;
+  //     timeoutId = setTimeout(() => {
+  //       if (timer >= allSpotsArr.length) return;
+  //       setCardsLoading((c) => c + 1)
+  //       timer++;
+  //       timeoutId = setTimeout(() => {
+  //         timeoutId()
+  //       }, 100)
+  //     }, 50)
+  //     return () => clearTimeout(timeoutId)
+  //   }
+  // }, [cardsLoading, allSpotsArr])
 
-  // console.log("FILTERED PLACES", finalSpot)
+  let timeoutId;
+  useEffect(() => {
+    if (isLoaded) {
+      let timer = cardsLoading;
+      timeoutId = setTimeout(() => {
+        if (timer >= allSpotsArr.length) return;
+        setCardsLoading((c) => c + 1)
+        timer++;
+        timeoutId = setTimeout(() => {
+          timeoutId()
+        }, 100)
+      }, 50)
+      return () => clearTimeout(timeoutId)
+    }
+  }, [cardsLoading, allSpotsArr])
 
+
+  const [isLoaded, setIsLoaded] = useState(false)
+
+  setTimeout(() => setIsLoaded(true), 1000)
 
   useEffect(() => {
     dispatch(getAllSpots())
@@ -28,6 +59,25 @@ const SpotBrowser = () => {
 
   const filteredArr = allSpotsArr.filter(spot => spot.place.includes(filterSpot));
 
+
+  const cardSkeleton = (count) => {
+    return Array(count).fill(0).map((_, i) => (
+      <div key={i} style={{ zIndex: '-1' }} >
+        <SkeletonTheme baseColor="#D4D4D4" highlightColor="#EEEEEE" >
+          <div className="individual-spots">
+            <Skeleton className="spot-image" borderRadius={15} />
+            <div className="spot-info">
+              <div className="address-star">
+                <Skeleton className="address" width={120} />
+                <Skeleton className="spot-star" width={50} />
+              </div>
+              <Skeleton className="price" width={80} />
+            </div>
+          </div>
+        </SkeletonTheme>
+      </div>
+    ))
+  }
   // setFinalSpot(filteredArr)
   // console.log(filteredArr, "GODDAMIT")
   // console.log(allSpotsDisplay, "SHIBA")
@@ -93,7 +143,7 @@ const SpotBrowser = () => {
 
   let allSpotDetails;
   if (filteredArr.length > 0) {
-    allSpotDetails = filteredArr.map(spot => {
+    allSpotDetails = filteredArr.slice(0, cardsLoading).map(spot => {
       return (
         <div className="all-spot">
           <NavLink className="spots" to={`spots/${spot.id}`} onClick={() => window.scrollTo(0, 0)}>
@@ -106,6 +156,7 @@ const SpotBrowser = () => {
                   alt={spot.previewImage}
                 />
               </div>
+
               <div className="spot-info">
                 <div className="address-star">
                   <div className="address" key={spot.name}>{spot.city}, {spot.state}</div>
@@ -114,6 +165,7 @@ const SpotBrowser = () => {
                     &nbsp;
                     {spot.avgRating > 0 ? Number(spot.avgRating).toFixed(2) : 'New'}
                   </span>
+
                 </div>
                 <div className="price">
                   <strong>
@@ -129,7 +181,7 @@ const SpotBrowser = () => {
       )
     })
   } else if (filterSpot === "All") {
-    allSpotDetails = allSpotsArr.map(spot => {
+    allSpotDetails = allSpotsArr.slice(0, cardsLoading).map(spot => {
       return (
         <div className="all-spot">
           <NavLink className="spots" to={`spots/${spot.id}`} onClick={() => window.scrollTo(0, 0)}>
@@ -142,6 +194,7 @@ const SpotBrowser = () => {
                   alt={spot.previewImage}
                 />
               </div>
+
               <div className="spot-info">
                 <div className="address-star">
                   <div className="address" key={spot.name}>{spot.city}, {spot.state}</div>
@@ -279,6 +332,8 @@ const SpotBrowser = () => {
       </div>
       <div className={filterSpot === "All" ? "all-spot-display" : filteredArr.length > 0 ? "all-spot-display" : "no-spot-display"}>
         {allSpotDetails}
+        {cardSkeleton(allSpotsArr.length - cardsLoading)}
+
       </div>
       <div className="all-spot-footer-wrapper">
         <div className="all-spot-footer">
