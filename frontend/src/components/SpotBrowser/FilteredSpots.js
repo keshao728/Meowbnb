@@ -74,6 +74,23 @@ const SpotBrowser = () => {
   //   )
   // }
 
+  const nav = document.querySelector('.nav-wrapper-1');
+
+  console.log(nav)
+  window.addEventListener('scroll', () => {
+    if (nav) {
+      const top = window.scrollY > 20;
+      if (top) {
+        nav.style.borderBottom = '1px solid #ebebeb';
+        nav.style.boxShadow = '0 1px 2px rgba(0,0,0,0.1)';
+      } else {
+        nav.style.borderBottom = 'none';
+        nav.style.boxShadow = 'none';
+      }
+    }
+  });
+
+
   let allSpotDetails;
   if (filteredArr.length > 0) {
     allSpotDetails = filteredArr.map(spot => {

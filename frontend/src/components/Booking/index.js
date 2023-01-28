@@ -32,6 +32,9 @@ const UserBookings = () => {
     return new Date(booking.startDate) <= new Date();
   });
 
+
+  // pastBookings.push(sortedBookingArr[0])
+  // pastBookings.push(sortedBookingArr[0])
   const upcomingBookings = sortedBookingArr.filter(booking => {
     return new Date(booking.startDate) > new Date();
   });
