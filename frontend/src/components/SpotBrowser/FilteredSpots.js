@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useRef, useMemo } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { NavLink } from "react-router-dom"
 import { getAllSpots } from "../../store/spots"
@@ -20,45 +20,76 @@ const SpotBrowser = () => {
 
   useEffect(() => {
     dispatch(getAllSpots())
-  }, [dispatch])
+  }, [])
 
 
 
   //SKELETON CARD LOADING EFFECT
-  // useEffect(() => {
-  //   let timeoutId;
-  //   if (isLoaded) {
-  //     let timer = cardsLoading;
-  //     timeoutId = setTimeout(() => {
-  //       if (timer >= allSpotsArr.length) return;
-  //       setCardsLoading((c) => c + 1)
-  //       timer++;
-  //       timeoutId = setTimeout(() => {
-  //         timeoutId()
-  //       }, 100)
-  //     }, 50)
-  //     return () => clearTimeout(timeoutId)
-  //   }
-  // }, [cardsLoading, allSpotsArr, isLoaded])
+  const timerRef = useRef(cardsLoading);
+  const memoAllSpotsArr = useMemo(() => allSpotsArr, [allSpotsArr]);
+
+
 
   useEffect(() => {
-    if (isLoaded && cardsLoading < allSpotsArr.length) {
-      setTimeout(() => {
-        setCardsLoading((c) => c + 1)
-      }, 50)
+    if (isLoaded && filteredArr) {
+      let timeoutId;
+      timeoutId = setTimeout(() => {
+        console.log("HELLO")
+        if (cardsLoading >= memoAllSpotsArr.length) return;
+        setCardsLoading(cardsLoading + 1);
+      }, 60);
+      return () => clearTimeout(timeoutId);
     }
-  }, [cardsLoading, allSpotsArr, isLoaded])
+  }, [memoAllSpotsArr]);
 
   setTimeout(() => setIsLoaded(true), 350)
 
-  let arrLength
-  useEffect(() => {
-    arrLength = allSpotsArr?.length - cardsLoading
-  })
+
+  // useEffect(() => {
+  // if (isLoaded) {
+  //   let timeoutId;
+  //   timerRef.current = cardsLoading;
+  //   timeoutId = setTimeout(() => {
+  //     if (timerRef.current >= memoAllSpotsArr.length) return;
+  //     setCardsLoading((c) => c + 1)
+  //     timerRef.current++;
+  //     timeoutId = setTimeout(() => {
+  //       timeoutId()
+  //     }, 100)
+  //   }, 60)
+  //   return () => clearInterval(timeoutId)
+  // }
+  // }, [cardsLoading, isLoaded, memoAllSpotsArr])
+
+
+  // useEffect(() => {
+  //   if (isLoaded) {
+  //     timeoutId = setTimeout(() => {
+  //       if (timer >= allSpotsArr.length) return;
+  //       setCardsLoading((c) => c + 1);
+  //       timer++;
+  //       timeoutId = setTimeout(() => {
+  //         clearTimeout(timeoutId);
+  //       }, 100);
+  //     }, 50)
+
+  //     return () => clearTimeout(timeoutId);
+  //   }
+  // }, [cardsLoading, allSpotsArr, isLoaded]);
+
+  // useEffect(() => {
+  //   if (isLoaded && cardsLoading < allSpotsArr.length) {
+  //     setTimeout(() => {
+  //       setCardsLoading((c) => c + 1)
+  //     }, 50)
+  //   }
+  // }, [cardsLoading, allSpotsArr, isLoaded])
+
+
 
   //SKELETON CARDS
   const cardSkeleton = (count) => {
-    return Array(count)?.fill(0)?.map((_, i) => (
+    return Array(count).fill(0).map((_, i) => (
       <div key={i} style={{ zIndex: '-1' }} >
         <SkeletonTheme baseColor="#DEDEDE" highlightColor="#EEEEEE" >
           <div className="individual-spots">
@@ -75,12 +106,6 @@ const SpotBrowser = () => {
       </div>
     ))
   }
-
-  // let arrLength
-  // useEffect(() => {
-  //   arrLength = allSpotsArr?.length - cardsLoading
-  // })
-
 
   //NAVBAR ON SCROLL
   const nav = document.querySelector('.nav-wrapper-1');
@@ -103,7 +128,7 @@ const SpotBrowser = () => {
   if (filteredArr.length > 0) {
     allSpotDetails = filteredArr.slice(0, cardsLoading).map(spot => {
       return (
-        <div className="all-spot">
+        <div key={spot.id} className="all-spot">
           <NavLink className="spots" to={`spots/${spot.id}`} onClick={() => window.scrollTo(0, 0)}>
             <div className="individual-spots">
               <div>
@@ -141,7 +166,7 @@ const SpotBrowser = () => {
   } else if (filterSpot === "All") {
     allSpotDetails = allSpotsArr.slice(0, cardsLoading).map(spot => {
       return (
-        <div className="all-spot">
+        <div key={spot.id} className="all-spot">
           <NavLink className="spots" to={`spots/${spot.id}`} onClick={() => window.scrollTo(0, 0)}>
             <div className="individual-spots">
               <div>
@@ -178,15 +203,13 @@ const SpotBrowser = () => {
   } else {
     allSpotDetails = (
       <div>
-        {isLoaded ?
-          <div className="nav-no-spot">
-            <img
-              className="nav-no-spot-img"
-              alt="no-spot-meow"
-              src="https://drive.google.com/uc?export=view&id=1j_TgRhozzklKVuQfq1OVo3eBRXGPai3K" title="Meowbnb logo" />
-            <h4 className="no-spot"> No listing yet.. </h4>
-          </div>
-          : null}
+        <div className="nav-no-spot">
+          <img
+            className="nav-no-spot-img"
+            alt="no-spot-meow"
+            src="https://drive.google.com/uc?export=view&id=1j_TgRhozzklKVuQfq1OVo3eBRXGPai3K" title="Meowbnb logo" />
+          <h4 className="no-spot"> No listing yet.. </h4>
+        </div>
       </div>
     )
   }
@@ -294,7 +317,7 @@ const SpotBrowser = () => {
       </div>
       <div className={filterSpot === "All" ? "all-spot-display" : filteredArr.length > 0 ? "all-spot-display" : "no-spot-display"}>
         {isLoaded && allSpotDetails}
-        {isLoaded && cardSkeleton(allSpotsArr?.length - cardsLoading)}
+        {isLoaded && cardSkeleton(allSpotsArr.length - cardsLoading)}
       </div>
       <div className="all-spot-footer-wrapper">
         <div className="all-spot-footer">
