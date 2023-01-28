@@ -16,6 +16,10 @@ const UserReviews = () => {
 
   const existingReviewArr = Object.values(existingReviews)
 
+  const sortedReview = existingReviewArr?.sort((a, b) => {
+    return new Date(b.createdAt) - new Date(a.createdAt)
+  })
+
 
   useEffect(() => {
     dispatch(userReviewsThunk())
@@ -44,7 +48,7 @@ const UserReviews = () => {
           {existingReviewArr < 1 && <h4 className="no-review"> No Reviews yet.. </h4>}
         </div>
         <div className="all-owned-review-wrapper">
-          {existingReviewArr?.map((review) => (
+          {sortedReview?.map((review) => (
             <div className="all-owned-review">
               <div className="all-owned-review-container">
                 <NavLink className="user-review" to={`/spots/${review?.Spot?.id}`}>

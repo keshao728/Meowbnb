@@ -22,6 +22,7 @@ const UserBookings = () => {
     return new Date(b.startDate) - new Date(a.startDate);
   });
 
+
   useEffect(() => {
     dispatch(loadUserBookingThunk())
       .then(() => setIsLoaded(true))
@@ -221,8 +222,26 @@ const UserBookings = () => {
                     </div>
                   </div>
                 </NavLink>
+
+
               ))}
             </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
           </div>
         </div>
       </div>
