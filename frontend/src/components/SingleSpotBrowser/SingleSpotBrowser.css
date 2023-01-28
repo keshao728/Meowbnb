@@ -127,11 +127,6 @@
   font-size: 15px;
 }
 
-.user-review-date {
-  font-size: 12px;
-  margin-bottom: 8px;
-}
-
 .spot-price {
   display: flex;
   align-items: center;
@@ -175,7 +170,6 @@
   flex-direction: column;
   width: 100%;
   align-content: flex-start;
-  /* justify-items: end; */
 }
 
 .user-profile-pic {
@@ -195,12 +189,15 @@
 .review-username {
   margin-top: 1px;
   margin-left: 10px;
+  font-size: 15px;
 }
 
 .user-review-date {
-  margin-top: 1px;
+  margin-top: 2px;
   margin-left: 10px;
-  font-size: 12px;
+  font-size: 14px;
+  color: gray;
+  margin-bottom: 8px;
 }
 
 .review-message {
@@ -740,7 +737,8 @@
 .spot-address-1 {
   margin-bottom: 20px;
 }
-.spot-top-super{
+
+.spot-top-super {
   display: flex;
   flex-direction: row;
   align-items: center;
