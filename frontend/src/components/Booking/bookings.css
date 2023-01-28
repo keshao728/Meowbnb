@@ -46,8 +46,10 @@
 }
 
 .past-booking-individual-wrap {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, 350px);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: space-between;
 }
 
 
