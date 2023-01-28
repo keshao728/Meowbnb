@@ -23,28 +23,42 @@ const SpotBrowser = () => {
   }, [dispatch])
 
 
+
   //SKELETON CARD LOADING EFFECT
+  // useEffect(() => {
+  //   let timeoutId;
+  //   if (isLoaded) {
+  //     let timer = cardsLoading;
+  //     timeoutId = setTimeout(() => {
+  //       if (timer >= allSpotsArr.length) return;
+  //       setCardsLoading((c) => c + 1)
+  //       timer++;
+  //       timeoutId = setTimeout(() => {
+  //         timeoutId()
+  //       }, 100)
+  //     }, 50)
+  //     return () => clearTimeout(timeoutId)
+  //   }
+  // }, [cardsLoading, allSpotsArr, isLoaded])
+
   useEffect(() => {
-    let timeoutId;
-    if (isLoaded) {
-      let timer = cardsLoading;
-      timeoutId = setTimeout(() => {
-        if (timer >= allSpotsArr.length) return;
+    if (isLoaded && cardsLoading < allSpotsArr.length) {
+      setTimeout(() => {
         setCardsLoading((c) => c + 1)
-        timer++;
-        timeoutId = setTimeout(() => {
-          timeoutId()
-        }, 100)
       }, 50)
-      return () => clearTimeout(timeoutId)
     }
   }, [cardsLoading, allSpotsArr, isLoaded])
 
-  setTimeout(() => setIsLoaded(true), 1000)
+  setTimeout(() => setIsLoaded(true), 350)
+
+  let arrLength
+  useEffect(() => {
+    arrLength = allSpotsArr?.length - cardsLoading
+  })
 
   //SKELETON CARDS
   const cardSkeleton = (count) => {
-    return Array(count).fill(0).map((_, i) => (
+    return Array(count)?.fill(0)?.map((_, i) => (
       <div key={i} style={{ zIndex: '-1' }} >
         <SkeletonTheme baseColor="#DEDEDE" highlightColor="#EEEEEE" >
           <div className="individual-spots">
@@ -61,6 +75,12 @@ const SpotBrowser = () => {
       </div>
     ))
   }
+
+  // let arrLength
+  // useEffect(() => {
+  //   arrLength = allSpotsArr?.length - cardsLoading
+  // })
+
 
   //NAVBAR ON SCROLL
   const nav = document.querySelector('.nav-wrapper-1');
@@ -158,7 +178,7 @@ const SpotBrowser = () => {
   } else {
     allSpotDetails = (
       <div>
-        {isLoaded &&
+        {isLoaded ?
           <div className="nav-no-spot">
             <img
               className="nav-no-spot-img"
@@ -166,7 +186,7 @@ const SpotBrowser = () => {
               src="https://drive.google.com/uc?export=view&id=1j_TgRhozzklKVuQfq1OVo3eBRXGPai3K" title="Meowbnb logo" />
             <h4 className="no-spot"> No listing yet.. </h4>
           </div>
-        }
+          : null}
       </div>
     )
   }
@@ -274,7 +294,7 @@ const SpotBrowser = () => {
       </div>
       <div className={filterSpot === "All" ? "all-spot-display" : filteredArr.length > 0 ? "all-spot-display" : "no-spot-display"}>
         {isLoaded && allSpotDetails}
-        {isLoaded && cardSkeleton(allSpotsArr.length - cardsLoading)}
+        {isLoaded && cardSkeleton(allSpotsArr?.length - cardsLoading)}
       </div>
       <div className="all-spot-footer-wrapper">
         <div className="all-spot-footer">
