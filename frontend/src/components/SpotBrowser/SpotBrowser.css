@@ -24,15 +24,18 @@
   overflow: hidden;
   position: relative;
   border-radius: 15px;
-
+  /* z-index: 1; */
 }
+
 
 .spots {
   text-decoration: none;
   color: inherit;
   width: 270px;
   /* z-index: 0; */
+  /* color: #cccccc; */
 }
+
 
 .address-star {
   display: flex;
