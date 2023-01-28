@@ -18,15 +18,18 @@ const UserBookings = () => {
     return new Date(a.startDate) - new Date(b.startDate);
   });
 
+  const sortedPastBookingArr = bookingsArr.sort((a, b) => {
+    return new Date(b.startDate) - new Date(a.startDate);
+  });
+
   useEffect(() => {
     dispatch(loadUserBookingThunk())
       .then(() => setIsLoaded(true))
   }, [dispatch])
 
-  const pastBookings = sortedBookingArr.filter(booking => {
+  const pastBookings = sortedPastBookingArr.filter(booking => {
     return new Date(booking.startDate) <= new Date();
   });
-
 
   const upcomingBookings = sortedBookingArr.filter(booking => {
     return new Date(booking.startDate) > new Date();
