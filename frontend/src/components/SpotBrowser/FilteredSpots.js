@@ -49,12 +49,12 @@ const SpotBrowser = () => {
         <SkeletonTheme baseColor="#DEDEDE" highlightColor="#EEEEEE" >
           <div className="individual-spots">
             <Skeleton className="spot-image" borderRadius={15} />
-            <div className="spot-info">
-              <div className="address-star">
+            <div>
+              <div className="address-star1">
                 <Skeleton className="address" width={120} />
                 <Skeleton className="spot-star" width={50} />
               </div>
-              <Skeleton className="price" width={80} />
+              <Skeleton width={80} />
             </div>
           </div>
         </SkeletonTheme>
@@ -184,88 +184,88 @@ const SpotBrowser = () => {
           </div>
 
           <div className={filterSpot === "Play zone" ? "nav-individual-place nav-clicked " : 'nav-individual-place'} onClick={() => setFilterSpot("Play zone")}>
-            <img className="nav-place-img" src="https://imgur.com/bboPy36.png" alt="nav filter"/>
+            <img className="nav-place-img" src="https://imgur.com/bboPy36.png" alt="nav filter" />
             <div>Play zone</div>
             <div className="nav-place-underline"></div>
           </div>
 
           <div className={filterSpot === "Sleep-only" ? "nav-individual-place nav-clicked " : 'nav-individual-place'} onClick={() => setFilterSpot("Sleep-only")}>
-            <img className="nav-place-img" src="https://imgur.com/hpmirKZ.png" alt="nav filter"/>
+            <img className="nav-place-img" src="https://imgur.com/hpmirKZ.png" alt="nav filter" />
             <div>Sleep-only</div>
             <div className="nav-place-underline"></div>
           </div>
 
           <div className={filterSpot === "Tree" ? "nav-individual-place nav-clicked " : 'nav-individual-place'} onClick={() => setFilterSpot("Tree")}>
-            <img className="nav-place-img" src="https://imgur.com/xgffVdE.png" alt="nav filter"/>
+            <img className="nav-place-img" src="https://imgur.com/xgffVdE.png" alt="nav filter" />
             <div>Tree </div>
             <div className="nav-place-underline"></div>
           </div>
 
           <div className={filterSpot === "Box" ? "nav-individual-place nav-clicked " : 'nav-individual-place'} onClick={() => setFilterSpot("Box")}>
-            <img className="nav-place-img" src="https://imgur.com/7oxOZy7.png" alt="nav filter"/>
+            <img className="nav-place-img" src="https://imgur.com/7oxOZy7.png" alt="nav filter" />
             <div>Box</div>
             <div className="nav-place-underline"></div>
           </div>
 
 
           <div className={filterSpot === "No human" ? "nav-individual-place nav-clicked " : 'nav-individual-place'} onClick={() => setFilterSpot("No human")}>
-            <img className="nav-place-img" src="https://imgur.com/cIIP3LF.png" alt="nav filter"/>
+            <img className="nav-place-img" src="https://imgur.com/cIIP3LF.png" alt="nav filter" />
             <div>No human</div>
             <div className="nav-place-underline"></div>
           </div>
 
           <div className={filterSpot === "Furball" ? "nav-individual-place nav-clicked " : 'nav-individual-place'} onClick={() => setFilterSpot("Furball")}>
-            <img className="nav-place-img" src="https://imgur.com/B2UcvKy.png" alt="nav filter"/>
+            <img className="nav-place-img" src="https://imgur.com/B2UcvKy.png" alt="nav filter" />
             <div>Furball</div>
             <div className="nav-place-underline"></div>
           </div>
 
 
           <div className={filterSpot === "Catnip" ? "nav-individual-place nav-clicked " : 'nav-individual-place'} onClick={() => setFilterSpot("Catnip")}>
-            <img className="nav-place-img" src="https://imgur.com/u6LVB8Y.png" alt="nav filter"/>
+            <img className="nav-place-img" src="https://imgur.com/u6LVB8Y.png" alt="nav filter" />
             <div>Catnip</div>
             <div className="nav-place-underline"></div>
           </div>
 
 
           <div className={filterSpot === "Shared" ? "nav-individual-place nav-clicked " : 'nav-individual-place'} onClick={() => setFilterSpot("Shared")}>
-            <img className="nav-place-img" src="https://imgur.com/atditdJ.png" alt="nav filter"/>
+            <img className="nav-place-img" src="https://imgur.com/atditdJ.png" alt="nav filter" />
             <div>Shared</div>
             <div className="nav-place-underline"></div>
           </div>
 
           <div className={filterSpot === "Petting home" ? "nav-individual-place nav-clicked " : 'nav-individual-place'} onClick={() => setFilterSpot("Petting home")}>
-            <img className="nav-place-img" src="https://imgur.com/XIsDXKA.png" alt="nav filter"/>
+            <img className="nav-place-img" src="https://imgur.com/XIsDXKA.png" alt="nav filter" />
             <div>Petting home</div>
             <div className="nav-place-underline"></div>
           </div>
 
           <div className={filterSpot === "Nature" ? "nav-individual-place nav-clicked " : 'nav-individual-place'} onClick={() => setFilterSpot("Nature")}>
-            <img className="nav-place-img" src="https://imgur.com/SGK10E3.png" alt="nav filter"/>
+            <img className="nav-place-img" src="https://imgur.com/SGK10E3.png" alt="nav filter" />
             <div>Nature</div>
             <div className="nav-place-underline"></div>
           </div>
 
           <div className={filterSpot === "No-meows-land" ? "nav-individual-place nav-clicked " : 'nav-individual-place'} onClick={() => setFilterSpot("No-meows-land")}>
-            <img className="nav-place-img" src="https://imgur.com/uQOxjcy.png" alt="nav filter"/>
+            <img className="nav-place-img" src="https://imgur.com/uQOxjcy.png" alt="nav filter" />
             <div>No-meows-land</div>
             <div className="nav-place-underline"></div>
           </div>
 
           <div className={filterSpot === "Snacks" ? "nav-individual-place nav-clicked " : 'nav-individual-place'} onClick={() => setFilterSpot("Snacks")}>
-            <img className="nav-place-img" src="https://imgur.com/UQ1veNy.png" alt="nav filter"/>
+            <img className="nav-place-img" src="https://imgur.com/UQ1veNy.png" alt="nav filter" />
             <div>Snacks</div>
             <div className="nav-place-underline"></div>
           </div>
 
           <div className={filterSpot === "Evil" ? "nav-individual-place nav-clicked " : 'nav-individual-place'} onClick={() => setFilterSpot("Evil")}>
-            <img className="nav-place-img" src="https://imgur.com/f0dNDBx.png" alt="nav filter"/>
+            <img className="nav-place-img" src="https://imgur.com/f0dNDBx.png" alt="nav filter" />
             <div>Evil</div>
             <div className="nav-place-underline"></div>
           </div>
 
           <div className={filterSpot === "Others" ? "nav-individual-place nav-clicked " : 'nav-individual-place'} onClick={() => setFilterSpot("Others")}>
-            <img className="nav-place-img" src="https://imgur.com/zgtELKc.png" alt="nav filter"/>
+            <img className="nav-place-img" src="https://imgur.com/zgtELKc.png" alt="nav filter" />
             <div>Others</div>
             <div className="nav-place-underline"></div>
           </div>
@@ -273,8 +273,8 @@ const SpotBrowser = () => {
         </div>
       </div>
       <div className={filterSpot === "All" ? "all-spot-display" : filteredArr.length > 0 ? "all-spot-display" : "no-spot-display"}>
-        {allSpotDetails}
-        {cardSkeleton(allSpotsArr.length - cardsLoading)}
+        {isLoaded && allSpotDetails}
+        {isLoaded && cardSkeleton(allSpotsArr.length - cardsLoading)}
       </div>
       <div className="all-spot-footer-wrapper">
         <div className="all-spot-footer">
