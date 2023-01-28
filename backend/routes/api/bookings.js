@@ -65,8 +65,6 @@ router.get('/current', requireAuth, async (req, res, next) => {
 
   for (let j = 0; j < bookings.length; j++) {
     holder = bookings[j].toJSON()
-    // console.log(holder, "WAKUBHDKB")
-    // console.log(bookings[j].spotId, "WHAT IS THIS")
     let imageUrl = await SpotImage.findOne({
       where:
       {
@@ -75,10 +73,8 @@ router.get('/current', requireAuth, async (req, res, next) => {
       },
       attributes: ['url']
     })
-    // console.log(bookings[j], "WHAT IS THIS IMAGE URL")
     holder.Spot.previewImage = imageUrl.url
     result.push(holder)
-    console.log(result, "RESULT")
   }
   res.json({ Bookings: result });
 })

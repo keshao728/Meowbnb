@@ -1,10 +1,10 @@
-import { useEffect, useState, useRef, useMemo } from "react"
+import { useEffect, useState, useRef } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { NavLink, useParams, useHistory } from "react-router-dom"
 
 import { getOneSpot } from "../../store/spots"
 import { locationReviewsThunk } from "../../store/reviews"
-import { addBookingThunk, loadAllBookingThunk, loadUserBookingThunk } from "../../store/bookings"
+import { addBookingThunk, loadAllBookingThunk } from "../../store/bookings"
 
 import MeowCoverModal from "./MeowCoverModal"
 import BookingLoginModal from "./RedirectModal"
@@ -12,7 +12,7 @@ import ReviewFormModal from "../ReviewSpot/ReviewModal"
 
 import { MapStyle } from "../HostSpot/MapStyle"
 
-import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api"
+import { GoogleMap, Marker } from "@react-google-maps/api"
 import { DateRange } from 'react-date-range'
 import { addDays } from 'date-fns'
 import * as moment from 'moment';
@@ -79,7 +79,7 @@ const SingleSpotBrowser = () => {
   const currSpot = useSelector(state => state.spots.singleSpot)
   const lat = currSpot?.lat
   const lng = currSpot?.lng
-  const center = { lat: lat, lng: lng }
+  const center = { lat: lat ? lat : 37.7749, lng: lng ? lng : -122.4194 }
 
   //AMENITIES
   const amenities = currSpot.amenities
@@ -392,7 +392,7 @@ const SingleSpotBrowser = () => {
                 }
                 <div className="spot-top-super">
                   ·&nbsp;&nbsp;
-                  <img src="https://imgur.com/227Uv81.png" />
+                  <img src="https://imgur.com/227Uv81.png" alt="spot" />
                   <div>Superhost </div>
                   &nbsp;&nbsp;
                 </div>
@@ -466,7 +466,7 @@ const SingleSpotBrowser = () => {
                 {/* <div className="check-in-super"> */}
                 <div className="self-check-in">
                   {/* <i className="fa-solid fa-door-open"></i> */}
-                  <img className="check-in-img" src="https://imgur.com/Y8A5rKd.png" />
+                  <img className="check-in-img" src="https://imgur.com/Y8A5rKd.png" alt="spot" />
                   <div className="check-in">
                     <strong> Self check-in </strong>
                     <div className="check-in-des">
@@ -477,7 +477,7 @@ const SingleSpotBrowser = () => {
 
                 <div className="self-check-in" id="super">
                   {/* <i class="fa-regular fa-id-badge"></i> */}
-                  <img className="check-in-img" src="https://imgur.com/5gPJvEp.png" />
+                  <img className="check-in-img" src="https://imgur.com/5gPJvEp.png" alt="spot" />
                   <div className="superhost">
                     <strong> {currSpot?.Owner?.firstName} is a Superhost </strong>
                     <div className="check-in-des"> Superhosts are experienced, highly rated hosts who are committed to providing great stays for guests.</div>
@@ -486,7 +486,7 @@ const SingleSpotBrowser = () => {
                 {/* </div> */}
 
                 <div className="aircover-parent">
-                  <img className="aircover-pic" src="https://imgur.com/0SJuCdh.png" />
+                  <img className="aircover-pic" src="https://imgur.com/0SJuCdh.png" alt="spot" />
                   {/* <img className="aircover-pic" src="https://a0.muscache.com/im/pictures/54e427bb-9cb7-4a81-94cf-78f19156faad.jpg" /> */}
                   <div className="aircover-des">Every booking includes free protection from Host cancellations, listing inaccuracies, and other issues like trouble checking in.</div>
                   <div className="aircover-modal"><MeowCoverModal /></div>
@@ -504,49 +504,49 @@ const SingleSpotBrowser = () => {
                     <div className="individual-amenities-wrapper">
                       {amenities.includes('Wifi') &&
                         <div className="individual-amenities-container">
-                          <img className="individual-amenities-img" src="https://imgur.com/fHVWE9K.png" />
+                          <img className="individual-amenities-img" src="https://imgur.com/fHVWE9K.png" alt="spot" />
                           <div className="individual-amenities-title">Wifi</div>
                         </div>
                       }
                       {amenities.includes('TV') &&
                         <div className="individual-amenities-container">
-                          <img className="individual-amenities-img" src="https://imgur.com/csXC3RL.png" />
+                          <img className="individual-amenities-img" src="https://imgur.com/csXC3RL.png" alt="spot" />
                           <div className="individual-amenities-title">TV</div>
                         </div>
                       }
                       {amenities.includes('Kitchen') &&
                         <div className="individual-amenities-container">
-                          <img className="individual-amenities-img" src="https://imgur.com/uwD4CGY.png" />
+                          <img className="individual-amenities-img" src="https://imgur.com/uwD4CGY.png" alt="spot" />
                           <div className="individual-amenities-title">Kitchen</div>
                         </div>
                       }
                       {amenities.includes('Washer') &&
                         <div className="individual-amenities-container">
-                          <img className="individual-amenities-img" src="https://imgur.com/Xluxljd.png" />
+                          <img className="individual-amenities-img" src="https://imgur.com/Xluxljd.png" alt="spot" />
                           <div className="individual-amenities-title">Washer</div>
                         </div>
                       }
                       {amenities.includes('Free parking on premises') &&
                         <div className="individual-amenities-container">
-                          <img className="individual-amenities-img" src="https://imgur.com/z2lA5yX.png" />
+                          <img className="individual-amenities-img" src="https://imgur.com/z2lA5yX.png" alt="spot" />
                           <div className="individual-amenities-title">Free parking on premises</div>
                         </div>
                       }
                       {amenities.includes('Paid parking on premises') &&
                         <div className="individual-amenities-container">
-                          <img className="individual-amenities-img" src="https://imgur.com/nARtwQZ.png" />
+                          <img className="individual-amenities-img" src="https://imgur.com/nARtwQZ.png" alt="spot" />
                           <div className="individual-amenities-title">Paid parking on premises</div>
                         </div>
                       }
                       {amenities.includes('Air conditioning') &&
                         <div className="individual-amenities-container">
-                          <img className="individual-amenities-img" src="https://imgur.com/cHR1Rxx.png" />
+                          <img className="individual-amenities-img" src="https://imgur.com/cHR1Rxx.png" alt="spot" />
                           <div className="individual-amenities-title">Air conditioning</div>
                         </div>
                       }
                       {amenities.includes('Dedicated workspace') &&
                         <div className="individual-amenities-container">
-                          <img className="individual-amenities-img" src="https://imgur.com/7iFsb5g.png" />
+                          <img className="individual-amenities-img" src="https://imgur.com/7iFsb5g.png" alt="spot" />
                           <div className="individual-amenities-title">Dedicated workspace</div>
                         </div>
                       }

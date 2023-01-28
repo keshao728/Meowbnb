@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { NavLink, Redirect, useParams } from "react-router-dom"
+import { NavLink, Redirect } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux"
 import { userReviewsThunk, deleteReview } from "../../store/reviews"
 import * as moment from 'moment';
@@ -9,7 +9,7 @@ import "./UserReview.css"
 const UserReviews = () => {
   const dispatch = useDispatch()
   const [isLoaded, setIsLoaded] = useState(false)
-  // const {Id} = useParams()
+
   const sessionUser = useSelector(state => state.session.user)
 
   const existingReviews = useSelector(state => state.reviews.user)
@@ -19,7 +19,6 @@ const UserReviews = () => {
   const sortedReview = existingReviewArr?.sort((a, b) => {
     return new Date(b.createdAt) - new Date(a.createdAt)
   })
-
 
   useEffect(() => {
     dispatch(userReviewsThunk())
@@ -31,7 +30,7 @@ const UserReviews = () => {
     return <Redirect to='/' />
   }
 
-  return (
+  return isLoaded && (
     <div className="user-review-mother">
       <div className="message-review-mother">
         <div className="message-review-container">
@@ -60,9 +59,6 @@ const UserReviews = () => {
                           <div className="user-address-star" key={review?.Spot?.name}> {review?.Spot?.city},
                             {review?.Spot?.state}</div>
                         </div>
-
-
-
                       </div>
 
                       <div className="user-review-right">

@@ -171,7 +171,7 @@ function Navigation({ isLoaded }) {
                 return (
                   <a className="data-item" href={`/spots/${value.id}`}>
                     <div className='individual-city'>
-                      <img className="data-image" src={value.previewImage} />
+                      <img className="data-image" src={value.previewImage} alt="host spot"/>
                       <div>
                         <div> {value.name} </div>
                         <div className='data-city-state'> at {value.city} {value.state}</div>

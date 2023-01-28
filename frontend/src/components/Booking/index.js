@@ -12,33 +12,26 @@ const UserBookings = () => {
   const sessionUser = useSelector(state => state.session.user)
   const bookings = useSelector(state => state.bookings.user)
   const bookingsArr = Object.values(bookings)
-  // console.log("this is bookingsArr", bookingsArr)
-
-  const sortedBookingArr = bookingsArr.sort((a, b) => {
-    return new Date(a.startDate) - new Date(b.startDate);
-  });
-
-  // const idk = sortedBookingArr.reverse()
-
-  const sortedPastBookingArr = bookingsArr.sort((a, b) => {
-    return new Date(b.startDate) - new Date(a.startDate);
-  });
 
   useEffect(() => {
     dispatch(loadUserBookingThunk())
       .then(() => setIsLoaded(true))
   }, [dispatch])
 
+  const sortedPastBookingArr = bookingsArr.sort((a, b) => {
+    return new Date(b.startDate) - new Date(a.startDate);
+  });
   const pastBookings = sortedPastBookingArr.filter(booking => {
     return new Date(booking.startDate) <= new Date();
   });
 
+  const sortedBookingArr = bookingsArr.sort((a, b) => {
+    return new Date(a.startDate) - new Date(b.startDate);
+  });
 
-  // pastBookings.push(sortedBookingArr[0])
-  // pastBookings.push(sortedBookingArr[0])
   const upcomingBookings = sortedBookingArr.filter(booking => {
     return new Date(booking.startDate) > new Date();
-  }).reverse();
+  });
 
 
   if (!sessionUser) {
@@ -53,7 +46,7 @@ const UserBookings = () => {
           <div className="user-booking-des">Upcoming reservations</div> :
           <div className="no-booking-wrapper">
             <div className="no-booking-left">
-              <img className="no-booking-wave" src="https://imgur.com/qBkxBRR.png" />
+              <img className="no-booking-wave" src="https://imgur.com/qBkxBRR.png" alt="no booking" />
               <div className="no-booking-texts">
                 <div className="no-booking-title">
                   No trips booked...yet!
@@ -65,7 +58,7 @@ const UserBookings = () => {
               </NavLink>
             </div>
             <div className="no-booking-right">
-              <img className="no-booking-img" src="https://imgur.com/gIMSpLk.png" />
+              <img className="no-booking-img" src="https://imgur.com/gIMSpLk.png" alt="no booking" />
             </div>
           </div>
         }
@@ -153,7 +146,7 @@ const UserBookings = () => {
 
                 <div className="individual-booking-right">
                   {/* {console.log(booking.Spot, "this is booking spot")} */}
-                  <img className="booking-img" src={booking?.Spot?.previewImage} onError={(e) => e.target.src = 'https://imgur.com/WghnM0b.png'} />
+                  <img className="booking-img" alt="preview" src={booking?.Spot?.previewImage} onError={(e) => e.target.src = 'https://imgur.com/WghnM0b.png'} />
                   <div className="booking-upcoming-days">{new moment().to(moment(booking?.startDate))}</div>
                 </div>
 
@@ -173,7 +166,7 @@ const UserBookings = () => {
             <div className="past-booking-individual-wrap">
               {pastBookings?.map((booking) => (
                 <NavLink to={`/spots/${booking.spotId}`} className="past-booking-link">
-                  <img className="past-booking-img" src={booking.Spot.previewImage} />
+                  <img className="past-booking-img" src={booking.Spot.previewImage} alt="preview" />
                   <div className="past-booking-info">
                     <div className="past-booking-name-city">
                       <div className="past-booking-name">{booking.Spot.name}</div>

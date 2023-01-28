@@ -1,23 +1,19 @@
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { useHistory, Redirect, useParams } from "react-router-dom"
+import { Redirect, useParams } from "react-router-dom"
 import { addReview, locationReviewsThunk } from "../../store/reviews"
 import { getOneSpot } from "../../store/spots"
 import "./ReviewSpot.css"
 
 const ReviewSpot = ({ setShowModal }) => {
   const dispatch = useDispatch()
-  const history = useHistory()
   const { spotId } = useParams()
   const sessionUser = useSelector(state => state.session.user)
-  // const spot = useSelector(state => state.spots.singleSpot)
   const currSpot = useSelector(state => state.spots.singleSpot)
 
-  // console.log("currSpot", currSpot)
   const [review, setReview] = useState('')
   const [stars, setStars] = useState(0)
   const [hover, setHover] = useState(0)
-  // const [selectStar, setSelectStar] = useState(4)
 
   const [validationErrors, setValidationErrors] = useState([])
   const [showErrors, setShowErrors] = useState(false)
@@ -29,7 +25,7 @@ const ReviewSpot = ({ setShowModal }) => {
     if (!stars || !Number(stars)) errors.push("Please enter a valid rating between 1 to 5 stars")
 
     setValidationErrors(errors)
-  }, [review])
+  }, [review, stars])
 
 
   const handleSubmit = async (e) => {
@@ -117,22 +113,8 @@ const ReviewSpot = ({ setShowModal }) => {
             // required
             />
           </div>
-
-          {/* <div className='star-rating'>
-            <label className="stars-box">
-              ★&nbsp;<input
-                type='number'
-                min='1' max='5'
-                step="1"
-                placeholder='stars'
-                value={stars}
-                onChange={e => setStars(e.target.value)}>
-              </input>
-            </label>
-          </div> */}
-        <button className="button-create-review" type="submit"> Add Review</button>
+          <button className="button-create-review" type="submit"> Add Review</button>
         </div>
-        {/* <button type="button" className="button-create-spot" onClick={handleCancel}>Cancel</button> */}
       </form>
     </div>
   )

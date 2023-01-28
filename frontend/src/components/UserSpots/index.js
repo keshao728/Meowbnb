@@ -1,36 +1,20 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { useParams } from "react-router-dom"
 import { getCurrentSpots, deleteSpot } from "../../store/spots"
-// import { loadUserBookingThunk } from "../../store/bookings"
 import UpdateSpotModal from "../UpdateSpot/UpdateSpotModal"
-import { locationReviewsThunk, resetData } from "../../store/reviews"
+import { resetData } from "../../store/reviews"
 import { NavLink, Redirect } from "react-router-dom"
 import * as moment from 'moment';
 import "./UserSpots.css"
 
 const UserSpots = () => {
   const dispatch = useDispatch()
+  const [id, setId] = useState()
+
   const allSpots = useSelector(state => state.spots.allSpots)
   const allSpotsArr = Object.values(allSpots)
-  // const { spotId } = useParams()
-  const [id, setId] = useState()
-  // console.log("USERSPOT SPOTID", spotId)
-
-
-  // const testSpots = useSelector(state => state.spots)
-  // console.log('this is a test', testSpots)
-
-  // const allReviewsArr = useSelector(state => Object.values(state.reviews.spot));
-  // const allReviews = useSelector(state => state);
-  // console.log("this is all my reviews in UserSpot Component", allReviews)
-
-  // const allReviewsArr = Object.values(allReviews)
-  // console.log("this is ARR of all review in Userspot Component", allReviewsArr)
   const sessionUser = useSelector(state => state.session.user)
-
-
-  // console.log(allReviewsArr)
+  const ownedSpots = allSpotsArr?.filter((spot) => spot.ownerId === sessionUser.id);
 
   useEffect(() => {
     dispatch(getCurrentSpots())
@@ -42,15 +26,6 @@ const UserSpots = () => {
     return <Redirect to="/" />
   }
 
-  const ownedSpots = allSpotsArr?.filter((spot) => spot.ownerId === sessionUser.id);
-  // console.log('Owned Spot - UserSpots Component', ownedSpots)
-
-  // if (!ownedSpots || !ownedSpots.length) {
-  //   return <h2 className="no-spot"> MEOWMEOW No Spots! </h2>
-  // }
-
-
-
   // const deleteUserSpot = async (spotId) => {
   //   await dispatch(deleteSpot(spotId))
   // }
@@ -61,13 +36,10 @@ const UserSpots = () => {
         <div className="message-spot-container">
           <div className="user-welcome-host">
             <div className="user-spot-message">Welcome, {sessionUser.username}!</div>
-
             <NavLink className="user-host" to="/spots/create">
               + Create listing
             </NavLink>
-
           </div>
-
           {allSpotsArr && <div className="user-spot-your-spot">Your spots</div>}
         </div>
       </div>
@@ -97,8 +69,6 @@ const UserSpots = () => {
                       </strong>
                       &nbsp;/&nbsp;night
                     </div>
-
-
 
                     <div className="user-spot-rating">
                       <i className="fa-solid fa-paw"></i>

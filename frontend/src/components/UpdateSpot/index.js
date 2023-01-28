@@ -13,13 +13,11 @@ const UpdateSpot = ({ setShowModal, id }) => {
   const allSpots = useSelector(state => state.spots.allSpots)
   const allSpotsArr = Object.values(allSpots)
 
-  // console.log(id, "IDIDIIDIDIDIDI")
   let singleSpot;
   allSpotsArr.map((spot) => {
-    if (spot.id === id) singleSpot = spot
+    if (spot.id === id) return singleSpot = spot
   })
 
-  // console.log("singleSpot", singleSpot)
   const [address, setAddress] = useState("")
   const [city, setCity] = useState("")
   const [state, setState] = useState("")
@@ -74,13 +72,10 @@ const UpdateSpot = ({ setShowModal, id }) => {
         name,
         description,
         price,
-        // url,
-        // preview: true
       }
       let newUpdatedSpot = await dispatch(updateSpot(editSpot, singleSpot.id)) // bc i passed in 2 params in Thunk
       if (newUpdatedSpot) {
         await dispatch(getCurrentSpots())
-        // await dispatch(getOneSpot(singleSpot.id))
         setShowErrors(false)
         setShowModal(false)
         history.push('/spots/hosting')
@@ -109,7 +104,7 @@ const UpdateSpot = ({ setShowModal, id }) => {
               <div className="error-message" key={error}>{error}</div>
             ))}
           </div>
-        : null }
+          : null}
         <div className="host-form">
           <div className="host-input-parent">
             <div className="host-input-box">

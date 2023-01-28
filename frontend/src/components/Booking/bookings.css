@@ -96,6 +96,8 @@
   align-items: flex-start;
   margin-left: 20px;
   width: 100%;
+
+  color:#ececec
 }
 
 .individual-bookings-wrapper {
@@ -223,7 +225,7 @@
   flex-direction: column;
   justify-content: center;
   gap: 5px;
-  width: 70%;
+  width: 80%;
   height: 100%;
   font-size: 19px;
 }

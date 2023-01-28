@@ -14,7 +14,7 @@ function MeowCoverModal() {
           <div className='meow-wrapper'>
             <div className='meow-heading'>
               <div className='meow-exit' onClick={() => setShowModal(false)}>x</div>
-              <img className="meow-aircover-pic" src="https://imgur.com/0SJuCdh.png" />
+              <img className="meow-aircover-pic" src="https://imgur.com/0SJuCdh.png" alt="spot"/>
               <div>MeowCover is comprehensive protection included for free with every booking.</div>
             </div>
 
