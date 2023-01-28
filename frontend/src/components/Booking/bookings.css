@@ -31,6 +31,71 @@
   margin-bottom: 30px;
 }
 
+.past-booking-des {
+  font-size: 22px;
+  font-weight: bold;
+  margin-top: 50px;
+  margin-bottom: 30px;
+}
+
+.past-booking-link {
+  margin-bottom: 30px;
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+}
+
+.past-booking-individual-wrap {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 350px);
+}
+
+
+.past-booking-individual-dates {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  gap: 3px;
+}
+
+.past-booking-specific-date {
+  display: flex;
+  gap: 3px;
+}
+
+.past-booking-img {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.past-booking-name-city {
+  gap: 5px;
+  flex-direction: column;
+  display: flex;
+}
+
+.past-booking-name {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.past-booking-gray {
+  color: #8d8d8d;
+  font-size: 13px;
+}
+
+.past-booking-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-left: 20px;
+  width: 100%;
+}
+
 .individual-bookings-wrapper {
   display: flex;
   flex-direction: column;
@@ -128,7 +193,7 @@
   width: 100%;
 }
 
-.bookding-individual-dates {
+.booking-individual-dates {
   gap: 6px;
   font-size: 19px;
   display: flex;
