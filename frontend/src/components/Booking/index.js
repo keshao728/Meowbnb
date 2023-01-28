@@ -18,10 +18,11 @@ const UserBookings = () => {
     return new Date(a.startDate) - new Date(b.startDate);
   });
 
+  // const idk = sortedBookingArr.reverse()
+
   const sortedPastBookingArr = bookingsArr.sort((a, b) => {
     return new Date(b.startDate) - new Date(a.startDate);
   });
-
 
   useEffect(() => {
     dispatch(loadUserBookingThunk())
@@ -37,7 +38,7 @@ const UserBookings = () => {
   // pastBookings.push(sortedBookingArr[0])
   const upcomingBookings = sortedBookingArr.filter(booking => {
     return new Date(booking.startDate) > new Date();
-  });
+  }).reverse();
 
 
   if (!sessionUser) {
