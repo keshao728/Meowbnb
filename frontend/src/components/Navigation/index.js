@@ -37,6 +37,15 @@ function Navigation({ isLoaded }) {
 
   // console.log(filterSpot)
 
+  useEffect(() => {
+    if (filteredData) {
+      document.addEventListener("click", function () {
+        setFilteredData([]);
+        setWordEntered("");
+      });
+    }
+  })
+
 
   const handleFilter = (e) => {
     const searchWord = e.target.value;
@@ -160,7 +169,7 @@ function Navigation({ isLoaded }) {
             <div className="data-result">
               {filteredData.slice(0, 15).map((value, key) => {
                 return (
-                  <a className="data-item" href={`/spots/${value.id}`} target="_blank">
+                  <a className="data-item" href={`/spots/${value.id}`}>
                     <div className='individual-city'>
                       <img className="data-image" src={value.previewImage} />
                       <div>
