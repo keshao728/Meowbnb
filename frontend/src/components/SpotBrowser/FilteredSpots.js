@@ -25,24 +25,46 @@ const SpotBrowser = () => {
 
 
   //SKELETON CARD LOADING EFFECT
-  const timerRef = useRef(cardsLoading);
-  const memoAllSpotsArr = useMemo(() => allSpotsArr, [allSpotsArr]);
-
-
-
+  // const timerRef = useRef(cardsLoading);
+  // const memoAllSpotsArr = useMemo(() => allSpotsArr, [allSpotsArr]);
   useEffect(() => {
-    if (isLoaded && filteredArr) {
-      let timeoutId;
-      timeoutId = setTimeout(() => {
-        console.log("HELLO")
-        if (cardsLoading >= memoAllSpotsArr.length) return;
-        setCardsLoading(cardsLoading + 1);
-      }, 60);
-      return () => clearTimeout(timeoutId);
-    }
-  }, [memoAllSpotsArr]);
+    let counter = cardsLoading;
+    const interval = setInterval(() => {
+      if (counter >= allSpotsArr.length) {
+        clearInterval(interval);
+        // console.log(interval, "INTERVAL")
+      } else {
+        setCardsLoading(count => count + 1);
+        // console.log(counter, "COUNTER")
+        counter++; // local variable that this closure will see
+      }
+    }, 50);
+    return () => clearInterval(interval);
+  }, [allSpotsArr]);
+
+  // const spotsArrayList = spotsArray.slice(0, count).map(spot => (
+  //   <SpotCard key={spot.id} spot={spot} />
+  // ))
 
   setTimeout(() => setIsLoaded(true), 350)
+
+
+
+
+  // useEffect(() => {
+  //   if (isLoaded && filteredArr) {
+  //     let timeoutId;
+  //     timeoutId = setTimeout(() => {
+  //       console.log("HELLO")
+  //       if (cardsLoading >= memoAllSpotsArr.length) return;
+  //       setCardsLoading(cardsLoading + 1);
+  //     }, 60);
+  //     return () => clearTimeout(timeoutId);
+  //   }
+  // }, [memoAllSpotsArr]);
+
+
+  // setTimeout(() => setIsLoaded(true), 350)
 
 
   // useEffect(() => {
@@ -112,6 +134,7 @@ const SpotBrowser = () => {
 
   if (nav) {
     window.addEventListener('scroll', () => {
+      console.log("SHIBA")
       const top = window.scrollY > 20;
       if (top) {
         nav.style.borderBottom = '1px solid #ebebeb';

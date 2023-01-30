@@ -223,22 +223,6 @@ const UserBookings = () => {
 
               ))}
             </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
           </div>
         </div>
       </div>
