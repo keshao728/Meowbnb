@@ -49,7 +49,7 @@ const UpdateSpot = ({ setShowModal, id }) => {
     const errors = []
     if (!address || address.length > 30) { errors.push("Address is required and must be less than 30 characters") }
     if (!city || city.length > 15) { errors.push("City is required and must be less than 15 characters") }
-    if (!state || state.length > 20) { errors.push("State is required and must be less than 20 characters") }
+    if (!state || state.length > 10) { errors.push("State is required and must be less than 10 characters") }
     if (!country || country.length > 15) { errors.push("Country is required and must be less than 15 characters") }
     if (!name || name.length > 20) { errors.push("Name is required and must be less than 20 characters") }
     if (!description || description.length > 250) { errors.push("Description is required and must be be less than 250 characters") }

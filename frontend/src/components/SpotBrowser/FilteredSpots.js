@@ -1,45 +1,79 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { NavLink } from "react-router-dom"
-import { userReviewsThunk } from "../../store/reviews"
 import { getAllSpots } from "../../store/spots"
 import './SpotBrowser.css'
 
 const SpotBrowser = () => {
   const dispatch = useDispatch()
-  const [filterSpot, setFilterSpot] = useState("")
-  const [scrollY, setScrollY] = useState(0);
-
-
-  // dont put object.values in useSelector bc it always changes
   const allSpots = useSelector(state => state.spots.allSpots)
   const allSpotsArr = Object.values(allSpots)
-  const filteredArr = allSpotsArr.filter(spot => spot.place.includes(filterSpot));
+  // dont put object.values in useSelector bc it always changes
+  // console.log("------------------------", state.spots)
+  // console.log("ADDDDDD SPOTTTTTT", allSpots)
+  const [filterSpot, setFilterSpot] = useState("")
+  // const [finalSpot, setFinalSpot] = useState([])
 
+  // useEffect(() => {
+  //   const filteredArr = allSpotsArr.filter(spot => spot.place.includes(filterSpot));
+  //   setFinalSpot(filteredArr)
+  // })
+
+  // console.log("FILTERED PLACES", finalSpot)
 
 
   useEffect(() => {
     dispatch(getAllSpots())
   }, [dispatch])
 
+  const filteredArr = allSpotsArr.filter(spot => spot.place.includes(filterSpot));
 
+  // setFinalSpot(filteredArr)
+  // console.log(filteredArr, "GODDAMIT")
+  // console.log(allSpotsDisplay, "SHIBA")
 
-  //NAVBAR BORDER ON SCROLL
-  const handleScroll = () => {
-    const position = window.scrollY;
-    setScrollY(position)
-  }
+  // if (filteredArr) {
+  //   sessionLinks = (
+  //     <div>
+  //       {filteredArr.map(spot => {
+  //           <div className="all-spot">
+  //             {/* {console.log(spot)} */}
+  //             <NavLink className="spots" to={`spots/${spot.id}`}>
+  //               <div className="individual-spots">
+  //                 <div>
+  //                   <img className="spot-image"
+  //                     key={spot.previewImage}
+  //                     src={spot.previewImage ? spot.previewImage : 'https://imgur.com/WghnM0b.png'}
+  //                     onError={(e) => e.target.src = 'https://imgur.com/WghnM0b.png'}
+  //                     alt={spot.previewImage}
+  //                   />
+  //                 </div>
+  //                 <div className="spot-info">
+  //                   <div className="address-star">
+  //                     <div className="address" key={spot.name}>{spot.city}, {spot.state}</div>
+  //                     <span className="spot-star">
+  //                       <i className="fa-solid fa-paw"></i>
+  //                       &nbsp;
+  //                       {spot.avgRating > 0 ? Number(spot.avgRating).toFixed(2) : 'New'}
+  //                     </span>
+  //                   </div>
+  //                   <div className="price">
+  //                     <strong>
+  //                       ${spot.price}
+  //                     </strong>
+  //                     &nbsp;
+  //                     night
+  //                   </div>
+  //                 </div>
+  //               </div>
+  //             </NavLink>
+  //           </div>
+  //         })
+  //       }
+  //     </div>
+  //   )
+  // }
 
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll)
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll)
-    }
-  }, [])
-
-
-  //FILTERED SPOT CARDS
   let allSpotDetails;
   if (filteredArr.length > 0) {
     allSpotDetails = filteredArr.map(spot => {
@@ -129,12 +163,7 @@ const SpotBrowser = () => {
 
   return (
     <div>
-      <div className="nav-wrapper-1"
-        style={scrollY > 0 && scrollY < 20 ?
-          { borderBottom: "none", boxShadow: "none" } :
-          scrollY >= 20 ?
-            { borderBottom: "1px solid #ebebeb", boxShadow: "0 1px 2px rgba(0,0,0,0.1)" } :
-            { borderBottom: "none", boxShadow: "none" }}>
+      <div className="nav-wrapper-1">
         <div className='nav-place'>
           <div className={filterSpot === "All" ? "nav-individual-place nav-clicked " : 'nav-individual-place'} onClick={() => setFilterSpot("All")}>
             <img className="nav-place-img" src="https://imgur.com/9aXhDUr.png" />
@@ -256,7 +285,7 @@ const SpotBrowser = () => {
           </div>
         </div>
       </div>
-    </div >
+    </div>
   )
 }
 
