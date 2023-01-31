@@ -11,6 +11,7 @@ const SpotBrowser = () => {
   const [filterSpot, setFilterSpot] = useState("")
   const [cardsLoading, setCardsLoading] = useState(0)
   const [isLoaded, setIsLoaded] = useState(false)
+  const [scrollY, setScrollY] = useState(0)
 
   const allSpots = useSelector(state => state.spots.allSpots)
   // dont put object.values in useSelector bc it always changes
@@ -23,68 +24,34 @@ const SpotBrowser = () => {
   }, [])
 
 
-
   //SKELETON CARD LOADING EFFECT
-  const timerRef = useRef(cardsLoading);
-  const memoAllSpotsArr = useMemo(() => allSpotsArr, [allSpotsArr]);
-
-
-
   useEffect(() => {
-    if (isLoaded && filteredArr) {
-      let timeoutId;
-      timeoutId = setTimeout(() => {
-        console.log("HELLO")
-        if (cardsLoading >= memoAllSpotsArr.length) return;
-        setCardsLoading(cardsLoading + 1);
-      }, 60);
-      return () => clearTimeout(timeoutId);
-    }
-  }, [memoAllSpotsArr]);
+    setTimeout(() => setIsLoaded(true), 360)
+    let counter = cardsLoading;
+    const interval = setInterval(() => {
+      if (counter >= filteredArr.length) {
+        clearInterval(interval);
+      } else {
+        setCardsLoading(cardsLoading => cardsLoading + 1);
+        counter++; // local variable that this closure will see
+      }
+    }, 70);
+    return () => clearInterval(interval);
+  }, [filteredArr]);
 
-  setTimeout(() => setIsLoaded(true), 350)
-
-
-  // useEffect(() => {
-  // if (isLoaded) {
-  //   let timeoutId;
-  //   timerRef.current = cardsLoading;
-  //   timeoutId = setTimeout(() => {
-  //     if (timerRef.current >= memoAllSpotsArr.length) return;
-  //     setCardsLoading((c) => c + 1)
-  //     timerRef.current++;
-  //     timeoutId = setTimeout(() => {
-  //       timeoutId()
-  //     }, 100)
-  //   }, 60)
-  //   return () => clearInterval(timeoutId)
-  // }
-  // }, [cardsLoading, isLoaded, memoAllSpotsArr])
-
+  // const memoAllSpotsArr = useMemo(() => allSpotsArr, [allSpotsArr]);
 
   // useEffect(() => {
-  //   if (isLoaded) {
+  //   setTimeout(() => setIsLoaded(true), 360)
+  //   if (isLoaded && filteredArr) {
+  //     let timeoutId;
   //     timeoutId = setTimeout(() => {
-  //       if (timer >= allSpotsArr.length) return;
-  //       setCardsLoading((c) => c + 1);
-  //       timer++;
-  //       timeoutId = setTimeout(() => {
-  //         clearTimeout(timeoutId);
-  //       }, 100);
-  //     }, 50)
-
+  //       if (cardsLoading >= memoAllSpotsArr.length) return;
+  //       setCardsLoading(cardsLoading + 1);
+  //     }, 60);
   //     return () => clearTimeout(timeoutId);
   //   }
-  // }, [cardsLoading, allSpotsArr, isLoaded]);
-
-  // useEffect(() => {
-  //   if (isLoaded && cardsLoading < allSpotsArr.length) {
-  //     setTimeout(() => {
-  //       setCardsLoading((c) => c + 1)
-  //     }, 50)
-  //   }
-  // }, [cardsLoading, allSpotsArr, isLoaded])
-
+  // }, [memoAllSpotsArr]);
 
 
   //SKELETON CARDS
@@ -108,20 +75,15 @@ const SpotBrowser = () => {
   }
 
   //NAVBAR ON SCROLL
-  const nav = document.querySelector('.nav-wrapper-1');
-
-  if (nav) {
-    window.addEventListener('scroll', () => {
-      const top = window.scrollY > 20;
-      if (top) {
-        nav.style.borderBottom = '1px solid #ebebeb';
-        nav.style.boxShadow = '0 1px 2px rgba(0,0,0,0.1)';
-      } else {
-        nav.style.borderBottom = 'none';
-        nav.style.boxShadow = 'none';
-      }
-    });
+  const handleScroll = () => {
+    const scroll = window.scrollY;
+    setScrollY(scroll);
   }
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [])
 
   //CONDITIONS FOR FILTERED SPOTS DISPLAYING
   let allSpotDetails;
@@ -218,7 +180,12 @@ const SpotBrowser = () => {
 
   return (
     <div>
-      <div className="nav-wrapper-1">
+      <div className="nav-wrapper-1"
+        style={scrollY > 0 && scrollY < 20 ?
+          { borderBottom: "none", boxShadow: "none" } :
+          scrollY >= 20 ?
+            { borderBottom: "1px solid #ebebeb", boxShadow: "0 1px 2px rgba(0,0,0,0.1)" } :
+            { borderBottom: "none", boxShadow: "none" }}>
         <div className='nav-place'>
           <div className={filterSpot === "All" ? "nav-individual-place nav-clicked " : 'nav-individual-place'} onClick={() => setFilterSpot("All")}>
             <img className="nav-place-img" src="https://imgur.com/9aXhDUr.png" alt="nav filter" />

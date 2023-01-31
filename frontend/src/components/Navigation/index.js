@@ -37,12 +37,17 @@ function Navigation({ isLoaded }) {
 
   // console.log(filterSpot)
 
+  const resetData = () => {
+    setFilteredData([]);
+    setWordEntered("");
+  }
+
+
   useEffect(() => {
-    if (filteredData) {
-      document.addEventListener("click", function () {
-        setFilteredData([]);
-        setWordEntered("");
-      });
+    window.addEventListener("click", resetData);
+
+    return () => {
+      window.removeEventListener("click", resetData);
     }
   })
 
@@ -171,7 +176,7 @@ function Navigation({ isLoaded }) {
                 return (
                   <a className="data-item" href={`/spots/${value.id}`}>
                     <div className='individual-city'>
-                      <img className="data-image" src={value.previewImage} alt="host spot"/>
+                      <img className="data-image" src={value.previewImage} alt="host spot" />
                       <div>
                         <div> {value.name} </div>
                         <div className='data-city-state'> at {value.city} {value.state}</div>
