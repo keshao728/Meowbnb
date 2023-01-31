@@ -162,7 +162,9 @@ const UserBookings = () => {
           ))}
 
           <div className="past-booking-wrapper">
-            <div className="past-booking-des">Where you've been</div>
+            {pastBookings?.length > 0 &&
+              <div className="past-booking-des">Where you've been</div>
+            }
             <div className="past-booking-individual-wrap">
               {pastBookings?.map((booking) => (
                 <NavLink to={`/spots/${booking.spotId}`} className="past-booking-link">

@@ -68,7 +68,7 @@ export const getAllSpots = () => async dispatch => {
 
   if (response.ok) {
     const allSpot = await response.json()
-    // console.log('sssssssssssssssssssssssssssss', allSpot)
+    console.log('sssssssssssssssssssssssssssss', allSpot)
     dispatch(loadAllSpot(allSpot))
   }
 }

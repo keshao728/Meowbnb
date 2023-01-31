@@ -20,6 +20,7 @@ const SpotBrowser = () => {
 
   useEffect(() => {
     dispatch(getAllSpots())
+    .then(() => setIsLoaded(true))
   }, [])
 
 
@@ -27,32 +28,33 @@ const SpotBrowser = () => {
   //SKELETON CARD LOADING EFFECT
   // const timerRef = useRef(cardsLoading);
   // const memoAllSpotsArr = useMemo(() => allSpotsArr, [allSpotsArr]);
-  useEffect(() => {
-    let counter = cardsLoading;
-    const interval = setInterval(() => {
-      if (counter >= allSpotsArr.length) {
-        clearInterval(interval);
-        // console.log(interval, "INTERVAL")
-      } else {
-        setCardsLoading(count => count + 1);
-        // console.log(counter, "COUNTER")
-        counter++; // local variable that this closure will see
-      }
-    }, 50);
-    return () => clearInterval(interval);
-  }, [allSpotsArr]);
+  // useEffect(() => {
+  //   let counter = cardsLoading;
+  //   const interval = setInterval(() => {
+  //     if (counter >= allSpotsArr.length) {
+  //       clearInterval(interval);
+  //       // console.log(interval, "INTERVAL")
+  //     } else {
+  //       setCardsLoading(count => count + 1);
+  //       // console.log(counter, "COUNTER")
+  //       counter++; // local variable that this closure will see
+  //     }
+  //   }, 50);
+  //   return () => clearInterval(interval);
+  // }, [allSpotsArr]);
 
-  // const spotsArrayList = spotsArray.slice(0, count).map(spot => (
-  //   <SpotCard key={spot.id} spot={spot} />
-  // ))
+  // // const spotsArrayList = spotsArray.slice(0, count).map(spot => (
+  // //   <SpotCard key={spot.id} spot={spot} />
+  // // ))
 
-  setTimeout(() => setIsLoaded(true), 350)
+  // setTimeout(() => setIsLoaded(true), 350)
 
 
 
 
   // useEffect(() => {
-  //   if (isLoaded && filteredArr) {
+  //   if (filteredArr) {
+  //     // setIsLoaded(true)
   //     let timeoutId;
   //     timeoutId = setTimeout(() => {
   //       console.log("HELLO")
@@ -64,7 +66,7 @@ const SpotBrowser = () => {
   // }, [memoAllSpotsArr]);
 
 
-  // setTimeout(() => setIsLoaded(true), 350)
+  // setTimeout(() => setIsLoaded(true), 360)
 
 
   // useEffect(() => {
@@ -130,21 +132,21 @@ const SpotBrowser = () => {
   }
 
   //NAVBAR ON SCROLL
-  const nav = document.querySelector('.nav-wrapper-1');
+  // const nav = document.querySelector('.nav-wrapper-1');
 
-  if (nav) {
-    window.addEventListener('scroll', () => {
-      console.log("SHIBA")
-      const top = window.scrollY > 20;
-      if (top) {
-        nav.style.borderBottom = '1px solid #ebebeb';
-        nav.style.boxShadow = '0 1px 2px rgba(0,0,0,0.1)';
-      } else {
-        nav.style.borderBottom = 'none';
-        nav.style.boxShadow = 'none';
-      }
-    });
-  }
+  // window.addEventListener('scroll', () => {
+  //   if (nav) {
+  //     // console.log("SHIBA")
+  //     const top = window.scrollY > 20;
+  //     if (top) {
+  //       nav.style.borderBottom = '1px solid #ebebeb';
+  //       nav.style.boxShadow = '0 1px 2px rgba(0,0,0,0.1)';
+  //     } else {
+  //       nav.style.borderBottom = 'none';
+  //       nav.style.boxShadow = 'none';
+  //     }
+  //   }
+  // });
 
   //CONDITIONS FOR FILTERED SPOTS DISPLAYING
   let allSpotDetails;
@@ -340,7 +342,7 @@ const SpotBrowser = () => {
       </div>
       <div className={filterSpot === "All" ? "all-spot-display" : filteredArr.length > 0 ? "all-spot-display" : "no-spot-display"}>
         {isLoaded && allSpotDetails}
-        {isLoaded && cardSkeleton(allSpotsArr.length - cardsLoading)}
+        {!isLoaded && cardSkeleton(allSpotsArr.length - cardsLoading)}
       </div>
       <div className="all-spot-footer-wrapper">
         <div className="all-spot-footer">
