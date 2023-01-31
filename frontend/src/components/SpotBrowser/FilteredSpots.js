@@ -238,7 +238,7 @@ const SpotBrowser = () => {
         <div className="all-spot-footer">
           <div className="all-spot-footer-left">
             <div>© 2023 Meowbnb, Inc. &nbsp;&nbsp;·&nbsp;&nbsp;</div>
-            <a className="proj-directory" href="https://github.com/keshao728/Meowbnb" target="_blank" rel="noreferrer">
+            <a className="proj-directory" href="https://github.com/keshao728/Varorant" target="_blank" rel="noreferrer">
               Project Github
             </a>
           </div>
