@@ -48,8 +48,9 @@
 
 .past-booking-individual-wrap {
   display: grid;
-  grid-template-columns: repeat(auto-fill, 351px);
-  grid-gap: 25px;
+  grid-template-columns: repeat(auto-fill, 340px);
+  row-gap: 25px;
+  column-gap: 30px;
 }
 
 
@@ -96,8 +97,6 @@
   align-items: flex-start;
   margin-left: 20px;
   width: 100%;
-
-  /* color:#ececec */
 }
 
 .individual-bookings-wrapper {
