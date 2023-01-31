@@ -18,7 +18,7 @@ function Navigation({ isLoaded }) {
 
   const [filteredData, setFilteredData] = useState([]);
   const [wordEntered, setWordEntered] = useState("");
-  const [spotId, setSpotId] = useState("");
+  // const [spotId, setSpotId] = useState("");
 
   const data = useSelector(state => state.spots.allSpots);
   const dataArr = Object.values(data)
@@ -37,11 +37,12 @@ function Navigation({ isLoaded }) {
 
   // console.log(filterSpot)
 
+
+  //SEARCH BAR CLEAR SEARCH BAR ON CLICK OUTSIDE
   const resetData = () => {
     setFilteredData([]);
     setWordEntered("");
   }
-
 
   useEffect(() => {
     window.addEventListener("click", resetData);
@@ -51,13 +52,13 @@ function Navigation({ isLoaded }) {
     }
   })
 
-
+  //SEARCH BAR FILTER
   const handleFilter = (e) => {
     const searchWord = e.target.value;
     setWordEntered(searchWord);
     const newFilter = dataArr.filter((value) => {
       if (value.city.toLowerCase().includes(searchWord.toLowerCase()) || value.state.toLowerCase().includes(searchWord.toLowerCase()) || value.country.toLowerCase().includes(searchWord.toLowerCase()) || value.name.toLowerCase().includes(searchWord.toLowerCase()) || value.address.toLowerCase().includes(searchWord.toLowerCase())) {
-        setSpotId(value.id)
+        // setSpotId(value.id)
         return value
       };
     });
@@ -68,13 +69,8 @@ function Navigation({ isLoaded }) {
       setFilteredData(newFilter);
     }
   };
-  // console.log(filteredData)
 
-  const clearInput = () => {
-    setFilteredData([]);
-    setWordEntered("");
-  };
-
+  //PROFILE BUTTON DROPDOWN
   const dropdown = () => {
     if (showMenu) {
       return 'show-drop-menu'
@@ -130,10 +126,6 @@ function Navigation({ isLoaded }) {
     );
   }
 
-  // if (this.props.location.pathname === '/spots/:spotId') {
-  //   let nav = document.getElementById('full-nav')
-  //   nav.style.backgroundColor = "red"
-  // }
 
   return (
     <div className={
@@ -166,7 +158,7 @@ function Navigation({ isLoaded }) {
               {filteredData.length === 0 ?
                 <i className="fa-solid fa-magnifying-glass"></i>
                 :
-                <div className="search-cancel" onClick={clearInput}>x</div>
+                <div className="search-cancel" onClick={resetData}>x</div>
               }
             </div>
           </div>
@@ -192,114 +184,6 @@ function Navigation({ isLoaded }) {
           {isLoaded && sessionLinks}
         </div>
       </div>
-
-      {/* <div className='nav-place'>
-
-        <div className='nav-individual-place' onClick={() => setFilterSpot("All")}>
-          <img className="nav-place-img" src="https://imgur.com/bboPy36.png" />
-
-          <div>
-            All
-          </div>
-        </div>
-
-        <div className='nav-individual-place'>
-          <img className="nav-place-img" src="https://imgur.com/bboPy36.png" />
-          <div>
-            Play zone
-          </div>
-        </div>
-
-        <div className='nav-individual-place'>
-          <img className="nav-place-img" src="https://imgur.com/hpmirKZ.png" />
-
-          <div>
-            Sleep-only
-          </div>
-        </div>
-
-        <div className='nav-individual-place'>
-          <img className="nav-place-img" src="https://imgur.com/xgffVdE.png" />
-
-          <div>
-            Tree
-          </div>
-        </div>
-
-        <div className='nav-individual-place'>
-          <img className="nav-place-img" src="https://imgur.com/7oxOZy7.png" />
-
-          <div>
-            Box
-          </div>
-        </div>
-
-
-        <div className='nav-individual-place'>
-          <img className="nav-place-img" src="https://imgur.com/cIIP3LF.png" />
-
-          <div>
-            No human
-          </div>
-        </div>
-
-        <div className='nav-individual-place'>
-          <img className="nav-place-img" src="https://imgur.com/B2UcvKy.png" />
-
-          <div>Furball</div>
-        </div>
-
-
-        <div className='nav-individual-place'>
-          <img className="nav-place-img" src="https://imgur.com/u6LVB8Y.png" />
-
-          <div>Catnip</div>
-        </div>
-
-
-        <div className='nav-individual-place'>
-          <img className="nav-place-img" src="https://imgur.com/atditdJ.png" />
-
-          <div>Shared</div>
-        </div>
-
-        <div className='nav-individual-place'>
-          <img className="nav-place-img" src="https://imgur.com/XIsDXKA.png" />
-
-          <div>Petting home</div>
-        </div>
-
-        <div className='nav-individual-place'>
-          <img className="nav-place-img" src="https://imgur.com/SGK10E3.png" />
-
-          <div>Nature</div>
-        </div>
-
-        <div className='nav-individual-place'>
-          <img className="nav-place-img" src="https://imgur.com/uQOxjcy.png" />
-
-          <div>No-meows-land</div>
-        </div>
-
-        <div className='nav-individual-place'>
-          <img className="nav-place-img" src="https://imgur.com/UQ1veNy.png" />
-
-          <div>Snacks </div>
-        </div>
-
-        <div className='nav-individual-place'>
-          <img className="nav-place-img" src="https://imgur.com/f0dNDBx.png" />
-
-          <div>Evil</div>
-        </div>
-
-        <div className='nav-individual-place'>
-          <img className="nav-place-img" src="https://imgur.com/zgtELKc.png" />
-
-          <div>Others</div>
-        </div>
-
-      </div> */}
     </div>
   );
 }

@@ -56,8 +56,8 @@ const UserReviews = () => {
                       <div className="user-review-left">
                         <div className="user-review-middle">
                           <div className="user-review-name">{review?.Spot?.name}</div>
-                          <div className="user-address-star" key={review?.Spot?.name}> {review?.Spot?.city},
-                            {review?.Spot?.state}</div>
+                          <div className="user-address-star-1" key={review?.Spot?.name}> {review?.Spot?.city},
+                            &nbsp;{review?.Spot?.state}</div>
                         </div>
                       </div>
 

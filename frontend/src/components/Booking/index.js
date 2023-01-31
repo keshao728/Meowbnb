@@ -21,8 +21,9 @@ const UserBookings = () => {
   const sortedPastBookingArr = bookingsArr.sort((a, b) => {
     return new Date(b.startDate) - new Date(a.startDate);
   });
+
   const pastBookings = sortedPastBookingArr.filter(booking => {
-    return new Date(booking.startDate) <= new Date();
+    return new Date(booking.startDate) < new Date();
   });
 
   const sortedBookingArr = bookingsArr.sort((a, b) => {
@@ -30,7 +31,7 @@ const UserBookings = () => {
   });
 
   const upcomingBookings = sortedBookingArr.filter(booking => {
-    return new Date(booking.startDate) > new Date();
+    return new Date(booking.startDate) >= new Date();
   });
 
 
@@ -69,7 +70,7 @@ const UserBookings = () => {
           {upcomingBookings?.map((booking) => (
 
             <div className="user-booking-wrapper-1">
-              <NavLink to={`/spots/${booking.spotId}`} className="individual-booking">
+              <NavLink to={`/spots/${booking.spotId}`} className="individual-booking" onClick={() => window.scrollTo(0, 0)}>
 
                 <div className="individual-booking-left">
                   <div className="booking-left-top">
@@ -162,10 +163,10 @@ const UserBookings = () => {
           ))}
 
           <div className="past-booking-wrapper">
-            <div className="past-booking-des">Where you've been</div>
+            {pastBookings.length > 0 && <div className="past-booking-des">Where you've been</div>}
             <div className="past-booking-individual-wrap">
               {pastBookings?.map((booking) => (
-                <NavLink to={`/spots/${booking.spotId}`} className="past-booking-link">
+                <NavLink to={`/spots/${booking.spotId}`} className="past-booking-link" onClick={() => window.scrollTo(0, 0)}>
                   <img className="past-booking-img" src={booking.Spot.previewImage} alt="preview" />
                   <div className="past-booking-info">
                     <div className="past-booking-name-city">
