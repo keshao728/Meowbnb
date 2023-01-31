@@ -1,159 +1,50 @@
-import { useEffect, useState, useRef, useMemo } from "react"
+import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { NavLink } from "react-router-dom"
+import { userReviewsThunk } from "../../store/reviews"
 import { getAllSpots } from "../../store/spots"
-import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
-import 'react-loading-skeleton/dist/skeleton.css'
 import './SpotBrowser.css'
 
 const SpotBrowser = () => {
   const dispatch = useDispatch()
   const [filterSpot, setFilterSpot] = useState("")
-  const [cardsLoading, setCardsLoading] = useState(0)
-  const [isLoaded, setIsLoaded] = useState(false)
+  const [scrollY, setScrollY] = useState(0);
 
-  const allSpots = useSelector(state => state.spots.allSpots)
+
   // dont put object.values in useSelector bc it always changes
+  const allSpots = useSelector(state => state.spots.allSpots)
   const allSpotsArr = Object.values(allSpots)
   const filteredArr = allSpotsArr.filter(spot => spot.place.includes(filterSpot));
 
 
+
   useEffect(() => {
     dispatch(getAllSpots())
-    .then(() => setIsLoaded(true))
+  }, [dispatch])
+
+
+
+  //NAVBAR BORDER ON SCROLL
+  const handleScroll = () => {
+    const position = window.scrollY;
+    setScrollY(position)
+  }
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll)
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
   }, [])
 
 
-
-  //SKELETON CARD LOADING EFFECT
-  // const timerRef = useRef(cardsLoading);
-  // const memoAllSpotsArr = useMemo(() => allSpotsArr, [allSpotsArr]);
-  // useEffect(() => {
-  //   let counter = cardsLoading;
-  //   const interval = setInterval(() => {
-  //     if (counter >= allSpotsArr.length) {
-  //       clearInterval(interval);
-  //       // console.log(interval, "INTERVAL")
-  //     } else {
-  //       setCardsLoading(count => count + 1);
-  //       // console.log(counter, "COUNTER")
-  //       counter++; // local variable that this closure will see
-  //     }
-  //   }, 50);
-  //   return () => clearInterval(interval);
-  // }, [allSpotsArr]);
-
-  // // const spotsArrayList = spotsArray.slice(0, count).map(spot => (
-  // //   <SpotCard key={spot.id} spot={spot} />
-  // // ))
-
-  // setTimeout(() => setIsLoaded(true), 350)
-
-
-
-
-  // useEffect(() => {
-  //   if (filteredArr) {
-  //     // setIsLoaded(true)
-  //     let timeoutId;
-  //     timeoutId = setTimeout(() => {
-  //       console.log("HELLO")
-  //       if (cardsLoading >= memoAllSpotsArr.length) return;
-  //       setCardsLoading(cardsLoading + 1);
-  //     }, 60);
-  //     return () => clearTimeout(timeoutId);
-  //   }
-  // }, [memoAllSpotsArr]);
-
-
-  // setTimeout(() => setIsLoaded(true), 360)
-
-
-  // useEffect(() => {
-  // if (isLoaded) {
-  //   let timeoutId;
-  //   timerRef.current = cardsLoading;
-  //   timeoutId = setTimeout(() => {
-  //     if (timerRef.current >= memoAllSpotsArr.length) return;
-  //     setCardsLoading((c) => c + 1)
-  //     timerRef.current++;
-  //     timeoutId = setTimeout(() => {
-  //       timeoutId()
-  //     }, 100)
-  //   }, 60)
-  //   return () => clearInterval(timeoutId)
-  // }
-  // }, [cardsLoading, isLoaded, memoAllSpotsArr])
-
-
-  // useEffect(() => {
-  //   if (isLoaded) {
-  //     timeoutId = setTimeout(() => {
-  //       if (timer >= allSpotsArr.length) return;
-  //       setCardsLoading((c) => c + 1);
-  //       timer++;
-  //       timeoutId = setTimeout(() => {
-  //         clearTimeout(timeoutId);
-  //       }, 100);
-  //     }, 50)
-
-  //     return () => clearTimeout(timeoutId);
-  //   }
-  // }, [cardsLoading, allSpotsArr, isLoaded]);
-
-  // useEffect(() => {
-  //   if (isLoaded && cardsLoading < allSpotsArr.length) {
-  //     setTimeout(() => {
-  //       setCardsLoading((c) => c + 1)
-  //     }, 50)
-  //   }
-  // }, [cardsLoading, allSpotsArr, isLoaded])
-
-
-
-  //SKELETON CARDS
-  const cardSkeleton = (count) => {
-    return Array(count).fill(0).map((_, i) => (
-      <div key={i} style={{ zIndex: '-1' }} >
-        <SkeletonTheme baseColor="#DEDEDE" highlightColor="#EEEEEE" >
-          <div className="individual-spots">
-            <Skeleton className="spot-image" borderRadius={15} />
-            <div>
-              <div className="address-star1">
-                <Skeleton className="address" width={120} />
-                <Skeleton className="spot-star" width={50} />
-              </div>
-              <Skeleton width={80} />
-            </div>
-          </div>
-        </SkeletonTheme>
-      </div>
-    ))
-  }
-
-  //NAVBAR ON SCROLL
-  // const nav = document.querySelector('.nav-wrapper-1');
-
-  // window.addEventListener('scroll', () => {
-  //   if (nav) {
-  //     // console.log("SHIBA")
-  //     const top = window.scrollY > 20;
-  //     if (top) {
-  //       nav.style.borderBottom = '1px solid #ebebeb';
-  //       nav.style.boxShadow = '0 1px 2px rgba(0,0,0,0.1)';
-  //     } else {
-  //       nav.style.borderBottom = 'none';
-  //       nav.style.boxShadow = 'none';
-  //     }
-  //   }
-  // });
-
-  //CONDITIONS FOR FILTERED SPOTS DISPLAYING
+  //FILTERED SPOT CARDS
   let allSpotDetails;
   if (filteredArr.length > 0) {
-    allSpotDetails = filteredArr.slice(0, cardsLoading).map(spot => {
+    allSpotDetails = filteredArr.map(spot => {
       return (
-        <div key={spot.id} className="all-spot">
+        <div className="all-spot">
           <NavLink className="spots" to={`spots/${spot.id}`} onClick={() => window.scrollTo(0, 0)}>
             <div className="individual-spots">
               <div>
@@ -164,7 +55,6 @@ const SpotBrowser = () => {
                   alt={spot.previewImage}
                 />
               </div>
-
               <div className="spot-info">
                 <div className="address-star">
                   <div className="address" key={spot.name}>{spot.city}, {spot.state}</div>
@@ -173,7 +63,6 @@ const SpotBrowser = () => {
                     &nbsp;
                     {spot.avgRating > 0 ? Number(spot.avgRating).toFixed(2) : 'New'}
                   </span>
-
                 </div>
                 <div className="price">
                   <strong>
@@ -189,9 +78,9 @@ const SpotBrowser = () => {
       )
     })
   } else if (filterSpot === "All") {
-    allSpotDetails = allSpotsArr.slice(0, cardsLoading).map(spot => {
+    allSpotDetails = allSpotsArr.map(spot => {
       return (
-        <div key={spot.id} className="all-spot">
+        <div className="all-spot">
           <NavLink className="spots" to={`spots/${spot.id}`} onClick={() => window.scrollTo(0, 0)}>
             <div className="individual-spots">
               <div>
@@ -202,7 +91,6 @@ const SpotBrowser = () => {
                   alt={spot.previewImage}
                 />
               </div>
-
               <div className="spot-info">
                 <div className="address-star">
                   <div className="address" key={spot.name}>{spot.city}, {spot.state}</div>
@@ -227,14 +115,12 @@ const SpotBrowser = () => {
     })
   } else {
     allSpotDetails = (
-      <div>
-        <div className="nav-no-spot">
-          <img
-            className="nav-no-spot-img"
-            alt="no-spot-meow"
-            src="https://drive.google.com/uc?export=view&id=1j_TgRhozzklKVuQfq1OVo3eBRXGPai3K" title="Meowbnb logo" />
-          <h4 className="no-spot"> No listing yet.. </h4>
-        </div>
+      <div className="nav-no-spot">
+        <img
+          className="nav-no-spot-img"
+          alt="no-spot-meow"
+          src="https://drive.google.com/uc?export=view&id=1j_TgRhozzklKVuQfq1OVo3eBRXGPai3K" title="Meowbnb logo" />
+        <h4 className="no-spot"> No listing yet.. </h4>
       </div>
     )
   }
@@ -243,97 +129,102 @@ const SpotBrowser = () => {
 
   return (
     <div>
-      <div className="nav-wrapper-1">
+      <div className="nav-wrapper-1"
+        style={scrollY > 0 && scrollY < 20 ?
+          { borderBottom: "none", boxShadow: "none" } :
+          scrollY >= 20 ?
+            { borderBottom: "1px solid #ebebeb", boxShadow: "0 1px 2px rgba(0,0,0,0.1)" } :
+            { borderBottom: "none", boxShadow: "none" }}>
         <div className='nav-place'>
           <div className={filterSpot === "All" ? "nav-individual-place nav-clicked " : 'nav-individual-place'} onClick={() => setFilterSpot("All")}>
-            <img className="nav-place-img" src="https://imgur.com/9aXhDUr.png" alt="nav filter" />
+            <img className="nav-place-img" src="https://imgur.com/9aXhDUr.png" />
             <div>All</div>
             <div className="nav-place-underline"></div>
           </div>
 
           <div className={filterSpot === "Play zone" ? "nav-individual-place nav-clicked " : 'nav-individual-place'} onClick={() => setFilterSpot("Play zone")}>
-            <img className="nav-place-img" src="https://imgur.com/bboPy36.png" alt="nav filter" />
+            <img className="nav-place-img" src="https://imgur.com/bboPy36.png" />
             <div>Play zone</div>
             <div className="nav-place-underline"></div>
           </div>
 
           <div className={filterSpot === "Sleep-only" ? "nav-individual-place nav-clicked " : 'nav-individual-place'} onClick={() => setFilterSpot("Sleep-only")}>
-            <img className="nav-place-img" src="https://imgur.com/hpmirKZ.png" alt="nav filter" />
+            <img className="nav-place-img" src="https://imgur.com/hpmirKZ.png" />
             <div>Sleep-only</div>
             <div className="nav-place-underline"></div>
           </div>
 
           <div className={filterSpot === "Tree" ? "nav-individual-place nav-clicked " : 'nav-individual-place'} onClick={() => setFilterSpot("Tree")}>
-            <img className="nav-place-img" src="https://imgur.com/xgffVdE.png" alt="nav filter" />
+            <img className="nav-place-img" src="https://imgur.com/xgffVdE.png" />
             <div>Tree </div>
             <div className="nav-place-underline"></div>
           </div>
 
           <div className={filterSpot === "Box" ? "nav-individual-place nav-clicked " : 'nav-individual-place'} onClick={() => setFilterSpot("Box")}>
-            <img className="nav-place-img" src="https://imgur.com/7oxOZy7.png" alt="nav filter" />
+            <img className="nav-place-img" src="https://imgur.com/7oxOZy7.png" />
             <div>Box</div>
             <div className="nav-place-underline"></div>
           </div>
 
 
           <div className={filterSpot === "No human" ? "nav-individual-place nav-clicked " : 'nav-individual-place'} onClick={() => setFilterSpot("No human")}>
-            <img className="nav-place-img" src="https://imgur.com/cIIP3LF.png" alt="nav filter" />
+            <img className="nav-place-img" src="https://imgur.com/cIIP3LF.png" />
             <div>No human</div>
             <div className="nav-place-underline"></div>
           </div>
 
           <div className={filterSpot === "Furball" ? "nav-individual-place nav-clicked " : 'nav-individual-place'} onClick={() => setFilterSpot("Furball")}>
-            <img className="nav-place-img" src="https://imgur.com/B2UcvKy.png" alt="nav filter" />
+            <img className="nav-place-img" src="https://imgur.com/B2UcvKy.png" />
             <div>Furball</div>
             <div className="nav-place-underline"></div>
           </div>
 
 
           <div className={filterSpot === "Catnip" ? "nav-individual-place nav-clicked " : 'nav-individual-place'} onClick={() => setFilterSpot("Catnip")}>
-            <img className="nav-place-img" src="https://imgur.com/u6LVB8Y.png" alt="nav filter" />
+            <img className="nav-place-img" src="https://imgur.com/u6LVB8Y.png" />
             <div>Catnip</div>
             <div className="nav-place-underline"></div>
           </div>
 
 
           <div className={filterSpot === "Shared" ? "nav-individual-place nav-clicked " : 'nav-individual-place'} onClick={() => setFilterSpot("Shared")}>
-            <img className="nav-place-img" src="https://imgur.com/atditdJ.png" alt="nav filter" />
+            <img className="nav-place-img" src="https://imgur.com/atditdJ.png" />
             <div>Shared</div>
             <div className="nav-place-underline"></div>
           </div>
 
           <div className={filterSpot === "Petting home" ? "nav-individual-place nav-clicked " : 'nav-individual-place'} onClick={() => setFilterSpot("Petting home")}>
-            <img className="nav-place-img" src="https://imgur.com/XIsDXKA.png" alt="nav filter" />
+            <img className="nav-place-img" src="https://imgur.com/XIsDXKA.png" />
             <div>Petting home</div>
             <div className="nav-place-underline"></div>
           </div>
 
           <div className={filterSpot === "Nature" ? "nav-individual-place nav-clicked " : 'nav-individual-place'} onClick={() => setFilterSpot("Nature")}>
-            <img className="nav-place-img" src="https://imgur.com/SGK10E3.png" alt="nav filter" />
+            <img className="nav-place-img" src="https://imgur.com/SGK10E3.png" />
             <div>Nature</div>
             <div className="nav-place-underline"></div>
           </div>
 
           <div className={filterSpot === "No-meows-land" ? "nav-individual-place nav-clicked " : 'nav-individual-place'} onClick={() => setFilterSpot("No-meows-land")}>
-            <img className="nav-place-img" src="https://imgur.com/uQOxjcy.png" alt="nav filter" />
+            <img className="nav-place-img" src="https://imgur.com/uQOxjcy.png" />
             <div>No-meows-land</div>
             <div className="nav-place-underline"></div>
           </div>
 
           <div className={filterSpot === "Snacks" ? "nav-individual-place nav-clicked " : 'nav-individual-place'} onClick={() => setFilterSpot("Snacks")}>
-            <img className="nav-place-img" src="https://imgur.com/UQ1veNy.png" alt="nav filter" />
+            <img className="nav-place-img" src="https://imgur.com/UQ1veNy.png" />
             <div>Snacks</div>
             <div className="nav-place-underline"></div>
           </div>
 
           <div className={filterSpot === "Evil" ? "nav-individual-place nav-clicked " : 'nav-individual-place'} onClick={() => setFilterSpot("Evil")}>
-            <img className="nav-place-img" src="https://imgur.com/f0dNDBx.png" alt="nav filter" />
+            <img className="nav-place-img" src="https://imgur.com/f0dNDBx.png" />
             <div>Evil</div>
             <div className="nav-place-underline"></div>
           </div>
 
           <div className={filterSpot === "Others" ? "nav-individual-place nav-clicked " : 'nav-individual-place'} onClick={() => setFilterSpot("Others")}>
-            <img className="nav-place-img" src="https://imgur.com/zgtELKc.png" alt="nav filter" />
+            <img className="nav-place-img" src="https://imgur.com/zgtELKc.png" />
             <div>Others</div>
             <div className="nav-place-underline"></div>
           </div>
@@ -341,8 +232,7 @@ const SpotBrowser = () => {
         </div>
       </div>
       <div className={filterSpot === "All" ? "all-spot-display" : filteredArr.length > 0 ? "all-spot-display" : "no-spot-display"}>
-        {isLoaded && allSpotDetails}
-        {!isLoaded && cardSkeleton(allSpotsArr.length - cardsLoading)}
+        {allSpotDetails}
       </div>
       <div className="all-spot-footer-wrapper">
         <div className="all-spot-footer">
@@ -366,7 +256,7 @@ const SpotBrowser = () => {
           </div>
         </div>
       </div>
-    </div>
+    </div >
   )
 }
 
