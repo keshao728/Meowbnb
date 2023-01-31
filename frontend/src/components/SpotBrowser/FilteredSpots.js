@@ -342,7 +342,7 @@ const SpotBrowser = () => {
       </div>
       <div className={filterSpot === "All" ? "all-spot-display" : filteredArr.length > 0 ? "all-spot-display" : "no-spot-display"}>
         {isLoaded && allSpotDetails}
-        {!isLoaded && cardSkeleton(allSpotsArr.length - cardsLoading)}
+        {isLoaded && cardSkeleton(allSpotsArr.length - cardsLoading)}
       </div>
       <div className="all-spot-footer-wrapper">
         <div className="all-spot-footer">
