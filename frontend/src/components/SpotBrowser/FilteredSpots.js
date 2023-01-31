@@ -21,37 +21,24 @@ const SpotBrowser = () => {
 
   useEffect(() => {
     dispatch(getAllSpots())
+      .then(() => setIsLoaded(true))
   }, [])
 
 
   //SKELETON CARD LOADING EFFECT
+  const memoAllSpotsArr = useMemo(() => allSpotsArr, [allSpotsArr]);
+
   useEffect(() => {
     setTimeout(() => setIsLoaded(true), 360)
-    let counter = cardsLoading;
-    const interval = setInterval(() => {
-      if (counter >= filteredArr.length) {
-        clearInterval(interval);
-      } else {
-        setCardsLoading(cardsLoading => cardsLoading + 1);
-        counter++; // local variable that this closure will see
-      }
-    }, 70);
-    return () => clearInterval(interval);
-  }, [filteredArr]);
-
-  // const memoAllSpotsArr = useMemo(() => allSpotsArr, [allSpotsArr]);
-
-  // useEffect(() => {
-  //   setTimeout(() => setIsLoaded(true), 360)
-  //   if (isLoaded && filteredArr) {
-  //     let timeoutId;
-  //     timeoutId = setTimeout(() => {
-  //       if (cardsLoading >= memoAllSpotsArr.length) return;
-  //       setCardsLoading(cardsLoading + 1);
-  //     }, 60);
-  //     return () => clearTimeout(timeoutId);
-  //   }
-  // }, [memoAllSpotsArr]);
+    if (isLoaded && filteredArr) {
+      let timeoutId;
+      timeoutId = setTimeout(() => {
+        if (cardsLoading >= memoAllSpotsArr.length) return;
+        setCardsLoading(cardsLoading + 1);
+      }, 60);
+      return () => clearTimeout(timeoutId);
+    }
+  }, [memoAllSpotsArr]);
 
 
   //SKELETON CARDS
