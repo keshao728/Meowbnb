@@ -42,7 +42,7 @@ const SingleSpotBrowser = () => {
   // const [endDate, setEndDate] = useState(addDays(new Date(), 2))
   const [openCalender, setOpenCalender] = useState(false)
 
-  const [dates, setDates] = useState(false)
+  const [invalidDate, setInvalidDate] = useState(false)
 
   // const [range, setRange] = useState([
   //   {
@@ -246,15 +246,15 @@ const SingleSpotBrowser = () => {
 
   useEffect(() => {
     const err = []
-    setDates(unavaliableDateRange.some(date => selectedDateRange.includes(date)))
+    setInvalidDate(unavaliableDateRange.some(invalidDate => selectedDateRange.includes(invalidDate)))
 
-    if (dates) err.push("Please select a valid date range")
+    if (invalidDate) err.push("Please select a valid date range")
     if (startDate?.toString().split(' ').slice(1, 4).join(' ') === endDate?.toString().split(' ').slice(1, 4).join(' ')) err.push("Check out date must be at least a day after check in")
     if (!startDate) err.startDate = err.push('Please enter a start date')
     if (!endDate) err.endDate = err.push('Please enter a end date')
 
     setValidationErrors(err)
-  }, [startDate, endDate, dates])
+  }, [startDate, endDate, invalidDate])
 
 
   //FOR 'CANCEL BEFORE [DATE]' TEXT
