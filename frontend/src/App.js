@@ -9,7 +9,7 @@ import UserSpots from "./components/UserSpots"
 import SingleSpotBrowser from "./components/SingleSpotBrowser"
 import ReviewSpot from "./components/ReviewSpot"
 import UserReviews from "./components/UserReview";
-import UserBookings from "./components/Booking";
+import UserBookings from "./components/UserBooking";
 
 
 function App() {

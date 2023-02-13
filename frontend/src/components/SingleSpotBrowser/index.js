@@ -196,7 +196,7 @@ const SingleSpotBrowser = () => {
     return dateChecker(number)
   }
 
-  //STATE + INITIAL DATE DISPLAY
+  //DATE STATE + INITIAL DATE DISPLAY
   const calendarStartDate = dateChecker(1)
   const [startDate, setStartDate] = useState(calendarStartDate)
 
