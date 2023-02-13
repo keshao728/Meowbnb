@@ -127,8 +127,6 @@ const SingleSpotBrowser = () => {
 
 
   //BOOKINGS
-
-
   const booking = useSelector(state => state.bookings.spot)
   const bookingArr = Object.values(booking)
   // console.log("bookingArr", bookingArr)
@@ -138,6 +136,7 @@ const SingleSpotBrowser = () => {
   }
 
 
+  //CONDITION FOR BOOKING ACTION
   let allowBookingAction = true;
   if (sessionUser) {
     if (sessionUser.id !== currSpot.ownerId) {
@@ -148,6 +147,7 @@ const SingleSpotBrowser = () => {
   }
 
 
+  //CALL THUNKS
   useEffect(() => {
     dispatch(getOneSpot(spotId))
       .then(() => dispatch(locationReviewsThunk(spotId)))
@@ -161,9 +161,9 @@ const SingleSpotBrowser = () => {
   if (bookingArr.length > 0) {
     currSpotBooked = bookingArr.filter(booking => booking.spotId === currSpot.id)
   }
-  // console.log(currSpotBooked, "----------------------")
 
 
+  //AN ARRAY OF DISABLED DATES FROM BOOKED SPOTS
   let disabledDates = []
   currSpotBooked?.forEach(booking => {
     let start = new Date(booking.startDate)
@@ -181,23 +181,22 @@ const SingleSpotBrowser = () => {
   })
 
 
+  //CHECK IF 'NUMBER' OF DAYS FROM TODAY IS AVALIABLE - USED FOR INITIAL DATE DISPLAY
   function dateChecker(number) {
     let bookedDates = disabledDates.map(date => date.toString().split(' ').slice(1, 4).join(' '))
     let newBookDate = addDays(new Date(), number).toString().split(' ').slice(1, 4).join(' ')
-    let count = number
-
     // console.log("bookedDates", bookedDates)
 
     if (!bookedDates.includes(newBookDate)) {
-      return addDays(new Date(), count)
+      return addDays(new Date(), number)
     }
     // console.log("newBookDate", newBookDate)
-    count += 1
+    number += 1
 
-    return dateChecker(count)
+    return dateChecker(number)
   }
 
-
+  //STATE + INITIAL DATE DISPLAY
   const calendarStartDate = dateChecker(1)
   const [startDate, setStartDate] = useState(calendarStartDate)
 
