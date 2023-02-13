@@ -167,16 +167,16 @@ const SingleSpotBrowser = () => {
   let disabledDates = []
   currSpotBooked?.forEach(booking => {
     let start = new Date(booking.startDate)
-    // let start1 = start.setDate(start.getDate() + 1)
-    // console.log(start, "============================")
-
     let end = new Date(booking.endDate)
-    // let end1 = end.setDate(end.getDate() + 1)
+
+    // console.log(start, "start for disabled dates")
+    // console.log(end, "end for disabled dates")
 
     while (start <= end) {
       disabledDates.push(new Date(start))
       start.setDate(start.getDate() + 1)
     }
+
     return disabledDates
   })
 
