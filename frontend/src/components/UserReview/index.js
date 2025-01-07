@@ -43,7 +43,7 @@ const UserReviews = () => {
       </div>
       <div className="review-mother">
         <div className="no-review-mother">
-          {existingReviewArr < 1 && (<img className="no-review-meow" alt="no-review-meow" src="https://drive.google.com/uc?export=view&id=1j_TgRhozzklKVuQfq1OVo3eBRXGPai3K" title="Meowbnb logo" />)}
+          {existingReviewArr < 1 && (<img className="no-review-meow" alt="no-review-meow" src="/images/meowbnb-not-found.png"  title="Meowbnb logo" />)}
           {existingReviewArr < 1 && <h4 className="no-review"> No Reviews yet.. </h4>}
         </div>
         <div className="all-owned-review-wrapper">

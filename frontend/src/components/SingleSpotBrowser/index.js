@@ -401,7 +401,7 @@ const SingleSpotBrowser = () => {
               <div className="left-middle">
                 <div className="spot-hosted">
                   <div className="hosted-by"> Spot hosted by {currSpot?.Owner?.firstName} {currSpot?.Owner?.lastName}</div>
-                  <img className='hosted-pic' src="https://drive.google.com/uc?export=view&id=1p7ALHdhdZsKxbR6qaFb4Wd_rbqSy1DwI" alt="Meowbnb Default Profile"></img>
+                  <img className='hosted-pic' src="/images/meowbnb-host.png"  alt="Meowbnb Default Profile"></img>
                 </div>
 
                 {/* <div className="check-in-super"> */}
@@ -519,7 +519,7 @@ const SingleSpotBrowser = () => {
                         // rangeColors={['#f33e5b', '#3ecf8e', '#fed14c']}
                         ranges={[selectionRange]}
                         months={2}
-                        minDate={addDays(new Date, 1)}
+                        minDate={addDays(new Date(), 1)}
                         direction="horizontal"
                         className="booking-calendar-1"
                         disabledDates={disabledDates}
@@ -612,7 +612,7 @@ const SingleSpotBrowser = () => {
                                     // rangeColors={['#f33e5b', '#3ecf8e', '#fed14c']}
                                     ranges={[selectionRange]}
                                     months={2}
-                                    minDate={addDays(new Date, 1)}
+                                    minDate={addDays(new Date(), 1)}
                                     direction="horizontal"
                                     className="booking-calendar"
                                     disabledDates={disabledDates}
@@ -728,7 +728,7 @@ const SingleSpotBrowser = () => {
               <div className='reviews' key={review.id}>
                 <div>
                   <div className="profile-name">
-                    <img className='user-profile-pic' src="https://drive.google.com/uc?export=view&id=1e6AIQpUAr0_HcNJNaptcQAHEdO5aib5k" alt="Meowbnb Default Profile"></img>
+                    <img className='user-profile-pic' src="/images/meowbnb-profile.png" alt="Meowbnb Default Profile"></img>
                     <div className="review-name-date">
                       <strong className="review-username">
                         {review?.User?.firstName} {review?.User?.lastName}

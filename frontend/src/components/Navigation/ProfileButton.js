@@ -45,7 +45,7 @@ function ProfileButton({ user }) {
       <div className="whole-button">
         <button className="user-button" onClick={openMenu}>
           <i className="fas fa-bars" />
-          <img className='profile-pic' src="https://drive.google.com/uc?export=view&id=1e6AIQpUAr0_HcNJNaptcQAHEdO5aib5k" alt="Meowbnb Default Profile"></img>
+          <img className='profile-pic' src="/images/meowbnb-profile.png" alt="Meowbnb Default Profile"></img>
         </button>
         {showMenu && (
           <div className="user-dropdown-menu">

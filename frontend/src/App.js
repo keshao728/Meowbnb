@@ -39,6 +39,7 @@ function App() {
           <Route exact path='/spots/trips'>
             <UserBookings />
           </Route>
+          
           <Route path='/spots/my-reviews'>
             <UserReviews />
           </Route>
